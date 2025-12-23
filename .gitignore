@@ -44,3 +44,5 @@ icecore_mcmc
 /.quarto/
 /_site/
 *.html
+
+**/*.quarto_ipynb
