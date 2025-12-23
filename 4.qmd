@@ -548,8 +548,8 @@ distributions (e.g. stem, fruit, leaves, etc)
 ## 4.8
 
 ```{r}
-menchild30bach = scan(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/menchild30bach.dat'))
-menchild30nobach = scan(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/menchild30nobach.dat'))
+menchild30bach = scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30bach.dat'))
+menchild30nobach = scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30nobach.dat'))
 ```
 
 ### a
