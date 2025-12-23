@@ -1,6 +1,6 @@
 /* Custom styles for the Quarto website */
 
-/* Ensure MathJax equation numbering works */
+/* Center MathJax equations */
 .MathJax_Display {
   text-align: center;
 }
