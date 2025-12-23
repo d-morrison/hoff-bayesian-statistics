@@ -1,5 +1,5 @@
 #### Social mobility data
-load("socmob.RData") 
+load("Replication/socmob.RData") 
 
 yincc<-match(socmob$INC,sort(unique(socmob$INC)))
 ydegr<-socmob$DEGREE+1
@@ -116,7 +116,7 @@ beta.pm[1]+beta.pm[3]
 quantile(BETA[,3],prob=c(.025,.0975))
 quantile(BETA[,3],prob=c(0.025,0.975))
 
-source("rlreg.R")
+source("Replication/rlreg.R")
 rfit<-treg(y,X)
 
 

@@ -1,5 +1,5 @@
 #### Figure 8.1
-load("nels.RData") 
+load("Replication/nels.RData") 
 y1<-y.school1
 y2<-y.school2
 

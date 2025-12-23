@@ -1,4 +1,4 @@
-library(MASS) ; source("hdr2d.r")
+library(MASS) ; source("Replication/hdr2d.r")
 
 #### Simulate multivariate normal vector
 rmvnorm<-
@@ -79,7 +79,7 @@ dev.off()
 
 
 #### Reading comprehension
-load("reading.RData")
+load("Replication/reading.RData")
 Y<-reading
 
 mu0<-c(50,50)

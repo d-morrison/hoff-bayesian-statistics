@@ -108,7 +108,7 @@ dev.off()
 
 
 #### GSS example
-load("gss.RData")
+load("Replication/gss.RData")
 
 table(gss$DEG[gss$YEAR==1998])
 y1<-gss$PRAYER[gss$YEAR==1998 & gss$RELIG==1 ]

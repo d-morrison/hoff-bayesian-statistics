@@ -26,7 +26,7 @@ pdf("fig5_2.pdf",family="Times",height=3.5,width=7)
 par(mar=c(3,3,.25,1),mgp=c(1.75,.75,0))
 par(mfrow=c(1,1))
 
-load("heights.RData") # from `alr3` library
+load("Replication/heights.RData") # from `alr3` library
 y<-heights[,2]
 hist(y,main="",ylab="",xlab="height in inches",prob=TRUE,nclass=15,col="gray")
 
@@ -39,7 +39,7 @@ dev.off()
 #### Fig 5.3
 pdf("fig5_3.pdf",family="Times",height=3.5,width=7)
 
-load("midge.RData") # from `Flury` library
+load("Replication/midge.RData") # from `Flury` library
 y<-midge[midge[,1]=="Af",3]
 
 mu0<-1.9
@@ -182,7 +182,7 @@ dev.off()
 
 
 ####  Figure 5.7
-load("gss.RData")
+load("Replication/gss.RData")
 
 pdf("fig5_7.pdf",family="Times",height=1.75,width=5)
 par(mfrow=c(1,3),mar=c(2.75,2.75,.5,.5),mgp=c(1.70,.70,0))
@@ -217,7 +217,7 @@ abline(v=mean(CHILDS))
 legend( 2.35,1.8,legend=c("n=5","n=15","n=45"),lwd=c(2,2,2),col=
           gray(1-( N/5)/9 ), bty="n")
 
-source("hdr2d.r")
+source("Replication/hdr2d.r")
 plot.hdr2d(NY[NY[,1]==45,2:3],xlab=expression(italic(bar(y))), 
     ylab=expression(italic(s^2)) ,ylim=c(1,6) )
 

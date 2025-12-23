@@ -1,6 +1,6 @@
 #### Functions for variable selection
-source("regression_gprior.R")
-source("backselect.R")
+source("Replication/regression_gprior.R")
+source("Replication/backselect.R")
 
 
 
@@ -149,7 +149,7 @@ abline(v=0,col="gray")
 lines(x,mdt(x,0,sqrt(n*s20*iXX[4,4]),nu0 ),col="gray")
 
 
-source("hdr2d.r")
+source("Replication/hdr2d.r")
 plot.hdr2d( beta.post[,c(2,4)],xlab=expression(beta[2]),
    ylab=expression(beta[4]))
 abline(h=0,col="gray") ; abline(v=0,col="gray")
@@ -192,7 +192,7 @@ dev.off()
 
 
 #### Diabetes example
-load("diabetes.RData")
+load("Replication/diabetes.RData")
 yf<-diabetes$y
 yf<-(yf-mean(yf))/sd(yf)
 
@@ -222,7 +222,7 @@ mean( (y.te-y.te.ols )^2 )
 plot(olsfit$coef,type="h",lwd=2,xlab="regressor index",ylab=expression(hat(beta)[ols]))
 
 ## backwards selection
-source("backselect.R")
+source("Replication/backselect.R")
 
 vars<-bselect.tcrit(y,X,tcrit=1.65)
 bslfit<-lm(y~-1+X[,vars$remain])
@@ -261,11 +261,11 @@ dev.off()
 #### Bayesian model selection
 p<-dim(X)[2]
 S<-10000
-source("regression_gprior.R")
+source("Replication/regression_gprior.R")
 
 ## Don't run it again if you've already run it
 runmcmc<-!any(system("ls",intern=TRUE)=="diabetesBMA.RData")
-if(!runmcmc){ load("diabetesBMA.RData") }
+if(!runmcmc){ load("Replication/diabetesBMA.RData") }
 
 if(runmcmc){
 

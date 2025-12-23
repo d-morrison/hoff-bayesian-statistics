@@ -1,5 +1,5 @@
 #### Sparrow data
-load("sparrows.RData")  
+load("Replication/sparrows.RData")  
 fledged<-sparrows[,1] ; age<-sparrows[,2] ; age2<-age^2
 
 
@@ -68,7 +68,7 @@ Xs<-cbind(rep(1,6),1:6,(1:6)^2)
 eXB.post<- exp(t(Xs%*%t(BETAg )) )
 qE<-apply( eXB.post,2,quantile,probs=c(.025,.5,.975))
 
-source("hdr2d.r")
+source("Replication/hdr2d.r")
 plot.hdr2d(BETAg[,2:3],bw=c(15,15),xlab=expression(beta[2]),
            ylab=expression(beta[3]))
 dev.off()
@@ -266,7 +266,7 @@ dev.off()
 
 
 #### Ice core example
-load("icecore.RData") 
+load("Replication/icecore.RData") 
 
 pdf("fig10_7.pdf",family="Times",height=1.75,width=5)
 
