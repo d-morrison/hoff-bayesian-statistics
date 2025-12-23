@@ -448,7 +448,7 @@ S_0 = matrix(rep(Lambda_0), nrow = 2)
 # implementations or packages to see what I would be using in the real world.
 # Specifically we need MASS::mvrnorm (Modern Applied Statistics with S), and
 # wishart comes default in newer R distributions with rWishart
-source("http://www.stat.washington.edu/people/pdhoff/Book/Data/data/chapter7.r")
+source("https://www2.stat.duke.edu/~pdh10/FCBS/Replication/chapter7.r")
 # Try plotting
 Y = Y.reading
 ggplot(data.frame(Y.reading)) +
@@ -803,8 +803,8 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 ## 7.3
 
 ```{r}
-bluecrab = as.matrix(read.table(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/bluecrab.dat')))
-orangecrab = as.matrix(read.table(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/orangecrab.dat')))
+bluecrab = as.matrix(read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/bluecrab.dat')))
+orangecrab = as.matrix(read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/orangecrab.dat')))
 ```
 
 ### a
@@ -908,7 +908,7 @@ The orange crab species appears to have a much higher correlation between its tw
 ## 7.4
 
 ```{r}
-agehw = as.matrix(read.table(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/agehw.dat')))
+agehw = as.matrix(read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/agehw.dat')))
 colnames(agehw) = agehw[1, ]
 agehw = agehw[-1, ]
 agehw = matrix(as.numeric(agehw), nrow = 100)
