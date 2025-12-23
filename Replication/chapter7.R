@@ -1,4 +1,4 @@
-library(MASS) ; source("hdr2d.R")
+library(MASS) ; source("hdr2d.r")
 
 #### Simulate multivariate normal vector
 rmvnorm<-

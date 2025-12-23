@@ -217,7 +217,7 @@ abline(v=mean(CHILDS))
 legend( 2.35,1.8,legend=c("n=5","n=15","n=45"),lwd=c(2,2,2),col=
           gray(1-( N/5)/9 ), bty="n")
 
-source("hdr2d.R")
+source("hdr2d.r")
 plot.hdr2d(NY[NY[,1]==45,2:3],xlab=expression(italic(bar(y))), 
     ylab=expression(italic(s^2)) ,ylim=c(1,6) )
 
