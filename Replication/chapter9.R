@@ -149,7 +149,7 @@ abline(v=0,col="gray")
 lines(x,mdt(x,0,sqrt(n*s20*iXX[4,4]),nu0 ),col="gray")
 
 
-source("hdr2d.R")
+source("Replication/hdr2d.R")
 plot.hdr2d( beta.post[,c(2,4)],xlab=expression(beta[2]),
    ylab=expression(beta[4]))
 abline(h=0,col="gray") ; abline(v=0,col="gray")

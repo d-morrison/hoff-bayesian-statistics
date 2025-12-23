@@ -29,7 +29,7 @@ rwish<-function(n,nu0,S0)
 
 
 ### diabetes data
-Y.reading<-dget("Y.reading")
+Y.reading<-dget("Inline/Y.reading")
 Y.pima.miss<-dget("Y.pima.miss")
 Y.pima.full<-dget("Y.pima.full")
 
