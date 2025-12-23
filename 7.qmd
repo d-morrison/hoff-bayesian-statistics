@@ -448,7 +448,7 @@ S_0 = matrix(rep(Lambda_0), nrow = 2)
 # implementations or packages to see what I would be using in the real world.
 # Specifically we need MASS::mvrnorm (Modern Applied Statistics with S), and
 # wishart comes default in newer R distributions with rWishart
-source("Replication/chapter7.R")
+source("Inline/chapter7.R")
 # Try plotting
 Y = Y.reading
 ggplot(data.frame(Y.reading)) +
