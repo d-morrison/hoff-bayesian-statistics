@@ -12,14 +12,14 @@ If you find an error or would like to improve the notes, please let me know/subm
 
 - [Chapter 1: Introduction and examples](1.qmd)
 - [Chapter 2: Belief, probability, and exchangeability](2.qmd)
-- [Chapter 3](3.qmd)
-- [Chapter 4](4.qmd)
-- [Chapter 5](5.qmd)
-- [Chapter 6](6.qmd)
-- [Chapter 7](7.qmd)
-- [Chapter 8](8.qmd)
-- [Chapter 9](9.qmd)
-- [Chapter 10](10.qmd)
+- [Chapter 3: One-parameter models](3.qmd)
+- [Chapter 4: Monte Carlo approximation](4.qmd)
+- [Chapter 5: The Normal Model](5.qmd)
+- [Chapter 6: Posterior approximation with the Gibbs sampler](6.qmd)
+- [Chapter 7: The multivariate normal model](7.qmd)
+- [Chapter 8: Group comparisons and hierarchical modeling](8.qmd)
+- [Chapter 9: Linear regression](9.qmd)
+- [Chapter 10: Nonconjugate priors and Metropolis-Hastings algorithms](10.qmd)
 
 ## Final Project
 
