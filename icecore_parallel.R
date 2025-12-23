@@ -1,8 +1,8 @@
 library(parallel)
 
 # Initial stuff borrowed from peter hoff because this data munging is unclear
-dtmp = as.matrix(read.table(url("https://www2.stat.duke.edu/~pdh10/FCBS/Inline/vostok.1999.temp.dat"), header = TRUE))
-dco2 = as.matrix(read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Inline/vostok.icecore.co2.dat'), header = TRUE))
+dtmp = as.matrix(read.table("Inline/vostok.1999.temp.dat", header = TRUE))
+dco2 = as.matrix(read.table('Inline/vostok.icecore.co2.dat', header = TRUE))
 
 dtmp[,2]<- -dtmp[,2]
 dco2[,2]<- -dco2[,2]
