@@ -2,24 +2,9 @@
 title: "Chapter 9: Linear regression"
 author: "Jesse Mu"
 date: "November 2, 2016"
-output:
-  html_document:
-    highlight: pygments
-    toc: yes
-    toc_float: yes
 ---
 
 <!-- Setup -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { 
-      equationNumbers: {
-            autoNumber: "all"
-      } 
-  }
-});
-</script>
 
 ```{r echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
@@ -36,7 +21,7 @@ library(reshape)
 ## 9.1
 
 ```{r}
-swim = read.table(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/swim.dat'))
+swim = read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/swim.dat'))
 ```
 
 To specify our prior, we let the prior expectation of our $y$-intercept to be 
@@ -123,7 +108,7 @@ about 65% of the time by week 13, so we recommend that swimmer 1 race.
 ## 9.3
 
 ```{r}
-crime = read.table(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/crime.dat'), header = TRUE)
+crime = read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/crime.dat'), header = TRUE)
 ```
 
 ### a

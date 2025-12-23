@@ -2,24 +2,9 @@
 title: "Chapter 6: Posterior approximation with the Gibbs sampler"
 author: "Jesse Mu"
 date: "November 4, 2016"
-output:
-  html_document:
-    highlight: pygments
-    toc: yes
-    toc_float: yes
 ---
 
 <!-- Setup -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-      equationNumbers: {
-            autoNumber: "all"
-      }
-  }
-});
-</script>
 
 ```{r echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
@@ -488,8 +473,8 @@ $$
 ### d
 
 ```{r}
-Y_a <- scan(url('http://www.stat.washington.edu/~pdhoff/Book/Data/hwdata/menchild30bach.dat'))
-Y_b <- scan(url('http://www.stat.washington.edu/~pdhoff/Book/Data/hwdata/menchild30nobach.dat'))
+Y_a <- scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30bach.dat'))
+Y_b <- scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30nobach.dat'))
 n_a = length(Y_a)
 n_b = length(Y_b)
 ybar_a = mean(Y_a)
@@ -552,7 +537,7 @@ decreases.
 ## 6.2
 
 ```{r}
-glucose <- scan(url('http://www.stat.washington.edu/~pdhoff/Book/Data/hwdata/glucose.dat'))
+glucose <- scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/glucose.dat'))
 ```
 
 ### a

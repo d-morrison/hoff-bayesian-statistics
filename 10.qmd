@@ -2,24 +2,9 @@
 title: "Chapter 10: Nonconjugate priors and Metropolis-Hastings algorithms"
 author: "Jesse Mu"
 date: "December 8, 2016"
-output:
-  html_document:
-    highlight: pygments
-    toc: yes
-    toc_float: yes
 ---
 
 <!-- Setup -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-      equationNumbers: {
-            autoNumber: "all"
-      }
-  }
-});
-</script>
 
 ```{r echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
@@ -165,7 +150,7 @@ $$
 ## 10.2
 
 ```{r}
-msparrownest = read.table(url('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/msparrownest.dat'))
+msparrownest = read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/msparrownest.dat'))
 ```
 
 For convenience let $\theta_i = P(Y_i = 1 \mid \alpha, \beta, x_i)$. Now we solve for $\theta_i$ in our model

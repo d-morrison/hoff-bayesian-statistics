@@ -2,24 +2,9 @@
 title: "Chapter 8: Group comparisons and hierarchical modeling"
 author: "Jesse Mu"
 date: "November 17, 2016"
-output:
-  html_document:
-    highlight: pygments
-    toc: yes
-    toc_float: yes
 ---
 
 <!-- Setup -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { 
-      equationNumbers: {
-            autoNumber: "all"
-      }
-  }
-});
-</script>
 
 ```{r echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
@@ -94,7 +79,7 @@ Then the full conditional distributions of the parameters are
 ## Analysis of the math score data
 
 ```{r}
-source('http://www.stat.washington.edu/people/pdhoff/Book/Data/data/chapter8.r')
+source('https://www2.stat.duke.edu/~pdh10/FCBS/Replication/chapter8.r')
 y1 = y.school1
 y2 = y.school2
 n1 = length(y1)
@@ -597,7 +582,7 @@ independence induced by the Bayes network.
 library(dplyr)
 library(tidyr)
 schools.list = lapply(1:8, function(i) {
-  s.tbl = paste0('http://www.stat.washington.edu/people/pdhoff/Book/Data/hwdata/school', i, '.dat') %>%
+  s.tbl = paste0('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/school', i, '.dat') %>%
     url %>%
     read.table
   

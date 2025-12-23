@@ -1,0 +1,28 @@
+---
+title: "Hoff Bayesian Statistics"
+---
+
+These are (fully reproducible!) R Markdown lecture notes for [Peter D. Hoff, "A First Course in Bayesian Statistical Methods"](https://peterhoff.io/book/), completed as part of a 1-semester independent study course. Only Chapters 1-8 are complete right now.
+
+Each note includes summaries of chapter sections, with math and explanations modified to better fit my understanding and the occasional link to external resources. I also reproduce many figures in the book in a ggplot/tidyverse style, and tackle some of the exercises at the end of each chapter (correctness not guaranteed).
+
+If you find an error or would like to improve the notes, please let me know/submit a PR!
+
+## Chapters
+
+- [Chapter 1: Introduction and examples](1.qmd)
+- [Chapter 2: Belief, probability, and exchangeability](2.qmd)
+- [Chapter 3: One-parameter models](3.qmd)
+- [Chapter 4: Monte Carlo approximation](4.qmd)
+- [Chapter 5: The Normal Model](5.qmd)
+- [Chapter 6: Posterior approximation with the Gibbs sampler](6.qmd)
+- [Chapter 7: The multivariate normal model](7.qmd)
+- [Chapter 8: Group comparisons and hierarchical modeling](8.qmd)
+- [Chapter 9: Linear regression](9.qmd)
+- [Chapter 10: Nonconjugate priors and Metropolis-Hastings algorithms](10.qmd)
+
+## Final Project
+
+As a small final project, I also implemented R code for the basic binary relation version of the Infinite Relational Model, described in [Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model"](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf).
+
+- [Infinite Relational Model](irm.qmd)

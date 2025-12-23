@@ -2,24 +2,9 @@
 title: 'Chapter 3: One-parameter models'
 author: "Jesse Mu"
 date: "September 17, 2016"
-output:
-  html_document:
-    highlight: pygments
-    toc: yes
-    toc_float: yes
 ---
 
 <!-- Setup -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { 
-      equationNumbers: {
-            autoNumber: "all"
-      } 
-  }
-});
-</script>
 
 ```{r echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)

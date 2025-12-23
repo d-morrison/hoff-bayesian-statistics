@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Hoff Bayesian Statistics"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Chapters"
+        menu:
+          - text: "Chapter 1: Introduction and examples"
+            href: 1.qmd
+          - text: "Chapter 2: Belief, probability, and exchangeability"
+            href: 2.qmd
+          - text: "Chapter 3: One-parameter models"
+            href: 3.qmd
+          - text: "Chapter 4: Monte Carlo approximation"
+            href: 4.qmd
+          - text: "Chapter 5: The Normal Model"
+            href: 5.qmd
+          - text: "Chapter 6: Posterior approximation with the Gibbs sampler"
+            href: 6.qmd
+          - text: "Chapter 7: The multivariate normal model"
+            href: 7.qmd
+          - text: "Chapter 8: Group comparisons and hierarchical modeling"
+            href: 8.qmd
+          - text: "Chapter 9: Linear regression"
+            href: 9.qmd
+          - text: "Chapter 10: Nonconjugate priors and Metropolis-Hastings algorithms"
+            href: 10.qmd
+      - text: "Infinite Relational Model"
+        href: irm.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-location: right
+    code-fold: false
+    code-tools: true
+    css: styles.css
+    highlight-style: pygments
+
+execute:
+  freeze: auto
