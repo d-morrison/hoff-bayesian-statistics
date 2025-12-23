@@ -1,0 +1,6 @@
+/* Custom styles for the Quarto website */
+
+/* Ensure MathJax equation numbering works */
+.MathJax_Display {
+  text-align: center;
+}
