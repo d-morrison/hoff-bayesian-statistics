@@ -4,6 +4,8 @@
 
 `hoff-bayesian-statistics` is a Quarto website containing fully reproducible lecture notes for Peter D. Hoff's "A First Course in Bayesian Statistical Methods". The notes were completed as part of a 1-semester independent study course and include summaries of chapter sections, mathematical explanations, reproduced figures in ggplot/tidyverse style, and solutions to selected exercises.
 
+Currently, chapters 1-8 are complete, with chapters 9-10 in progress.
+
 The repository also includes a final project implementing the Infinite Relational Model (IRM), a Bayesian clustering algorithm described in Kemp et al. (2006).
 
 ## Technology Stack
@@ -68,9 +70,6 @@ This is a documentation/notes repository, so there are no formal unit tests. How
 ```r
 # In R, render a specific Quarto document
 quarto::quarto_render("1.qmd")
-
-# Or use knitr directly
-knitr::knit("1.qmd")
 ```
 
 ### Linting
