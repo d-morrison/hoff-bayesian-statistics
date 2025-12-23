@@ -4,6 +4,8 @@
 
 # Session Data files
 .RData
+# But allow RData files in Replication directory
+!Replication/*.RData
 
 # Example code in package build process
 *-Ex.R
@@ -35,6 +37,9 @@ vignettes/*.pdf
 .Rproj.user
 
 *.pdf
+# But allow PDF files in Replication and Misc directories
+!Replication/*.pdf
+!Misc/*.pdf
 
 notes.txt
 
