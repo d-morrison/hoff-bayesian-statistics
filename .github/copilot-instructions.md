@@ -251,7 +251,7 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
   - Check the exit code to confirm success (exit code 0)
   - Do not claim success based on partial output or assumptions
   - If the render fails, investigate and fix the issue before proceeding
-  - **"R not installed" is NOT a valid excuse** - install R first if needed (see Installation section above)
+  - **"Software not installed" is NOT a valid excuse** - install required software (R, Quarto, etc.) first if needed (see Installation section above)
 - Check that the rendering completes without errors or warnings
 - Review the generated output in the `_site/` directory to ensure quality
 - Fix any rendering issues before requesting review
