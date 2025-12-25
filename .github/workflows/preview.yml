@@ -38,13 +38,6 @@ jobs:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@HEAD
-        with:
-          needs: |
-            connect
-            website
-          extra-packages: |
-            local::.
-            any::pkgdown
 
       - name: Render
         if: github.event.action != 'closed' # skip the build if the PR has been closed
