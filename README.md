@@ -17,6 +17,18 @@ This repository is now a Quarto website. To build and preview it:
 2. Run `quarto preview` to preview the website locally
 3. Run `quarto render` to build the static website (output in `_site/`)
 
+## Contributing
+
+When submitting a pull request:
+
+1. Make your changes to the relevant `.qmd` files
+2. **Always run `quarto render`** to ensure the website can be rendered successfully
+3. Check that the rendering completes without errors or warnings
+4. Review the generated output to verify your changes appear as intended
+5. Submit your PR once you've confirmed successful rendering
+
+This helps maintain the quality of the website and streamlines the review process.
+
 ## Previous R Markdown Version
 
 Previously, these notes were individual R Markdown files that could be knitted in RStudio. They have been converted to Quarto format (.qmd files) which are compatible with both RStudio and Quarto.
