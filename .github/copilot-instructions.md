@@ -244,6 +244,11 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 **IMPORTANT**: When developing new pull requests, always run `quarto render` to ensure the website can be rendered successfully before finalizing your changes.
 
 - **Always run `quarto render`** during PR development to verify that all changes render correctly
+- **CRITICAL**: Test `quarto render` yourself and verify it actually succeeds before claiming success
+  - Run the command and wait for it to complete
+  - Check the exit code to confirm success (exit code 0)
+  - Do not claim success based on partial output or assumptions
+  - If the render fails, investigate and fix the issue before proceeding
 - Check that the rendering completes without errors or warnings
 - Review the generated output in the `_site/` directory to ensure quality
 - Fix any rendering issues before requesting review
