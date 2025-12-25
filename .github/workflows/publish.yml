@@ -31,6 +31,8 @@ jobs:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@HEAD
+        with:
+          dependencies: '"all"'
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@HEAD
