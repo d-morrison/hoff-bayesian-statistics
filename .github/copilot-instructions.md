@@ -10,7 +10,7 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ## Technology Stack
 
-- **Language**: R (version 4.0+)
+- **Language**: R (version 4.0+, **always use the latest R release** in development and CI/CD)
 - **Documentation Format**: Quarto (.qmd files)
 - **Dependency Management**: renv for R package management
 - **Visualization**: ggplot2, tidyverse
@@ -23,7 +23,7 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ### Prerequisites
 
-1. R (version 4.0 or later recommended)
+1. R (**always use the latest R release**, currently R 4.5.2 or later)
 2. RStudio (optional but recommended)
 3. Quarto CLI (https://quarto.org/docs/get-started/)
 4. pandoc (usually bundled with RStudio or Quarto)
