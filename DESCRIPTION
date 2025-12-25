@@ -30,3 +30,6 @@ Imports:
     parallel,
     reshape,
     tidyr
+Suggests: 
+    spelling
+Language: en-US
