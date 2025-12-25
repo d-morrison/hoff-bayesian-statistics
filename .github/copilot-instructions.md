@@ -30,6 +30,8 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ### Installation
 
+**CRITICAL**: Always install the latest R release before starting development or testing. Download from https://cloud.r-project.org/
+
 To set up the development environment:
 
 ```r
