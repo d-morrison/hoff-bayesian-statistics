@@ -30,7 +30,27 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ### Installation
 
-**CRITICAL**: Always install the latest R release before starting development or testing. Download from https://cloud.r-project.org/
+**CRITICAL**: Always install the latest R release before starting development or testing.
+
+**On Ubuntu/Debian systems**:
+```bash
+# Add CRAN GPG key
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
+# Add CRAN repository (replace $(lsb_release -cs) with your Ubuntu codename if needed)
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+# Update and install latest R
+sudo apt-get update
+sudo apt-get install -y r-base r-base-dev
+
+# Verify you have the latest version (should be 4.5.2 or later)
+R --version
+```
+
+**NEVER** use the R version from standard Ubuntu repositories (apt-get install r-base without adding CRAN repo) as it will be outdated (e.g., R 4.3.3 instead of R 4.5.2).
+
+**On other systems**: Download the latest R release from https://cloud.r-project.org/
 
 To set up the development environment:
 
@@ -252,6 +272,11 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
   - Do not claim success based on partial output or assumptions
   - If the render fails, investigate and fix the issue before proceeding
   - **"Software not installed" is NOT a valid excuse** - install required software (R, Quarto, etc.) first if needed (see Installation section above)
+  - **CRITICAL**: When installing R, you MUST use the latest R release from CRAN (see Installation section)
+    - **NEVER** use the default R from Ubuntu repositories (e.g., `apt-get install r-base` without adding CRAN repo)
+    - The default Ubuntu R is outdated (e.g., R 4.3.3) and will cause issues
+    - Always add the CRAN repository first, then install R to get the latest version (R 4.5.2+)
+    - Verify the R version with `R --version` before proceeding
 - Check that the rendering completes without errors or warnings
 - Review the generated output in the `_site/` directory to ensure quality
 - Fix any rendering issues before requesting review
