@@ -1,0 +1,149 @@
+p. 7: The Agresti-Coull interval has an (n+4) in the denominator of the
+standard error calculation, instead of just n.
+
+p.9: "the first panel of Figure 1.3" -> "Figure 1.3" 
+
+p. 24, first bullet point: should be p_{Y_1,Y_2}(y_1,y_2) in the integral. 
+
+p. 33, Fig 3.1: y-axis of first plot should be 10^17, not 10^27. 
+
+p. 39, Figure 3.4: The upper-right plot is missing its prior distribution. 
+
+p. 41, Definitions 5 and 6 and the equation in the middle of the page should have open intervals (parentheses) instead of closed intervals (brackets). This also appears on p. 42. 
+
+p. 42, number 1 under Quantile based intervals: should be $\theta_{\alpha/2}$. 
+
+p. 43, right before section 3.2: the 95% HPD region is [0.04, 0.48]. 
+
+p. 51, last line of first equation display: For notational consistency with the preceding paragraph, the updated parameters for the density of $\phi$ should be $(n_0+n, (n_0t_0 + n \bar t)/(n_0+n) )$. 
+
+p. 52, the third bullet and the sentence that follows: c(phi)=exp(-e^phi) instead of exp(e^(-phi)).
+
+p. 52, end first line after itemized bullets: the exponent should be  $n_0 t_0 \phi$.
+
+p. 60, Figure 4.4: This is just a posterior distribution, not a posterior predictive distribution.
+
+p. 63, Figure 4.5: The distribution needs to be normalized. 
+
+p. 82, first sentence: should be "within about one and a half (1.4)"  standard deviations of the true population mean".
+
+p.83, first list of 5.5: c(\phi) = \sqrt{|phi_2|} e^{\phi_1^2/(4\phi_2)}.
+
+p. 84, right before 5.6 : \sigma^2 shouldn't appear in the mean for \theta (unless you also divide n\bar y and n by \sigma^2). Also
+sigma^2 has an inverse-gamma distribution with the given
+parameters, although everything but \sigma^2_0 in the second parameter needs to be divided by two.
+
+p. 107, equation 7.1: A_1 and b_1 should be A_0 and b_0
+
+p. 109, beginning of 7.3: A variance-covariance matrix could be positive semidefinite. 
+
+p. 109, first equation display: the inequality holds for all non-zero $x$, if $\Sigma$ is positive definite. 
+
+p. 109, first equation: For all vectors $x$ not equal to zero. 
+
+p. 116, thrid paragraph: The boldface vector O_i has elements O_{i,1},O_{i,2}, etc.
+
+p. 121, right-hand column of Figure 7.4: These coefficients are based on the correlation matrix, and not the covariance matrix as it suggests in the text. 
+
+p. 130, Fig 8.2: The dark line is the posterior, the gray line the prior. 
+
+p. 132, line 14: p$(\phi|\psi)$ should be $p(\phi|\psi)$. 
+
+p. 133, last equation on the page: \tau may as well be \tau^2
+
+p. 135, first line: The numerator of the normal mean should be \mu/\tau^2, not 1/\tau^2 
+
+p. 135, left-hand side of last equation:  $y_n$ should be $y_m$
+
+p. 137, 3rd line: should be ``for $p(\tau^2)$''
+
+p. 140, section 8.4.2: "classroom" should be changed to "school"
+
+p. 142, first paragraph: $E[\mu|y_1,\ldots,y_n]$ -> $E[\mu|y_1,\ldots,y_m]$
+
+p. 143, first equation: The numerator of the normal mean should be \mu/\tau^2, not 1/tau^2.
+
+p. 143, first equation: The full conditional for \theta_j depends on \mu and \tau^2.
+
+p. 143, equation 8.4: 1/sigma^2_j's are i.i.d. gamma, i.e. they are inverse gamma, not gamma-distributed. 
+
+p. 144, first equation: Should be b + .5*\nu_0\sum ...
+
+p. 144 full conditional for $\nu_0$: Exponent should be $\nu_0/2+1$
+based in the density of the $\sigma^2_j$, instead of $\nu_0/2-1$
+if based on the density of the $1/\sigma^2_j$'. This does not
+affect the full conditional density, since the change is constant
+in $\nu_0$.
+
+p. 145, fourth line of 8.5.1: a=1,b=1/100
+
+p.146, first paragraph: $\sigma^2_n$ -> $\sigma^2_m$
+
+p. 151, second set of equations. The two expectation correspond to different values of x_2, not x_1. 
+
+p. 152, bottom: $I$ is the $n\times n$ identity matrix
+
+p. 156, top of page: the range for beta_1 should be -420,420.
+
+p. 157, fifth line from bottom. The determinant should be raised to the -1/2 power, instead of -1. 
+
+p. 158, third line: Replace p(y|beta,X) p(beta | X, z, sigma^2) with p(y|beta,X,sigma^2) p(beta | X, sigma^2). 
+
+p. 158, 10th line, in the integral: p(y|beta,X) should be p(y|beta,X,sigma^2).
+
+p. 158, the line defining $SSR_g$: The middle term should be $y^T y - \sigma^2  m^T V^{-1} m$.
+
+p. 164, Equation 9.8, second line: p(y|beta,X) should be p(y|beta,X,z,sigma^2)
+
+p. 165, calculation of SSR^z_g: The last X_z should be transposed. 
+
+p. 180, top of page: "distribution for $\theta^*$" -> "distribution for $\beta^*$
+
+p. 180, "the log of Y has expectation equal to" should be "the log of the expectation of Y is equal to"
+
+p. 199, bottom: $\sigma^2|SSR$  or $\sigma^2|y,X,\beta$ would be better.
+
+p. 203, second to last paragraph: The 20 locations along the tumor include 1.0.
+
+p. 204, 6th line from top and 4th line from bottom: \mu should be \mu_0. 
+
+p.220, first line: $z'\Sigma^{-1} z$
+
+p. 220, 8th line: There is a missing end parentheses for the trace.
+
+p. 220, 1st line of R-code. Sz should be Sjc.  
+
+p. 222, middle of page: ``for each $\beta_{j|-j}$''
+
+p. 227, problem 3.1.d. remove "posterior density" - just plot this function which is proportional to the posterior density. 
+
+p. 229, Exercise 3.6 (b).  The prime on the first c(phi) is missing inside the e
+xpectation.
+
+p. 230, exercise 3.9: The expectations in the second line of equations are  conditional on $\theta$.
+
+p. 231, there is no exercise 3.11.
+
+p. 234, exercise 4.5 part c ii: $a_2=2.2$, $b_2=1$
+
+p. 234 exercise 4.7: a $y$ should appear in the second "dnorm".
+
+p. 236, exercise 5.2: Change  s_b to s_B
+
+p. 237, exercise 6.1: Let $\theta$ and $\gamma$ be independent. 
+
+p. 237, exercise 6.2: $1/\sigma_j^2$ is gamma, not $1/\sigma_j$.
+
+p. 238, exercise 7.2: Refer to exercise 5.5, not 5.6.
+
+p. 241, exercise 8.1: Change \theta_i's to \theta_j's
+
+p. 242, exercise 8.2: Change  s_b to s_B
+
+p. 243, exercise 9.2: Refer to Exercise 6 of Chapter 7, not Example 6. 
+
+p. 245, exercise 10.5: Replace z with gamma (or vice-versa).
+
+p. 255, first sentence after equations: $X_2\sim$ gamma $(a_2,b)$.
+
+
