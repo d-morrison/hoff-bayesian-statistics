@@ -31,7 +31,7 @@ vignettes/*.pdf
 !Replication/*.pdf
 !Misc/*.pdf
 notes.txt
-icecore_mcmc
+
 # Quarto
 /.quarto/
 /_site/
