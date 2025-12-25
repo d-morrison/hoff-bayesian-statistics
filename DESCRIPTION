@@ -2,7 +2,7 @@ Package: hoffbayesianstatistics
 Title: Hoff Bayesian Statistics
 Version: 0.0.0.9000
 Authors@R: 
-    person("Douglas", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
+    person("Douglas Ezra", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre", "cph"))
 Description: R Quarto notes for Peter D. Hoff, "A First Course in Bayesian Statistical Methods"
 License: MIT + file LICENSE
 Encoding: UTF-8
