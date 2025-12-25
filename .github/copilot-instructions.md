@@ -239,6 +239,17 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 - Verify cross-references and links work
 - Update `_quarto.yml` if adding/removing pages
 
+### Pull Request Development
+
+**IMPORTANT**: When developing new pull requests, always run `quarto render` to ensure the website can be rendered successfully before finalizing your changes.
+
+- **Always run `quarto render`** during PR development to verify that all changes render correctly
+- Check that the rendering completes without errors or warnings
+- Review the generated output in the `_site/` directory to ensure quality
+- Fix any rendering issues before requesting review
+- This practice helps maintain the quality of rendered outputs and streamlines the contribution process
+- Note: The CI/CD workflows (preview.yml and publish.yml) will also render the website, but catching issues locally saves time
+
 ### Dependencies
 
 - Use `renv::snapshot()` after adding new packages
