@@ -29,10 +29,12 @@ To specify our prior, we let the prior expectation of our $y$-intercept to be
 be 0, so $\boldsymbol{\beta} = (23, 0)^T$.
 
 We expect no covariance with the $\beta$ coefficients, but we do have
-uncertainty about our initial $\beta$ estimates. Specifically, to let 95% of our
-uncertainty of the $y$-intercept to fall in $[22, 24]$, we let $\Sigma_{0(1, 1)} = 1/4$ (so that $\pm$ 2 standard deviations is $\pm$ 1).
-We also expect that training has a relatively mild effect on time, so we let
-$\Sigma_{0(2, 2)} = 0.1$ which is just an arbitrarily chosen small variance.
+uncertainty about our initial $\beta$ estimates.
+Specifically, to let 95% of our uncertainty of the $y$-intercept to fall in $[22, 24]$,
+we let $\Sigma_{0(1, 1)} = 1/4$
+(so that $\pm$ 2 standard deviations is $\pm$ 1).
+We also expect that training has a relatively mild effect on time,
+so we let $\Sigma_{0(2, 2)} = 0.1$ which is just an arbitrarily chosen small variance.
 
 For our expectation of the variability of measurements, let's similarly set 
 $\sigma^2_0 = 1/4$ and only lightly center this prior with $\nu_0 = 1$.

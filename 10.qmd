@@ -95,7 +95,9 @@ ggplot(theta.df) +
 
 Need to run until stationarity
 
-Different proposal distributions. Delta as a tradeoff between rate of approach towards the HPD region versus overshooting (like learning rate in gradient descent, etc)
+Different proposal distributions.
+Delta as a tradeoff between rate of approach towards the HPD region versus overshooting
+(like learning rate in gradient descent, etc)
 
 Acceptance rate of between 20 and 50% is good. Control length
 
@@ -140,7 +142,9 @@ effectiveSize(outs.df$phi)
 <!--
 ## 10.1
 
-When $\theta_0 > \delta$, $\tilde{\theta} \in [\theta_0 - \delta, \theta_0 + \delta] > 0$, so $\theta_1 \sim \text{uniform}(\theta_0 - \delta, \theta_0 + \delta)$ and
+When $\theta_0 > \delta$,
+$\tilde{\theta} \in [\theta_0 - \delta, \theta_0 + \delta] > 0$,
+so $\theta_1 \sim \text{uniform}(\theta_0 - \delta, \theta_0 + \delta)$ and
 
 $$
 J(\theta_1 \mid \theta_0) = \frac{1}{2\delta}
@@ -153,7 +157,8 @@ $$
 msparrownest = read.table('Exercises/msparrownest.dat')
 ```
 
-For convenience let $\theta_i = P(Y_i = 1 \mid \alpha, \beta, x_i)$. Now we solve for $\theta_i$ in our model
+For convenience let $\theta_i = P(Y_i = 1 \mid \alpha, \beta, x_i)$.
+Now we solve for $\theta_i$ in our model
 
 $$
 \begin{align}
