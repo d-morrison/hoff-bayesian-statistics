@@ -75,8 +75,7 @@ estimate is the same as the ML estimate.
 
 The debate between Bayesians and frequentists dives into some very philosophical
 issues. Cox's theorem (1946, 1961) gives a formal proof for thinking about
-probabilities using a Bayesian approach. I will likely want to look at an
-explanation of these proofs later: http://ksvanhorn.com/bayes/Papers/rcox.pdf
+probabilities using a Bayesian approach. An explanation of these proofs can be found at: http://ksvanhorn.com/bayes/Papers/rcox.pdf
 
 Outside of formal mathematical grounding, Bayesian methods have excellent 
 practical benefits as data analysis tools:

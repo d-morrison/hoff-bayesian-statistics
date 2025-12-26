@@ -648,8 +648,8 @@ p(y \mid \boldsymbol{\phi}) &= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{exp}\
 &= \frac{1}{\sqrt{\pi}} (2\sigma^2)^{-1/2} \text{exp}\left( \frac{(\theta / \sigma^2)^2}{-2(2\sigma^2)^{-1}} \right) \text{exp} \left(\begin{pmatrix} y & y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 \\ -(2\sigma^2)^{-1} \end{pmatrix} \right) \\
 \end{align}
 
-I am not going to do the exact algebra here, but notice that once you combine
-the exponential terms (and the matrix multiplication in the second exp), there
+The exact algebra is omitted here, but note that once the
+exponential terms are combined (and the matrix multiplication in the second exp), there
 are three separate terms added together. With a common factor of $1 /
 -2\sigma^2$, those three terms are the   $y^2$, $2 \theta y$, and $\theta^2$ of
 the expanded normal density above.
@@ -713,8 +713,8 @@ rownames(params.df) = c('school1', 'school2', 'school3')
 
 ```{r}
 # 5000 monte carlo samples. Need to estimate \sigma^2 before \theta.
-# I can easily do means and confidence intervals of the \sigma^2, but for
-# brevity, I will output only \theta
+# Means and confidence intervals of the \sigma^2 can easily be computed, but for
+# brevity, only \theta is output
 school1.s2.mc = 1 / rgamma(5000, params.df[1, ]$nun / 2, params.df[1, ]$s2n * params.df[1, ]$nun / 2)
 school1.theta.mc = rnorm(5000, params.df[1, ]$mun, sqrt(school1.s2.mc / params.df[1, ]$kn))
 quantile(school1.theta.mc, probs = c(0.025, 0.5, 0.975))
@@ -820,7 +820,7 @@ probability to dip below 0.50.
 
 ## 5.3
 
-I'll derive $p(\sigma^2 \mid y_1, \dots, y_n)$:
+The derivation of $p(\sigma^2 \mid y_1, \dots, y_n)$ is as follows:
 
 \begin{align}
 p(\sigma^2 \mid y_1, \dots, y_n) &\propto p(\sigma^2)p(y_1, \dots, y_n \mid \sigma^2) \\
@@ -836,7 +836,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &\propto p(\sigma^2)p(y_1, \dots, y_n \mid \sig
 &\propto \dots
 \end{align}
 
-This is apparently non-trivial, and requires expanding the quadratic terms in the $\text{exp}$ terms. I'll skip this for now.
+This is apparently non-trivial, and requires expanding the quadratic terms in the $\text{exp}$ terms. This step is skipped for now.
 
 <!--
 The marginal posterior distribution on $\theta^2$ can be calculated using Bayes'

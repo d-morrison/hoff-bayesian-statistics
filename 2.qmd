@@ -502,30 +502,30 @@ betting on the occurrences of either $E$ or $E^c$ to even out.
 
 #### i
 
-A frequentist idea: if I were to pick at random many, many $x$ sampled from the
+A frequentist idea: if many, many $x$ were picked at random from the
 census roll, how many of them would be Hindu?
 
-A subjectivist interpretation: how strongly do I believe that a random person
+A subjectivist interpretation: how strongly should one believe that a random person
 from this census roll is Hindu?
 
 (Should be $0.15$)
 
 #### ii
 
-If I were to pick at random many, many $x$ from the census roll, in the long run
+If many, many $x$ were picked at random from the census roll, in the long run
 average, what proportion of them would be $6452859$?
 
-How strongly do I believe that this $x$ I am going to sample is $6452859$?
+How strongly should one believe that the $x$ to be sampled is $6452859$?
 
 #### iii
 
 **An interesting one**
 
 Assume person $6452589$ is a random person sampled from Sri Lanka that is either
-Hindu or not. In the long run, if I observed many persons $6452589$, how many of
+Hindu or not. In the long run, if many persons $6452589$ were observed, how many of
 them would be Hindu?
 
-Person $6452589$ is *one* person who may or may not be Hindu. How strongly do I
+Person $6452589$ is *one* person who may or may not be Hindu. How strongly should one
 believe that he/she is Hindu?
 
 ### b
