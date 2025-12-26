@@ -141,6 +141,15 @@ spelling::spell_check_files("README.md")
   - `echo=FALSE` to hide code
   - `message=FALSE` to suppress messages
   - `fig.align='center'` for centered figures
+- **Line breaks in prose**: Add line breaks at the ends of phrases or clauses to keep lines reasonably short (typically under 80-100 characters)
+  - This improves readability in text editors and makes version control diffs cleaner
+  - Break after commas, semicolons, conjunctions, or at natural phrase boundaries
+  - Do not break in the middle of inline math expressions, links, or code snippets
+  - Example: Instead of "This is a very long sentence that continues for a while and explains multiple concepts in a single line.", use:
+    ```markdown
+    This is a very long sentence that continues for a while
+    and explains multiple concepts in a single line.
+    ```
 
 ### Code Organization
 
