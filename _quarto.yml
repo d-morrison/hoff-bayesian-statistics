@@ -21,7 +21,7 @@ website:
   repo-actions: [edit, issue, source]
   page-footer:
     left:
-      - text: "Copyright 2024, Douglas Ezra Morrison"
+      - text: "Copyright 2024, Jesse Mu"
   navbar:
     left:
       - text: "Home"
