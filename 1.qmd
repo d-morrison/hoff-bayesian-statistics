@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 library(knitr)
 library(ggplot2)
 library(cowplot)
-library(reshape)
+library(tidyr)
 ```
 
 <!-- Begin writing -->
@@ -207,8 +207,10 @@ d = outer(Theta0, W, FUN = function(w, theta0) exp.posterior(w, theta0, 0))
 rownames(d) = Theta0
 colnames(d) = W
 
-df = melt(d)
-colnames(df) = c('theta0', 'w', 'theta')
+df = as.data.frame(d) |>
+  tibble::rownames_to_column('theta0') |>
+  pivot_longer(cols = -theta0, names_to = 'w', values_to = 'theta') |>
+  mutate(theta0 = as.numeric(theta0), w = as.numeric(w))
 
 p = ggplot(df, aes(x = w, y = theta0, z = theta)) +
   geom_contour(aes(colour = ..level..))

@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 library(knitr)
 library(ggplot2)
 library(cowplot)
-library(reshape)
+library(tidyr)
 ```
 
 <!-- Begin writing -->
@@ -145,7 +145,7 @@ signif = apply(beta, MARGIN = 2, FUN = quantile, probs = c(0.025, 0.5, 0.975)) %
   apply(MARGIN = 2, FUN = function(y) !(y[1] < 0 && 0 < y[3]))
 
 beta_df = as.data.frame(beta) %>%
-  gather(key = 'variable', val = 'coefficient') %>%
+  pivot_longer(cols = everything(), names_to = 'variable', values_to = 'coefficient') %>%
   mutate(signif = signif[variable])
 
 ggplot(beta_df, aes(x = variable, y = coefficient, color = signif)) +

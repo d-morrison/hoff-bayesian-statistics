@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 library(knitr)
 library(ggplot2)
 library(cowplot)
-library(reshape)
+library(tidyr)
 ```
 
 <!-- Begin writing -->
@@ -476,8 +476,10 @@ d = outer(Theta, Sigma2, post.func)
 rownames(d) = Theta
 colnames(d) = Sigma2
 
-df = melt(d)
-colnames(df) = c('theta', 'sigma2', 'density')
+df = as.data.frame(d) |>
+  tibble::rownames_to_column('theta') |>
+  pivot_longer(cols = -theta, names_to = 'sigma2', values_to = 'density') |>
+  mutate(theta = as.numeric(theta), sigma2 = as.numeric(sigma2))
 
 ggplot(df, aes(x = theta, y = sigma2, z = density)) +
   geom_contour(aes(color = ..level..)) +

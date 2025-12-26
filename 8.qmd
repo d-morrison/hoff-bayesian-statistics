@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 library(knitr)
 library(ggplot2)
 library(cowplot)
-library(reshape)
+library(tidyr)
 ```
 
 <!-- Begin writing -->
@@ -676,7 +676,7 @@ cut_size = 10
 smt.df = smt.df %>%
   tbl_df %>%
   mutate(scut = cut(s, breaks = cut_size)) %>%
-  gather('variable', 'value', sigma2:tau2)
+  pivot_longer(cols = c(sigma2, mu, tau2), names_to = 'variable', values_to = 'value')
 
 ggplot(smt.df, aes(x = scut, y = value)) +
   facet_wrap(~ variable, scales = 'free_y') +

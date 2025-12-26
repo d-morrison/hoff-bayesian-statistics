@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 library(knitr)
 library(ggplot2)
 library(cowplot)
-library(reshape)
+library(tidyr)
 ```
 
 <!-- Begin writing -->
@@ -46,7 +46,8 @@ df = data.frame(
   pos.theta1 = dgamma(seq(0, 5, by = 0.01), a + sy1, b + n1),
   pos.theta2 = dgamma(seq(0, 5, by = 0.01), a + sy2, b + n2)
 )
-df.long = melt(df, id.vars = 'theta', variable_name = 'dist')
+df.long = df |>
+  pivot_longer(cols = -theta, names_to = 'dist', values_to = 'value')
 ggplot(df.long, aes(x = theta, y = value, group = dist, color = dist)) +
   geom_line() +
   ylab('probability')
@@ -172,11 +173,12 @@ example, when the true mean is known) by plotting the estimate thus far as the
 number of samples in our estimation increase, as below:
 
 ```{r}
-cstats = melt(data.frame(
+cstats = data.frame(
   n = seq_along(mc1000$theta),
   'Expectation' = cumsum(mc1000$theta) / seq_along(mc1000$theta),
   'Probability' = cumsum(mc1000$theta < 1.75) / seq_along(mc1000$theta < 1.75)
-), id.vars = 'n')
+) |>
+  pivot_longer(cols = -n, names_to = 'variable', values_to = 'value')
 realstats = data.frame(
   stat = c(68 / 45, pgamma(1.75, 68, 45)),
   variable = c('Expectation', 'Probability')
@@ -271,8 +273,9 @@ prior = log.odds(theta.prior.mc)
 theta.post.mc = rbeta(n.samp, a + y, b + n - y)
 posterior = log.odds(theta.post.mc)
 
-combined = melt(cbind(prior, posterior))
-colnames(combined) = c('n', 'type', 'value')
+combined = as.data.frame(cbind(prior, posterior)) |>
+  tibble::rownames_to_column('n') |>
+  pivot_longer(cols = -n, names_to = 'type', values_to = 'value')
 
 ggplot(combined, aes(x = value, group = type, color = type)) +
   geom_density(fill = NA) +
@@ -330,9 +333,10 @@ ratio = function(a, b) a / b # Not necessary, but good for foramlization
 prior = ratio(rgamma(n.samp, a, b), rgamma(n.samp, a, b))
 posterior = ratio(rgamma(n.samp, a + y1, b + n1), rgamma(n.samp, a + y2, b + n2))
 
-combined = melt(cbind(prior, posterior))
-colnames(combined) = c('n', 'type', 'value')
-combined$type = factor(combined$type, levels = c('prior', 'posterior'))
+combined = as.data.frame(cbind(prior, posterior)) |>
+  tibble::rownames_to_column('n') |>
+  pivot_longer(cols = -n, names_to = 'type', values_to = 'value') |>
+  mutate(type = factor(type, levels = c('prior', 'posterior')))
 
 ggplot(combined, aes(x = value, group = type, color = type)) +
   facet_wrap(~ type, scales = 'free_y') +
