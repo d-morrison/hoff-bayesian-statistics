@@ -107,8 +107,8 @@ Metropolis-Hastings)
 
 ### A regression model with correlated errors
 
-This section explores the idea of running multiple independent MCMC chains, then
-combining the data (which is theoretically OK). In `icecore_parallel.R`, the approach is to take 
+This section explores running multiple independent MCMC chains and
+combining the data (which is theoretically OK). The approach in `icecore_parallel.R` is to take 
 the MH algorithm for analyzing the icecore data and distribute it across 
 multiple cores with `parallel::mclapply`. That file creates `icecore_mcmc` which
 is analyzed here.

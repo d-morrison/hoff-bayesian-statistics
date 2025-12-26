@@ -221,7 +221,7 @@ $$
 
 for which we'll use a Gibbs sampler. We need to find the full conditionals for
 all unknown quantities above, which seems intimidating. In the Chapter 6 notes
-("a shortcut for thinking about full conditionals"); however, it should be mentioned that
+In the Chapter 6 notes ("a shortcut for thinking about full conditionals"), it should be mentioned that
 obtaining the full conditional for a single parameter is fairly straightforward
 by simply writing the entire joint posterior but then treating the other
 parameters as constants that can be discarded via proportionality.
@@ -522,8 +522,8 @@ On the other hand, given the model, knowing about another $y_{i_1,
 j}$ *does* appear to provide more information about $y_{i_2, j}$, and they are expected to
 covary positively with each other. Specifically, $y_{i_1, j}$ seems to give more
 information about what the mean $\theta_j$ is, and values from the
-same $\theta_j$ are expected to be closer together (due to decreased variability). The exact
-come up with a more formal mathematical justification, though.
+same $\theta_j$ are expected to be closer together (due to decreased variability). A more
+formal mathematical justification cannot be provided here.
 
 ### c
 
