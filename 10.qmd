@@ -107,8 +107,8 @@ Metropolis-Hastings)
 
 ### A regression model with correlated errors
 
-Here I explore the idea of running multiple independent MCMC chains, then
-combining the data (which is theoretically OK). In `icecore_parallel.R` I take 
+This section explores the idea of running multiple independent MCMC chains, then
+combining the data (which is theoretically OK). In `icecore_parallel.R`, the approach is to take 
 the MH algorithm for analyzing the icecore data and distribute it across 
 multiple cores with `parallel::mclapply`. That file creates `icecore_mcmc` which
 is analyzed here.
@@ -187,32 +187,32 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &= \prod_{i = 1}^n p(y_i \mid \alpha, 
 \end{align}
 $$
 
-and I don't think that can be simplified further.
+and this cannot be simplified further.
 
 ### b
 
-It's helpful (I think) to think about this in terms of the log-odds i.e.
-$\text{log-odds}(\theta_i) = a + \beta x_i$. If we have an uniformative prior
-where we by default assume no interaction between wingspan $x_i$ and nesting, 
-then we should center our prior for $\beta$ around 0. If we also want to be 
-uninformative about our prior proportion of nesting birds regardless of
-wingspan, then we should center our prior for $\alpha$ around 0 as well, our
-prior expectation regardless of $x_i$ is $\text{log-odds}(\theta_i) = 0 + 0 x_i = 0$ (so not favoring nesting or not).
+It's helpful to think about this in terms of the log-odds, i.e.,
+$\text{log-odds}(\theta_i) = a + \beta x_i$. With an uninformative prior
+where no interaction between wingspan $x_i$ and nesting is assumed by default, 
+the prior for $\beta$ should be centered around 0. To also be 
+uninformative about the prior proportion of nesting birds regardless of
+wingspan, the prior for $\alpha$ should be centered around 0 as well, so the
+prior expectation regardless of $x_i$ is $\text{log-odds}(\theta_i) = 0 + 0 x_i = 0$ (thus not favoring nesting or not).
 
-The question is what to use for a prior distribution and how diffuse to make our
-priors. We would like priors for $\alpha$ and $\beta$ to be symmetric, so normal
-distributions for both make sense. And we want our prior to be uninformative, so
-we should set the variance of these normals high.
+The question is what to use for a prior distribution and how diffuse to make the
+priors. Priors for $\alpha$ and $\beta$ should be symmetric, so normal
+distributions for both make sense. For an uninformative prior,
+the variance of these normals should be set high.
 
-If $\alpha$ is always 0, then as $x$ moves from 10 to 15, we want our possible
-values of $\beta$ to allow for a change in the log-odds ratio from approximately
-0 to 1. Notice the log-odds ratio of some sufficiently small number e.g. `1e-5`
+If $\alpha$ is always 0, then as $x$ moves from 10 to 15, the possible
+values of $\beta$ should allow for a change in the log-odds ratio from approximately
+0 to 1. Note the log-odds ratio of some sufficiently small number e.g. `1e-5`
 is `r log(1e-5 / (1 - 1e-5))` which is roughly 10. Since $x$ at a minimum is 10,
-it makes sense to have most of our prior on $\beta$ in the range $[-10 / 10, 10 / 10] = [-1, 1]$,
-so I'll set the standard deviation of the $\beta$ prior to 0.5
+it makes sense to have most of the prior on $\beta$ in the range $[-10 / 10, 10 / 10] = [-1, 1]$,
+so the standard deviation of the $\beta$ prior is set to 0.5
 and the variance to 0.25.
 
-Similarly I'll let the standard deviation of our
+Similarly, the standard deviation of the
 $\alpha$ prior to be 5 and the variance 25, so that, if $\beta = 0$, the most of
 the $\alpha$ prior falls in the log-odds interval $[-10, 10]$.
 
@@ -329,8 +329,8 @@ ggplot(prior_df, aes(x = val, y = density, color = dist)) +
 ### e
 
 Using the samples of $\alpha$ and $\beta$, simply compute a distribution on
-$f_{\alpha\beta}(x)$. We can then construct confidence intervals around this
-distribution. However, we need to do this for many $x$ values:
+$f_{\alpha\beta}(x)$. Confidence intervals can then be constructed around this
+distribution. However, this needs to be done for many $x$ values:
 
 ```{r}
 x_seq = seq(10, 15, length = 100)

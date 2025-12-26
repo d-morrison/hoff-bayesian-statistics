@@ -221,7 +221,7 @@ $$
 
 for which we'll use a Gibbs sampler. We need to find the full conditionals for
 all unknown quantities above, which seems intimidating. In the Chapter 6 notes
-("a shortcut for thinking about full conditionals"), however, I mention that
+("a shortcut for thinking about full conditionals"); however, it should be mentioned that
 obtaining the full conditional for a single parameter is fairly straightforward
 by simply writing the entire joint posterior but then treating the other
 parameters as constants that can be discarded via proportionality.
@@ -251,7 +251,7 @@ our priors. We can do this similarly for the other parameters.
 
 ### Quantities
 
-Since the work is quite tedious, I leave out the derivations for the full
+Since the work is quite tedious, the derivations for the full
 conditionals of the parameters. To summarize, given priors
 
 \begin{align}
@@ -405,7 +405,7 @@ for (s in 1:S) {
 ### MCMC diagnostics
 
 The book mentions here that it's important to check convergence of the Gibbs 
-sampler; I won't do that here, but dividing the samples into groups of e.g. 500 
+sampler; this is not done here, but dividing the samples into groups of e.g. 500 
 samples, and ensuring that the mean values of the parameters don't change too
 much from group to group is a good way to check, at least for a manageable
 number of parameters.
@@ -499,7 +499,7 @@ $$
 
 ## Analysis of math score data
 
-For time I haven't reproduced the analysis here are there aren't too many
+For brevity, the analysis is not reproduced here as there aren't too many
 conclusions drawn - the point is just that you can let the variance vary across
 groups.
 
@@ -509,20 +509,20 @@ groups.
 
 ### a
 
-I expect $\text{Var}(y_{i, j} \mid \mu, \tau^2)$ to be bigger since it includes
+The expectation is that $\text{Var}(y_{i, j} \mid \mu, \tau^2)$ will be bigger since it includes
 both within- and between-group sampling variability.
 
 ### b
 
-I think $\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)$ is zero
-because, according to exchangeability, our $y_{i, j}$ are conditionally i.i.d.
+$\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)$ is expected to be zero
+because, according to exchangeability, $y_{i, j}$ are conditionally i.i.d.
 when $\theta_j, \sigma^2$ is known.
 
-On the other hand, given our model, it seems like knowing about another $y_{i_1,
-j}$ *does* provide more information about $y_{i_2, j}$, and I expect them to
+On the other hand, given the model, knowing about another $y_{i_1,
+j}$ *does* appear to provide more information about $y_{i_2, j}$, and they are expected to
 covary positively with each other. Specifically, $y_{i_1, j}$ seems to give more
-information about what the mean $\theta_j$ is, and we expect values from the
-same $\theta_j$ to be closer together (due to decreased variability). I can't
+information about what the mean $\theta_j$ is, and values from the
+same $\theta_j$ are expected to be closer together (due to decreased variability). The exact
 come up with a more formal mathematical justification, though.
 
 ### c
@@ -732,8 +732,8 @@ ggplot(priors, aes(x = value, y = density, color = dist)) +
   facet_wrap(~ variable, scales = 'free')
 ```
 
-Our prior estimates for $\mu$ and $\tau^2$ were fairly estimate, but our 
-estimate for $\sigma^2$ was very far off. After this analysis, we have estimates
+The prior estimates for $\mu$ and $\tau^2$ were fairly accurate, but the 
+estimate for $\sigma^2$ was very far off. After this analysis, estimates are obtained
 for $\mu$, the average amount of hours of schoolwork spent at a typical school, 
 $\tau^2$, the variability between schools in the average hours of schoolwork, 
 and $\sigma^2$, the variability among students' hours in each school.
@@ -759,9 +759,9 @@ ggplot(R_prior, aes(x = value, y = ..density.., color = dist)) +
 mean(R_post$value)
 ```
 
-$R$ measures how much of the total variance in our data is between-group. Our
+$R$ measures how much of the total variance in the data is between-group. The
 prior didn't contain much information about this quantity, but after inference,
-we expect that around 25\% of our variance comes from between group variance
+the expectation is that around 25\% of the variance comes from between group variance
 ($\tau^2$).
 
 ### d

@@ -120,8 +120,8 @@ Again, to proceed with Gibbs sampling, we simply need to calculate the full
 conditional distributions of the parameters. We already computed the
 full conditional for $\theta \mid \sigma^2, y_1, \dots, y_n$ in 5.2. For $\theta
 \mid \mathcal{N}(\mu_0, \tau_0^2)$, then $\theta \mid \sigma^2, y_1, \dots, y_n
-\sim \mathcal{N}(\mu_n, \tau_n^2)$, where $\mu_n$ and $\tau_n^2$ I will not
-reproduce here (see 5.2).
+\sim \mathcal{N}(\mu_n, \tau_n^2)$, where $\mu_n$ and $\tau_n^2$ are not
+reproduced here (see 5.2).
 
 Now we find the full conditional for $\sigma^2$ using the exact same method as in 5.2:
 
@@ -748,8 +748,8 @@ effectiveSize(THETAMAX)
 ```
 
 These samples are actually highly autocorrelated, hence the minimum effective
-sample sizes. But I'm not sure (?) the purpose of calculating the
-autocorrelation of the minimum and maximum $\theta$?
+sample sizes. However, the purpose of calculating the
+autocorrelation of the minimum and maximum $\theta$ is unclear.
 
 ### d
 

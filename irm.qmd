@@ -28,8 +28,8 @@ The **Infinite Relational Model** is the prototypical example of such a model.
 
 > [Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)
 
-For this last project, I coded up a simple version of Charles Kemp's Infinite
-Relational Model (IRM) in `irm.R` to co-cluster rows and columns of a simple
+For this last project, a simple version of Charles Kemp's Infinite
+Relational Model (IRM) was coded in `irm.R` to co-cluster rows and columns of a simple
 2-dimensional binary relation.
 
 ## Demo
@@ -40,7 +40,7 @@ source('irm.R')
 
 ### Sanity check
 
-As a sanity check, we use the toy matrix in the original paper:
+As a sanity check, the toy matrix from the original paper is used:
 
 ```{r}
 R = rbind(

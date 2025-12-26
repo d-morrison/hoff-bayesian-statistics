@@ -444,9 +444,9 @@ S_0 = matrix(rep(Lambda_0), nrow = 2)
 ```
 
 ```{r}
-# Note that this defines rmvnorm and rwish, but I am goint to use default
-# implementations or packages to see what I would be using in the real world.
-# Specifically we need MASS::mvrnorm (Modern Applied Statistics with S), and
+# Note that this defines rmvnorm and rwish, but default
+# implementations or packages are used here for real-world applications.
+# Specifically MASS::mvrnorm (Modern Applied Statistics with S) is needed, and
 # wishart comes default in newer R distributions with rWishart
 source("Inline/chapter7.R")
 # Try plotting
@@ -918,30 +918,30 @@ agehw = matrix(as.numeric(agehw), nrow = 100)
 
 With typical intuitions about life expectancy and age of marriage, I suspect
 that the ages of most of the married couples will fall between 25 and 80. There
-may be slight age differences among men and women, but nothing that I'm
-confident enough to to encode in my prior. Thus I will set $\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T$
+may be slight age differences among men and women, but not enough to warrant
+encoding in the prior. Thus $\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T$ is set.
 
-I have no choice but to pick a semiconjugate prior distribution in this case,
-but it does seem intuitive that there are less married couples at ages 25 and 80
+A semiconjugate prior distribution is chosen in this case,
+as it seems intuitive that there are fewer married couples at ages 25 and 80
 than there are married couples around age 50, thus justifying a bell curve
 centered around $52.5$ with variance $13.75^2 \approx 189$ such that
-approximately 95\% of my prior falls within the range $(25, 80)$.
+approximately 95\% of the prior falls within the range $(25, 80)$.
 
-I also have reason to believe the ages of the couples are quite tightly
-correlated, so knowing the above variance, I will aim for a prior correlation of
-$0.75$ Solving the correlation equation gives
+The ages of the couples are expected to be quite tightly
+correlated, so knowing the above variance, a prior correlation of
+$0.75$ is targeted. Solving the correlation equation gives
 
 \begin{align}
 & 0.75 = \frac{\sigma_{1, 2}}{189} \\
 \implies& \sigma_{1, 2} = 141.75
 \end{align}
 
-So I will set $$\Lambda_0 = \begin{bmatrix} 189 & 141.75 \\ 141.75 & 189 \end{bmatrix} $$
+Thus $$\Lambda_0 = \begin{bmatrix} 189 & 141.75 \\ 141.75 & 189 \end{bmatrix} $$ is set.
 
-Like previous problems, for the variance, I will set $\mathbf{S}_0^{-1} =
-\Lambda_0$ and $\nu_0 = p + 2 = 4$. Note that this only loosely centers our
-covariance matrix prior on $\Lambda_0$, so I am being a bit conservative in
-terms of my belief in the variance and the correlation between the ages.
+Like previous problems, for the variance, $\mathbf{S}_0^{-1} =
+\Lambda_0$ and $\nu_0 = p + 2 = 4$ are set. Note that this only loosely centers the
+covariance matrix prior on $\Lambda_0$, representing a conservative approach
+in terms of belief in the variance and the correlation between the ages.
 
 ```{r}
 Y = agehw
@@ -957,17 +957,17 @@ nu0 = p + 2 + 10
 
 ### b
 
-The wording of the question is interesting - I assume I'm supposed to sample a 
+The wording of the question is interesting - the assumption is to sample a 
 fixed $\boldsymbol{\theta}, \Sigma$ and from there sample $100$ points all with 
-the same parameters. If I were to do this myself, I feel like I would sample a
-new data point for each sample of $\boldsymbol{\theta}, \Sigma$...
+the same parameters. An alternative approach would be to sample a
+new data point for each sample of $\boldsymbol{\theta}, \Sigma$.
 
-In fact, because of that wording, I originally set $\nu_0 = p + 2 = 4$ to
-loosely center my prior. But given that this variance will often produce uncorrelated
-prior predictive datasets, I'm increasing $\nu_0$ a bit...
+In fact, because of that wording, $\nu_0 = p + 2 = 4$ was originally set to
+loosely center the prior. But given that this variance will often produce uncorrelated
+prior predictive datasets, $\nu_0$ is increased slightly.
 
-After increasing $\nu_0$, I'm fairly comfortable with what these posterior
-predictive datasets look like.
+After increasing $\nu_0$, the posterior
+predictive datasets appear satisfactory.
 
 ```{r}
 N = 100
@@ -1051,7 +1051,7 @@ print_quantiles(THETA, SIGMA)
 
 ### d
 
-I haven't done 7.2, but doing Jeffreys' prior and a "diffuse prior" below will
+Exercise 7.2 has not been completed, but doing Jeffreys' prior and a "diffuse prior" below will
 still be helpful to see what effect prior information has.
 
 #### i
@@ -1104,11 +1104,11 @@ size is so large. Regardless of whether the prior is informative, the quantiles
 and correlations end up quite similar. Maybe the diffuse prior is slightly 
 different, but it's not a big difference.
 
-If we have a smaller sample size, this may be different. Let's see what 
-happens if I truncate the dataset to the first 25 variables and rerun with my 
+If a smaller sample size is used, this may be different. The following shows what 
+happens when the dataset is truncated to the first 25 variables and rerun with the 
 informative prior and the diffuse prior:
 
-#### My prior
+#### Informative prior
 
 ```{r}
 mu0 = rep(52.5, p)

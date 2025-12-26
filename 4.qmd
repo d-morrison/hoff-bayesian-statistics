@@ -359,7 +359,7 @@ $\tilde{Y}$ (if we had an infinite number of samples, we would be "summing" over
 
 # Posterior predictive model checking
 
-Because exercises 4.3 and 4.8 address this, I'm skipping this section for now.
+Because exercises 4.3 and 4.8 address this, this section is skipped for now.
 
 # Exercises
 
@@ -611,7 +611,7 @@ ggplot(total.df, aes(x = ynew, y = ..density.., group = type, fill = type)) +
 ```
 
 The posterior distribution for $\tilde{Y}_B$ seems to peak around 1, while the
-empirical distribution peaks strongly around 0. Thus I think this is an error in the model fit.
+empirical distribution peaks strongly around 0. This suggests an error in the model fit.
 
 (Observe that the mean of the nobach population is around 1.4)
 

@@ -146,8 +146,8 @@ a binomial distribution with parameters $(n, \theta)$. Then,
 p(y \mid \theta) &= {n \choose y} \theta^y (1 - \theta)^{n - y}
 \end{align}
 
-> Note: I skip the general derivation of posterior probabilities for uniform
-> prior here, since a uniform prior is also a $\text{Beta}(a, b)$.
+> Note: The general derivation of posterior probabilities for uniform
+> prior is skipped here, since a uniform prior is also a $\text{Beta}(a, b)$.
 
 Now let's calculate the posterior probability $p(\theta \mid y)$ when
 $p(\theta)$ is *not* uniform; in particular, when our prior on $\theta$ is a
@@ -298,7 +298,7 @@ higher density than values of theta *inside* the interval, another option
 is to force "symmetry" of heights by searching for the **highest posterior 
 density** region, which can be intuitively found by drawing a horizontal line 
 down the density until the region contained by the line is $1 - \alpha$% of the 
-entire curve. It's not entirely clear to me how to calculate these analytically; computationally, using a discretized density, you can use a "trial and error" approach or a neat procedure detailed in Exercise 4.7 (c).
+entire curve. The analytical calculation for these is not straightforward; computationally, using a discretized density, a "trial and error" approach or a neat procedure detailed in Exercise 4.7 (c) can be used.
 
 # The Poisson model
 
@@ -674,7 +674,7 @@ posterior calculation.
 
 ## 3.2
 
-For consistency, I will rewrite these as done in Chapter 1, where $\theta_0 = a
+For consistency, these will be rewritten as done in Chapter 1, where $\theta_0 = a
 / (a + b)$ is the initial guess of $\theta$ and $w = a + b$ is the strength of
 that guess. Then,
 
@@ -866,14 +866,14 @@ p(\phi \mid y_1, \dots, y_n) &\propto p(\phi) p(y_1, \dots, y_n \mid \phi) \\
 &\propto \sum_{k = 1}^K w_k p\left(\theta \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^{n} t(y_i)\right)
 \end{align}
 
-So the posterior is another weighted mixture. However I don't believe the 
-weights of the relative components are preserved (neither are they in the Beta mixtures
+So the posterior is another weighted mixture. However, the 
+weights of the relative components are not preserved (neither are they in the Beta mixtures
 above).
 
 ### b
 
-Not specified whether we need to use the exponential family parameterization or
-the standard parameterization. I will use the standard parameterization.
+Not specified whether the exponential family parameterization or
+the standard parameterization should be used. The standard parameterization will be used.
 
 Let
 \begin{align}
@@ -964,8 +964,8 @@ By taking advantage of the exponential family we already know $t(y) = -(y^2)$ is
 Specifically when comparing multiple $Y_1, \dots, Y_n$, we have $\sum_{i = 1}^n
 - (y^2)$ as our sufficient statistic.
 
-Note it was a technicality that I picked $t(y) = -(y^2)$. I could have
-parameterized the exponential family such that $t(y) = y^2$, and the negative is
+Note it was a technicality that $t(y) = -(y^2)$ was chosen. The exponential family
+could have been parameterized such that $t(y) = y^2$, and the negative is
 distributed in the other functions. Also notice that since $y^2 > 0$, the
 $t(y)$s provide the same information.
 
@@ -1204,10 +1204,9 @@ As a function of $\theta$ only, this is proportional to
 \end{align}
 
 Since $\Gamma(y + \frac{1/2}, 1)$, $y >= 0$ *is* a valid parameterization of a 
-Gamma density, it follows that we can normalize $f(\theta, y)$ such that it 
-represents a valid posterior density for $\theta$. If we actually calculate
-$f(\theta, y) / \int f(\theta, y) \; d\theta$ (which I won't do here), we will
-get such a Gamma density.
+Gamma density, it follows that $f(\theta, y)$ can be normalized such that it 
+represents a valid posterior density for $\theta$. Actually calculating
+$f(\theta, y) / \int f(\theta, y) \; d\theta$ yields such a Gamma density.
 
 Notes: the prior in a) can be thought of as an improper $\text{Gamma}(1/2, 0)$. 
 Since improper Jeffreys' priors are not real probability densities, 

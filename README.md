@@ -5,9 +5,9 @@ First Course in Bayesian Statistical
 Methods"](https://www2.stat.duke.edu/~pdh10/FCBS/), completed as
 part of a 1-semester independent study course. Only Chapters 1-8 are complete right now.
 
-Each note includes summaries of chapter sections, with math and explanations modified to better fit my understanding and the occasional link to external resources. I also reproduce many figures in the book in a ggplot/tidyverse style, and tackle some of the exercises at the end of each chapter (correctness not guaranteed).
+Each note includes summaries of chapter sections, with math and explanations modified for clarity and the occasional link to external resources. Many figures from the book are reproduced in a ggplot/tidyverse style, and some exercises at the end of each chapter are tackled (correctness not guaranteed).
 
-If you find an error or would like to improve the notes, please let me know/submit a PR!
+If you find an error or would like to improve the notes, please submit a PR or open an issue!
 
 ## Building the Website
 
@@ -33,7 +33,7 @@ This helps maintain the quality of the website and streamlines the review proces
 
 Previously, these notes were individual R Markdown files that could be knitted in RStudio. They have been converted to Quarto format (.qmd files) which are compatible with both RStudio and Quarto.
 
-As a small final project, I also implemented R code for the basic binary
-relation version of the Infinite Relational Model, described in [Kemp et al.
+As a small final project, R code for the basic binary
+relation version of the Infinite Relational Model was implemented, as described in [Kemp et al.
 (2006), "Learning Systems of Concepts with an Infinite Relational
 Model"](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf).
