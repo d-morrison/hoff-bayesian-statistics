@@ -400,15 +400,15 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10 samples</td>
-<td style="text-align: right;">1.429377</td>
+<td style="text-align: right;">1.530228</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">1.506759</td>
+<td style="text-align: right;">1.525655</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">1.506134</td>
+<td style="text-align: right;">1.514920</td>
 </tr>
 </tbody>
 </table>
@@ -440,7 +440,7 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">0.914</td>
+<td style="text-align: right;">0.905</td>
 </tr>
 </tbody>
 </table>
@@ -527,7 +527,7 @@ the caller; using TRUE</code></pre>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'gamma'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 133 rows containing non-finite outside the scale range
+<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
 (`stat_density()`).</code></pre>
 </div>
 <div class="cell-output-display">
@@ -555,7 +555,7 @@ the caller; using TRUE</code></pre>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>theta2.mc <span class="ot">=</span> <span class="fu">rgamma</span>(N, <span class="dv">68</span>, <span class="dv">45</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(theta1.mc <span class="sc">&gt;</span> theta2.mc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9754</code></pre>
+<pre><code>[1] 0.9714</code></pre>
 </div>
 </div>
 <p>Also, like the gamma example above, we can calculate some arbitrary function. Say we are interested in the ratio <span class="math inline">\(f(\theta_1, \theta_2) = \theta_1/\theta_2\)</span> of the means. On average, how many times more children do women without bachelor’s degrees have compared to those with bachelor’s degrees. Then we sample multiple pairs <span class="math inline">\((\theta^{(i)}_1, \theta^{(i)}_2)\)</span>, and multiple pairs <span class="math inline">\(\gamma^i =
@@ -623,7 +623,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>theta2.mc <span class="ot">=</span> <span class="fu">rbeta</span>(<span class="dv">5000</span>, <span class="dv">31</span>, <span class="dv">21</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(theta1.mc <span class="sc">&lt;</span> theta2.mc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6318</code></pre>
+<pre><code>[1] 0.6232</code></pre>
 </div>
 </div>
 </section>
@@ -636,7 +636,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>theta.b <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, <span class="dv">125</span>, <span class="dv">14</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(theta.b <span class="sc">&lt;</span> theta.a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9972</code></pre>
+<pre><code>[1] 0.995</code></pre>
 </div>
 </div>
 </section>
@@ -799,7 +799,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ynew.mc, <span class="fu">c</span>(.<span class="dv">125</span>, .<span class="dv">875</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   12.5%    87.5% 
-7.187713 8.565099 </code></pre>
+7.166049 8.582808 </code></pre>
 </div>
 </div>
 </section>
@@ -825,7 +825,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dens<span class="sc">$</span>x[<span class="fu">c</span>(<span class="fu">min</span>(<span class="fu">which</span>(in.hdp)), <span class="fu">max</span>(<span class="fu">which</span>(in.hdp)))]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7.183064 8.559488</code></pre>
+<pre><code>[1] 7.17407 8.59248</code></pre>
 </div>
 </div>
 <p>Since the distribution of weights is relatively symmetric and normally distributed, the HDP and quantile confidence intervals are quite similar.</p>
@@ -882,7 +882,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">quantile</span>(theta.diff, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     2.5%     97.5% 
-0.1512232 0.7349307 </code></pre>
+0.1382486 0.7325138 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ynew.diff <span class="ot">=</span> ynewB <span class="sc">-</span> ynewA</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Ynew difference:"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -892,7 +892,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">quantile</span>(ynew.diff, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> 2.5% 97.5% 
-   -3     3 </code></pre>
+   -2     4 </code></pre>
 </div>
 </div>
 <p>Since the confidence interval for <span class="math inline">\(\theta_B - \theta_A\)</span> does not contain zero, we believe with at least approximately 95% probability that the true posterior mean <span class="math inline">\(\theta_B\)</span> is greater than <span class="math inline">\(\theta_A\)</span>. However, the same does not hold true for the means of the difference between two individuals sampled from this distribution, due to the increased uncertainty in the posterior predictive distribution.</p>
@@ -924,7 +924,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ynewB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.346</code></pre>
+<pre><code>[1] 1.3804</code></pre>
 </div>
 </div>
 </section>

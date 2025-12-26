@@ -644,12 +644,12 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, mun, <span class="fu">sqrt</span>(s2.mc <span class="sc">/</span> kappan)) <span class="co"># Accepts a vector of parameters</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(theta.mc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.814249</code></pre>
+<pre><code>[1] 1.81363</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(theta.mc, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    2.5%    97.5% 
-1.725504 1.898786 </code></pre>
+1.727900 1.899278 </code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -815,21 +815,21 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school1.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     2.5%       50%     97.5% 
- 7.753280  9.275465 10.823834 </code></pre>
+ 7.736988  9.290087 10.778747 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>school2.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>school2.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school2.s2.mc <span class="sc">/</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>kn))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school2.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    2.5%      50%    97.5% 
-5.096563 6.965172 8.775739 </code></pre>
+5.224145 6.964045 8.700373 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>school3.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">3</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>school3.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school3.s2.mc <span class="sc">/</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>kn))</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school3.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    2.5%      50%    97.5% 
-5.783269 7.787693 9.813751 </code></pre>
+5.734812 7.771471 9.831204 </code></pre>
 </div>
 </div>
 </section>
@@ -858,27 +858,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.0068</td>
+<td style="text-align: right;">0.0066</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0038</td>
+<td style="text-align: right;">0.0046</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.0170</td>
+<td style="text-align: right;">0.0142</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2514</td>
+<td style="text-align: right;">0.2534</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.6082</td>
+<td style="text-align: right;">0.6120</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1128</td>
+<td style="text-align: right;">0.1092</td>
 </tr>
 </tbody>
 </table>
@@ -913,27 +913,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.1090</td>
+<td style="text-align: right;">0.1114</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0994</td>
+<td style="text-align: right;">0.0952</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.1338</td>
+<td style="text-align: right;">0.1486</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2108</td>
+<td style="text-align: right;">0.2032</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.2450</td>
+<td style="text-align: right;">0.2424</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.2020</td>
+<td style="text-align: right;">0.1992</td>
 </tr>
 </tbody>
 </table>
@@ -946,12 +946,12 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>theta1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">3</span>]])</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta1.big.prob)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8596</code></pre>
+<pre><code>[1] 0.8654</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>y1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">3</span>]])</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1.big.prob)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4558</code></pre>
+<pre><code>[1] 0.4456</code></pre>
 </div>
 </div>
 </section>
