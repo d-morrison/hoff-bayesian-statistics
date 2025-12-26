@@ -1,7 +1,7 @@
 #### Fig 3.1 
 pdf("fig3_1.pdf",family="Times",height=4.4,width=7)
 
-load("gss.RData") 
+load("Replication/gss.RData") 
 
 y<-gss[gss$YEAR==1998 & gss$AGE>=65 & gss$FEMALE==1, ]$HAPUNHAP
 y[y>4]<-NA

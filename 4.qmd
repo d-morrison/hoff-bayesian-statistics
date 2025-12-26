@@ -512,7 +512,7 @@ sigma.mc = sqrt(sigma2.mc)
 ynew.mc = .31 * rnorm(N, theta.mc, sigma.mc) +
   .46 * rnorm(N, 2 * theta.mc, 2 * sigma.mc) +
   .23 * rnorm(N, 3 * theta.mc, 3 * sigma.mc)
-qplot(ynew.mc, stat = 'hist')
+ggplot(mapping = aes(x = ynew.mc)) + geom_histogram()
 ```
 
 ### b
@@ -548,8 +548,8 @@ distributions (e.g. stem, fruit, leaves, etc)
 ## 4.8
 
 ```{r}
-menchild30bach = scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30bach.dat'))
-menchild30nobach = scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30nobach.dat'))
+menchild30bach = scan('Exercises/menchild30bach.dat')
+menchild30nobach = scan('Exercises/menchild30nobach.dat')
 ```
 
 ### a

@@ -79,7 +79,7 @@ Then the full conditional distributions of the parameters are
 ## Analysis of the math score data
 
 ```{r}
-source('https://www2.stat.duke.edu/~pdh10/FCBS/Replication/chapter8.R')
+source('Replication/chapter8.R')
 y1 = y.school1
 y2 = y.school2
 n1 = length(y1)
@@ -582,8 +582,7 @@ independence induced by the Bayes network.
 library(dplyr)
 library(tidyr)
 schools.list = lapply(1:8, function(i) {
-  s.tbl = paste0('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/school', i, '.dat') %>%
-    url %>%
+  s.tbl = paste0('Exercises/school', i, '.dat') %>%
     read.table
   
   data.frame(

@@ -106,7 +106,7 @@ qbeta(c(.025,.975),a+y,b+n-y)
 
 #### Diabetes example
 
-load("diabetes.RData") 
+load("Replication/diabetes.RData") 
 yf<-diabetes$y
 yf<-(yf-mean(yf))/sd(yf)
 
@@ -127,11 +127,11 @@ X<-Xf[i.tr,]; X.te<-Xf[i.te,]
 ## MCMC for BMA 
 p<-dim(X)[2]
 S<-10000
-source("regression_gprior.R") 
+source("Replication/regression_gprior.R") 
 
 runmcmc<-!any(system("ls",intern=TRUE)=="diabetesBMA.RData")
 
-if(!runmcmc){ load("diabetesBMA.RData") } 
+if(!runmcmc){ load("Replication/diabetesBMA.RData") } 
 
 if(runmcmc){ 
 

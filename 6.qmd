@@ -473,8 +473,8 @@ $$
 ### d
 
 ```{r}
-Y_a <- scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30bach.dat'))
-Y_b <- scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/menchild30nobach.dat'))
+Y_a <- scan('Exercises/menchild30bach.dat')
+Y_b <- scan('Exercises/menchild30nobach.dat')
 n_a = length(Y_a)
 n_b = length(Y_b)
 ybar_a = mean(Y_a)
@@ -537,7 +537,7 @@ decreases.
 ## 6.2
 
 ```{r}
-glucose <- scan(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/glucose.dat'))
+glucose <- scan('Exercises/glucose.dat')
 ```
 
 ### a

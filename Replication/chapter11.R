@@ -1,5 +1,5 @@
 #### NELS data
-load("nelsSES.RData") 
+load("Replication/nelsSES.RData") 
 
 ids<-sort(unique(nels$sch_id)) 
 m<-length(ids)
@@ -163,7 +163,7 @@ dev.off()
 
 
 #### Tumor location example
-load("tumorLocation.RData") 
+load("Replication/tumorLocation.RData") 
 Y<-tumorLocation 
 
 

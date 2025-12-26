@@ -10,7 +10,7 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ## Technology Stack
 
-- **Language**: R (version 4.0+)
+- **Language**: R (version 4.0+, **always use the latest R release** in development and CI/CD)
 - **Documentation Format**: Quarto (.qmd files)
 - **Dependency Management**: renv for R package management
 - **Visualization**: ggplot2, tidyverse
@@ -23,12 +23,34 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ### Prerequisites
 
-1. R (version 4.0 or later recommended)
+1. R (**always use the latest R release**, currently R 4.5.2 or later)
 2. RStudio (optional but recommended)
 3. Quarto CLI (https://quarto.org/docs/get-started/)
 4. pandoc (usually bundled with RStudio or Quarto)
 
 ### Installation
+
+**CRITICAL**: Always install the latest R release before starting development or testing.
+
+**On Ubuntu/Debian systems**:
+```bash
+# Add CRAN GPG key
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
+# Add CRAN repository (replace $(lsb_release -cs) with your Ubuntu codename if needed)
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+# Update and install latest R
+sudo apt-get update
+sudo apt-get install -y r-base r-base-dev
+
+# Verify you have the latest version (should be 4.5.2 or later)
+R --version
+```
+
+**NEVER** use the R version from standard Ubuntu repositories (apt-get install r-base without adding CRAN repo) as it will be outdated (e.g., R 4.3.3 instead of R 4.5.2).
+
+**On other systems**: Download the latest R release from https://cloud.r-project.org/
 
 To set up the development environment:
 
@@ -244,6 +266,17 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 **IMPORTANT**: When developing new pull requests, always run `quarto render` to ensure the website can be rendered successfully before finalizing your changes.
 
 - **Always run `quarto render`** during PR development to verify that all changes render correctly
+- **CRITICAL**: Test `quarto render` yourself and verify it actually succeeds before claiming success
+  - Run the command and wait for it to complete
+  - Check the exit code to confirm success (exit code 0)
+  - Do not claim success based on partial output or assumptions
+  - If the render fails, investigate and fix the issue before proceeding
+  - **"Software not installed" is NOT a valid excuse** - install required software (R, Quarto, etc.) first if needed (see Installation section above)
+  - **CRITICAL**: When installing R, you MUST use the latest R release from CRAN (see Installation section)
+    - **NEVER** use the default R from Ubuntu repositories (e.g., `apt-get install r-base` without adding CRAN repo)
+    - The default Ubuntu R is outdated (e.g., R 4.3.3) and will cause issues
+    - Always add the CRAN repository first, then install R to get the latest version (R 4.5.2+)
+    - Verify the R version with `R --version` before proceeding
 - Check that the rendering completes without errors or warnings
 - Review the generated output in the `_site/` directory to ensure quality
 - Fix any rendering issues before requesting review
@@ -255,6 +288,38 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 - Use `renv::snapshot()` after adding new packages
 - Ensure all required packages are available
 - Test that `renv::restore()` works for reproducibility
+
+### Working with renv in CI/CD
+
+This project uses `renv` for R package dependency management. The workflows are configured to use renv properly:
+
+**Key points:**
+1. **renv activation**: The `.Rprofile` file activates renv with `source("renv/activate.R")`
+2. **GitHub Actions setup**: Use `r-lib/actions/setup-renv@v2` in workflows instead of `setup-r-dependencies`
+3. **Package repository**: The `renv.lock` file uses Posit Package Manager (https://packagemanager.posit.co/cran/latest)
+4. **Cache management**: The `setup-renv` action automatically caches the renv library for faster builds
+
+**Workflow configuration example:**
+```yaml
+- uses: r-lib/actions/setup-r@v2
+  with:
+    use-public-rspm: true
+
+- uses: r-lib/actions/setup-renv@v2
+  with:
+    cache-version: 1
+```
+
+**Local testing with renv:**
+- When you activate renv locally (by sourcing `.Rprofile` or running R in the project), renv creates its own package library
+- The first time, run `renv::restore()` to install all packages from `renv.lock`
+- Packages are cached in `~/.cache/R/renv/` (or similar) for reuse across projects
+- `quarto render` will automatically use the renv environment when `.Rprofile` sources `renv/activate.R`
+
+**Troubleshooting:**
+- If `quarto render` fails with "package not found" errors, ensure you've run `renv::restore()` first
+- Check that `.Rprofile` is activating renv (it should have `source("renv/activate.R")` uncommented)
+- In CI/CD, the `setup-renv` action handles restoration automatically
 
 ## Getting Help
 

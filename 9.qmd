@@ -21,7 +21,7 @@ library(reshape)
 ## 9.1
 
 ```{r}
-swim = read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/swim.dat'))
+swim = read.table('Exercises/swim.dat')
 ```
 
 To specify our prior, we let the prior expectation of our $y$-intercept to be 
@@ -108,7 +108,7 @@ about 65% of the time by week 13, so we recommend that swimmer 1 race.
 ## 9.3
 
 ```{r}
-crime = read.table(url('https://www2.stat.duke.edu/~pdh10/FCBS/Exercises/crime.dat'), header = TRUE)
+crime = read.table('Exercises/crime.dat', header = TRUE)
 ```
 
 ### a
