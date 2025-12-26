@@ -35,6 +35,8 @@ notes.txt
 # Quarto
 /.quarto/
 /_site/
+/_slides/
+/_handouts/
 *.html
 **/*.quarto_ipynb
 _freeze

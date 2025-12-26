@@ -1,0 +1,59 @@
+project:
+  output-dir: _slides
+  render:
+    - 1.qmd
+    - 2.qmd
+    - 3.qmd
+    - 4.qmd
+    - 5.qmd
+    - 6.qmd
+    - 7.qmd
+    - 8.qmd
+    - 9.qmd
+    - 10.qmd
+    - irm.qmd
+
+format:
+  revealjs:
+    lightbox: true
+    theme: dark
+    embed-resources: true
+    fig-cap-location: top
+    html-math-method: mathjax
+    smaller: true
+    number-sections: true
+    progress: true
+    incremental: false
+    df-print: paged
+    number-depth: 2
+    slide-number: true
+    shift-heading-level-by: -1
+    slide-level: 2
+    scrollable: true
+    echo: true
+    margin: 0.0
+    code-fold: true
+    code-link: true
+    code-summary: "[R code]"
+    auto-stretch: true
+    fig-height: 5
+    fig-width: 7
+
+include-in-header:
+  text: |
+    <style>
+      .custom-small table {
+        font-size: .5em
+      }
+    </style>
+
+execute:
+  warning: false
+  message: false
+  cache: false
+  freeze: auto
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
