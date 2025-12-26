@@ -38,3 +38,4 @@ notes.txt
 *.html
 **/*.quarto_ipynb
 _freeze
+*.deb

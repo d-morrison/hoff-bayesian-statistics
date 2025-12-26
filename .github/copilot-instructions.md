@@ -289,6 +289,38 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 - Ensure all required packages are available
 - Test that `renv::restore()` works for reproducibility
 
+### Working with renv in CI/CD
+
+This project uses `renv` for R package dependency management. The workflows are configured to use renv properly:
+
+**Key points:**
+1. **renv activation**: The `.Rprofile` file activates renv with `source("renv/activate.R")`
+2. **GitHub Actions setup**: Use `r-lib/actions/setup-renv@v2` in workflows instead of `setup-r-dependencies`
+3. **Package repository**: The `renv.lock` file uses Posit Package Manager (https://packagemanager.posit.co/cran/latest)
+4. **Cache management**: The `setup-renv` action automatically caches the renv library for faster builds
+
+**Workflow configuration example:**
+```yaml
+- uses: r-lib/actions/setup-r@v2
+  with:
+    use-public-rspm: true
+
+- uses: r-lib/actions/setup-renv@v2
+  with:
+    cache-version: 1
+```
+
+**Local testing with renv:**
+- When you activate renv locally (by sourcing `.Rprofile` or running R in the project), renv creates its own package library
+- The first time, run `renv::restore()` to install all packages from `renv.lock`
+- Packages are cached in `~/.cache/R/renv/` (or similar) for reuse across projects
+- `quarto render` will automatically use the renv environment when `.Rprofile` sources `renv/activate.R`
+
+**Troubleshooting:**
+- If `quarto render` fails with "package not found" errors, ensure you've run `renv::restore()` first
+- Check that `.Rprofile` is activating renv (it should have `source("renv/activate.R")` uncommented)
+- In CI/CD, the `setup-renv` action handles restoration automatically
+
 ## Getting Help
 
 - Project URL: https://d-morrison.github.io/hoff-bayesian-statistics/
