@@ -568,15 +568,15 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10 samples</td>
-<td style="text-align: right;">1.514105</td>
+<td style="text-align: right;">1.442985</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">1.525328</td>
+<td style="text-align: right;">1.524203</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">1.508198</td>
+<td style="text-align: right;">1.519111</td>
 </tr>
 </tbody>
 </table>
@@ -598,15 +598,15 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10 samples</td>
-<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">1.00</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">0.850</td>
+<td style="text-align: right;">0.85</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">0.899</td>
+<td style="text-align: right;">0.89</td>
 </tr>
 </tbody>
 </table>
@@ -706,7 +706,7 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <span><span class="va">theta1.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">219</span>, <span class="fl">112</span><span class="op">)</span></span>
 <span><span class="va">theta2.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">68</span>, <span class="fl">45</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">theta1.mc</span> <span class="op">&gt;</span> <span class="va">theta2.mc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.9757</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 0.9714</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Also, like the gamma example above, we can calculate some arbitrary function. Say we are interested in the ratio <span class="math inline">\(f(\theta_1, \theta_2) = \theta_1/\theta_2\)</span> of the means. On average, how many times more children do women without bachelor’s degrees have compared to those with bachelor’s degrees. Then we sample multiple pairs <span class="math inline">\((\theta^{(i)}_1, \theta^{(i)}_2)\)</span>, and multiple pairs <span class="math inline">\(\gamma^i =
@@ -768,7 +768,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theta1.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="fl">58</span>, <span class="fl">44</span><span class="op">)</span></span>
 <span><span class="va">theta2.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="fl">31</span>, <span class="fl">21</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">theta1.mc</span> <span class="op">&lt;</span> <span class="va">theta2.mc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.6334</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 0.635</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="section-1" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="section-1">
@@ -779,7 +779,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theta.a</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="fl">237</span>, <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">theta.b</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="fl">125</span>, <span class="fl">14</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">theta.b</span> <span class="op">&lt;</span> <span class="va">theta.a</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.9952</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 0.9948</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="b" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="b">
@@ -923,7 +923,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ynew.mc</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.125</span>, <span class="fl">.875</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    12.5%    87.5% </span></span>
-<span><span class="co">#&gt; 7.161294 8.591697</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 7.154727 8.561602</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="c-1" class="level3" data-number="5.5.3"><h3 data-number="5.5.3" class="anchored" data-anchor-id="c-1">
@@ -947,7 +947,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 </div>
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="va">dens</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">in.hdp</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">in.hdp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] 7.167166 8.583570</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 7.170384 8.575215</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Since the distribution of weights is relatively symmetric and normally distributed, the HDP and quantile confidence intervals are quite similar.</p>
@@ -997,7 +997,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <span><span class="co">#&gt; [1] "Theta difference:"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">theta.diff</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      2.5%     97.5% </span></span>
-<span><span class="co">#&gt; 0.1555333 0.7416847</span></span>
+<span><span class="co">#&gt; 0.1395081 0.7397640</span></span>
 <span></span>
 <span><span class="va">ynew.diff</span> <span class="op">=</span> <span class="va">ynewB</span> <span class="op">-</span> <span class="va">ynewA</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Ynew difference:"</span><span class="op">)</span></span>
@@ -1033,7 +1033,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <p>(Observe that the mean of the nobach population is around 1.4)</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ynewB</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.4244</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 1.4154</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="d-1" class="level3" data-number="5.6.4"><h3 data-number="5.6.4" class="anchored" data-anchor-id="d-1">
@@ -2178,7 +2178,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
- Copyright 2024, Douglas Ezra Morrison
+ Copyright 2024, Jesse Mu
   </li>  
 </ul>
 </div>   

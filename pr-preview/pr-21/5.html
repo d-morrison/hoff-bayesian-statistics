@@ -794,10 +794,10 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s2.mc</span> <span class="op">=</span> <span class="fu"><a href="https://dkahle.github.io/invgamma/reference/invgamma.html">rinvgamma</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">s2n</span> <span class="op">*</span> <span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">s2.mc</span> <span class="op">/</span> <span class="va">kappan</span><span class="op">)</span><span class="op">)</span> <span class="co"># Accepts a vector of parameters</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">theta.mc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.813522</span></span>
+<span><span class="co">#&gt; [1] 1.813665</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">theta.mc</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%    97.5% </span></span>
-<span><span class="co">#&gt; 1.727536 1.900023</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 1.725932 1.899375</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -960,19 +960,19 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <span><span class="va">school1.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school1.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school1.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      2.5%       50%     97.5% </span></span>
-<span><span class="co">#&gt;  7.739202  9.287128 10.824056</span></span>
+<span><span class="co">#&gt;  7.817611  9.310191 10.882127</span></span>
 <span></span>
 <span><span class="va">school2.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school2.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school2.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school2.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span><span class="co">#&gt; 5.132172 6.946259 8.731513</span></span>
+<span><span class="co">#&gt; 5.156598 6.966805 8.773847</span></span>
 <span></span>
 <span><span class="va">school3.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">3</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school3.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school3.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school3.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span><span class="co">#&gt; 5.800852 7.833129 9.865680</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 5.753531 7.798181 9.868711</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="b" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="b">
@@ -1002,23 +1002,23 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0030</td>
+<td style="text-align: right;">0.0028</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.0164</td>
+<td style="text-align: right;">0.0156</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2400</td>
+<td style="text-align: right;">0.2514</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.6174</td>
+<td style="text-align: right;">0.6118</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1170</td>
+<td style="text-align: right;">0.1122</td>
 </tr>
 </tbody>
 </table>
@@ -1050,27 +1050,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.1118</td>
+<td style="text-align: right;">0.1124</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0936</td>
+<td style="text-align: right;">0.0994</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.1500</td>
+<td style="text-align: right;">0.1360</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2034</td>
+<td style="text-align: right;">0.2038</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.2440</td>
+<td style="text-align: right;">0.2476</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1972</td>
+<td style="text-align: right;">0.2008</td>
 </tr>
 </tbody>
 </table>
@@ -1081,10 +1081,10 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theta1.big.prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta1.big.prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.8574</span></span>
+<span><span class="co">#&gt; [1] 0.8632</span></span>
 <span><span class="va">y1.big.prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y1.big.prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.4474</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 0.4514</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section></section><section id="section-1" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="section-1">
@@ -2693,7 +2693,7 @@ So:
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
- Copyright 2024, Douglas Ezra Morrison
+ Copyright 2024, Jesse Mu
   </li>  
 </ul>
 </div>   
