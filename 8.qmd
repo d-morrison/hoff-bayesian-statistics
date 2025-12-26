@@ -45,17 +45,14 @@ continuously. Specifically, our sampling model for a value from either group is
 - $Y_{i, 1} = \mu + \delta + \epsilon_{i, 1}$
 - $Y_{i, 2} = \mu + \delta + \epsilon_{i, 2}$
 
-where we assume values from both groups have a common variance
-$\epsilon_{i, j} \sim \text{i.i.d.}\; \mathcal{N}(0, \sigma^2)$.
+where we assume values from both groups have a common variance $\epsilon_{i, j} \sim \text{i.i.d.}\; \mathcal{N}(0, \sigma^2)$.
 
 ## Prior and posterior distributions
 
 ### Prior
 
 The joint prior for all three parameters of our model $\mu, \delta, \sigma^2$ is
-unsurprising.
-We treat the parameters as independent,
-so $p(\mu, \delta, \sigma^2) = p(\mu) p(\delta) p(\sigma^2)$ where
+unsurprising. We treat the parameters as independent, so $p(\mu, \delta, \sigma^2) = p(\mu) p(\delta) p(\sigma^2)$ where
 
 - $\mu \sim \mathcal{N}(\mu_0, \gamma_0^2)$
 - $\delta \sim \mathcal{N}(\delta_0, \tau_0^2)$
@@ -142,8 +139,7 @@ Now we can directly estimate the probability that $\delta > 0$:
 mean(DEL > 0)
 ```
 
-as well as the probability that an individual from school 1 is higher than school 2,
-which due to variance is a bit lower:
+as well as the probability that an individual from school 1 is higher than school 2, which due to variance is a bit lower:
 
 ```{r}
 mean(Y12[, 1] > Y12[, 2])

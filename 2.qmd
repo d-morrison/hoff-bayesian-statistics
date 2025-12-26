@@ -218,8 +218,7 @@ model the sample variables as being approximately conditionally i.i.d.
 
 ## Proof for {0, 1} random variables
 
-From Heath & Sudderth (1976). De Finetti's Theorem on Exchangeable Variables.
-Also see this [neat StackExchange answer](http://stats.stackexchange.com/questions/34465/what-is-so-cool-about-de-finettis-representation-theorem).
+From Heath & Sudderth (1976). De Finetti's Theorem on Exchangeable Variables. Also see this [neat StackExchange answer](http://stats.stackexchange.com/questions/34465/what-is-so-cool-about-de-finettis-representation-theorem).
 
 ### Alternative statement of theorem
 

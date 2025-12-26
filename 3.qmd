@@ -65,9 +65,8 @@ linking this back to Bayes' rule above, we have the posterior probability
 p(\theta \mid y) = \frac{\theta^{118} (1 - \theta)^{11}}{p(y)}
 \end{align}
 
-We will often (WHEN would we not normalize?) want to be more precise than this
-and know about the scale of the posterior probability, not just the shape.
-This requires calculating $p(y) = p(y_1, \dots, y_{129})$:
+We will often (WHEN would we not normalize?) want to be more precise than this and know about the scale
+of the posterior probability, not just the shape. This requires calculating $p(y) = p(y_1, \dots, y_{129})$:
 
 \begin{align}
 1 &= \int_0^1 p(\theta \mid y) \; d\theta & (\text{Law of total probability}) \\
@@ -244,8 +243,7 @@ n}\frac{y}{n} = \frac{1}{2 + n}\\
 \theta_{MAP} &= \frac{y}{n} = 0 \\
 \end{align}
 
-And clearly the expectation is more sensible as a predictor of future $\tilde{Y}$.
-But $\theta_{MAP}$ is not as unreasonable when there is a non-uniform prior...
+And clearly the expectation is more sensible as a predictor of future $\tilde{Y}$. But $\theta_{MAP}$ is not as unreasonable when there is a non-uniform prior...
 
 ## Confidence regions
 

@@ -19,16 +19,14 @@ library(reshape)
 # Introduction
 
 *Bayesian inference*: the process of learning by updating prior probabilistic
-beliefs in light of new information.
-Data analysis tools built on these foundations are known as *Bayesian methods*.
+beliefs in light of new information. Data analysis tools built on these foundations are known as *Bayesian methods*.
 
 ## The Bayesian learning framework
 
 We want to estimate a parameter $\theta \in \Theta$ from a dataset $y \in
 \mathcal{Y}$.
 
-- $p(\theta)$, defined for all $\theta \in \Theta$,
-  is our prior distribution about the space of possible parameters
+- $p(\theta)$, defined for all $\theta \in \Theta$, is our prior distribution about the space of possible parameters
 - Bayesian methods require a **sampling model**: $P(y \mid 
 \theta)$ describes the probability that of a specific dataset given a parameter.
   - Note that later, this will be useful for prediction!
@@ -40,10 +38,7 @@ Then we wish to update our belief distribution about $\theta$ given. The
 p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \tilde{\theta}) p(\tilde{\theta}) \; d\tilde{\theta}}.
 \end{align}
 
-Note that the denominator is constant and doesn't need to be computed,
-since we can just normalize our posterior distribution such that
-$P(\theta \mid y)$ for all $\Theta$ sums up to 1.
-Thus we commonly write
+Note that the denominator is constant and doesn't need to be computed, since we can just normalize our posterior distribution such that $P(\theta \mid y)$ for all $\Theta$ sums up to 1. Thus we commonly write
 
 \begin{align}
 p(\theta \mid y) \propto p(y \mid \theta) p(\theta).
@@ -94,21 +89,16 @@ are no alternative methods
 
 ## As models of cognition
 
-An appeal of Bayesian learning is that it is also cognitively intuitive.
-Humans have beliefs about the world,
-whose uncertainty can be expressed probabilistically.
-Then, given data, these beliefs are rationally updated.
-There is a rich tradition in modeling human cognition using Bayesian methods to great success,
-with plenty of work done in showing how people's beliefs and knowledge
-about the world can be expressed probabilistically
-(e.g. [Griffiths & Tenenbaum, 2006](http://web.mit.edu/cocosci/Papers/Griffiths-Tenenbaum-PsychSci06.pdf))
+An appeal of Bayesian learning is that it is also cognitively intuitive. Humans 
+have beliefs about the world, whose uncertainty can be expressed 
+probabilistically. Then, given data, these beliefs are rationally updated. There
+is a rich tradition in modeling human cognition using Bayesian methods to great
+success, with plenty of work done in showing how people's beliefs and knowledge
+about the world can be expressed probabilistically (e.g. [Griffiths & Tenenbaum, 2006](http://web.mit.edu/cocosci/Papers/Griffiths-Tenenbaum-PsychSci06.pdf))
 
-Bayesianism is not without its detractors, however.
-Some critics argue that the evidence that Bayesian analysis is weak,
-and that sufficiently sophisticated models are unfalsifiable.
-See [Bowers & Davis (2012)](http://psycnet.apa.org/journals/bul/138/3/389/),
-comment by [Griffiths, Chater, Norris, Pouget (2012)](http://cocosci.berkeley.edu/tom/papers/LabPublications/HowBayesiansGetBeliefs.pdf),
-reply by [Bowers & Davis (2012)](http://www.ncbi.nlm.nih.gov/pubmed/22545688).
+Bayesianism is not without its detractors, however. Some critics argue that the 
+evidence that Bayesian analysis is weak, and that sufficiently sophisticated
+models are unfalsifiable. See [Bowers & Davis (2012)](http://psycnet.apa.org/journals/bul/138/3/389/), comment by [Griffiths, Chater, Norris, Pouget (2012)](http://cocosci.berkeley.edu/tom/papers/LabPublications/HowBayesiansGetBeliefs.pdf), reply by [Bowers & Davis (2012)](http://www.ncbi.nlm.nih.gov/pubmed/22545688).
 
 # Example 1: Estimating the probability of a rare event
 
