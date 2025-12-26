@@ -26,7 +26,7 @@ of clusters as the complexity of the data warrants.
 
 The **Infinite Relational Model** is the prototypical example of such a model.
 
-> [Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model](https://www.andrew.cmu.edu/user/ckemp/papers/kempetal06.pdf)
+> [Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)
 
 For this last project, I coded up a simple version of Charles Kemp's Infinite
 Relational Model (IRM) in `irm.R` to co-cluster rows and columns of a simple

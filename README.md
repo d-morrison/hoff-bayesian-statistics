@@ -36,4 +36,4 @@ Previously, these notes were individual R Markdown files that could be knitted i
 As a small final project, I also implemented R code for the basic binary
 relation version of the Infinite Relational Model, described in [Kemp et al.
 (2006), "Learning Systems of Concepts with an Infinite Relational
-Model"](https://www.andrew.cmu.edu/user/ckemp/papers/kempetal06.pdf).
+Model"](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf).
