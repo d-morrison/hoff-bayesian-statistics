@@ -23,6 +23,6 @@ If you find an error or would like to improve the notes, please let me know/subm
 
 ## Final Project
 
-As a small final project, I also implemented R code for the basic binary relation version of the Infinite Relational Model, described in [Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model"](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf).
+As a small final project, I also implemented R code for the basic binary relation version of the Infinite Relational Model, described in [Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model"](https://www.andrew.cmu.edu/user/ckemp/papers/kempetal06.pdf).
 
 - [Infinite Relational Model](irm.qmd)
