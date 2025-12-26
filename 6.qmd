@@ -363,8 +363,8 @@ estimating the variance of the sample) and estimates of the variance of the
 mean, we can solve for $n$ which is an "effective sample size".
 
 Estimating the variance of the mean, given that we cannot assume an independent
-sample, is nontrivial, and requires calculating the [spectral density estimate
-at frequency zero](http://faculty.arts.ubc.ca/vmarmer/econ627/627_10_02.pdf)
+sample, is nontrivial, and requires calculating the spectral density estimate
+at frequency zero [@marmer_gibbs]
 which is "a convenient way to represent the sequence of autocovariances" of a
 stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.
 

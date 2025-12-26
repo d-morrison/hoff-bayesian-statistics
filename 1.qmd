@@ -46,7 +46,7 @@ p(\theta \mid y) \propto p(y \mid \theta) p(\theta).
 
 ### versus frequentist learning
 
-(from [Resnik & Hardisty, "Gibbs Sampling for the Uninitiated"](https://www.umiacs.umd.edu/~resnik/pubs/LAMP-TR-153.pdf))
+[from @resnik2010]
 
 The difference between Bayesian learning and frequentist learning is the
 consideration of *prior beliefs* about parameters. In standard Maximum
@@ -76,7 +76,7 @@ estimate is the same as the ML estimate.
 The debate between Bayesians and frequentists dives into some very philosophical
 issues. Cox's theorem (1946, 1961) gives a formal proof for thinking about
 probabilities using a Bayesian approach. I will likely want to look at an
-explanation of these proofs later: http://ksvanhorn.com/bayes/Papers/rcox.pdf
+explanation of these proofs later [@vanhorn2003].
 
 Outside of formal mathematical grounding, Bayesian methods have excellent 
 practical benefits as data analysis tools:
@@ -94,11 +94,11 @@ have beliefs about the world, whose uncertainty can be expressed
 probabilistically. Then, given data, these beliefs are rationally updated. There
 is a rich tradition in modeling human cognition using Bayesian methods to great
 success, with plenty of work done in showing how people's beliefs and knowledge
-about the world can be expressed probabilistically (e.g. [Griffiths & Tenenbaum, 2006](http://web.mit.edu/cocosci/Papers/Griffiths-Tenenbaum-PsychSci06.pdf))
+about the world can be expressed probabilistically [e.g., @griffiths2006]
 
 Bayesianism is not without its detractors, however. Some critics argue that the 
 evidence that Bayesian analysis is weak, and that sufficiently sophisticated
-models are unfalsifiable. See [Bowers & Davis (2012)](http://psycnet.apa.org/journals/bul/138/3/389/), comment by [Griffiths, Chater, Norris, Pouget (2012)](http://cocosci.berkeley.edu/tom/papers/LabPublications/HowBayesiansGetBeliefs.pdf), reply by [Bowers & Davis (2012)](http://www.ncbi.nlm.nih.gov/pubmed/22545688).
+models are unfalsifiable. See @bowers2012, comment by @griffiths2012, reply by @bowers2012reply.
 
 # Example 1: Estimating the probability of a rare event
 
@@ -275,7 +275,7 @@ worse than the Bayesian method on the test set. This is due to overfitting, and
 OLS's "inability to recognize when the sample size is too small to accurately 
 estimate the regression coefficients." Sparse linear regression models are key 
 here, and the Bayesian sparsity prior performs well; the common lasso technique 
-introduced by [Tibshirani (1996)](http://www.jstor.org/stable/2346178) is also
+introduced by @tibshirani1996 is also
 popular, but this in fact corresponds to Bayesian methods for a special case.
 
 # Next steps

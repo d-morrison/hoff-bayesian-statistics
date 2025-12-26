@@ -247,7 +247,7 @@ And clearly the expectation is more sensible as a predictor of future $\tilde{Y}
 
 ## Confidence regions
 
-See [this StackExchange question](http://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval) for a really interesting discussiona bout the difference between Bayesian and frequentist confidence intervals.
+See @stackexchange_confidence for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.
 
 Bayesian confidence interval is an interval $[l(y), u(y)]$ with the following property:
 
@@ -1030,8 +1030,7 @@ perhaps counterintuitive result here is that for a Beta-Binomial model,  an
 uninformative (uniform) prior on $\theta$ *does* result in an informative prior
 on the log-odds. This was apparently a "major criticism of Bayesian inference" 
 led by R.A. Fisher. For more information about this (and an introduction into 
-the Jeffreys' prior exercises next up), see [these lecture 
-notes](https://www2.stat.duke.edu/courses/Fall11/sta114/jeffreys.pdf).
+the Jeffreys' prior exercises next up), see @zhu2011.
 
 Point: it is impossible to have a totally diffuse prior on a random variable
 with infinite support such as the log-odds, though...

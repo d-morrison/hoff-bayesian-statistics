@@ -531,8 +531,7 @@ parameters $\sigma_n^2, \mu_n$ and simplifying) would be
 <!-- p(1 / \sigma^2 \mid \theta, y_1, \dots, y_n) &= \int p(1 / sigma^2 \mid) -->
 <!-- \end{align} -->
 
-With ["significant
-algebra"](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/nuisance_parameters.pdf), you can show that inference this way results in
+With "significant algebra" [@wood2009], you can show that inference this way results in
 
 $$\frac{\theta - \bar{y}}{s / \sqrt{n}} \mid y_1, \dots, y_n \sim t_{n - 1}$$
 
@@ -928,8 +927,7 @@ p_J(\theta, \sigma^2 \mid \mathbf{y}) &\propto p_J(\theta, \sigma^2) p(\mathbf{y
 Yes, since there is some normalizing constant that results in the integral over
 $p_J$ being equal to 1.
 
-After some poking around, this is a [normal-inverse-chi-squared 
-distribution](https://www2.stat.duke.edu/courses/Fall10/sta114/notes15.pdf).
+After some poking around, this is a normal-inverse-chi-squared distribution [@reif2010].
 
 <!--
 For random variables $W, V$, the density function is
@@ -941,8 +939,7 @@ rs}{2v} \right)
 
 For the random variables $\theta, \sigma^2$, $r = n$ is obvious from $p_J$. The
 other parameters can be seen by expanding the exponential, where I borrow the
-normal likelihood reparameterization trick from
-[here](http://faculty.washington.edu/ezivot/econ583/mleLectures.pdf) (page 3):
+normal likelihood reparameterization trick from @zivot_mle (page 3):
 
 \begin{align}
 \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) &=
