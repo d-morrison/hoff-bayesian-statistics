@@ -33,6 +33,8 @@ website:
       - text: "Infinite Relational Model"
         href: irm.qmd
 
+bibliography: references.bib
+
 format:
   html:
     theme: cosmo

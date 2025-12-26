@@ -24,9 +24,7 @@ number of clusters to your data and comparing model fit statistics, the Bayesian
 approach is to specify a model which is allowed to dynamically grow the number
 of clusters as the complexity of the data warrants.
 
-The **Infinite Relational Model** is the prototypical example of such a model.
-
-> [Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)
+The **Infinite Relational Model** is the prototypical example of such a model [@kemp2006].
 
 For this last project, I coded up a simple version of Charles Kemp's Infinite
 Relational Model (IRM) in `irm.R` to co-cluster rows and columns of a simple
