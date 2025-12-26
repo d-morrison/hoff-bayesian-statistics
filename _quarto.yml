@@ -4,6 +4,10 @@ project:
 
 website:
   title: "Hoff Bayesian Statistics"
+  site-url: https://d-morrison.github.io/hoff-bayesian-statistics/
+  description: "Lecture notes by Jesse Mu for Peter D. Hoff's 'A First Course in Bayesian Statistical Methods'"
+  page-footer:
+    center: "© Jesse Mu"
   navbar:
     left:
       - text: "Home"
