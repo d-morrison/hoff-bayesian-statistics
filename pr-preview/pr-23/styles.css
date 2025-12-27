@@ -1,0 +1,16 @@
+/* Custom styles for the Quarto website */
+
+/* Center MathJax equations */
+.MathJax_Display {
+  text-align: center;
+}
+
+/* Center figure captions */
+.caption {
+  text-align: center;
+}
+
+/* Center figures */
+.quarto-figure-center > figure {
+  text-align: center;
+}
