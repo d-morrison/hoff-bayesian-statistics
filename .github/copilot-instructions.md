@@ -321,6 +321,79 @@ This project uses `renv` for R package dependency management. The workflows are 
 - Check that `.Rprofile` is activating renv (it should have `source("renv/activate.R")` uncommented)
 - In CI/CD, the `setup-renv` action handles restoration automatically
 
+### Installing TinyTeX for PDF Rendering
+
+When PDF output is required (for handouts or multi-format rendering), TinyTeX must be installed:
+
+**Important**: TinyTeX installation requires internet access to yihui.org and GitHub releases. In restricted environments, PDF rendering may not be available.
+
+**Installation methods** (try in order):
+
+1. **Via Quarto** (preferred):
+```bash
+quarto install tinytex --no-prompt
+```
+
+2. **Via R tinytex package** (alternative):
+```r
+tinytex::install_tinytex()
+```
+
+3. **Manual TeX installation**: Install TexLive or another TeX distribution if the above methods fail due to network restrictions.
+
+**When to install**:
+- Before rendering PDF output formats
+- Before running multi-format rendering that includes PDF
+- When you see the error: "No TeX installation was detected"
+
+**Note**: The separate `_quarto-handout.yml` profile exists specifically for PDF rendering and can be used independently when TinyTeX is available.
+
+### Quarto Multi-Format Rendering
+
+This project supports multiple output formats via Quarto profiles:
+
+1. **Website (default)**: HTML website in `_site/`
+2. **RevealJS slides**: Presentation slides via `QUARTO_PROFILE=revealjs`
+3. **PDF handouts**: PDF documents via `QUARTO_PROFILE=handout`
+
+**Important limitations**:
+- In Quarto **website** projects, including multiple formats (html, revealjs, pdf) in the same profile causes file naming conflicts
+- The `{stem}` placeholder for `output-file` does NOT work at the project config level in website projects
+- Multiple formats work better in **book** projects or when specified in individual .qmd file frontmatter
+- See: https://github.com/orgs/quarto-dev/discussions/1751
+
+**Current approach**:
+- Website profile (`_quarto-website.yml`): HTML only
+- RevealJS profile (`_quarto-revealjs.yml`): Standalone slides
+- Handout profile (`_quarto-handout.yml`): Standalone PDFs
+
+To render multiple formats, use separate profile commands:
+```bash
+quarto render                               # HTML website
+QUARTO_PROFILE=revealjs quarto render      # RevealJS slides
+QUARTO_PROFILE=handout quarto render       # PDF handouts (requires TinyTeX)
+```
+
+## Continuous Learning and Improvement
+
+**IMPORTANT**: When you learn new skills, techniques, or encounter solutions to problems while working on this project, **you MUST update this instructions file** to document them for future reference.
+
+This includes:
+- New installation procedures or dependencies
+- Solutions to rendering or build issues
+- Workarounds for technical limitations
+- New tools or commands that prove useful
+- Configuration patterns that work well for this project type
+- Debugging techniques specific to Quarto/R/renv
+
+**How to update**:
+1. Identify which section the new information belongs in (or create a new section if needed)
+2. Add clear, concise instructions with examples where helpful
+3. Include references to external resources (documentation, discussions, issues) when relevant
+4. Use `store_memory` tool to save important facts about the codebase for future tasks
+
+This ensures the instructions stay current and helpful for both yourself and other contributors.
+
 ## Getting Help
 
 - Project URL: https://d-morrison.github.io/hoff-bayesian-statistics/

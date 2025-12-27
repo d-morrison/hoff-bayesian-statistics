@@ -66,37 +66,6 @@ format:
     df-print: paged
     date: last-modified
     date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (z)"
-  revealjs:
-    lightbox: true
-    theme: dark
-    embed-resources: true
-    fig-cap-location: top
-    html-math-method: mathjax
-    smaller: true
-    number-sections: true
-    progress: true
-    incremental: false
-    df-print: paged
-    number-depth: 2
-    slide-number: true
-    shift-heading-level-by: -1
-    slide-level: 2
-    scrollable: true
-    echo: true
-    margin: 0.0
-    code-fold: true
-    code-link: true
-    code-summary: "[R code]"
-    auto-stretch: true
-    fig-height: 5
-    fig-width: 7
-    include-in-header:
-      text: |
-        <style>
-          .custom-small table {
-            font-size: .5em
-          }
-        </style>
 
 comments:
   hypothesis:
