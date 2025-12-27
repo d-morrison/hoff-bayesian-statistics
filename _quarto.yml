@@ -9,4 +9,14 @@ editor:
     wrap: 72
 
 execute:
+  warning: false
+  message: false
+  cache: false
   freeze: auto
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
