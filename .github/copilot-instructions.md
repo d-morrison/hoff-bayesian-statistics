@@ -323,9 +323,9 @@ This project uses `renv` for R package dependency management. The workflows are 
 
 ### Installing TinyTeX for PDF Rendering
 
-When PDF output is required (for handouts or multi-format rendering), TinyTeX must be installed:
+**CRITICAL**: TinyTeX **MUST** be installed in your working environment when developing PRs for this project, as PDF format is included in the default website rendering.
 
-**Important**: TinyTeX installation requires internet access to yihui.org and GitHub releases. In restricted environments, PDF rendering may not be available.
+When PDF output is required (for handouts or multi-format rendering), TinyTeX must be installed:
 
 **Installation methods** (try in order):
 
@@ -342,37 +342,47 @@ tinytex::install_tinytex()
 3. **Manual TeX installation**: Install TexLive or another TeX distribution if the above methods fail due to network restrictions.
 
 **When to install**:
+- **ALWAYS at the start of PR development** - This is now a required step
 - Before rendering PDF output formats
 - Before running multi-format rendering that includes PDF
 - When you see the error: "No TeX installation was detected"
 
-**Note**: The separate `_quarto-handout.yml` profile exists specifically for PDF rendering and can be used independently when TinyTeX is available.
+**Important**: TinyTeX installation requires internet access to GitHub releases and CTAN mirrors. Without TinyTeX, the website rendering will fail when trying to generate PDF handouts.
+
+**Note**: The separate `_quarto-handout.yml` profile exists as an alternative method for PDF rendering and can be used independently.
 
 ### Quarto Multi-Format Rendering
 
-This project supports multiple output formats via Quarto profiles:
+This project uses multi-format rendering to generate HTML, RevealJS slides, and PDF handouts simultaneously.
 
-1. **Website (default)**: HTML website in `_site/`
-2. **RevealJS slides**: Presentation slides via `QUARTO_PROFILE=revealjs`
-3. **PDF handouts**: PDF documents via `QUARTO_PROFILE=handout`
+**Default website rendering** (`quarto render`):
+- Generates **all three formats** in `_site/` directory:
+  - `{filename}.html` - Website page
+  - `{filename}-slides.html` - RevealJS presentation
+  - `{filename}-handout.pdf` - PDF handout (requires TinyTeX)
 
-**Important limitations**:
-- In Quarto **website** projects, including multiple formats (html, revealjs, pdf) in the same profile causes file naming conflicts
-- The `{stem}` placeholder for `output-file` does NOT work at the project config level in website projects
-- Multiple formats work better in **book** projects or when specified in individual .qmd file frontmatter
+**Alternative profile-based rendering**:
+1. **RevealJS profile**: `QUARTO_PROFILE=revealjs quarto render` - Generates slides in `_slides/`
+2. **PDF handout profile**: `QUARTO_PROFILE=handout quarto render` - Generates PDFs in `_handouts/`
+
+**Implementation approach**:
+Following the pattern from https://github.com/perellonieto/quarto_html_revealjs_test:
+- **Project-level config** (`_quarto-website.yml`): Defines html, revealjs, and pdf formats
+- **File-level frontmatter**: Each .qmd file specifies all three formats with `output-file` for non-html formats:
+  ```yaml
+  format:
+    html: default
+    revealjs:
+      output-file: {filename}-slides.html
+    pdf:
+      output-file: {filename}-handout.pdf
+  ```
+- This generates three separate output files per source file, avoiding naming conflicts
+
+**Key insights**:
+- Both formats must be specified at two levels: project configuration AND individual file frontmatter
+- The `output-file` parameter is used at the file level to avoid naming conflicts
 - See: https://github.com/orgs/quarto-dev/discussions/1751
-
-**Current approach**:
-- Website profile (`_quarto-website.yml`): HTML only
-- RevealJS profile (`_quarto-revealjs.yml`): Standalone slides
-- Handout profile (`_quarto-handout.yml`): Standalone PDFs
-
-To render multiple formats, use separate profile commands:
-```bash
-quarto render                               # HTML website
-QUARTO_PROFILE=revealjs quarto render      # RevealJS slides
-QUARTO_PROFILE=handout quarto render       # PDF handouts (requires TinyTeX)
-```
 
 ## Continuous Learning and Improvement
 
