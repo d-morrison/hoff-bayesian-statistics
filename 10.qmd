@@ -2,6 +2,10 @@
 title: "Chapter 10: Nonconjugate priors and Metropolis-Hastings algorithms"
 author: "Jesse Mu"
 date: "December 8, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 10-slides.html
 ---
 
 <!-- Setup -->

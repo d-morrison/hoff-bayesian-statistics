@@ -2,6 +2,10 @@
 title: "Chapter 8: Group comparisons and hierarchical modeling"
 author: "Jesse Mu"
 date: "November 17, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 8-slides.html
 ---
 
 <!-- Setup -->

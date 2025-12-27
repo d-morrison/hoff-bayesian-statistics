@@ -2,6 +2,10 @@
 title: "Chapter 6: Posterior approximation with the Gibbs sampler"
 author: "Jesse Mu"
 date: "November 4, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 6-slides.html
 ---
 
 <!-- Setup -->
