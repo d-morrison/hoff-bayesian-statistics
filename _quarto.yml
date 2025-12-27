@@ -14,14 +14,15 @@ project:
 
 website:
   title: "Hoff Bayesian Statistics"
+  site-url: https://d-morrison.github.io/hoff-bayesian-statistics/
+  description: "Lecture notes by Jesse Mu for Peter D. Hoff's 'A First Course in Bayesian Statistical Methods'"
+  page-footer:
+    center: "© Jesse Mu"
   back-to-top-navigation: true
   page-navigation: true
   reader-mode: true
   repo-url: https://github.com/d-morrison/hoff-bayesian-statistics
   repo-actions: [edit, issue, source]
-  page-footer:
-    left:
-      - text: "Copyright 2024, Jesse Mu"
   navbar:
     left:
       - text: "Home"
