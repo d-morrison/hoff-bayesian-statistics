@@ -169,7 +169,7 @@ have start values for *all but one* parameter, because now...
 - $\boldsymbol{\theta}^{(1)} = \begin{pmatrix} \theta_1^{(1)} & \cdots & \theta_n^{(1)} \end{pmatrix}$ is your first Gibbs sample.
 - Given Gibbs sample $\boldsymbol{\theta}^{(s)}$, for further samples, sample
 each $\theta_i^{(s + 1)}$ individually as before, conditioning on the
-$\theta_i^{(s)}$ of the previous gibbs sampling $\boldsymbol{\theta}^{(s)}$$
+$\theta_i^{(s)}$ of the previous gibbs sampling $\boldsymbol{\theta}^{(s)}$
 *and* the new samples $\theta_i^{(s + 1)}$ as they are received. Then $\boldsymbol{\theta}^{(s + 1)} = \begin{pmatrix} \theta_1^{(s + 1)} & \cdots & \theta_n^{(s + 1)} \end{pmatrix}$ is the $s + 1$th Gibbs sample.
 
 Notice that the $s + 1$th sample is only conditionally dependent on the $s$th

@@ -962,6 +962,6 @@ normal likelihood reparameterization trick from
 So:
 
 \begin{align}
-\left( \{\theta, \sigma^2\} \; \middle| \; \mathbf{y} \right) &\sim \mathcal{N}_{\chi^{-2}}(\bar{y}, n, n, \frac{1}{n}\sum (y_i - \bar{y})^2)$$
+\left( \{\theta, \sigma^2\} \; \middle| \; \mathbf{y} \right) &\sim \mathcal{N}_{\chi^{-2}}(\bar{y}, n, n, \frac{1}{n}\sum (y_i - \bar{y})^2)
 \end{align}
 -->
