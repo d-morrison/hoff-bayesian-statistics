@@ -6,8 +6,6 @@ format:
   html: default
   revealjs:
     output-file: irm-slides.html
-  pdf:
-    output-file: irm-handout.pdf
 ---
 
 <!-- Setup -->

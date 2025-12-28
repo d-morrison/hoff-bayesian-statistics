@@ -4,8 +4,6 @@ format:
   html: default
   revealjs:
     output-file: index-slides.html
-  pdf:
-    output-file: index-handout.pdf
 ---
 
 These are (fully reproducible!) R Markdown lecture notes for [Peter D. Hoff, "A First Course in Bayesian Statistical Methods"](https://peterhoff.io/book/), completed as part of a 1-semester independent study course. Only Chapters 1-8 are complete right now.

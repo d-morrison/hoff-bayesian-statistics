@@ -6,8 +6,6 @@ format:
   html: default
   revealjs:
     output-file: 9-slides.html
-  pdf:
-    output-file: 9-handout.pdf
 ---
 
 <!-- Setup -->
