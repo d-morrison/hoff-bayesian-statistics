@@ -229,6 +229,19 @@ The repository uses GitHub Actions for continuous integration:
 
 All workflows run on relevant triggers (push to main, pull requests, etc.).
 
+### Debugging Workflow Failures
+
+**CRITICAL**: When asked to fix workflow errors or when workflows fail:
+
+1. **ALWAYS** read the workflow logs using GitHub MCP tools
+2. Use `list_workflow_runs` to find recent runs
+3. Use `get_job_logs` or similar tools to get detailed failure logs
+4. **NEVER** assume what the error might be - always verify by reading the actual logs
+5. Search for error messages in the logs to identify the root cause
+6. Fix the specific error found in the logs, not what you think the error might be
+
+This is a mandatory step - do not skip reading the logs when debugging workflow failures.
+
 ## Important Notes
 
 ### Working with Statistical Code
