@@ -247,7 +247,7 @@ And clearly the expectation is more sensible as a predictor of future $\tilde{Y}
 
 ## Confidence regions
 
-See [this StackExchange question](http://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval) for a really interesting discussiona bout the difference between Bayesian and frequentist confidence intervals.
+See [this StackExchange question](https://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval) for a really interesting discussiona bout the difference between Bayesian and frequentist confidence intervals.
 
 Bayesian confidence interval is an interval $[l(y), u(y)]$ with the following property:
 
