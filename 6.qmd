@@ -2,6 +2,12 @@
 title: "Chapter 6: Posterior approximation with the Gibbs sampler"
 author: "Jesse Mu"
 date: "November 4, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 6-slides.html
+  pdf:
+    output-file: 6-handout.pdf
 ---
 
 <!-- Setup -->
@@ -55,11 +61,13 @@ distributions.
 Why posterior densities are hard to calculate for nonconjugate priors using
 Bayes rule?
 
-\begin{align}
+$$
+\begin{aligned}
 p(\boldsymbol{\theta} \mid \mathbf{y}) &= \frac{p(\mathbf{y} \mid
 \theta) p(\boldsymbol{\theta})}{\int p(\mathbf{y} \mid
 \boldsymbol{\theta}') p(\boldsymbol{\theta}') \; d\boldsymbol{\theta}'}
-\end{align}
+\end{aligned}
+$$
 
 The numerator here is often easy to calculate, but the denominator is often
 prohibitively hard to compute. When the numerator is not known to be
@@ -125,11 +133,13 @@ reproduce here (see 5.2).
 
 Now we find the full conditional for $\sigma^2$ using the exact same method as in 5.2:
 
-\begin{align}
+$$
+\begin{aligned}
 p(\sigma^2 \mid \theta, y_1, \dots, y_n) &\propto
 \left[(\sigma^2)^{-n/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) \right] \times \left[ (\sigma^2)^{- \nu_0 / 2 - 1} \text{exp} \left(-\frac{\sigma_0^2 \nu_0 / 2}{\sigma^2} \right) \right] \\
 &\propto (\sigma^2)^{-(\nu_0 + 1) / 2 - 1} \times \text{exp}\left(-\frac{1}{\sigma^2} \times \frac{1}{2}\left(\sigma_0^2 \nu_0 + \sum_{i=1}^{n} (y_i - \theta)^2 \right) \right) \\
-\end{align}
+\end{aligned}
+$$
 
 So $\sigma^2 \sim \text{inverse-gamma}(\nu_n / 2, \nu_n \sigma_n^2(\theta) /
 2)$, and $\tilde{\sigma^2} \sim \text{gamma}(\cdot, \cdot))$, with the
@@ -163,7 +173,7 @@ have start values for *all but one* parameter, because now...
 - $\boldsymbol{\theta}^{(1)} = \begin{pmatrix} \theta_1^{(1)} & \cdots & \theta_n^{(1)} \end{pmatrix}$ is your first Gibbs sample.
 - Given Gibbs sample $\boldsymbol{\theta}^{(s)}$, for further samples, sample
 each $\theta_i^{(s + 1)}$ individually as before, conditioning on the
-$\theta_i^{(s)}$ of the previous gibbs sampling $\boldsymbol{\theta}^{(s)}$$
+$\theta_i^{(s)}$ of the previous gibbs sampling $\boldsymbol{\theta}^{(s)}$
 *and* the new samples $\theta_i^{(s + 1)}$ as they are received. Then $\boldsymbol{\theta}^{(s + 1)} = \begin{pmatrix} \theta_1^{(s + 1)} & \cdots & \theta_n^{(s + 1)} \end{pmatrix}$ is the $s + 1$th Gibbs sample.
 
 Notice that the $s + 1$th sample is only conditionally dependent on the $s$th
@@ -352,9 +362,11 @@ acf(theta.mcmc$theta, lag.max = 50)
 Another thing we can do is obtain the "effective sample size" of the MCMC
 sample. This exploits the fact that with $n$ samples of a value $\theta$ the following
 
-\begin{align}
+$$
+\begin{aligned}
 \text{Var}_{\text{MCMC}}(\bar{\theta}) = \frac{\text{Var}(\theta)}{n}
-\end{align}
+\end{aligned}
+$$
 
 only holds if the autocorrelation of the samples is zero. If there is positive
 autocorrelation in the samples, the variance of the sample mean increases, which
@@ -413,7 +425,7 @@ effectiveSize(midge.df$`1/sigma^2`)
 ### a
 
 $$
-\begin{align}
+\begin{aligned}
 \text{Cov}(\theta_A, \theta_B) &= \mathbb{E}\left[\theta_A \theta_B\right] - \mathbb{E}[\theta_A]\mathbb{E}[\theta_B] \\
 &= \mathbb{E}[\theta^2\gamma] - \mathbb{E}[\theta] \mathbb{E}[\theta\gamma] \\
 &= \mathbb{E}\left[\theta^2\right] \mathbb{E}\left[ \gamma \right] - \mathbb{E}[\theta]\mathbb{E}[\theta]\mathbb{E}[\gamma] & \theta \perp \gamma \\
@@ -421,7 +433,7 @@ $$
 &= \left(\mathbb{E}[\theta^2] - \mathbb{E}[\theta]^2 \right) \mathbb{E}[\gamma] \\
 &= \text{Var}(\theta) \mathbb{E}[\gamma] \\
 &\neq 0
-\end{align}
+\end{aligned}
 $$
 
 Since $\text{Cov}(\theta_A, \theta_B) \neq 0$, $\theta_A$ and $\theta_B$ are
@@ -435,39 +447,39 @@ product of $\theta_A$ plus random Gamma-distributed noise.
 First the joint posterior distribution
 
 $$
-\begin{align}
+\begin{aligned}
 p(\theta, \gamma \mid \boldsymbol{y}_A, \boldsymbol{y}_B)
 &\propto p(\theta, \gamma) \times p(\boldsymbol{y}_A, \boldsymbol{y}_B \mid \theta, \gamma) \\
 &= p(\theta) \times p(\gamma) \times p(\boldsymbol{y}_A \mid \theta) \times p(\boldsymbol{y}_B \mid \theta, \gamma) & \boldsymbol{y}_A \perp \gamma \\
 &\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left(\prod_{i=1}^{n_{A}} \theta^{y_{A_i}} e^{-\theta} \right) \times \left(\prod_{i=1}^{n_{B}} (\gamma \theta)^{y_{B_i}} e^{-\gamma \theta} \right) \\
 &= \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{\sum_{i = 1}^{n_A} y_{A_i}} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{\sum_{i=1}^{n_B} y_{B_i}} e^{- n_B \gamma \theta} \right) \\
 &= \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
-\end{align}
+\end{aligned}
 $$
 
 So
 
 $$
-\begin{align}
+\begin{aligned}
 p(\theta, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \gamma)
 &\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &\propto \theta^{a_\theta + n_A \bar{y}_A + n_B \bar{y}_B - 1} \exp \left( - (b_\theta + n_A + n_B \gamma ) \theta \right) \\
 &\propto \text{dgamma}\left(a_\theta + n_A \bar{y}_A + n_B \bar{y}_B, b_\theta + n_A + n_B \gamma \right)
-\end{align}
+\end{aligned}
 $$
 
 ### c
 
 $$
-\begin{align}
+\begin{aligned}
 p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
 &\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &\propto \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &\propto \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times \left( \gamma^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &\propto \gamma^{a_\gamma + n_B \bar{y}_B - 1} \exp\left( -(b_\gamma + n_B \theta) \gamma \right) \\
 &\propto \text{dgamma}\left(a_\gamma + n_B\bar{y}_B, b_\gamma + n_B \theta \right)
-\end{align}
+\end{aligned}
 $$
 
 ### d
@@ -554,11 +566,11 @@ Appears to be skewed right significantly.
 The likelihood is
 
 $$
-\begin{align}
+\begin{aligned}
 p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &= 
 \prod_{i = 1}^n p(y_i \mid x_i, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &= \prod_{i = 1}^n \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \\
-\end{align}
+\end{aligned}
 $$
 
 #### $\boldsymbol{x}$
@@ -566,12 +578,12 @@ $$
 First observe the probability that a single $X_i = 1$:
 
 $$
-\begin{align}
+\begin{aligned}
 P(X_i = 1 \mid y_i, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &= \frac{P(X_i = 1 \mid p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \times p(y_i \mid X_i = 1, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2)}{P(y_i \mid p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2)} \\
 &=
 \frac{P(X_i = 1 \mid p) \times p(y_i \mid X_i = 1, \theta_1, \sigma^2_1)}{P(X_i = 1 \mid p) \times p(y_i \mid X_i = 1, \theta_1, \sigma^2_1) + P(X_i = 0 \mid p) \times p(y_i \mid X_i = 0, \theta_2, \sigma^2_2)} \\
 &= \frac{p \times \text{dnorm}(y_i, \theta_1, \sigma^2_1)}{p \times \text{dnorm}(y_i, \theta_1, \sigma^2_1) + (1 - p) \times \text{dnorm}(y_i, \theta_2, \sigma^2_2)}
-\end{align}
+\end{aligned}
 $$
 
 Since this is similar for $P(X_i = 0)$, we know
@@ -586,7 +598,7 @@ For this and later calculations, let $n_1 = \sum x_i$ (i.e. number of 1s in
 $\boldsymbol{x}$) and $n_2 = n - n_1$ (i.e. number of 0s).
 
 $$
-\begin{align}
+\begin{aligned}
 p(p \mid \boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &\propto p(p) \times p(\boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2 \mid p) \\
 &\propto p(p) \times p(\boldsymbol{x} \mid p) p(\boldsymbol{y} \mid \boldsymbol{x}, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) p(\theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &\propto p(p) \times p(\boldsymbol{x} \mid p) \\
@@ -594,7 +606,7 @@ p(p \mid \boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^
 &\propto p^{a - 1} (1 - p)^{b - 1} \times p^{n_1} (1 - p)^{n_2} \\
 &= p^{a + n_1 - 1}(1 - p)^{b + n_2 - 1} \\
 &= \text{dbeta}(p, a + n_1, b + n_2)
-\end{align}
+\end{aligned}
 $$
 
 #### $\theta_1$
@@ -603,7 +615,7 @@ Let $\boldsymbol{y}_1 = \{y_i \in \boldsymbol{y} \; : \; x_i = 1 \}$ and
 $\boldsymbol{y}_2 = \{y_i \in \boldsymbol{y} \; : \; x_i = 0 \}$
 
 $$
-\begin{align}
+\begin{aligned}
 p(\theta_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_2, \sigma^2_1, \sigma^2_2) &\propto p(\theta_1 \mid \boldsymbol{x}, p, \theta_2, \sigma^2_1, \sigma^2_2) \times p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &\propto p(\theta_1) \times \prod_{i=1}^n \left( \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \right) \\
 &\propto \text{dnorm}(\theta_1, \mu_0, \tau^2_0) \times \prod_{i = 1}^n \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \\
@@ -612,16 +624,16 @@ p(\theta_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_2, \sigma^2_1, \sigma^
 &\propto \exp \left(- \frac{1}{2 \tau^2_0} (\theta_1 - \mu_0)^2 \right) \times \exp\left(-\frac{1}{2\sigma^2_1} \sum_{y \in \boldsymbol{y}_1} (y - \theta_1)^2 \right) \\
 &\propto \text{calculations from 5.2...} \\
 &\propto \mathcal{N}(\tau^2_{n , 1}, \mu_{n, 1})
-\end{align}
+\end{aligned}
 $$
 
 where
 
 $$
-\begin{align}
+\begin{aligned}
 \tau^2_{n, 1} &= \frac{1}{\frac{1}{\tau^2_0} + \frac{n_1}{\sigma^2_1}} \\
 \mu_{n, 1} &= \frac{\frac{1}{\tau^2_0}\mu_0 + \frac{n_1}{\sigma^2_1} \bar{y}_{\cdot, 1}}{\frac{1}{\tau^2_0} + \frac{n_1}{\sigma^2_1}}
-\end{align}
+\end{aligned}
 $$
 
 #### $\theta_2$
@@ -635,23 +647,23 @@ As probably expected, this will look like inference for a standard normal model,
 except using only the data in group 1.
 
 $$
-\begin{align}
+\begin{aligned}
 p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^2_2) &\propto p(\sigma^2_1 \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_2) \times p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &\propto p(\sigma^2_1) \times \prod_{i=1}^n \left( \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \right) \\
 &\propto \text{inverse-gamma}(\sigma^2_1, \nu_0, \sigma^2_0 \nu_0 / 2) \times \prod_{y \in \boldsymbol{y}_1} \text{dnorm}(y, \theta_1, \sigma^2_1) \\
 &\propto \exp \left((\sigma_1^2)^{-(\nu_0 / 2) - 1} \exp\left( -\frac{1}{\sigma^2_1} \sigma^2_0 \nu_0 / 2 \right) \right) \times (\sigma_1^2)^{-n / 2} \exp\left(-\frac{1}{2\sigma^2_1} \sum_{y \in \boldsymbol{y}_1} (y - \theta_1)^2 \right) \\
 &\propto \text{calculations from 6.3...} \\
 &\propto \text{inverse-gamma}(\nu_{n, 1} / 2, \sigma^2_{n, 1}(\theta_1) \nu_{n, 1} / 2)
-\end{align}
+\end{aligned}
 $$
 
 where
 
 $$
-\begin{align}
+\begin{aligned}
 \nu_{n, 1} &= \nu_0 + n_1 \\
 \sigma^2_{n, 1}(\theta_1) &= \frac{1}{\nu_{n, 1}} \left[\nu_0 \sigma^2_0 + n_1 s^2_{n, 1}(\theta_1) \right]
-\end{align}
+\end{aligned}
 $$
 
 #### $\sigma^2_2$

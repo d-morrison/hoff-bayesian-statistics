@@ -2,6 +2,12 @@
 title: 'Chapter 1: Introduction and examples'
 author: "Jesse Mu"
 date: "September 7, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 1-slides.html
+  pdf:
+    output-file: 1-handout.pdf
 ---
 
 <!-- Setup -->

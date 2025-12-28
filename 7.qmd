@@ -2,6 +2,12 @@
 title: "Chapter 7: The multivariate normal model"
 author: "Jesse Mu"
 date: "November 10, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 7-slides.html
+  pdf:
+    output-file: 7-handout.pdf
 ---
 
 <!-- Setup -->
@@ -156,8 +162,7 @@ p(\boldsymbol{\theta} \mid \Sigma) &\propto \text{exp}\left[ -\frac{1}{2} (\bold
 &= \text{exp}\left[-\frac{1}{2} (\boldsymbol{\theta}^T - \boldsymbol{\mu}_0^T) (\Lambda_0^{-1}\boldsymbol{\theta} - \Lambda_0^{-1}\boldsymbol{\mu}_0 ) \right] \\
 &= \text{exp}\left[-\frac{1}{2} (\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} - \boldsymbol{\mu}_0^T \Lambda_0^{-1} \boldsymbol{\theta} - \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{\mu}_0^T \Lambda_0^{-1}\boldsymbol{\mu}_0  )\right] \\
 &= \text{exp} \left[ -\frac{1}{2} (\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} - 2\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{\mu}_0^T \Lambda_0^{-1}\boldsymbol{\mu}_0 ) \right] & \text{Middle terms combine} \\
-&\propto \text{exp} \left[ -\frac{1}{2}\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} + \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 \right] & \text{Discard last term} \\
-
+&\propto \text{exp} \left[ -\frac{1}{2}\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} + \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 \right] & \text{Discard last term}
 \end{align}
 
 If we let $\mathbf{A}_0 = \Lambda_0^{-1}$, i.e. the precision matrix (which
@@ -238,8 +243,8 @@ Then $\boldsymbol{Z}_1^T \boldsymbol{Z}_1, \dots, \boldsymbol{Z}_S^T \boldsymbol
 
 Some properties of samples from the Wishart which happen to stem from calculating empirical covariance matrices in the first place
 
-- If $\nu_0 > p$ then $\boldsymbol{Z}^\boldsymbol{Z}$ is positive definite
-- $\boldsymbol{Z}^\boldsymbol{Z}$ is symmetric
+- If $\nu_0 > p$ then $\boldsymbol{Z}^T\boldsymbol{Z}$ is positive definite
+- $\boldsymbol{Z}^T\boldsymbol{Z}$ is symmetric
 - $\mathbb{E}(\boldsymbol{Z}^T\boldsymbol{Z}) = \nu_0 \Phi_0$
 
 Like how the Gamma is not the conjugate prior of the variance for the Normal,

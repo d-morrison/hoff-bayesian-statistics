@@ -35,8 +35,17 @@ notes.txt
 # Quarto
 /.quarto/
 /_site/
+/_slides/
+/_handouts/
 *.html
 **/*.quarto_ipynb
 _freeze
 *.deb
 *.tex
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
