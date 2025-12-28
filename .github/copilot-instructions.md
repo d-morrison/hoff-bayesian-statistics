@@ -21,16 +21,26 @@ The repository also includes a final project implementing the Infinite Relationa
 
 ## Development Setup
 
+### General Principles
+
+**CRITICAL**: Do not make assumptions about what code will do - always test it yourself.
+
+- **Install required software first**: Ensure all necessary tools (R, Quarto, TinyTeX) are installed before starting work
+- **Test your changes**: Run the actual commands to verify functionality
+- **Verify output**: Check that expected files are created with correct content
+- **Never claim success without evidence**: Only report that something works after you've confirmed it yourself
+
 ### Prerequisites
 
 1. R (**always use the latest R release**, currently R 4.5.2 or later)
 2. RStudio (optional but recommended)
 3. Quarto CLI (https://quarto.org/docs/get-started/)
 4. pandoc (usually bundled with RStudio or Quarto)
+5. **TinyTeX** (required for PDF rendering - see installation below)
 
 ### Installation
 
-**CRITICAL**: Always install the latest R release before starting development or testing.
+**CRITICAL**: Always install the latest R release AND all required tools before starting development or testing.
 
 **On Ubuntu/Debian systems**:
 ```bash
@@ -52,7 +62,37 @@ R --version
 
 **On other systems**: Download the latest R release from https://cloud.r-project.org/
 
-To set up the development environment:
+**Install Quarto** (required for rendering):
+
+On Ubuntu/Linux:
+```bash
+# Download and install Quarto (check https://quarto.org/docs/get-started/ for latest version)
+wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.550/quarto-1.4.550-linux-amd64.deb
+sudo dpkg -i quarto-1.4.550-linux-amd64.deb
+
+# Verify installation
+quarto --version
+```
+
+On macOS/Windows: Download installer from https://quarto.org/docs/get-started/
+
+**Install TinyTeX** (required for PDF rendering):
+
+```bash
+# Via Quarto (preferred method)
+quarto install tinytex --no-prompt
+
+# Verify installation
+quarto list tools
+```
+
+Alternative via R:
+```r
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+**Install R package dependencies**:
 
 ```r
 # Install renv if not already installed
@@ -350,27 +390,13 @@ This project uses `renv` for R package dependency management. The workflows are 
 - Check that `.Rprofile` is activating renv (it should have `source("renv/activate.R")` uncommented)
 - In CI/CD, the `setup-renv` action handles restoration automatically
 
-### Installing TinyTeX for PDF Rendering
+### TinyTeX for PDF Rendering
 
 **CRITICAL**: TinyTeX **MUST** be installed in your working environment when developing PRs for this project, as PDF format is included in the default website rendering.
 
-When PDF output is required (for handouts or multi-format rendering), TinyTeX must be installed:
+**Installation**: See the "Installation" section above for TinyTeX installation instructions. This should be done at the start of PR development.
 
-**Installation methods** (try in order):
-
-1. **Via Quarto** (preferred):
-```bash
-quarto install tinytex --no-prompt
-```
-
-2. **Via R tinytex package** (alternative):
-```r
-tinytex::install_tinytex()
-```
-
-3. **Manual TeX installation**: Install TexLive or another TeX distribution if the above methods fail due to network restrictions.
-
-**When to install**:
+**When PDF output is required**:
 - **ALWAYS at the start of PR development** - This is now a required step
 - Before rendering PDF output formats
 - Before running multi-format rendering that includes PDF
