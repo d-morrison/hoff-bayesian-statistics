@@ -2,6 +2,10 @@
 title: "Chapter 5: The Normal Model"
 author: "Jesse Mu"
 date: "October 7, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 5-slides.html
 ---
 
 <!-- Setup -->
