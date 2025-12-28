@@ -2376,10 +2376,10 @@ Jesse Mu
 <p><span class="header-section-number">2</span> Metropolis algorithm</p>
 <!--
 $$
-\begin{align}
+\begin{aligned}
 r &= \frac{p(\theta^* \mid y)}{p(\theta)^{(s)} \mid y} \\
 &= p(\theta^* \mid y) \frac{1}{p(\theta^{(s)} \mid y)} \\
-\end{align}
+\end{aligned}
 $$
 
 TODO expand. also might include the J ratio (that's why it has to be symmetric)
@@ -2528,12 +2528,12 @@ $$
 </div>
 <p>For convenience let <span class="math inline">\(\theta_i = P(Y_i = 1 \mid \alpha, \beta, x_i)\)</span>. Now we solve for <span class="math inline">\(\theta_i\)</span> in our model</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 &amp; \log\left(\frac{\theta_i}{1 - \theta_i}\right) = \alpha + \beta x_i \\
 \implies&amp; \frac{\theta_i}{1 - \theta_i} = \exp(\alpha + \beta x_i) \\
 \implies&amp; \theta_i = \exp(\alpha + \beta x_i) - \theta_i \exp(\alpha + \beta x_i) \\
 \implies&amp; \theta_i = \frac{\exp(a + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>So we know <span class="math inline">\(Y_i \sim \text{Bernoulli}\left(p_i\right)\)</span> where <span class="math inline">\(p_i = \frac{\exp(a + \beta x_i)}{1 + \exp(a + \beta x_i)}\)</span> and thus</p>
 <p><span class="math display">\[
@@ -2542,7 +2542,7 @@ p(y_i \mid \alpha, \beta, x_i) = p_i^{y_i}(1 - p_i)^{1 - y_i}
 </section><section id="a" class="slide level2"><h2>a</h2>
 <p>Let <span class="math inline">\(z_i = \exp(\alpha + \beta x_i)\)</span> for simplicity.</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alpha, \beta, x_i) \\
 &amp;= \prod_{i = 1}^n p_i^{y_i} (1 - p_i)^{1 - y_i} \\
 &amp;= \prod_{i = 1}^n \left(\frac{z_i}{1 + z_i} \right)^{y_i} \left(1 - \frac{z_i}{1 + z_i} \right)^{1 - y_i} \\
@@ -2551,7 +2551,7 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 &amp;= \prod_{i = 1}^n \frac{z_i^{y_i}}{(1 + z_i)^{y_i}} \frac{1}{(1 + z_i)^{1 - y_i}} \\
 &amp;= \prod_{i = 1}^n \frac{z_i^{y_i}}{1 + z_i} \\
 &amp;= \prod_{i = 1}^n \frac{\exp(y_i (\alpha + \beta x_i))}{1 + \exp(\alpha + \beta x_i)} \\
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>and I don’t think that can be simplified further.</p>
 </section><section id="b" class="slide level2"><h2>b</h2>
@@ -2561,10 +2561,10 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 <p>Similarly I’ll let the standard deviation of our <span class="math inline">\(\alpha\)</span> prior to be 5 and the variance 25, so that, if <span class="math inline">\(\beta = 0\)</span>, the most of the <span class="math inline">\(\alpha\)</span> prior falls in the log-odds interval <span class="math inline">\([-10, 10]\)</span>.</p>
 <p>So</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \alpha &amp;\sim \mathcal{N}(0, 25) \\
 \beta &amp;\sim \mathcal{N}(0, 0.25) \\
-\end{align}
+\end{aligned}
 \]</span></p>
 </section><section id="c" class="slide level2"><h2>c</h2>
 <div class="cell" data-layout-align="center">

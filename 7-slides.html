@@ -2437,8 +2437,7 @@ p(\boldsymbol{\theta} \mid \Sigma) &amp;\propto \text{exp}\left[ -\frac{1}{2} (\
 &amp;= \text{exp}\left[-\frac{1}{2} (\boldsymbol{\theta}^T - \boldsymbol{\mu}_0^T) (\Lambda_0^{-1}\boldsymbol{\theta} - \Lambda_0^{-1}\boldsymbol{\mu}_0 ) \right] \\
 &amp;= \text{exp}\left[-\frac{1}{2} (\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} - \boldsymbol{\mu}_0^T \Lambda_0^{-1} \boldsymbol{\theta} - \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{\mu}_0^T \Lambda_0^{-1}\boldsymbol{\mu}_0  )\right] \\
 &amp;= \text{exp} \left[ -\frac{1}{2} (\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} - 2\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{\mu}_0^T \Lambda_0^{-1}\boldsymbol{\mu}_0 ) \right] &amp; \text{Middle terms combine} \\
-&amp;\propto \text{exp} \left[ -\frac{1}{2}\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} + \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 \right] &amp; \text{Discard last term} \\
-
+&amp;\propto \text{exp} \left[ -\frac{1}{2}\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} + \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 \right] &amp; \text{Discard last term}
 \end{align}\]</span></p>
 <p>If we let <span class="math inline">\(\mathbf{A}_0 = \Lambda_0^{-1}\)</span>, i.e. the precision matrix (which echoes the univariate case) and <span class="math inline">\(\mathbf{b}_0 = \Lambda_0^{-1}
 \boldsymbol{\mu}_0\)</span>, this simplifies to</p>
@@ -2496,9 +2495,9 @@ p(\boldsymbol{\theta} \mid \Sigma) p(\mathbf{y}_1, \dots, \mathbf{y}_n \mid
 <p>Then <span class="math inline">\(\boldsymbol{Z}_1^T \boldsymbol{Z}_1, \dots, \boldsymbol{Z}_S^T \boldsymbol{Z} \sim \text{Wishart}(\nu_0, \Phi_0)\)</span>.</p>
 <p>Some properties of samples from the Wishart which happen to stem from calculating empirical covariance matrices in the first place</p>
 <ul>
-<li>If <span class="math inline">\(\nu_0 &gt; p\)</span> then <span class="math inline">\(\boldsymbol{Z}^\boldsymbol{Z}\)</span> is positive definite</li>
+<li>If <span class="math inline">\(\nu_0 &gt; p\)</span> then <span class="math inline">\(\boldsymbol{Z}^T\boldsymbol{Z}\)</span> is positive definite</li>
 <li>
-<span class="math inline">\(\boldsymbol{Z}^\boldsymbol{Z}\)</span> is symmetric</li>
+<span class="math inline">\(\boldsymbol{Z}^T\boldsymbol{Z}\)</span> is symmetric</li>
 <li><span class="math inline">\(\mathbb{E}(\boldsymbol{Z}^T\boldsymbol{Z}) = \nu_0 \Phi_0\)</span></li>
 </ul>
 <p>Like how the Gamma is not the conjugate prior of the variance for the Normal, the Wishart is not the conjugate prior of the variance for the multivariate Normal; rather, the inverse-Wishart is. Sampling from an inverse-Wishart just involves taking <span class="math inline">\(\Sigma^{(s)} = (\boldsymbol{Z}^{(s)T} \boldsymbol{Z}^{(s)})^{-1}\)</span></p>

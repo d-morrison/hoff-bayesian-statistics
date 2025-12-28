@@ -2385,11 +2385,13 @@ p(\theta, \sigma^2 \mid y_1, \dots, y_n) \propto p(\theta, \sigma^2) \times p(y_
 \dots, y_n)\)</span> are easy to specify, as when evaluating the formulas, we can simply disregard the other fixed parameter as a constant, leading to known posterior distributions. A technicue called Gibbs sampling allows us to take advantage of this by constructing a sampler that approximates the (unknown) joint distribution by sampling iteratively from the (known) full conditional distributions.</p>
 <p><span class="header-section-number">2</span> Discrete approximations</p>
 <p>Why posterior densities are hard to calculate for nonconjugate priors using Bayes rule?</p>
-<p><span class="math display">\[\begin{align}
+<p><span class="math display">\[
+\begin{aligned}
 p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 \theta) p(\boldsymbol{\theta})}{\int p(\mathbf{y} \mid
 \boldsymbol{\theta}&#39;) p(\boldsymbol{\theta}&#39;) \; d\boldsymbol{\theta}&#39;}
-\end{align}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>The numerator here is often easy to calculate, but the denominator is often prohibitively hard to compute. When the numerator is not known to be proportional to a known probability distribution, we can’t get the full joint density without the denominator.</p>
 <p>Notice however that we can still evaluate relative probabilites of <span class="math inline">\(\boldsymbol{\theta}_a\)</span> and <span class="math inline">\(\boldsymbol{\theta}_b\)</span>, as their ratio cancels out the integral. More generally, we can create a discrete approximation of the probabilities by evaluating the numerator of this density for values of <span class="math inline">\(\boldsymbol{\theta}\)</span> across an <span class="math inline">\(n\)</span>-dimensional grid, then dividing each of these unnormalized densities by the sum of the entire grid.</p>
 <p>Funnily, this is pretty much what I have been doing in the past chapters when plotting heatmaps:</p>
@@ -2441,11 +2443,13 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 \mid \mathcal{N}(\mu_0, \tau_0^2)\)</span>, then <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n
 \sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> I will not reproduce here (see 5.2).</p>
 <p>Now we find the full conditional for <span class="math inline">\(\sigma^2\)</span> using the exact same method as in 5.2:</p>
-<p><span class="math display">\[\begin{align}
+<p><span class="math display">\[
+\begin{aligned}
 p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 \left[(\sigma^2)^{-n/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) \right] \times \left[ (\sigma^2)^{- \nu_0 / 2 - 1} \text{exp} \left(-\frac{\sigma_0^2 \nu_0 / 2}{\sigma^2} \right) \right] \\
 &amp;\propto (\sigma^2)^{-(\nu_0 + 1) / 2 - 1} \times \text{exp}\left(-\frac{1}{\sigma^2} \times \frac{1}{2}\left(\sigma_0^2 \nu_0 + \sum_{i=1}^{n} (y_i - \theta)^2 \right) \right) \\
-\end{align}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>So <span class="math inline">\(\sigma^2 \sim \text{inverse-gamma}(\nu_n / 2, \nu_n \sigma_n^2(\theta) /
 2)\)</span>, and <span class="math inline">\(\tilde{\sigma^2} \sim \text{gamma}(\cdot, \cdot))\)</span>, with the parameters:</p>
 <ul>
@@ -2466,7 +2470,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 <li>Similarly, sample <span class="math inline">\(\theta_2^{(1)} \sim p(\theta_2 \mid \dots)\)</span>, <span class="math inline">\(\theta_3^{(1)} \sim p(\theta_3 \mid \dots)\)</span>.</li>
 <li>
 <span class="math inline">\(\boldsymbol{\theta}^{(1)} = \begin{pmatrix} \theta_1^{(1)} &amp; \cdots &amp; \theta_n^{(1)} \end{pmatrix}\)</span> is your first Gibbs sample.</li>
-<li>Given Gibbs sample <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span>, for further samples, sample each <span class="math inline">\(\theta_i^{(s + 1)}\)</span> individually as before, conditioning on the <span class="math inline">\(\theta_i^{(s)}\)</span> of the previous gibbs sampling <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span>$ <em>and</em> the new samples <span class="math inline">\(\theta_i^{(s + 1)}\)</span> as they are received. Then <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)} = \begin{pmatrix} \theta_1^{(s + 1)} &amp; \cdots &amp; \theta_n^{(s + 1)} \end{pmatrix}\)</span> is the <span class="math inline">\(s + 1\)</span>th Gibbs sample.</li>
+<li>Given Gibbs sample <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span>, for further samples, sample each <span class="math inline">\(\theta_i^{(s + 1)}\)</span> individually as before, conditioning on the <span class="math inline">\(\theta_i^{(s)}\)</span> of the previous gibbs sampling <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span> <em>and</em> the new samples <span class="math inline">\(\theta_i^{(s + 1)}\)</span> as they are received. Then <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)} = \begin{pmatrix} \theta_1^{(s + 1)} &amp; \cdots &amp; \theta_n^{(s + 1)} \end{pmatrix}\)</span> is the <span class="math inline">\(s + 1\)</span>th Gibbs sample.</li>
 </ul>
 <p>Notice that the <span class="math inline">\(s + 1\)</span>th sample is only conditionally dependent on the <span class="math inline">\(s\)</span>th sample, hence the term “Markov Chain Monte Carlo”. Once these samples are obtained, you can treat them like a standard Monte Carlo sample, and compute all of the desired quantities.</p>
 <p>The following is an example for our midge length data:</p>
@@ -2612,9 +2616,11 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 </div>
 </div>
 <p>Another thing we can do is obtain the “effective sample size” of the MCMC sample. This exploits the fact that with <span class="math inline">\(n\)</span> samples of a value <span class="math inline">\(\theta\)</span> the following</p>
-<p><span class="math display">\[\begin{align}
+<p><span class="math display">\[
+\begin{aligned}
 \text{Var}_{\text{MCMC}}(\bar{\theta}) = \frac{\text{Var}(\theta)}{n}
-\end{align}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>only holds if the autocorrelation of the samples is zero. If there is positive autocorrelation in the samples, the variance of the sample mean increases, which “reduces” <span class="math inline">\(n\)</span>. So by obtaining estimates of the variance of the population (by estimating the variance of the sample) and estimates of the variance of the mean, we can solve for <span class="math inline">\(n\)</span> which is an “effective sample size”.</p>
 <p>Estimating the variance of the mean, given that we cannot assume an independent sample, is nontrivial, and requires calculating the <a href="http://faculty.arts.ubc.ca/vmarmer/econ627/627_10_02.pdf">spectral density estimate at frequency zero</a> which is “a convenient way to represent the sequence of autocovariances” of a stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.</p>
 <p>This is implemented as the <code>effectiveSize</code> function in R, which abridged looks like this:</p>
@@ -2685,7 +2691,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 
 </section><section id="a" class="slide level2"><h2>a</h2>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \text{Cov}(\theta_A, \theta_B) &amp;= \mathbb{E}\left[\theta_A \theta_B\right] - \mathbb{E}[\theta_A]\mathbb{E}[\theta_B] \\
 &amp;= \mathbb{E}[\theta^2\gamma] - \mathbb{E}[\theta] \mathbb{E}[\theta\gamma] \\
 &amp;= \mathbb{E}\left[\theta^2\right] \mathbb{E}\left[ \gamma \right] - \mathbb{E}[\theta]\mathbb{E}[\theta]\mathbb{E}[\gamma] &amp; \theta \perp \gamma \\
@@ -2693,42 +2699,42 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 &amp;= \left(\mathbb{E}[\theta^2] - \mathbb{E}[\theta]^2 \right) \mathbb{E}[\gamma] \\
 &amp;= \text{Var}(\theta) \mathbb{E}[\gamma] \\
 &amp;\neq 0
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Since <span class="math inline">\(\text{Cov}(\theta_A, \theta_B) \neq 0\)</span>, <span class="math inline">\(\theta_A\)</span> and <span class="math inline">\(\theta_B\)</span> are dependent.</p>
 <p>This prior is justified if we have reason to believe that <span class="math inline">\(\theta_B\)</span> is some product of <span class="math inline">\(\theta_A\)</span> plus random Gamma-distributed noise.</p>
 </section><section id="b" class="slide level2"><h2>b</h2>
 <p>First the joint posterior distribution</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\theta, \gamma \mid \boldsymbol{y}_A, \boldsymbol{y}_B)
 &amp;\propto p(\theta, \gamma) \times p(\boldsymbol{y}_A, \boldsymbol{y}_B \mid \theta, \gamma) \\
 &amp;= p(\theta) \times p(\gamma) \times p(\boldsymbol{y}_A \mid \theta) \times p(\boldsymbol{y}_B \mid \theta, \gamma) &amp; \boldsymbol{y}_A \perp \gamma \\
 &amp;\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left(\prod_{i=1}^{n_{A}} \theta^{y_{A_i}} e^{-\theta} \right) \times \left(\prod_{i=1}^{n_{B}} (\gamma \theta)^{y_{B_i}} e^{-\gamma \theta} \right) \\
 &amp;= \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{\sum_{i = 1}^{n_A} y_{A_i}} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{\sum_{i=1}^{n_B} y_{B_i}} e^{- n_B \gamma \theta} \right) \\
 &amp;= \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>So</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\theta, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \gamma)
 &amp;\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &amp;\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &amp;\propto \theta^{a_\theta + n_A \bar{y}_A + n_B \bar{y}_B - 1} \exp \left( - (b_\theta + n_A + n_B \gamma ) \theta \right) \\
 &amp;\propto \text{dgamma}\left(a_\theta + n_A \bar{y}_A + n_B \bar{y}_B, b_\theta + n_A + n_B \gamma \right)
-\end{align}
+\end{aligned}
 \]</span></p>
 </section><section id="c" class="slide level2"><h2>c</h2>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
 &amp;\propto \left(\theta^{a_\theta - 1}e^{-b_\theta \theta}\right) \times \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times  \left( \theta^{n_A \bar{y}_A} e^{-n_A \theta} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &amp;\propto \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times \left( (\gamma \theta)^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &amp;\propto \left(\gamma^{a_\gamma - 1}e^{-b_\gamma \gamma} \right) \times \left( \gamma^{n_B \bar{y}_B} e^{- n_B \gamma \theta} \right) \\
 &amp;\propto \gamma^{a_\gamma + n_B \bar{y}_B - 1} \exp\left( -(b_\gamma + n_B \theta) \gamma \right) \\
 &amp;\propto \text{dgamma}\left(a_\gamma + n_B\bar{y}_B, b_\gamma + n_B \theta \right)
-\end{align}
+\end{aligned}
 \]</span></p>
 </section><section id="d" class="slide level2"><h2>d</h2>
 <div class="cell" data-layout-align="center">
@@ -2813,21 +2819,21 @@ p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
 </section><section id="b-1" class="slide level2"><h2>b</h2>
 <p>The likelihood is</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &amp;=
 \prod_{i = 1}^n p(y_i \mid x_i, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &amp;= \prod_{i = 1}^n \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \\
-\end{align}
+\end{aligned}
 \]</span></p>
 <h3 id="boldsymbolx"><span class="math inline">\(\boldsymbol{x}\)</span></h3>
 <p>First observe the probability that a single <span class="math inline">\(X_i = 1\)</span>:</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 P(X_i = 1 \mid y_i, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &amp;= \frac{P(X_i = 1 \mid p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \times p(y_i \mid X_i = 1, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2)}{P(y_i \mid p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2)} \\
 &amp;=
 \frac{P(X_i = 1 \mid p) \times p(y_i \mid X_i = 1, \theta_1, \sigma^2_1)}{P(X_i = 1 \mid p) \times p(y_i \mid X_i = 1, \theta_1, \sigma^2_1) + P(X_i = 0 \mid p) \times p(y_i \mid X_i = 0, \theta_2, \sigma^2_2)} \\
 &amp;= \frac{p \times \text{dnorm}(y_i, \theta_1, \sigma^2_1)}{p \times \text{dnorm}(y_i, \theta_1, \sigma^2_1) + (1 - p) \times \text{dnorm}(y_i, \theta_2, \sigma^2_2)}
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Since this is similar for <span class="math inline">\(P(X_i = 0)\)</span>, we know</p>
 <p><span class="math display">\[
@@ -2836,7 +2842,7 @@ x_i \sim \text{Bernoulli}\left(\frac{p \times \text{dnorm}(y_i, \theta_1, \sigma
 <h3 id="p"><span class="math inline">\(p\)</span></h3>
 <p>For this and later calculations, let <span class="math inline">\(n_1 = \sum x_i\)</span> (i.e. number of 1s in <span class="math inline">\(\boldsymbol{x}\)</span>) and <span class="math inline">\(n_2 = n - n_1\)</span> (i.e. number of 0s).</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(p \mid \boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &amp;\propto p(p) \times p(\boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2 \mid p) \\
 &amp;\propto p(p) \times p(\boldsymbol{x} \mid p) p(\boldsymbol{y} \mid \boldsymbol{x}, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) p(\theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &amp;\propto p(p) \times p(\boldsymbol{x} \mid p) \\
@@ -2844,12 +2850,12 @@ p(p \mid \boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^
 &amp;\propto p^{a - 1} (1 - p)^{b - 1} \times p^{n_1} (1 - p)^{n_2} \\
 &amp;= p^{a + n_1 - 1}(1 - p)^{b + n_2 - 1} \\
 &amp;= \text{dbeta}(p, a + n_1, b + n_2)
-\end{align}
+\end{aligned}
 \]</span></p>
 <h3 id="theta_1"><span class="math inline">\(\theta_1\)</span></h3>
 <p>Let <span class="math inline">\(\boldsymbol{y}_1 = \{y_i \in \boldsymbol{y} \; : \; x_i = 1 \}\)</span> and <span class="math inline">\(\boldsymbol{y}_2 = \{y_i \in \boldsymbol{y} \; : \; x_i = 0 \}\)</span></p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\theta_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_2, \sigma^2_1, \sigma^2_2) &amp;\propto p(\theta_1 \mid \boldsymbol{x}, p, \theta_2, \sigma^2_1, \sigma^2_2) \times p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &amp;\propto p(\theta_1) \times \prod_{i=1}^n \left( \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \right) \\
 &amp;\propto \text{dnorm}(\theta_1, \mu_0, \tau^2_0) \times \prod_{i = 1}^n \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \\
@@ -2858,35 +2864,35 @@ p(\theta_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_2, \sigma^2_1, \sigma^
 &amp;\propto \exp \left(- \frac{1}{2 \tau^2_0} (\theta_1 - \mu_0)^2 \right) \times \exp\left(-\frac{1}{2\sigma^2_1} \sum_{y \in \boldsymbol{y}_1} (y - \theta_1)^2 \right) \\
 &amp;\propto \text{calculations from 5.2...} \\
 &amp;\propto \mathcal{N}(\tau^2_{n , 1}, \mu_{n, 1})
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>where</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \tau^2_{n, 1} &amp;= \frac{1}{\frac{1}{\tau^2_0} + \frac{n_1}{\sigma^2_1}} \\
 \mu_{n, 1} &amp;= \frac{\frac{1}{\tau^2_0}\mu_0 + \frac{n_1}{\sigma^2_1} \bar{y}_{\cdot, 1}}{\frac{1}{\tau^2_0} + \frac{n_1}{\sigma^2_1}}
-\end{align}
+\end{aligned}
 \]</span></p>
 <h3 id="theta_2"><span class="math inline">\(\theta_2\)</span></h3>
 <p><span class="math inline">\(\theta_2 \mid \dots \sim \mathcal{N}(\mu_{n, 2}, \tau^2_{n, 2})\)</span> like <span class="math inline">\(\theta_1\)</span> but with the subscripts switched from 1 to 2.</p>
 <h3 id="sigma2_1"><span class="math inline">\(\sigma^2_1\)</span></h3>
 <p>As probably expected, this will look like inference for a standard normal model, except using only the data in group 1.</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^2_2) &amp;\propto p(\sigma^2_1 \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_2) \times p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) \\
 &amp;\propto p(\sigma^2_1) \times \prod_{i=1}^n \left( \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \right) \\
 &amp;\propto \text{inverse-gamma}(\sigma^2_1, \nu_0, \sigma^2_0 \nu_0 / 2) \times \prod_{y \in \boldsymbol{y}_1} \text{dnorm}(y, \theta_1, \sigma^2_1) \\
 &amp;\propto \exp \left((\sigma_1^2)^{-(\nu_0 / 2) - 1} \exp\left( -\frac{1}{\sigma^2_1} \sigma^2_0 \nu_0 / 2 \right) \right) \times (\sigma_1^2)^{-n / 2} \exp\left(-\frac{1}{2\sigma^2_1} \sum_{y \in \boldsymbol{y}_1} (y - \theta_1)^2 \right) \\
 &amp;\propto \text{calculations from 6.3...} \\
 &amp;\propto \text{inverse-gamma}(\nu_{n, 1} / 2, \sigma^2_{n, 1}(\theta_1) \nu_{n, 1} / 2)
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>where</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \nu_{n, 1} &amp;= \nu_0 + n_1 \\
 \sigma^2_{n, 1}(\theta_1) &amp;= \frac{1}{\nu_{n, 1}} \left[\nu_0 \sigma^2_0 + n_1 s^2_{n, 1}(\theta_1) \right]
-\end{align}
+\end{aligned}
 \]</span></p>
 <h3 id="sigma2_2"><span class="math inline">\(\sigma^2_2\)</span></h3>
 <p>Same as above, but with subscripts switched.</p>
