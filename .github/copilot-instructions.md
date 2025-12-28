@@ -532,9 +532,72 @@ This includes:
 
 This ensures the instructions stay current and helpful for both yourself and other contributors.
 
+## Common Quarto Patterns
+
+### Chunk Options
+Use appropriate chunk options for different purposes:
+- `echo=FALSE` - Hide code but show output (for figures)
+- `include=FALSE` - Run code but hide both code and output (for setup)
+- `message=FALSE, warning=FALSE` - Suppress messages/warnings
+- `cache=TRUE` - Cache results for expensive computations (use sparingly)
+- `fig.width=X, fig.height=Y` - Control figure dimensions
+- `fig.cap="Caption text"` - Add figure captions
+
+### Cross-References
+- Sections: `# Section {#sec-label}` then reference with `@sec-label`
+- Figures: `#| label: fig-name` in chunk options, reference with `@fig-name`
+- Tables: `#| label: tbl-name` in chunk options, reference with `@tbl-name`
+- Equations: `$$...$$ {#eq-label}` then reference with `@eq-label`
+
+### Citations and References
+- Use BibTeX for references when applicable
+- Add `bibliography: references.bib` to YAML front matter
+- Cite with `[@key]` for parenthetical or `@key` for textual citations
+
+### Code Folding and Annotation
+- The project uses `code-fold: true` by default (configured in `_quarto-website.yml`)
+- Override per-document or per-chunk as needed
+- Use `#| code-summary: "Descriptive text"` to customize the fold button text
+
+## Common R/Statistics Patterns
+
+### Reproducibility
+- **ALWAYS** set seeds for random number generation: `set.seed(123)` or `withr::local_seed(123)`
+- Document the seed value used for reproducibility
+- Use `sessionInfo()` or `renv::snapshot()` to capture package versions
+
+### Statistical Computing Best Practices
+- Compute on log scale when possible to avoid numerical underflow/overflow
+  - Example: `sum(log(likelihoods))` instead of `prod(likelihoods)`
+- Use vectorized operations instead of loops when possible
+- For MCMC: Monitor convergence, check trace plots, report effective sample size
+- Document prior distributions clearly in both code comments and prose
+
+### Data Visualization
+- Always label axes with units where applicable
+- Use colorblind-friendly palettes (e.g., `viridis`, `RColorBrewer`)
+- Include informative titles and captions
+- Consider both light and dark themes (project supports both)
+- Use `theme_minimal()` or `theme_bw()` for clean, professional plots
+
+### Mathematical Notation
+- Use consistent notation throughout the document
+- Define notation on first use
+- Align related equations using `\begin{align}...\end{align}`
+- Use `\text{}` for text within math mode
+- Common symbols:
+  - `\theta` for parameters
+  - `\mathcal{Y}` for sample spaces
+  - `\mid` for conditioning (not `|`)
+  - `\sim` for "distributed as"
+  - `\propto` for "proportional to"
+
 ## Getting Help
 
 - Project URL: https://d-morrison.github.io/hoff-bayesian-statistics/
 - GitHub: https://github.com/d-morrison/hoff-bayesian-statistics
 - Textbook: Hoff, Peter D. "A First Course in Bayesian Statistical Methods" (https://peterhoff.io/book/)
 - IRM Reference: Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model" (http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)
+- Quarto Documentation: https://quarto.org/docs/guide/
+- R for Data Science: https://r4ds.hadley.nz/
+- Bayesian Data Analysis (Gelman et al.): http://www.stat.columbia.edu/~gelman/book/
