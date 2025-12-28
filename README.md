@@ -11,11 +11,49 @@ If you find an error or would like to improve the notes, please let me know/subm
 
 ## Building the Website
 
-This repository is now a Quarto website. To build and preview it:
+This repository is now a Quarto website with multiple output format options using profiles.
+
+### Website Format (Default)
+
+To build and preview the website:
 
 1. Install [Quarto](https://quarto.org/docs/get-started/)
 2. Run `quarto preview` to preview the website locally
 3. Run `quarto render` to build the static website (output in `_site/`)
+
+### RevealJS Presentation Slides
+
+To render chapters as presentation slides:
+
+```bash
+QUARTO_PROFILE=revealjs quarto render
+```
+
+This will generate RevealJS presentation slides for all chapters in the `_slides/` directory. You can also render a single chapter:
+
+```bash
+QUARTO_PROFILE=revealjs quarto render 1.qmd
+```
+
+### PDF Handouts
+
+To render chapters as PDF handouts (requires TinyTeX or LaTeX):
+
+```bash
+QUARTO_PROFILE=handout quarto render
+```
+
+This will generate PDF handouts in the `_handouts/` directory. You can also render a single chapter:
+
+```bash
+QUARTO_PROFILE=handout quarto render 1.qmd
+```
+
+**Note:** PDF rendering requires TinyTeX or a LaTeX distribution. Install TinyTeX with:
+```r
+# In R
+tinytex::install_tinytex()
+```
 
 ## Contributing
 

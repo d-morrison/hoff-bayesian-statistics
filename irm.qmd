@@ -2,6 +2,10 @@
 title: "Final Lecture: Infinite Relational Model"
 author: "Jesse Mu"
 date: "November 2, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: irm-slides.html
 ---
 
 <!-- Setup -->

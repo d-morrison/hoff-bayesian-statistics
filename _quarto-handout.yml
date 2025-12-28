@@ -1,0 +1,42 @@
+project:
+  output-dir: _handouts
+  render:
+    - "1.qmd"
+    - "2.qmd"
+    - "3.qmd"
+    - "4.qmd"
+    - "5.qmd"
+    - "6.qmd"
+    - "7.qmd"
+    - "8.qmd"
+    - "9.qmd"
+    - "10.qmd"
+    - "irm.qmd"
+
+format:
+  pdf:
+    geometry:
+      - top=15mm
+      - bottom=20mm
+    keep-md: false
+    keep-tex: false
+    toc: true
+    fig-pos: "H"
+    toc-title: Contents
+    df-print: tibble
+    links-as-notes: true
+    documentclass: article
+    colorlinks: true
+    number-sections: true
+    number-depth: 3
+
+execute:
+  warning: false
+  message: false
+  cache: false
+  freeze: auto
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"

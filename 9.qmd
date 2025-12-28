@@ -2,6 +2,10 @@
 title: "Chapter 9: Linear regression"
 author: "Jesse Mu"
 date: "November 2, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 9-slides.html
 ---
 
 <!-- Setup -->

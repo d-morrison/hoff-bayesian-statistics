@@ -2,6 +2,10 @@
 title: "Chapter 4: Monte Carlo approximation"
 author: "Jesse Mu"
 date: "September 28, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 4-slides.html
 ---
 
 <!-- Setup -->

@@ -2,6 +2,10 @@
 title: 'Chapter 2: Belief, probability, and exchangeability'
 author: "Jesse Mu"
 date: "September 8, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 2-slides.html
 ---
 
 <!-- Setup -->
