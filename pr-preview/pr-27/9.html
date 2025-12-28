@@ -412,7 +412,7 @@ window.Quarto = {
 </li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/hoff-bayesian-statistics/edit/main/9.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/hoff-bayesian-statistics/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/d-morrison/hoff-bayesian-statistics/blob/main/9.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/hoff-bayesian-statistics/edit/main/9.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/hoff-bayesian-statistics/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/d-morrison/hoff-bayesian-statistics/blob/main/9.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="9-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -1233,319 +1233,323 @@ window.Quarto = {
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Chapter 9: Linear regression"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Jesse Mu"</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "November 2, 2016"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Setup --&gt;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo=FALSE, message=FALSE}</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.align =</span> <span class="st">'center'</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Begin writing --&gt;</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html: default</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    output-file: 9-slides.html</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Setup --&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo=FALSE, message=FALSE}</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.align =</span> <span class="st">'center'</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 9.1</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Begin writing --&gt;</span></span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>swim <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/swim.dat'</span>)</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>To specify our prior, we let the prior expectation of our $y$-intercept to be </span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>23, and we let the prior expectation of the effect of training week by week to</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>be 0, so $\boldsymbol{\beta} = (23, 0)^T$.</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## 9.1</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>swim <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/swim.dat'</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>We expect no covariance with the $\beta$ coefficients, but we do have</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>uncertainty about our initial $\beta$ estimates. Specifically, to let 95% of our</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>uncertainty of the $y$-intercept to fall in $<span class="co">[</span><span class="ot">22, 24</span><span class="co">]</span>$, we let $\Sigma_{0(1, 1)} = 1/4$ (so that $\pm$ 2 standard deviations is $\pm$ 1).</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>We also expect that training has a relatively mild effect on time, so we let</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>$\Sigma_{0(2, 2)} = 0.1$ which is just an arbitrarily chosen small variance.</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>For our expectation of the variability of measurements, let's similarly set </span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>$\sigma^2_0 = 1/4$ and only lightly center this prior with $\nu_0 = 1$.</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="co"># mvrnorm</span></span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="dv">5000</span></span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">6</span>), <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">11</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior</span></span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>beta0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">0</span>)</span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>sigma0 <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="fl">0.25</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))</span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="fl">0.25</span></span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>inv <span class="ot">=</span> solve</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>To specify our prior, we let the prior expectation of our $y$-intercept to be </span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>23, and we let the prior expectation of the effect of training week by week to</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>be 0, so $\boldsymbol{\beta} = (23, 0)^T$.</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>We expect no covariance with the $\beta$ coefficients, but we do have</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>uncertainty about our initial $\beta$ estimates. Specifically, to let 95% of our</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>uncertainty of the $y$-intercept to fall in $<span class="co">[</span><span class="ot">22, 24</span><span class="co">]</span>$, we let $\Sigma_{0(1, 1)} = 1/4$ (so that $\pm$ 2 standard deviations is $\pm$ 1).</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>We also expect that training has a relatively mild effect on time, so we let</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>$\Sigma_{0(2, 2)} = 0.1$ which is just an arbitrarily chosen small variance.</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>For our expectation of the variability of measurements, let's similarly set </span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>$\sigma^2_0 = 1/4$ and only lightly center this prior with $\nu_0 = 1$.</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="co"># mvrnorm</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="dv">5000</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">6</span>), <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">11</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior</span></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>beta0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">0</span>)</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>sigma0 <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="fl">0.25</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="fl">0.25</span></span>
 <span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a><span class="co"># For each swimmer, run linear regression gibbs sampling and obtain a posterior</span></span>
-<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a><span class="co"># predictive distribution</span></span>
-<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>swim_pred <span class="ot">=</span> <span class="fu">apply</span>(swim, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="cf">function</span>(y) {</span>
-<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store samples</span></span>
-<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>  BETA <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> S, <span class="at">ncol =</span> <span class="fu">length</span>(beta0))</span>
-<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>  SIGMA <span class="ot">=</span> <span class="fu">numeric</span>(S)</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>inv <span class="ot">=</span> solve</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a><span class="co"># For each swimmer, run linear regression gibbs sampling and obtain a posterior</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a><span class="co"># predictive distribution</span></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>swim_pred <span class="ot">=</span> <span class="fu">apply</span>(swim, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="cf">function</span>(y) {</span>
 <span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Starting values - just use prior values?</span></span>
-<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">0</span>)</span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">=</span> <span class="fl">0.7</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store samples</span></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>  BETA <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> S, <span class="at">ncol =</span> <span class="fu">length</span>(beta0))</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>  SIGMA <span class="ot">=</span> <span class="fu">numeric</span>(S)</span>
 <span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Gibbs sampling algorithm from 9.2.1</span></span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>S) {</span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1a) Compute V and m</span></span>
-<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>    V <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">inv</span>(sigma0) <span class="sc">+</span> (<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> s2)</span>
-<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">=</span> V <span class="sc">%*%</span> (<span class="fu">inv</span>(sigma0) <span class="sc">%*%</span> beta0 <span class="sc">+</span> (<span class="fu">t</span>(X) <span class="sc">%*%</span> y) <span class="sc">/</span> s2)</span>
-<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1b) sample beta</span></span>
-<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>    beta <span class="ot">=</span> <span class="fu">mvrnorm</span>(<span class="dv">1</span>, m, V)</span>
-<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2a) Compute SSR(beta) (specific formula from 9.1)</span></span>
-<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>    ssr <span class="ot">=</span> (<span class="fu">t</span>(y) <span class="sc">%*%</span> y) <span class="sc">-</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">t</span>(beta) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y) <span class="sc">+</span> (<span class="fu">t</span>(beta) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X <span class="sc">%*%</span> beta)</span>
-<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2b) sample s2</span></span>
-<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>    s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">1</span>, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> ssr) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>    BETA[s, ] <span class="ot">=</span> beta</span>
-<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>    SIGMA[s] <span class="ot">=</span> s2</span>
-<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Now sample posterior predictive - two weeks later</span></span>
-<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>  xpred <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">13</span>)</span>
-<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>  YPRED <span class="ot">=</span> <span class="fu">rnorm</span>(S, BETA <span class="sc">%*%</span> xpred, <span class="fu">sqrt</span>(SIGMA))</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Starting values - just use prior values?</span></span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">0</span>)</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">=</span> <span class="fl">0.7</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Gibbs sampling algorithm from 9.2.1</span></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>S) {</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1a) Compute V and m</span></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>    V <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">inv</span>(sigma0) <span class="sc">+</span> (<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> s2)</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">=</span> V <span class="sc">%*%</span> (<span class="fu">inv</span>(sigma0) <span class="sc">%*%</span> beta0 <span class="sc">+</span> (<span class="fu">t</span>(X) <span class="sc">%*%</span> y) <span class="sc">/</span> s2)</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1b) sample beta</span></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>    beta <span class="ot">=</span> <span class="fu">mvrnorm</span>(<span class="dv">1</span>, m, V)</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2a) Compute SSR(beta) (specific formula from 9.1)</span></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>    ssr <span class="ot">=</span> (<span class="fu">t</span>(y) <span class="sc">%*%</span> y) <span class="sc">-</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">t</span>(beta) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y) <span class="sc">+</span> (<span class="fu">t</span>(beta) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X <span class="sc">%*%</span> beta)</span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2b) sample s2</span></span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>    s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">1</span>, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> ssr) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>    BETA[s, ] <span class="ot">=</span> beta</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>    SIGMA[s] <span class="ot">=</span> s2</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>  YPRED</span>
-<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Now sample posterior predictive - two weeks later</span></span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>  xpred <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">13</span>)</span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>  YPRED <span class="ot">=</span> <span class="fu">rnorm</span>(S, BETA <span class="sc">%*%</span> xpred, <span class="fu">sqrt</span>(SIGMA))</span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>  YPRED</span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a>fastest_times <span class="ot">=</span> <span class="fu">apply</span>(swim_pred, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> which.min)</span>
-<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(fastest_times) <span class="sc">/</span> <span class="fu">length</span>(fastest_times)</span>
-<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>We notice that with our posterior predictive dataset, swimmer 1 is the fastest </span>
-<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a>about 65% of the time by week 13, so we recommend that swimmer 1 race.</span>
-<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## 9.3</span></span>
-<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>crime <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/crime.dat'</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
-<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
-<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
-<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
-<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
-<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> n</span>
-<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>fastest_times <span class="ot">=</span> <span class="fu">apply</span>(swim_pred, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> which.min)</span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(fastest_times) <span class="sc">/</span> <span class="fu">length</span>(fastest_times)</span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a>We notice that with our posterior predictive dataset, swimmer 1 is the fastest </span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a>about 65% of the time by week 13, so we recommend that swimmer 1 race.</span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## 9.3</span></span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a>crime <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/crime.dat'</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
 <span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>Hg <span class="ot">=</span> (g <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">*</span> X <span class="sc">%*%</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
-<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>SSRg <span class="ot">=</span> <span class="fu">t</span>(y) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n) <span class="sc">-</span> Hg) <span class="sc">%*%</span> y</span>
-<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(S, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> SSRg) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>Vb <span class="ot">=</span> g <span class="sc">*</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>Eb <span class="ot">=</span> Vb <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> n</span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>Hg <span class="ot">=</span> (g <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">*</span> X <span class="sc">%*%</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>SSRg <span class="ot">=</span> <span class="fu">t</span>(y) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n) <span class="sc">-</span> Hg) <span class="sc">%*%</span> y</span>
 <span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(S <span class="sc">*</span> p, <span class="dv">0</span>, <span class="fu">sqrt</span>(s2)), S, p)</span>
-<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">t</span>(E <span class="sc">%*%</span> <span class="fu">chol</span>(Vb)) <span class="sc">+</span> <span class="fu">c</span>(Eb))</span>
-<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(S, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> SSRg) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a>Vb <span class="ot">=</span> g <span class="sc">*</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>Eb <span class="ot">=</span> Vb <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
 <span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a>signif <span class="ot">=</span> <span class="fu">apply</span>(beta, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(y) <span class="sc">!</span>(y[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> y[<span class="dv">3</span>]))</span>
-<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a>beta_df <span class="ot">=</span> <span class="fu">as.data.frame</span>(beta) <span class="sc">%&gt;%</span></span>
-<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">'variable'</span>, <span class="at">val =</span> <span class="st">'coefficient'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">signif =</span> signif[variable])</span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(S <span class="sc">*</span> p, <span class="dv">0</span>, <span class="fu">sqrt</span>(s2)), S, p)</span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">t</span>(E <span class="sc">%*%</span> <span class="fu">chol</span>(Vb)) <span class="sc">+</span> <span class="fu">c</span>(Eb))</span>
+<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a>signif <span class="ot">=</span> <span class="fu">apply</span>(beta, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(y) <span class="sc">!</span>(y[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> y[<span class="dv">3</span>]))</span>
 <span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beta_df, <span class="fu">aes</span>(<span class="at">x =</span> variable, <span class="at">y =</span> coefficient, <span class="at">color =</span> signif)) <span class="sc">+</span></span>
-<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.y =</span> mean, <span class="at">fun.ymin =</span> <span class="cf">function</span>(y) <span class="fu">quantile</span>(y, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>)), <span class="at">fun.ymax =</span> <span class="cf">function</span>(y) <span class="fu">quantile</span>(y, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.975</span>))) <span class="sc">+</span></span>
-<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a>Looks like Ed (mean years of schooling), Ineq (Income inequality), M (percentage</span>
-<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>of males aged 14-24), Prob (probability of imprisonment), and U2 (unemployment</span>
-<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a>rate of urban males 35-39).</span>
+<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a>beta_df <span class="ot">=</span> <span class="fu">as.data.frame</span>(beta) <span class="sc">%&gt;%</span></span>
+<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">'variable'</span>, <span class="at">val =</span> <span class="st">'coefficient'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">signif =</span> signif[variable])</span>
+<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beta_df, <span class="fu">aes</span>(<span class="at">x =</span> variable, <span class="at">y =</span> coefficient, <span class="at">color =</span> signif)) <span class="sc">+</span></span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.y =</span> mean, <span class="at">fun.ymin =</span> <span class="cf">function</span>(y) <span class="fu">quantile</span>(y, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>)), <span class="at">fun.ymax =</span> <span class="cf">function</span>(y) <span class="fu">quantile</span>(y, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.975</span>))) <span class="sc">+</span></span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
-<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
-<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
-<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># Reproducible!</span></span>
-<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a>train_i <span class="ot">=</span> <span class="fu">sample.int</span>(<span class="fu">length</span>(y), <span class="at">size =</span> <span class="fu">round</span>(<span class="fu">length</span>(y) <span class="sc">/</span> <span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a>ytr <span class="ot">=</span> y[train_i]</span>
-<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a>Xtr <span class="ot">=</span> X[train_i, ]</span>
-<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>yte <span class="ot">=</span> y[<span class="sc">-</span>train_i]</span>
-<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>Xte <span class="ot">=</span> X[<span class="sc">-</span>train_i, ]</span>
-<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a><span class="fu">#### i</span></span>
-<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a><span class="co"># From 9.1</span></span>
-<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a>beta_ols <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">t</span>(Xtr) <span class="sc">%*%</span> Xtr) <span class="sc">%*%</span> <span class="fu">t</span>(Xtr) <span class="sc">%*%</span> ytr</span>
-<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a>beta_ols</span>
-<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a>y_ols <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_ols</span>
-<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>ols_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> yte,</span>
-<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> y_ols</span>
-<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ols_df, <span class="fu">aes</span>(<span class="at">x =</span> observed, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
-<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>)</span>
+<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>Looks like Ed (mean years of schooling), Ineq (Income inequality), M (percentage</span>
+<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a>of males aged 14-24), Prob (probability of imprisonment), and U2 (unemployment</span>
+<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a>rate of urban males 35-39).</span>
+<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
+<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
+<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># Reproducible!</span></span>
+<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>train_i <span class="ot">=</span> <span class="fu">sample.int</span>(<span class="fu">length</span>(y), <span class="at">size =</span> <span class="fu">round</span>(<span class="fu">length</span>(y) <span class="sc">/</span> <span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>ytr <span class="ot">=</span> y[train_i]</span>
+<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a>Xtr <span class="ot">=</span> X[train_i, ]</span>
+<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a>yte <span class="ot">=</span> y[<span class="sc">-</span>train_i]</span>
+<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a>Xte <span class="ot">=</span> X[<span class="sc">-</span>train_i, ]</span>
+<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a><span class="fu">#### i</span></span>
+<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a><span class="co"># From 9.1</span></span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a>beta_ols <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">t</span>(Xtr) <span class="sc">%*%</span> Xtr) <span class="sc">%*%</span> <span class="fu">t</span>(Xtr) <span class="sc">%*%</span> ytr</span>
+<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>beta_ols</span>
+<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a>y_ols <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_ols</span>
+<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a>ols_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> yte,</span>
+<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> y_ols</span>
+<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>pred_error <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_ols)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
-<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>pred_error</span>
-<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ols_df, <span class="fu">aes</span>(<span class="at">x =</span> observed, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
+<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>)</span>
 <span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ii</span></span>
-<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> ytr</span>
-<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> Xtr</span>
-<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
-<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
-<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> n</span>
-<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>pred_error <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_ols)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
+<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>pred_error</span>
+<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ii</span></span>
+<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> ytr</span>
+<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> Xtr</span>
+<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
 <span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>Hg <span class="ot">=</span> (g <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">*</span> X <span class="sc">%*%</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
-<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a>SSRg <span class="ot">=</span> <span class="fu">t</span>(y) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n) <span class="sc">-</span> Hg) <span class="sc">%*%</span> y</span>
-<span id="cb15-230"><a href="#cb15-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(S, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> SSRg) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a>Vb <span class="ot">=</span> g <span class="sc">*</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a>Eb <span class="ot">=</span> Vb <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> n</span>
+<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-230"><a href="#cb15-230" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a>Hg <span class="ot">=</span> (g <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">*</span> X <span class="sc">%*%</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
+<span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a>SSRg <span class="ot">=</span> <span class="fu">t</span>(y) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n) <span class="sc">-</span> Hg) <span class="sc">%*%</span> y</span>
 <span id="cb15-234"><a href="#cb15-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(S <span class="sc">*</span> p, <span class="dv">0</span>, <span class="fu">sqrt</span>(s2)), S, p)</span>
-<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">t</span>(E <span class="sc">%*%</span> <span class="fu">chol</span>(Vb)) <span class="sc">+</span> <span class="fu">c</span>(Eb))</span>
-<span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a>beta_bayes <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">colMeans</span>(beta))</span>
-<span id="cb15-239"><a href="#cb15-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-240"><a href="#cb15-240" aria-hidden="true" tabindex="-1"></a>y_bayes <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_bayes</span>
+<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(S, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> SSRg) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a>Vb <span class="ot">=</span> g <span class="sc">*</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a>Eb <span class="ot">=</span> Vb <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-239"><a href="#cb15-239" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(S <span class="sc">*</span> p, <span class="dv">0</span>, <span class="fu">sqrt</span>(s2)), S, p)</span>
+<span id="cb15-240"><a href="#cb15-240" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">t</span>(E <span class="sc">%*%</span> <span class="fu">chol</span>(Vb)) <span class="sc">+</span> <span class="fu">c</span>(Eb))</span>
 <span id="cb15-241"><a href="#cb15-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-242"><a href="#cb15-242" aria-hidden="true" tabindex="-1"></a>bayes_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb15-243"><a href="#cb15-243" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> yte,</span>
-<span id="cb15-244"><a href="#cb15-244" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> y_bayes</span>
-<span id="cb15-245"><a href="#cb15-245" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-246"><a href="#cb15-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-247"><a href="#cb15-247" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ols_df, <span class="fu">aes</span>(<span class="at">x =</span> observed, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
-<span id="cb15-248"><a href="#cb15-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-249"><a href="#cb15-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>)</span>
+<span id="cb15-242"><a href="#cb15-242" aria-hidden="true" tabindex="-1"></a>beta_bayes <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">colMeans</span>(beta))</span>
+<span id="cb15-243"><a href="#cb15-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-244"><a href="#cb15-244" aria-hidden="true" tabindex="-1"></a>y_bayes <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_bayes</span>
+<span id="cb15-245"><a href="#cb15-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-246"><a href="#cb15-246" aria-hidden="true" tabindex="-1"></a>bayes_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-247"><a href="#cb15-247" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> yte,</span>
+<span id="cb15-248"><a href="#cb15-248" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> y_bayes</span>
+<span id="cb15-249"><a href="#cb15-249" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-250"><a href="#cb15-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-251"><a href="#cb15-251" aria-hidden="true" tabindex="-1"></a>pred_error <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_bayes)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
-<span id="cb15-252"><a href="#cb15-252" aria-hidden="true" tabindex="-1"></a>pred_error</span>
-<span id="cb15-253"><a href="#cb15-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-251"><a href="#cb15-251" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ols_df, <span class="fu">aes</span>(<span class="at">x =</span> observed, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
+<span id="cb15-252"><a href="#cb15-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-253"><a href="#cb15-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>)</span>
 <span id="cb15-254"><a href="#cb15-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-255"><a href="#cb15-255" aria-hidden="true" tabindex="-1"></a>At least when the seed is 1, there doesn't appear to be a major difference </span>
-<span id="cb15-256"><a href="#cb15-256" aria-hidden="true" tabindex="-1"></a>between the prediction errors.</span>
-<span id="cb15-257"><a href="#cb15-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-258"><a href="#cb15-258" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
-<span id="cb15-259"><a href="#cb15-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-262"><a href="#cb15-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-263"><a href="#cb15-263" aria-hidden="true" tabindex="-1"></a><span class="co"># Unnecessary code repeating here. Clean this up later w/ functions</span></span>
-<span id="cb15-264"><a href="#cb15-264" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">100</span></span>
-<span id="cb15-265"><a href="#cb15-265" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb15-266"><a href="#cb15-266" aria-hidden="true" tabindex="-1"></a>pred_errors <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="cf">function</span>(i) {</span>
-<span id="cb15-267"><a href="#cb15-267" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
-<span id="cb15-268"><a href="#cb15-268" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
-<span id="cb15-269"><a href="#cb15-269" aria-hidden="true" tabindex="-1"></a>  train_i <span class="ot">=</span> <span class="fu">sample.int</span>(<span class="fu">length</span>(y), <span class="at">size =</span> <span class="fu">round</span>(<span class="fu">length</span>(y) <span class="sc">/</span> <span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb15-270"><a href="#cb15-270" aria-hidden="true" tabindex="-1"></a>  ytr <span class="ot">=</span> y[train_i]</span>
-<span id="cb15-271"><a href="#cb15-271" aria-hidden="true" tabindex="-1"></a>  Xtr <span class="ot">=</span> X[train_i, ]</span>
-<span id="cb15-272"><a href="#cb15-272" aria-hidden="true" tabindex="-1"></a>  yte <span class="ot">=</span> y[<span class="sc">-</span>train_i]</span>
-<span id="cb15-273"><a href="#cb15-273" aria-hidden="true" tabindex="-1"></a>  Xte <span class="ot">=</span> X[<span class="sc">-</span>train_i, ]</span>
-<span id="cb15-274"><a href="#cb15-274" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-275"><a href="#cb15-275" aria-hidden="true" tabindex="-1"></a>  <span class="co"># OLS</span></span>
-<span id="cb15-276"><a href="#cb15-276" aria-hidden="true" tabindex="-1"></a>  beta_ols <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">t</span>(Xtr) <span class="sc">%*%</span> Xtr) <span class="sc">%*%</span> <span class="fu">t</span>(Xtr) <span class="sc">%*%</span> ytr</span>
-<span id="cb15-277"><a href="#cb15-277" aria-hidden="true" tabindex="-1"></a>  beta_ols</span>
+<span id="cb15-255"><a href="#cb15-255" aria-hidden="true" tabindex="-1"></a>pred_error <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_bayes)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
+<span id="cb15-256"><a href="#cb15-256" aria-hidden="true" tabindex="-1"></a>pred_error</span>
+<span id="cb15-257"><a href="#cb15-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-258"><a href="#cb15-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-259"><a href="#cb15-259" aria-hidden="true" tabindex="-1"></a>At least when the seed is 1, there doesn't appear to be a major difference </span>
+<span id="cb15-260"><a href="#cb15-260" aria-hidden="true" tabindex="-1"></a>between the prediction errors.</span>
+<span id="cb15-261"><a href="#cb15-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-262"><a href="#cb15-262" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
+<span id="cb15-263"><a href="#cb15-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-266"><a href="#cb15-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-267"><a href="#cb15-267" aria-hidden="true" tabindex="-1"></a><span class="co"># Unnecessary code repeating here. Clean this up later w/ functions</span></span>
+<span id="cb15-268"><a href="#cb15-268" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb15-269"><a href="#cb15-269" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb15-270"><a href="#cb15-270" aria-hidden="true" tabindex="-1"></a>pred_errors <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="cf">function</span>(i) {</span>
+<span id="cb15-271"><a href="#cb15-271" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
+<span id="cb15-272"><a href="#cb15-272" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
+<span id="cb15-273"><a href="#cb15-273" aria-hidden="true" tabindex="-1"></a>  train_i <span class="ot">=</span> <span class="fu">sample.int</span>(<span class="fu">length</span>(y), <span class="at">size =</span> <span class="fu">round</span>(<span class="fu">length</span>(y) <span class="sc">/</span> <span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-274"><a href="#cb15-274" aria-hidden="true" tabindex="-1"></a>  ytr <span class="ot">=</span> y[train_i]</span>
+<span id="cb15-275"><a href="#cb15-275" aria-hidden="true" tabindex="-1"></a>  Xtr <span class="ot">=</span> X[train_i, ]</span>
+<span id="cb15-276"><a href="#cb15-276" aria-hidden="true" tabindex="-1"></a>  yte <span class="ot">=</span> y[<span class="sc">-</span>train_i]</span>
+<span id="cb15-277"><a href="#cb15-277" aria-hidden="true" tabindex="-1"></a>  Xte <span class="ot">=</span> X[<span class="sc">-</span>train_i, ]</span>
 <span id="cb15-278"><a href="#cb15-278" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-279"><a href="#cb15-279" aria-hidden="true" tabindex="-1"></a>  y_ols <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_ols</span>
-<span id="cb15-280"><a href="#cb15-280" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-281"><a href="#cb15-281" aria-hidden="true" tabindex="-1"></a>  pred_error_ols <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_ols)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
+<span id="cb15-279"><a href="#cb15-279" aria-hidden="true" tabindex="-1"></a>  <span class="co"># OLS</span></span>
+<span id="cb15-280"><a href="#cb15-280" aria-hidden="true" tabindex="-1"></a>  beta_ols <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">t</span>(Xtr) <span class="sc">%*%</span> Xtr) <span class="sc">%*%</span> <span class="fu">t</span>(Xtr) <span class="sc">%*%</span> ytr</span>
+<span id="cb15-281"><a href="#cb15-281" aria-hidden="true" tabindex="-1"></a>  beta_ols</span>
 <span id="cb15-282"><a href="#cb15-282" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-283"><a href="#cb15-283" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Bayes</span></span>
-<span id="cb15-284"><a href="#cb15-284" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> ytr</span>
-<span id="cb15-285"><a href="#cb15-285" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> Xtr</span>
+<span id="cb15-283"><a href="#cb15-283" aria-hidden="true" tabindex="-1"></a>  y_ols <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_ols</span>
+<span id="cb15-284"><a href="#cb15-284" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-285"><a href="#cb15-285" aria-hidden="true" tabindex="-1"></a>  pred_error_ols <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_ols)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
 <span id="cb15-286"><a href="#cb15-286" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-287"><a href="#cb15-287" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
-<span id="cb15-288"><a href="#cb15-288" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
-<span id="cb15-289"><a href="#cb15-289" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-290"><a href="#cb15-290" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">=</span> n</span>
-<span id="cb15-291"><a href="#cb15-291" aria-hidden="true" tabindex="-1"></a>  nu0 <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb15-292"><a href="#cb15-292" aria-hidden="true" tabindex="-1"></a>  s20 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-287"><a href="#cb15-287" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Bayes</span></span>
+<span id="cb15-288"><a href="#cb15-288" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> ytr</span>
+<span id="cb15-289"><a href="#cb15-289" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> Xtr</span>
+<span id="cb15-290"><a href="#cb15-290" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-291"><a href="#cb15-291" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
+<span id="cb15-292"><a href="#cb15-292" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
 <span id="cb15-293"><a href="#cb15-293" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-294"><a href="#cb15-294" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb15-295"><a href="#cb15-295" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-296"><a href="#cb15-296" aria-hidden="true" tabindex="-1"></a>  Hg <span class="ot">=</span> (g <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">*</span> X <span class="sc">%*%</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
-<span id="cb15-297"><a href="#cb15-297" aria-hidden="true" tabindex="-1"></a>  SSRg <span class="ot">=</span> <span class="fu">t</span>(y) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n) <span class="sc">-</span> Hg) <span class="sc">%*%</span> y</span>
-<span id="cb15-298"><a href="#cb15-298" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-299"><a href="#cb15-299" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(S, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> SSRg) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb15-300"><a href="#cb15-300" aria-hidden="true" tabindex="-1"></a>  Vb <span class="ot">=</span> g <span class="sc">*</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb15-301"><a href="#cb15-301" aria-hidden="true" tabindex="-1"></a>  Eb <span class="ot">=</span> Vb <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb15-294"><a href="#cb15-294" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">=</span> n</span>
+<span id="cb15-295"><a href="#cb15-295" aria-hidden="true" tabindex="-1"></a>  nu0 <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb15-296"><a href="#cb15-296" aria-hidden="true" tabindex="-1"></a>  s20 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb15-297"><a href="#cb15-297" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-298"><a href="#cb15-298" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb15-299"><a href="#cb15-299" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-300"><a href="#cb15-300" aria-hidden="true" tabindex="-1"></a>  Hg <span class="ot">=</span> (g <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">*</span> X <span class="sc">%*%</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
+<span id="cb15-301"><a href="#cb15-301" aria-hidden="true" tabindex="-1"></a>  SSRg <span class="ot">=</span> <span class="fu">t</span>(y) <span class="sc">%*%</span> (<span class="fu">diag</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n) <span class="sc">-</span> Hg) <span class="sc">%*%</span> y</span>
 <span id="cb15-302"><a href="#cb15-302" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-303"><a href="#cb15-303" aria-hidden="true" tabindex="-1"></a>  E <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(S <span class="sc">*</span> p, <span class="dv">0</span>, <span class="fu">sqrt</span>(s2)), S, p)</span>
-<span id="cb15-304"><a href="#cb15-304" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">t</span>(E <span class="sc">%*%</span> <span class="fu">chol</span>(Vb)) <span class="sc">+</span> <span class="fu">c</span>(Eb))</span>
-<span id="cb15-305"><a href="#cb15-305" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-306"><a href="#cb15-306" aria-hidden="true" tabindex="-1"></a>  beta_bayes <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">colMeans</span>(beta))</span>
-<span id="cb15-307"><a href="#cb15-307" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-308"><a href="#cb15-308" aria-hidden="true" tabindex="-1"></a>  y_bayes <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_bayes</span>
+<span id="cb15-303"><a href="#cb15-303" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(S, (nu0 <span class="sc">+</span> n) <span class="sc">/</span> <span class="dv">2</span>, (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> SSRg) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb15-304"><a href="#cb15-304" aria-hidden="true" tabindex="-1"></a>  Vb <span class="ot">=</span> g <span class="sc">*</span> <span class="fu">inv</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">/</span> (g <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb15-305"><a href="#cb15-305" aria-hidden="true" tabindex="-1"></a>  Eb <span class="ot">=</span> Vb <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb15-306"><a href="#cb15-306" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-307"><a href="#cb15-307" aria-hidden="true" tabindex="-1"></a>  E <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(S <span class="sc">*</span> p, <span class="dv">0</span>, <span class="fu">sqrt</span>(s2)), S, p)</span>
+<span id="cb15-308"><a href="#cb15-308" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">t</span>(E <span class="sc">%*%</span> <span class="fu">chol</span>(Vb)) <span class="sc">+</span> <span class="fu">c</span>(Eb))</span>
 <span id="cb15-309"><a href="#cb15-309" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-310"><a href="#cb15-310" aria-hidden="true" tabindex="-1"></a>  pred_error_bayes <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_bayes)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
-<span id="cb15-311"><a href="#cb15-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-312"><a href="#cb15-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(pred_error_ols, pred_error_bayes)</span>
-<span id="cb15-313"><a href="#cb15-313" aria-hidden="true" tabindex="-1"></a>})) <span class="sc">%&gt;%</span> as.data.frame</span>
-<span id="cb15-314"><a href="#cb15-314" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pred_errors) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'ols'</span>, <span class="st">'bayes'</span>)</span>
-<span id="cb15-315"><a href="#cb15-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-316"><a href="#cb15-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-317"><a href="#cb15-317" aria-hidden="true" tabindex="-1"></a>Here's a plot of the density of $\text{err}_{\text{Bayes}} -</span>
-<span id="cb15-318"><a href="#cb15-318" aria-hidden="true" tabindex="-1"></a>\text{err}_{\text{ols}}$. If this is less than 0, then the Bayes estimator did</span>
-<span id="cb15-319"><a href="#cb15-319" aria-hidden="true" tabindex="-1"></a>better than the OLS estimator:</span>
+<span id="cb15-310"><a href="#cb15-310" aria-hidden="true" tabindex="-1"></a>  beta_bayes <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">colMeans</span>(beta))</span>
+<span id="cb15-311"><a href="#cb15-311" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-312"><a href="#cb15-312" aria-hidden="true" tabindex="-1"></a>  y_bayes <span class="ot">=</span> Xte <span class="sc">%*%</span> beta_bayes</span>
+<span id="cb15-313"><a href="#cb15-313" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-314"><a href="#cb15-314" aria-hidden="true" tabindex="-1"></a>  pred_error_bayes <span class="ot">=</span> <span class="fu">sum</span>((yte <span class="sc">-</span> y_bayes)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">length</span>(yte)</span>
+<span id="cb15-315"><a href="#cb15-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-316"><a href="#cb15-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(pred_error_ols, pred_error_bayes)</span>
+<span id="cb15-317"><a href="#cb15-317" aria-hidden="true" tabindex="-1"></a>})) <span class="sc">%&gt;%</span> as.data.frame</span>
+<span id="cb15-318"><a href="#cb15-318" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pred_errors) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'ols'</span>, <span class="st">'bayes'</span>)</span>
+<span id="cb15-319"><a href="#cb15-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-320"><a href="#cb15-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-323"><a href="#cb15-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-324"><a href="#cb15-324" aria-hidden="true" tabindex="-1"></a>pred_diff <span class="ot">=</span> pred_errors <span class="sc">%&gt;%</span> <span class="fu">transmute</span>(<span class="st">`</span><span class="at">bayes - ols</span><span class="st">`</span> <span class="ot">=</span> bayes <span class="sc">-</span> ols)</span>
-<span id="cb15-325"><a href="#cb15-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-326"><a href="#cb15-326" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred_diff, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">bayes - ols</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb15-327"><a href="#cb15-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb15-328"><a href="#cb15-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb15-329"><a href="#cb15-329" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-330"><a href="#cb15-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-331"><a href="#cb15-331" aria-hidden="true" tabindex="-1"></a>Lastly,</span>
-<span id="cb15-332"><a href="#cb15-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-335"><a href="#cb15-335" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-336"><a href="#cb15-336" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_errors<span class="sc">$</span>bayes <span class="sc">&lt;</span> pred_errors<span class="sc">$</span>ols)</span>
-<span id="cb15-337"><a href="#cb15-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-338"><a href="#cb15-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-339"><a href="#cb15-339" aria-hidden="true" tabindex="-1"></a>For <span class="in">`N`</span> samples, <span class="in">`r mean(pred_errors$bayes &lt; pred_errors$ols) * 100`</span>% of the</span>
-<span id="cb15-340"><a href="#cb15-340" aria-hidden="true" tabindex="-1"></a>time, the predictive error using the Bayes estimators is less than the</span>
-<span id="cb15-341"><a href="#cb15-341" aria-hidden="true" tabindex="-1"></a>predictive error using the OLS estimators. Nice!</span>
+<span id="cb15-321"><a href="#cb15-321" aria-hidden="true" tabindex="-1"></a>Here's a plot of the density of $\text{err}_{\text{Bayes}} -</span>
+<span id="cb15-322"><a href="#cb15-322" aria-hidden="true" tabindex="-1"></a>\text{err}_{\text{ols}}$. If this is less than 0, then the Bayes estimator did</span>
+<span id="cb15-323"><a href="#cb15-323" aria-hidden="true" tabindex="-1"></a>better than the OLS estimator:</span>
+<span id="cb15-324"><a href="#cb15-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-327"><a href="#cb15-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-328"><a href="#cb15-328" aria-hidden="true" tabindex="-1"></a>pred_diff <span class="ot">=</span> pred_errors <span class="sc">%&gt;%</span> <span class="fu">transmute</span>(<span class="st">`</span><span class="at">bayes - ols</span><span class="st">`</span> <span class="ot">=</span> bayes <span class="sc">-</span> ols)</span>
+<span id="cb15-329"><a href="#cb15-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-330"><a href="#cb15-330" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred_diff, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">bayes - ols</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb15-331"><a href="#cb15-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb15-332"><a href="#cb15-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb15-333"><a href="#cb15-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-334"><a href="#cb15-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-335"><a href="#cb15-335" aria-hidden="true" tabindex="-1"></a>Lastly,</span>
+<span id="cb15-336"><a href="#cb15-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-339"><a href="#cb15-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-340"><a href="#cb15-340" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_errors<span class="sc">$</span>bayes <span class="sc">&lt;</span> pred_errors<span class="sc">$</span>ols)</span>
+<span id="cb15-341"><a href="#cb15-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-342"><a href="#cb15-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-343"><a href="#cb15-343" aria-hidden="true" tabindex="-1"></a>For <span class="in">`N`</span> samples, <span class="in">`r mean(pred_errors$bayes &lt; pred_errors$ols) * 100`</span>% of the</span>
+<span id="cb15-344"><a href="#cb15-344" aria-hidden="true" tabindex="-1"></a>time, the predictive error using the Bayes estimators is less than the</span>
+<span id="cb15-345"><a href="#cb15-345" aria-hidden="true" tabindex="-1"></a>predictive error using the OLS estimators. Nice!</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
