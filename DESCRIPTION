@@ -28,7 +28,6 @@ Imports:
     knitr,
     nlme,
     parallel,
-    reshape,
     tidyr,
     rmarkdown
 Suggests: 

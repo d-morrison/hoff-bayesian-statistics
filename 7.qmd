@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 library(knitr)
 library(ggplot2)
 library(cowplot)
-library(reshape)
+library(tidyr)
 ```
 
 <!-- Begin writing -->
@@ -120,8 +120,10 @@ dfs = lapply(c(-48, 0, 48), function(cov) {
   rownames(d) = y1
   colnames(d) = y2
   
-  df = melt(d)
-  colnames(df) = c('y1', 'y2', 'density')
+  df = as.data.frame(d) |>
+    tibble::rownames_to_column('y1') |>
+    pivot_longer(cols = -y1, names_to = 'y2', values_to = 'density') |>
+    mutate(y1 = as.numeric(y1), y2 = as.numeric(y2))
   
   df$cov = as.character(cov)
   
