@@ -2,6 +2,10 @@
 title: "Chapter 7: The multivariate normal model"
 author: "Jesse Mu"
 date: "November 10, 2016"
+format:
+  html: default
+  revealjs:
+    output-file: 7-slides.html
 ---
 
 <!-- Setup -->
