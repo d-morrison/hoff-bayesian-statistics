@@ -527,7 +527,7 @@ Then, the "posterior" (plugging in $\kappa_0 = \nu_0 = 0$ and the posterior
 parameters $\sigma_n^2, \mu_n$ and simplifying) would be
 
 \begin{align}
-1 / \sigma^2 \mid y_1, \dots, y_n &\sim \text{Gamma}(\frac{n}{2}, \frac{1}{n} \frac{n}{2}\sum (y_i - y)^2)$ \\
+1 / \sigma^2 \mid y_1, \dots, y_n &\sim \text{Gamma}(\frac{n}{2}, \frac{1}{n} \frac{n}{2}\sum (y_i - y)^2) \\
 \theta \mid \sigma^2, y_1, \dots, y_n &\sim \mathcal{N}(\bar{y}, \frac{\sigma^2}{n})
 \end{align}
 
@@ -567,7 +567,7 @@ prior is (call it $\hat{\theta_b}$)
 
 \begin{align}
 \hat{\theta_b} &= \frac{\kappa_0 \mu_0 + n\bar{y}}{\kappa_n} \\
-&= \frac{\kappa_0}{\kappa_0 + n} \mu_0 + \frac{n}{\kappa_0 + n}\bar{y}
+&= \frac{\kappa_0}{\kappa_0 + n} \mu_0 + \frac{n}{\kappa_0 + n}\bar{y} \\
 &= w \bar{y} + (1 - w) \mu_0
 \end{align}
 
@@ -853,7 +853,7 @@ rule above, or by simply plugging in the above posterior into
 p(\theta \mid y_1, \dots, y_n) &= \int p(\theta, \sigma^2 \mid y_1, \dots, y_n) \; d\sigma \\
 &= \int \text{dnorm}(\theta, )
 &= \int p(\theta \mid \sigma^2, y_1, \dots, y_n) \times p(\sigma^2 \mid y_1, \dots, y_n) \; d\sigma \\
-&= \int \left[ \frac{1}{\sqrt{2\pi \tau_n^2}}} \text{exp}(-\frac{1}{2} \frac{(\theta - \mu_n)^2}{\tau_n^2})  \right] \times \left[ \right] \\
+&= \int \left[ \frac{1}{\sqrt{2\pi \tau_n^2}} \text{exp}(-\frac{1}{2} \frac{(\theta - \mu_n)^2}{\tau_n^2})  \right] \times \left[ \right] \\
 \end{align}
 -->
 
