@@ -162,8 +162,7 @@ p(\boldsymbol{\theta} \mid \Sigma) &\propto \text{exp}\left[ -\frac{1}{2} (\bold
 &= \text{exp}\left[-\frac{1}{2} (\boldsymbol{\theta}^T - \boldsymbol{\mu}_0^T) (\Lambda_0^{-1}\boldsymbol{\theta} - \Lambda_0^{-1}\boldsymbol{\mu}_0 ) \right] \\
 &= \text{exp}\left[-\frac{1}{2} (\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} - \boldsymbol{\mu}_0^T \Lambda_0^{-1} \boldsymbol{\theta} - \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{\mu}_0^T \Lambda_0^{-1}\boldsymbol{\mu}_0  )\right] \\
 &= \text{exp} \left[ -\frac{1}{2} (\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} - 2\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 + \boldsymbol{\mu}_0^T \Lambda_0^{-1}\boldsymbol{\mu}_0 ) \right] & \text{Middle terms combine} \\
-&\propto \text{exp} \left[ -\frac{1}{2}\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} + \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 \right] & \text{Discard last term} \\
-
+&\propto \text{exp} \left[ -\frac{1}{2}\boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\theta} + \boldsymbol{\theta}^T \Lambda_0^{-1} \boldsymbol{\mu}_0 \right] & \text{Discard last term}
 \end{align}
 
 If we let $\mathbf{A}_0 = \Lambda_0^{-1}$, i.e. the precision matrix (which
