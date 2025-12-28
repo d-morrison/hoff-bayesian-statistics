@@ -1,5 +1,15 @@
 # GitHub Copilot Instructions for hoff-bayesian-statistics
 
+> [!IMPORTANT]
+> **MANDATORY TESTING REQUIREMENT:** Before committing ANY changes to `.qmd` or config files:
+> 1. Install R 4.5.2+, Quarto, TinyTeX (see Installation section)
+> 2. Run `renv::restore()` to install R packages
+> 3. **Run `quarto render` locally** and verify it completes successfully (exit code 0)
+> 4. Check all 3 output formats are generated in `_site/`: HTML, RevealJS slides, PDF handouts
+> 5. Only then commit your changes
+>
+> **This is a hard requirement - no exceptions.**
+
 ## Project Overview
 
 `hoff-bayesian-statistics` is a Quarto website containing fully reproducible lecture notes for Peter D. Hoff's "A First Course in Bayesian Statistical Methods". The notes were completed as part of a 1-semester independent study course and include summaries of chapter sections, mathematical explanations, reproduced figures in ggplot/tidyverse style, and solutions to selected exercises.
@@ -25,8 +35,14 @@ The repository also includes a final project implementing the Infinite Relationa
 
 **CRITICAL**: Do not make assumptions about what code will do - always test it yourself.
 
+**MANDATORY WORKFLOW FOR ANY `.qmd` OR CONFIG CHANGES:**
+1. **ALWAYS install required tools FIRST** (R, Quarto, TinyTeX) if not already installed
+2. **ALWAYS run `quarto render` locally BEFORE committing** to verify all formats work
+3. **NEVER commit changes without local testing** - this is a hard requirement
+
 - **Install required software first**: Ensure all necessary tools (R, Quarto, TinyTeX) are installed before starting work
 - **Test your changes**: Run the actual commands to verify functionality
+- **Run `quarto render` after EVERY change**: This is mandatory, not optional - test locally before committing
 - **Verify output**: Check that expected files are created with correct content
 - **Never claim success without evidence**: Only report that something works after you've confirmed it yourself
 
@@ -323,14 +339,24 @@ This is a mandatory step - do not skip reading the logs when debugging workflow 
 
 ### Making Changes
 
-**CRITICAL**: After making ANY changes to `.qmd` files or configuration files, you MUST run `quarto render` locally to verify the changes work correctly before committing.
+**CRITICAL - MANDATORY TESTING REQUIREMENT:**
 
+Before making ANY commit with `.qmd` or configuration file changes, you MUST:
+
+1. **Install all required tools** (R 4.5.2+, Quarto, TinyTeX) - see Installation section
+2. **Run `renv::restore()`** to install all R packages
+3. **Run `quarto render`** locally and wait for it to complete
+4. **Verify exit code is 0** (success) - rendering MUST complete without errors
+5. **Check all three output formats** exist in `_site/`:
+   - `{filename}.html` (website pages)
+   - `{filename}-slides.html` (RevealJS presentations)
+   - `{filename}-handout.pdf` (PDF handouts)
+6. **Only then** can you commit your changes
+
+**This is a hard requirement - no exceptions. Do not skip local testing.**
+
+Additional guidelines:
 - When modifying `.qmd` files, ensure code chunks execute successfully
-- **ALWAYS run `quarto render` after making changes** to verify all formats (HTML, RevealJS, PDF) render successfully
-  - This is mandatory, not optional
-  - Test locally in your working environment before pushing changes
-  - Verify all three output formats are generated without errors
-  - Check that the exit code is 0 (success)
 - Run `quarto preview` to verify changes render correctly
 - Check mathematical notation renders properly (especially in PDF format)
 - Ensure figures display as intended
