@@ -18,6 +18,7 @@ library(knitr)
 library(ggplot2)
 library(cowplot)
 library(tidyr)
+library(dplyr)
 ```
 
 <!-- Begin writing -->
