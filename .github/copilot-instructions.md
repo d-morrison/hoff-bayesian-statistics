@@ -242,6 +242,22 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 
 This is a mandatory step - do not skip reading the logs when debugging workflow failures.
 
+### Validating Rendering Success
+
+**CRITICAL**: Before declaring that rendering works or that fixes are successful:
+
+1. **ALWAYS** test `quarto render` yourself in your working environment
+2. Verify that **ALL** output formats are generated successfully:
+   - HTML pages (`*.html`)
+   - RevealJS slides (`*-slides.html`)  
+   - PDF handouts (`*-handout.pdf`)
+3. Check that files actually exist in the output directory (`_site/`)
+4. Verify file sizes are reasonable (not 0 bytes, not truncated)
+5. **NEVER** claim success based on assumptions or partial output
+6. **NEVER** declare rendering works without actually testing it
+
+**For this project specifically**: The default `quarto render` command generates HTML, RevealJS, and PDF outputs. All three formats must render successfully for the build to pass.
+
 ## Important Notes
 
 ### Working with Statistical Code
