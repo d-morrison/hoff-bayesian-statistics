@@ -6,6 +6,8 @@ format:
   html: default
   revealjs:
     output-file: 3-slides.html
+  pdf:
+    output-file: 3-handout.pdf
 ---
 
 <!-- Setup -->
@@ -485,7 +487,6 @@ Where the posterior density is therefore
 
 \begin{align}
 p(\phi \mid y_1, \dots, y_n) &\propto p(\phi) \times p(y_1, \dots, y_n \mid \phi) \\
-
 &\propto \left[ \kappa (n_0, t_0) c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right] \times \left[ \prod_{i = 1}^n \left( h(y_i) c(\phi) \text{exp}(\phi t(y)) \right) \right] \\
 &\propto \left[ \kappa (n_0, t_0) c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right] \times \left[ c(\phi)^n \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) \prod_{i = 1}^n h(y_i) \right] \\
 &\propto \left[ c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right] \times \left[ c(\phi)^n \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) \right] & \text{Discard constants} \\
@@ -862,7 +863,6 @@ Now
 
 \begin{align}
 p(\phi \mid y_1, \dots, y_n) &\propto p(\phi) p(y_1, \dots, y_n \mid \phi) \\
-
 &\propto \left[ \sum_{k = 1}^K \left( w_k \kappa (n_{0, k}, t_{0, k}) c(\phi)^{n_{0, k}} \text{exp}(n_{0, k} t_{0, k} \phi) \right)  \right] \times \left[ \prod_{i = 1}^n h(y_i) c(\phi) \text{exp}(\phi t(y_i)) \right] \\
 &\propto \left[ \sum_{k = 1}^K \left( w_k \kappa (n_{0, k}, t_{0, k}) c(\phi)^{n_{0, k}} \text{exp}(n_{0, k} t_{0, k} \phi) \right)  \right] \times \left[ \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) c(\phi)^n \prod_{i = 1}^n h(y_i) \right] \\
 &\propto \left[ \sum_{k = 1}^K \left( w_k \kappa (n_{0, k}, t_{0, k}) c(\phi)^{n_{0, k}} \text{exp}(n_{0, k} t_{0, k} \phi) \right)  \right] \times \left[ \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) c(\phi)^n \right] \\
