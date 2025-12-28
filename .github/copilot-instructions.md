@@ -1,5 +1,27 @@
 # GitHub Copilot Instructions for hoff-bayesian-statistics
 
+> [!IMPORTANT]
+> **MANDATORY ENVIRONMENT SETUP - DO THIS FIRST, ALWAYS:**
+> 
+> At the START of EVERY work session on this repository:
+> 1. **IMMEDIATELY install R 4.5.2+, Quarto, TinyTeX** (see Installation section below)
+> 2. **Run `renv::restore()`** to install all R packages
+> 3. **Verify tools are working** with `quarto --version` and `R --version`
+>
+> **MANDATORY TESTING BEFORE EVERY COMMIT:**
+> 
+> Before committing ANY changes to `.qmd` or config files:
+> 1. **Run `quarto render` on the FULL repository** (not individual files)
+> 2. **Verify it completes successfully** (exit code 0, no errors)
+> 3. **Check all 3 output formats exist** in `_site/`: HTML, RevealJS slides, PDF handouts
+> 4. Only then commit your changes
+>
+> **CRITICAL RULES:**
+> - **CI is NOT the test** - you must test locally BEFORE pushing
+> - **NEVER rely on CI to discover rendering errors** - that's your job
+> - **ALWAYS run full `quarto render`** - testing individual files is insufficient
+> - **This is a hard requirement - no exceptions, no excuses**
+
 ## Project Overview
 
 `hoff-bayesian-statistics` is a Quarto website containing fully reproducible lecture notes for Peter D. Hoff's "A First Course in Bayesian Statistical Methods". The notes were completed as part of a 1-semester independent study course and include summaries of chapter sections, mathematical explanations, reproduced figures in ggplot/tidyverse style, and solutions to selected exercises.
@@ -25,8 +47,22 @@ The repository also includes a final project implementing the Infinite Relationa
 
 **CRITICAL**: Do not make assumptions about what code will do - always test it yourself.
 
+**ENVIRONMENT SETUP IS MANDATORY:**
+- At the START of EVERY work session, install R, Quarto, and TinyTeX IMMEDIATELY
+- Never start making changes without having the full development environment ready
+- CI is for final verification ONLY - you must test locally FIRST
+- Your working environment should mirror the CI environment
+
+**MANDATORY WORKFLOW FOR ANY `.qmd` OR CONFIG CHANGES:**
+1. **FIRST: Install required tools** (R 4.5.2+, Quarto, TinyTeX) if not already installed
+2. **ALWAYS run FULL `quarto render`** on the entire repository before committing
+3. **Test individual files only for rapid iteration** - final verification MUST be full render
+4. **NEVER commit changes without successful full `quarto render`**
+5. **CI is NOT a substitute for local testing** - CI failures mean you failed to test properly
+
 - **Install required software first**: Ensure all necessary tools (R, Quarto, TinyTeX) are installed before starting work
 - **Test your changes**: Run the actual commands to verify functionality
+- **Run `quarto render` on FULL repository**: Testing individual files misses cross-file issues
 - **Verify output**: Check that expected files are created with correct content
 - **Never claim success without evidence**: Only report that something works after you've confirmed it yourself
 
@@ -323,9 +359,37 @@ This is a mandatory step - do not skip reading the logs when debugging workflow 
 
 ### Making Changes
 
+**CRITICAL - MANDATORY TESTING REQUIREMENT:**
+
+**STEP 0 - ENVIRONMENT SETUP (DO THIS FIRST, EVERY SESSION):**
+- Install R 4.5.2+, Quarto, TinyTeX if not already installed (see Installation section)
+- Run `renv::restore()` to install all R packages
+- Verify tools work: `quarto --version`, `R --version`
+- **NEVER start making code changes without having the environment ready**
+
+**BEFORE MAKING ANY COMMIT** with `.qmd` or configuration file changes, you MUST:
+
+1. **Run FULL `quarto render`** on the entire repository (not individual files)
+2. **Wait for it to complete** - do not interrupt or assume success
+3. **Verify exit code is 0** (success) - rendering MUST complete without errors
+4. **Check all three output formats** exist in `_site/` for ALL documents:
+   - `{filename}.html` (website pages)
+   - `{filename}-slides.html` (RevealJS presentations)
+   - `{filename}-handout.pdf` (PDF handouts)
+5. **Only then** can you commit your changes
+
+**CRITICAL RULES:**
+- **CI is NOT the test** - it's final verification only
+- **Testing individual files is insufficient** - always do full `quarto render`
+- **If CI fails, you failed to test properly** - this should never happen
+- **No exceptions, no excuses** - this is a hard requirement
+
+Additional guidelines:
 - When modifying `.qmd` files, ensure code chunks execute successfully
+- Use `quarto render file.qmd` for rapid iteration ONLY
+- Always follow up with FULL `quarto render` before committing
 - Run `quarto preview` to verify changes render correctly
-- Check mathematical notation renders properly
+- Check mathematical notation renders properly (especially in PDF format)
 - Ensure figures display as intended
 - Verify cross-references and links work
 - Update `_quarto.yml` if adding/removing pages
