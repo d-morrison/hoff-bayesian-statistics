@@ -29,10 +29,12 @@ Poisson + logistic. No conjugate priors.
 # Metropolis algorithm
 
 <!--
+$$
 \begin{align}
 r &= \frac{p(\theta^* \mid y)}{p(\theta)^{(s)} \mid y} \\
 &= p(\theta^* \mid y) \frac{1}{p(\theta^{(s)} \mid y)} \\
 \end{align}
+$$
 
 TODO expand. also might include the J ratio (that's why it has to be symmetric)
 -->
@@ -159,12 +161,14 @@ msparrownest = read.table('Exercises/msparrownest.dat')
 
 For convenience let $\theta_i = P(Y_i = 1 \mid \alpha, \beta, x_i)$. Now we solve for $\theta_i$ in our model
 
+$$
 \begin{align}
 & \log\left(\frac{\theta_i}{1 - \theta_i}\right) = \alpha + \beta x_i \\
 \implies& \frac{\theta_i}{1 - \theta_i} = \exp(\alpha + \beta x_i) \\
 \implies& \theta_i = \exp(\alpha + \beta x_i) - \theta_i \exp(\alpha + \beta x_i) \\
 \implies& \theta_i = \frac{\exp(a + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
 \end{align}
+$$
 
 So we know $Y_i \sim \text{Bernoulli}\left(p_i\right)$ where $p_i = \frac{\exp(a + \beta x_i)}{1 + \exp(a + \beta x_i)}$ and thus
 
@@ -176,6 +180,7 @@ $$
 
 Let $z_i = \exp(\alpha + \beta x_i)$ for simplicity.
 
+$$
 \begin{align}
 p(\boldsymbol{y} \mid \alpha, \beta, x_i) &= \prod_{i = 1}^n p(y_i \mid \alpha, \beta, x_i) \\
 &= \prod_{i = 1}^n p_i^{y_i} (1 - p_i)^{1 - y_i} \\
@@ -186,6 +191,7 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &= \prod_{i = 1}^n p(y_i \mid \alpha, 
 &= \prod_{i = 1}^n \frac{z_i^{y_i}}{1 + z_i} \\
 &= \prod_{i = 1}^n \frac{\exp(y_i (\alpha + \beta x_i))}{1 + \exp(\alpha + \beta x_i)} \\
 \end{align}
+$$
 
 and I don't think that can be simplified further.
 
@@ -218,10 +224,12 @@ the $\alpha$ prior falls in the log-odds interval $[-10, 10]$.
 
 So
 
+$$
 \begin{align}
 \alpha &\sim \mathcal{N}(0, 25) \\
 \beta &\sim \mathcal{N}(0, 0.25) \\
 \end{align}
+$$
 
 ### c
 
