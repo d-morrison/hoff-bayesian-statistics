@@ -543,11 +543,11 @@ come up with a more formal mathematical justification, though.
 \text{Var}(y_{i, j} \mid \mu, \tau^2) &= \text{Var}(\mathbb{E}(y_{i, j} \mid \theta_j, \sigma^2) \mid \mu, \tau^2) + \mathbb{E}(\text{Var}(y_{i, j} \mid \theta_j, \sigma^2) \mid \mu, \tau^2) & \text{Law total var.} \\
 &= \text{Var}(\theta_j \mid \mu, \tau^2) + \mathbb{E}(\sigma^2 \mid \mu, \tau^2) \\
 &= \tau^2 + \sigma^2 \\
-
+& \\
 \text{Var}(\bar{y}_{\cdot, j} \mid \mu, \tau^2) &= \text{Var}(\mathbb{E}(\bar{y}_{\cdot, j} \mid \theta_j, \sigma^2) \mid \mu, \tau^2) + \mathbb{E}(\text{Var}(\bar{y}_{\cdot, j} \mid \theta_j, \sigma^2) \mid \mu, \tau^2) & \text{Law total var.} \\
 &= \text{Var}(\theta_j \mid \mu, \tau^2) + \mathbb{E}(\sigma^2 / n_j \mid \mu, \tau^2) \\
 &= \tau^2 + (\sigma^2 / n_j) \\
-
+& \\
 \text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \mu, \tau^2) &= \text{E}(\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2) \mid \mu, \tau^2) + \text{Cov}(\mathbb{E}(y_{i_1, j} \mid \theta_j, \sigma^2), \mathbb{E}(y_{i_2, j} \mid \theta_j, \sigma^2)) & \text{Law total covar.} \\
 &= \text{E}(0 \mid \mu, \tau^2) + \text{Cov}(\mathbb{E}(y_{i_1, j} \mid \theta_j, \sigma^2), \mathbb{E}(y_{i_2, j} \mid \theta_j, \sigma^2)) & \text{i.i.d.} \\
 &= \text{Cov}(\theta_j, \theta_j) \\
