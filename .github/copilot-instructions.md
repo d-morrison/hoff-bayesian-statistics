@@ -323,9 +323,16 @@ This is a mandatory step - do not skip reading the logs when debugging workflow 
 
 ### Making Changes
 
+**CRITICAL**: After making ANY changes to `.qmd` files or configuration files, you MUST run `quarto render` locally to verify the changes work correctly before committing.
+
 - When modifying `.qmd` files, ensure code chunks execute successfully
+- **ALWAYS run `quarto render` after making changes** to verify all formats (HTML, RevealJS, PDF) render successfully
+  - This is mandatory, not optional
+  - Test locally in your working environment before pushing changes
+  - Verify all three output formats are generated without errors
+  - Check that the exit code is 0 (success)
 - Run `quarto preview` to verify changes render correctly
-- Check mathematical notation renders properly
+- Check mathematical notation renders properly (especially in PDF format)
 - Ensure figures display as intended
 - Verify cross-references and links work
 - Update `_quarto.yml` if adding/removing pages
