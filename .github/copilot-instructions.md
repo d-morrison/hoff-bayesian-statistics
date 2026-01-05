@@ -422,6 +422,11 @@ Additional guidelines:
 - Check that the rendering completes without errors or warnings
 - Review the generated output in the `_site/` directory to ensure quality
 - Fix any rendering issues before requesting review
+- **ALWAYS verify all changed hyperlinks are correct before requesting PR review**:
+  - Check that internal links point to existing files/sections
+  - Verify external URLs are accessible and correct
+  - Test cross-references and anchor links
+  - Ensure relative paths are correct
 - This practice helps maintain the quality of rendered outputs and streamlines the contribution process
 - Note: The CI/CD workflows (preview.yml and publish.yml) will also render the website, but catching issues locally saves time
 
