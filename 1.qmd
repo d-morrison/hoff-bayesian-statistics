@@ -98,7 +98,7 @@ about the world can be expressed probabilistically (e.g. [Griffiths & Tenenbaum,
 
 Bayesianism is not without its detractors, however. Some critics argue that the 
 evidence that Bayesian analysis is weak, and that sufficiently sophisticated
-models are unfalsifiable. See <a href="https://psycnet.apa.org/journals/bul/138/3/389/">Bowers & Davis (2012)</a>, comment by <a href="https://cocosci.princeton.edu/tom/papers/LabPublications/HowBayesiansGetBeliefs.pdf">Griffiths, Chater, Norris, Pouget (2012)</a>, reply by <a href="https://pubmed.ncbi.nlm.nih.gov/22545688/">Bowers & Davis (2012)</a>.
+models are unfalsifiable. See [Bowers & Davis (2012)](https://psycnet.apa.org/journals/bul/138/3/389/), comment by [Griffiths, Chater, Norris, Pouget (2012)](https://cocosci.princeton.edu/tom/papers/LabPublications/HowBayesiansGetBeliefs.pdf), reply by [Bowers & Davis (2012)](https://pubmed.ncbi.nlm.nih.gov/22545688/).
 
 # Example 1: Estimating the probability of a rare event
 
