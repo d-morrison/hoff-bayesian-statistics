@@ -273,14 +273,19 @@ date: "Date"
 
 ### Code Chunks
 
-Use R code chunks with appropriate options:
+Use R code chunks with Quarto's hashpipe syntax for options:
 
 ````markdown
-```{r echo=FALSE, message=FALSE}
+```{r}
+#| echo: false
+#| message: false
+
 library(ggplot2)
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 ```
 ````
+
+Note: While the repository currently uses the older R Markdown style (`{r echo=FALSE, message=FALSE}`), the Quarto hashpipe syntax (`#|`) is preferred for new code.
 
 ### Mathematical Notation
 
@@ -535,13 +540,28 @@ This ensures the instructions stay current and helpful for both yourself and oth
 ## Common Quarto Patterns
 
 ### Chunk Options
-Use appropriate chunk options for different purposes:
-- `echo=FALSE` - Hide code but show output (for figures)
-- `include=FALSE` - Run code but hide both code and output (for setup)
-- `message=FALSE, warning=FALSE` - Suppress messages/warnings
-- `cache=TRUE` - Cache results for expensive computations (use sparingly)
-- `fig.width=X, fig.height=Y` - Control figure dimensions
-- `fig.cap="Caption text"` - Add figure captions
+Use Quarto's hashpipe (`#|`) syntax for chunk options at the top of code blocks:
+
+````markdown
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Your R code here
+```
+````
+
+Common chunk options:
+- `#| echo: false` - Hide code but show output (for figures)
+- `#| include: false` - Run code but hide both code and output (for setup)
+- `#| message: false` - Suppress messages
+- `#| warning: false` - Suppress warnings
+- `#| cache: true` - Cache results for expensive computations (use sparingly)
+- `#| fig-width: 7` and `#| fig-height: 5` - Control figure dimensions
+- `#| fig-cap: "Caption text"` - Add figure captions
+
+Note: While the old R Markdown style (`{r echo=FALSE, message=FALSE}`) still works, prefer the Quarto hashpipe syntax for new code.
 
 ### Cross-References
 - Sections: `# Section {#sec-label}` then reference with `@sec-label`
