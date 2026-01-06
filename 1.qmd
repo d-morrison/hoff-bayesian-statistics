@@ -99,7 +99,7 @@ have beliefs about the world, whose uncertainty can be expressed
 probabilistically. Then, given data, these beliefs are rationally updated. There
 is a rich tradition in modeling human cognition using Bayesian methods to great
 success, with plenty of work done in showing how people's beliefs and knowledge
-about the world can be expressed probabilistically (e.g. [Griffiths & Tenenbaum, 2006](http://web.mit.edu/cocosci/Papers/Griffiths-Tenenbaum-PsychSci06.pdf))
+about the world can be expressed probabilistically (e.g. [Griffiths & Tenenbaum, 2006](http://web.mit.edu/cocosci/archive/Papers/Griffiths-Tenenbaum-PsychSci06.pdf))
 
 Bayesianism is not without its detractors, however. Some critics argue that the 
 evidence that Bayesian analysis is weak, and that sufficiently sophisticated
