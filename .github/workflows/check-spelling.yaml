@@ -28,7 +28,10 @@ jobs:
           results <- spelling::spell_check_package()
           print(results)
           if (nrow(results) > 0) {
-            cat("\n\nSpelling errors found. Please fix spelling errors or add words to inst/WORDLIST\n")
-            stop("Spelling errors detected")
+            cat("\n\nSpelling errors detected!\n")
+            cat("Please either:\n")
+            cat("  1. Fix the spelling errors shown above, or\n")
+            cat("  2. Add legitimate terms to inst/WORDLIST\n\n")
+            quit(status = 1)
           }
         shell: Rscript {0}
