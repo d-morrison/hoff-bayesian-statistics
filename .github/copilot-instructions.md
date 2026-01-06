@@ -10,16 +10,25 @@
 >
 > **MANDATORY TESTING BEFORE EVERY COMMIT:**
 > 
-> Before committing ANY changes to `.qmd` or config files:
+> Before committing ANY changes to `.qmd`, `.R`, or config files:
+> 
 > 1. **Run `quarto render` on the FULL repository** (not individual files)
 > 2. **Verify it completes successfully** (exit code 0, no errors)
 > 3. **Check all 3 output formats exist** in `_site/`: HTML, RevealJS slides, PDF handouts
-> 4. Only then commit your changes
+> 4. **Run linter on changed files**:
+>    - For R files: `lintr::lint("path/to/file.R")`  
+>    - For .qmd files with R code: Extract and lint R code chunks
+>    - **Fix lint issues in code you wrote or modified** - ignore pre-existing issues in unchanged code
+> 5. **Run spellcheck**: `spelling::spell_check_package()`
+>    - **Fix spelling errors you introduced** - ignore pre-existing errors
+>    - Add technical terms to `.aspell/defaults.pws` if needed
+> 6. Only then commit your changes
 >
 > **CRITICAL RULES:**
 > - **CI is NOT the test** - you must test locally BEFORE pushing
-> - **NEVER rely on CI to discover rendering errors** - that's your job
+> - **NEVER rely on CI to discover rendering, lint, or spelling errors** - that's your job
 > - **ALWAYS run full `quarto render`** - testing individual files is insufficient
+> - **Only fix lint/spell issues in code YOU changed** - don't fix unrelated pre-existing issues
 > - **This is a hard requirement - no exceptions, no excuses**
 
 ## Project Overview
@@ -172,10 +181,13 @@ quarto::quarto_render("1.qmd")
 
 ### Linting
 
-**CRITICAL**: Always lint changed files before requesting code review.
+**CRITICAL**: Always lint changed files before requesting code review and before committing.
 
 ```r
-# Lint R code files
+# Lint R code files you modified
+lintr::lint("path/to/modified/file.R")
+
+# Examples:
 lintr::lint("irm.R")
 lintr::lint("icecore_parallel.R")
 
@@ -199,23 +211,26 @@ lintr::lint("2.qmd")
 4. Fix any linting errors or warnings
 5. Only then proceed to code review
 
+**Important notes**:
+- **Only fix lint issues in code you wrote or modified** - do not fix pre-existing issues in unchanged code
+- If lint errors exist in code you didn't change, ignore them - they're not your responsibility
+- The lint-changed-files workflow will flag issues, but you should catch them locally first
+
 ### Spell Checking
 
-**CRITICAL**: Always run spell checking before requesting code review or making commits with documentation changes.
+**CRITICAL**: Always run spellcheck locally BEFORE committing.
 
 ```r
-# Run spell check on the repository
+# Run spell check on the entire repository
 spelling::spell_check_package()
 
 # Check specific files
 spelling::spell_check_files("README.md")
-```
+spelling::spell_check_files("path/to/modified/file.qmd")
 
-**When to spell check**:
-- Before calling the `code_review` tool
-- After making changes to documentation files (`.qmd`, `.md`, `README.md`)
-- Before committing documentation changes
-- After making changes to any text content
+# Add technical terms to dictionary if needed
+# Edit .aspell/defaults.pws to add project-specific words
+```
 
 **Spell checking workflow**:
 1. Identify which files you've changed
@@ -224,6 +239,12 @@ spelling::spell_check_files("README.md")
 4. Either fix the spelling errors OR add legitimate technical terms to `inst/WORDLIST` (create this file if it doesn't exist, one word per line)
 5. Re-run spell check to verify all errors are resolved
 6. Only then proceed to code review or commit
+
+**Important notes**:
+- **Only fix spelling errors you introduced** - ignore pre-existing errors in unchanged files
+- Add legitimate technical terms (e.g., "Bayesian", "Gibbs", "MCMC") to `.aspell/defaults.pws`
+- Don't add typos to the dictionary - fix the typos instead
+```
 
 ## Code Style and Conventions
 
@@ -366,6 +387,39 @@ All workflows run on relevant triggers (push to main, pull requests, etc.).
 
 This is a mandatory step - do not skip reading the logs when debugging workflow failures.
 
+### Determining Responsibility for Workflow Failures
+
+**IMPORTANT**: Not all workflow failures are your responsibility to fix.
+
+**You ARE responsible for** fixing workflow failures if:
+- The failure is in code or files you directly modified
+- The failure is caused by changes you introduced (e.g., new dependencies, configuration changes)
+- The error message indicates an issue with YOUR specific changes
+
+**You are NOT responsible for** fixing workflow failures if:
+- The failure is in pre-existing code you didn't modify
+- Lint errors exist in unchanged files or unchanged sections of files
+- Spelling errors exist in files you didn't modify
+- The workflow itself has an environment or infrastructure issue (e.g., package installation failures, Docker issues)
+- The error occurs in lines of code that existed before your changes
+
+**How to determine responsibility**:
+1. Check the workflow logs to identify which files/lines are causing the failure
+2. Use `git diff` or `git show` to verify whether you modified those specific lines
+3. If you only modified prose (text/comments) but errors are in code blocks, those are pre-existing
+4. If the error is "file X line Y" and you didn't touch line Y, it's pre-existing
+
+**What to do**:
+- **If it's your responsibility**: Fix the issue and re-run the workflow
+- **If it's NOT your responsibility**: Document it in your PR description and notify the repository maintainer
+- **Never** fix unrelated pre-existing issues - focus on your changes only
+
+**Example scenarios**:
+- ✅ You added a new .bib file and spellcheck fails on a word in that file → Fix it
+- ❌ You changed text in a .qmd file and lint fails on existing R code blocks you didn't touch → NOT your responsibility
+- ✅ You modified R code and lint fails on your new lines → Fix it  
+- ❌ Spellcheck workflow fails due to package installation error → NOT your responsibility (infrastructure issue)
+
 ### Validating Rendering Success
 
 **CRITICAL**: Before declaring that rendering works or that fixes are successful:
@@ -415,7 +469,7 @@ This is a mandatory step - do not skip reading the logs when debugging workflow 
 - Verify tools work: `quarto --version`, `R --version`
 - **NEVER start making code changes without having the environment ready**
 
-**BEFORE MAKING ANY COMMIT** with `.qmd` or configuration file changes, you MUST:
+**BEFORE MAKING ANY COMMIT** with `.qmd`, `.R`, or configuration file changes, you MUST:
 
 1. **Run FULL `quarto render`** on the entire repository (not individual files)
 2. **Wait for it to complete** - do not interrupt or assume success
@@ -424,11 +478,21 @@ This is a mandatory step - do not skip reading the logs when debugging workflow 
    - `{filename}.html` (website pages)
    - `{filename}-slides.html` (RevealJS presentations)
    - `{filename}-handout.pdf` (PDF handouts)
-5. **Only then** can you commit your changes
+5. **Run linter on changed R files**:
+   - `lintr::lint("path/to/modified/file.R")` for each modified R file
+   - Extract and lint R code from modified .qmd files if you changed code chunks
+   - **Only fix lint issues in code you modified** - ignore pre-existing issues
+6. **Run spellcheck**:
+   - `spelling::spell_check_package()` to check the entire repository
+   - **Only fix spelling errors you introduced** - ignore pre-existing errors
+   - Add technical terms to `.aspell/defaults.pws` if they are legitimate
+7. **Only then** can you commit your changes
 
 **CRITICAL RULES:**
 - **CI is NOT the test** - it's final verification only
 - **Testing individual files is insufficient** - always do full `quarto render`
+- **Lint and spellcheck locally FIRST** - don't wait for CI to discover issues
+- **Only fix issues in code YOU changed** - don't fix unrelated pre-existing problems
 - **If CI fails, you failed to test properly** - this should never happen
 - **No exceptions, no excuses** - this is a hard requirement
 
@@ -478,33 +542,25 @@ Additional guidelines:
    - Fix any linting errors or warnings
    - See the "Linting" section for detailed commands
 
-2. **Run spell check on documentation changes**
-   - Run `spelling::spell_check_package()` if you changed any documentation files
-   - Fix spelling errors or add legitimate terms to `inst/WORDLIST` (create if needed)
-   - See the "Spell Checking" section for detailed commands
-
-3. **Then request code review**
+2. **Then request code review**
    - Use the `code_review` tool to get automated feedback
-   - The tool must be called AFTER linting and spell checking are complete
+   - The tool must be called AFTER linting is complete
    - Review and address any valid comments from the code review
 
-4. **Finally run security checks**
+3. **Finally run security checks**
    - Use the `codeql_checker` tool after code review
    - Address any security vulnerabilities found
    - Re-run if you make significant changes
 
-**CRITICAL**: Never call `code_review` without linting changed files and spell checking documentation first. Linting catches basic style and syntax issues, and spell checking ensures documentation quality before more comprehensive code review.
+**CRITICAL**: Never call `code_review` without linting changed files first. Linting catches basic style and syntax issues that should be fixed before more comprehensive code review.
 
 **Workflow example**:
 ```r
 # Step 1: Lint changed files
 lintr::lint("irm.R")  # Fix any issues found
 
-# Step 2: Spell check (if documentation changed)
-spelling::spell_check_package()  # Fix any issues found
-
-# Step 3: Then use code_review tool (via GitHub Copilot)
-# Step 4: Then use codeql_checker tool (via GitHub Copilot)
+# Step 2: Then use code_review tool (via GitHub Copilot)
+# Step 3: Then use codeql_checker tool (via GitHub Copilot)
 ```
 
 ### Dependencies
