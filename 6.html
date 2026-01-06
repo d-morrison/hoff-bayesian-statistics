@@ -531,7 +531,7 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 <span class="header-section-number">3</span> Sampling from the conditional distributions</h1>
 <p>Again, to proceed with Gibbs sampling, we simply need to calculate the full conditional distributions of the parameters. We already computed the full conditional for <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n\)</span> in 5.2. For <span class="math inline">\(\theta
 \mid \mathcal{N}(\mu_0, \tau_0^2)\)</span>, then <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n
-\sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> I will not reproduce here (see 5.2).</p>
+\sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> are not reproduced here (see 5.2).</p>
 <p>Now we find the full conditional for <span class="math inline">\(\sigma^2\)</span> using the exact same method as in 5.2:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -1102,7 +1102,7 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 <span><span class="co">#&gt; 227.5474</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>These samples are actually highly autocorrelated, hence the minimum effective sample sizes. But I’m not sure (?) the purpose of calculating the autocorrelation of the minimum and maximum <span class="math inline">\(\theta\)</span>?</p>
+<p>These samples are actually highly autocorrelated, hence the minimum effective sample sizes. However, the purpose of calculating the autocorrelation of the minimum and maximum <span class="math inline">\(\theta\)</span> is unclear.</p>
 </section><section id="d-1" class="level3" data-number="7.2.4"><h3 data-number="7.2.4" class="anchored" data-anchor-id="d-1">
 <span class="header-section-number">7.2.4</span> d</h3>
 <div class="cell" data-layout-align="center">
@@ -1717,8 +1717,8 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 <span id="cb23-130"><a href="#cb23-130" aria-hidden="true" tabindex="-1"></a>conditional distributions of the parameters. We already computed the</span>
 <span id="cb23-131"><a href="#cb23-131" aria-hidden="true" tabindex="-1"></a>full conditional for $\theta \mid \sigma^2, y_1, \dots, y_n$ in 5.2. For $\theta</span>
 <span id="cb23-132"><a href="#cb23-132" aria-hidden="true" tabindex="-1"></a>\mid \mathcal{N}(\mu_0, \tau_0^2)$, then $\theta \mid \sigma^2, y_1, \dots, y_n</span>
-<span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a>\sim \mathcal{N}(\mu_n, \tau_n^2)$, where $\mu_n$ and $\tau_n^2$ I will not</span>
-<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a>reproduce here (see 5.2).</span>
+<span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a>\sim \mathcal{N}(\mu_n, \tau_n^2)$, where $\mu_n$ and $\tau_n^2$ are not</span>
+<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a>reproduced here (see 5.2).</span>
 <span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a>Now we find the full conditional for $\sigma^2$ using the exact same method as in 5.2:</span>
 <span id="cb23-137"><a href="#cb23-137" aria-hidden="true" tabindex="-1"></a></span>
@@ -2349,8 +2349,8 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 <span id="cb23-790"><a href="#cb23-790" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-791"><a href="#cb23-791" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-792"><a href="#cb23-792" aria-hidden="true" tabindex="-1"></a>These samples are actually highly autocorrelated, hence the minimum effective</span>
-<span id="cb23-793"><a href="#cb23-793" aria-hidden="true" tabindex="-1"></a>sample sizes. But I'm not sure (?) the purpose of calculating the</span>
-<span id="cb23-794"><a href="#cb23-794" aria-hidden="true" tabindex="-1"></a>autocorrelation of the minimum and maximum $\theta$?</span>
+<span id="cb23-793"><a href="#cb23-793" aria-hidden="true" tabindex="-1"></a>sample sizes. However, the purpose of calculating the</span>
+<span id="cb23-794"><a href="#cb23-794" aria-hidden="true" tabindex="-1"></a>autocorrelation of the minimum and maximum $\theta$ is unclear.</span>
 <span id="cb23-795"><a href="#cb23-795" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-796"><a href="#cb23-796" aria-hidden="true" tabindex="-1"></a><span class="fu">### d</span></span>
 <span id="cb23-797"><a href="#cb23-797" aria-hidden="true" tabindex="-1"></a></span>

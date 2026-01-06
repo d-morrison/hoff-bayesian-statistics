@@ -1085,7 +1085,7 @@ window.Quarto = {
 <p><span class="math display">\[
 p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_m)
 \]</span></p>
-<p>for which we’ll use a Gibbs sampler. We need to find the full conditionals for all unknown quantities above, which seems intimidating. In the Chapter 6 notes (“a shortcut for thinking about full conditionals”), however, I mention that obtaining the full conditional for a single parameter is fairly straightforward by simply writing the entire joint posterior but then treating the other parameters as constants that can be discarded via proportionality.</p>
+<p>for which we’ll use a Gibbs sampler. We need to find the full conditionals for all unknown quantities above, which seems intimidating. In the Chapter 6 notes In the Chapter 6 notes (“a shortcut for thinking about full conditionals”), it should be mentioned that obtaining the full conditional for a single parameter is fairly straightforward by simply writing the entire joint posterior but then treating the other parameters as constants that can be discarded via proportionality.</p>
 <p>To obtain the full joint posterior we will take use key independence assumptions between the parameters of our model. For example, given a group-specific mean <span class="math inline">\(\theta_j\)</span>, the corresponding random variables <span class="math inline">\(Y_{i, j}\)</span> depend only on <span class="math inline">\((\theta_j, \sigma^2)\)</span> and not on <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\tau^2\)</span> (this is implied in Figure 8.3).</p>
 <p><span class="math display">\[\begin{align}
 &amp; p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_m) \\
@@ -1100,7 +1100,7 @@ p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots,
 <p>which in this case looks exactly like a standard one-sample Normal posterior from Chapter 6, so we borrow that result and replace the relevant variables from our priors. We can do this similarly for the other parameters.</p>
 </section><section id="quantities" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="quantities">
 <span class="header-section-number">3.1.2</span> Quantities</h3>
-<p>Since the work is quite tedious, I leave out the derivations for the full conditionals of the parameters. To summarize, given priors</p>
+<p>Since the work is quite tedious, the derivations for the full conditionals of the parameters. To summarize, given priors</p>
 <p><span class="math display">\[\begin{align}
 \sigma^2 &amp;\sim \text{inverse-gamma}(\nu_0 / 2, \sigma_0^2 \nu_0 / 2) \\
 \tau^2 &amp;\sim \text{inverse-gamma}(\eta_0 / 2, \tau_0^2 \eta_0 / 2) \\
@@ -1215,7 +1215,7 @@ p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots,
 </div>
 </section><section id="mcmc-diagnostics" class="level3" data-number="4.1.2"><h3 data-number="4.1.2" class="anchored" data-anchor-id="mcmc-diagnostics">
 <span class="header-section-number">4.1.2</span> MCMC diagnostics</h3>
-<p>The book mentions here that it’s important to check convergence of the Gibbs sampler; I won’t do that here, but dividing the samples into groups of e.g.&nbsp;500 samples, and ensuring that the mean values of the parameters don’t change too much from group to group is a good way to check, at least for a manageable number of parameters.</p>
+<p>The book mentions here that it’s important to check convergence of the Gibbs sampler; this is not done here, but dividing the samples into groups of e.g.&nbsp;500 samples, and ensuring that the mean values of the parameters don’t change too much from group to group is a good way to check, at least for a manageable number of parameters.</p>
 </section></section><section id="posterior-summaries-and-shrinkage" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="posterior-summaries-and-shrinkage">
 <span class="header-section-number">4.2</span> Posterior summaries and shrinkage</h2>
 <p>Notice from the full conditional of <span class="math inline">\(\theta_j\)</span> above that the expected value of <span class="math inline">\(\theta_j\)</span> is a weighted average of <span class="math inline">\(\bar{y}_j\)</span> and <span class="math inline">\(\mu\)</span>:</p>
@@ -1264,19 +1264,19 @@ p(\nu_0 \mid \sigma_0^2, \dots, \sigma_m^2) \propto \left( \frac{(\sigma_0^2 \nu
 \]</span></p>
 <section id="analysis-of-math-score-data" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="analysis-of-math-score-data">
 <span class="header-section-number">5.1</span> Analysis of math score data</h2>
-<p>For time I haven’t reproduced the analysis here are there aren’t too many conclusions drawn - the point is just that you can let the variance vary across groups.</p>
+<p>For brevity, the analysis is not reproduced here as there aren’t too many conclusions drawn - the point is just that you can let the variance vary across groups.</p>
 </section></section><section id="exercises" class="level1" data-number="6"><h1 data-number="6">
 <span class="header-section-number">6</span> Exercises</h1>
 <section id="section" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="section">
 <span class="header-section-number">6.1</span> 8.1</h2>
 <section id="a" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="a">
 <span class="header-section-number">6.1.1</span> a</h3>
-<p>I expect <span class="math inline">\(\text{Var}(y_{i, j} \mid \mu, \tau^2)\)</span> to be bigger since it includes both within- and between-group sampling variability.</p>
+<p>The expectation is that <span class="math inline">\(\text{Var}(y_{i, j} \mid \mu, \tau^2)\)</span> will be bigger since it includes both within- and between-group sampling variability.</p>
 </section><section id="b" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="b">
 <span class="header-section-number">6.1.2</span> b</h3>
-<p>I think <span class="math inline">\(\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)\)</span> is zero because, according to exchangeability, our <span class="math inline">\(y_{i, j}\)</span> are conditionally i.i.d. when <span class="math inline">\(\theta_j, \sigma^2\)</span> is known.</p>
-<p>On the other hand, given our model, it seems like knowing about another <span class="math inline">\(y_{i_1,
-j}\)</span> <em>does</em> provide more information about <span class="math inline">\(y_{i_2, j}\)</span>, and I expect them to covary positively with each other. Specifically, <span class="math inline">\(y_{i_1, j}\)</span> seems to give more information about what the mean <span class="math inline">\(\theta_j\)</span> is, and we expect values from the same <span class="math inline">\(\theta_j\)</span> to be closer together (due to decreased variability). I can’t come up with a more formal mathematical justification, though.</p>
+<p><span class="math inline">\(\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)\)</span> is expected to be zero because, according to exchangeability, <span class="math inline">\(y_{i, j}\)</span> are conditionally i.i.d. when <span class="math inline">\(\theta_j, \sigma^2\)</span> is known.</p>
+<p>On the other hand, given the model, knowing about another <span class="math inline">\(y_{i_1,
+j}\)</span> <em>does</em> appear to provide more information about <span class="math inline">\(y_{i_2, j}\)</span>, and they are expected to covary positively with each other. Specifically, <span class="math inline">\(y_{i_1, j}\)</span> seems to give more information about what the mean <span class="math inline">\(\theta_j\)</span> is, and values from the same <span class="math inline">\(\theta_j\)</span> are expected to be closer together (due to decreased variability). A more formal mathematical justification cannot be provided here.</p>
 </section><section id="c" class="level3" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="c">
 <span class="header-section-number">6.1.3</span> c</h3>
 <p><span class="math display">\[\begin{align}
@@ -1474,7 +1474,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 </div>
 </div>
 </div>
-<p>Our prior estimates for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\tau^2\)</span> were fairly estimate, but our estimate for <span class="math inline">\(\sigma^2\)</span> was very far off. After this analysis, we have estimates for <span class="math inline">\(\mu\)</span>, the average amount of hours of schoolwork spent at a typical school, <span class="math inline">\(\tau^2\)</span>, the variability between schools in the average hours of schoolwork, and <span class="math inline">\(\sigma^2\)</span>, the variability among students’ hours in each school.</p>
+<p>The prior estimates for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\tau^2\)</span> were fairly accurate, but the estimate for <span class="math inline">\(\sigma^2\)</span> was very far off. After this analysis, estimates are obtained for <span class="math inline">\(\mu\)</span>, the average amount of hours of schoolwork spent at a typical school, <span class="math inline">\(\tau^2\)</span>, the variability between schools in the average hours of schoolwork, and <span class="math inline">\(\sigma^2\)</span>, the variability among students’ hours in each school.</p>
 </section><section id="c-1" class="level3" data-number="6.2.3"><h3 data-number="6.2.3" class="anchored" data-anchor-id="c-1">
 <span class="header-section-number">6.2.3</span> c</h3>
 <div class="cell" data-layout-align="center">
@@ -1504,7 +1504,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span><span class="co">#&gt; [1] 0.2616334</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><span class="math inline">\(R\)</span> measures how much of the total variance in our data is between-group. Our prior didn’t contain much information about this quantity, but after inference, we expect that around 25% of our variance comes from between group variance (<span class="math inline">\(\tau^2\)</span>).</p>
+<p><span class="math inline">\(R\)</span> measures how much of the total variance in the data is between-group. The prior didn’t contain much information about this quantity, but after inference, the expectation is that around 25% of the variance comes from between group variance (<span class="math inline">\(\tau^2\)</span>).</p>
 </section><section id="d-1" class="level3" data-number="6.2.4"><h3 data-number="6.2.4" class="anchored" data-anchor-id="d-1">
 <span class="header-section-number">6.2.4</span> d</h3>
 <div class="cell" data-layout-align="center">
@@ -2241,7 +2241,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-234"><a href="#cb15-234" aria-hidden="true" tabindex="-1"></a>for which we'll use a Gibbs sampler. We need to find the full conditionals for</span>
 <span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a>all unknown quantities above, which seems intimidating. In the Chapter 6 notes</span>
-<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a>("a shortcut for thinking about full conditionals"), however, I mention that</span>
+<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a>In the Chapter 6 notes ("a shortcut for thinking about full conditionals"), it should be mentioned that</span>
 <span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a>obtaining the full conditional for a single parameter is fairly straightforward</span>
 <span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a>by simply writing the entire joint posterior but then treating the other</span>
 <span id="cb15-239"><a href="#cb15-239" aria-hidden="true" tabindex="-1"></a>parameters as constants that can be discarded via proportionality.</span>
@@ -2271,7 +2271,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-263"><a href="#cb15-263" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-264"><a href="#cb15-264" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quantities</span></span>
 <span id="cb15-265"><a href="#cb15-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-266"><a href="#cb15-266" aria-hidden="true" tabindex="-1"></a>Since the work is quite tedious, I leave out the derivations for the full</span>
+<span id="cb15-266"><a href="#cb15-266" aria-hidden="true" tabindex="-1"></a>Since the work is quite tedious, the derivations for the full</span>
 <span id="cb15-267"><a href="#cb15-267" aria-hidden="true" tabindex="-1"></a>conditionals of the parameters. To summarize, given priors</span>
 <span id="cb15-268"><a href="#cb15-268" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-269"><a href="#cb15-269" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
@@ -2425,7 +2425,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-419"><a href="#cb15-419" aria-hidden="true" tabindex="-1"></a><span class="fu">### MCMC diagnostics</span></span>
 <span id="cb15-420"><a href="#cb15-420" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-421"><a href="#cb15-421" aria-hidden="true" tabindex="-1"></a>The book mentions here that it's important to check convergence of the Gibbs </span>
-<span id="cb15-422"><a href="#cb15-422" aria-hidden="true" tabindex="-1"></a>sampler; I won't do that here, but dividing the samples into groups of e.g. 500 </span>
+<span id="cb15-422"><a href="#cb15-422" aria-hidden="true" tabindex="-1"></a>sampler; this is not done here, but dividing the samples into groups of e.g. 500 </span>
 <span id="cb15-423"><a href="#cb15-423" aria-hidden="true" tabindex="-1"></a>samples, and ensuring that the mean values of the parameters don't change too</span>
 <span id="cb15-424"><a href="#cb15-424" aria-hidden="true" tabindex="-1"></a>much from group to group is a good way to check, at least for a manageable</span>
 <span id="cb15-425"><a href="#cb15-425" aria-hidden="true" tabindex="-1"></a>number of parameters.</span>
@@ -2519,7 +2519,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-513"><a href="#cb15-513" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-514"><a href="#cb15-514" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis of math score data</span></span>
 <span id="cb15-515"><a href="#cb15-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-516"><a href="#cb15-516" aria-hidden="true" tabindex="-1"></a>For time I haven't reproduced the analysis here are there aren't too many</span>
+<span id="cb15-516"><a href="#cb15-516" aria-hidden="true" tabindex="-1"></a>For brevity, the analysis is not reproduced here as there aren't too many</span>
 <span id="cb15-517"><a href="#cb15-517" aria-hidden="true" tabindex="-1"></a>conclusions drawn - the point is just that you can let the variance vary across</span>
 <span id="cb15-518"><a href="#cb15-518" aria-hidden="true" tabindex="-1"></a>groups.</span>
 <span id="cb15-519"><a href="#cb15-519" aria-hidden="true" tabindex="-1"></a></span>
@@ -2529,21 +2529,21 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-523"><a href="#cb15-523" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-524"><a href="#cb15-524" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
 <span id="cb15-525"><a href="#cb15-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-526"><a href="#cb15-526" aria-hidden="true" tabindex="-1"></a>I expect $\text{Var}(y_{i, j} \mid \mu, \tau^2)$ to be bigger since it includes</span>
+<span id="cb15-526"><a href="#cb15-526" aria-hidden="true" tabindex="-1"></a>The expectation is that $\text{Var}(y_{i, j} \mid \mu, \tau^2)$ will be bigger since it includes</span>
 <span id="cb15-527"><a href="#cb15-527" aria-hidden="true" tabindex="-1"></a>both within- and between-group sampling variability.</span>
 <span id="cb15-528"><a href="#cb15-528" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-529"><a href="#cb15-529" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
 <span id="cb15-530"><a href="#cb15-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-531"><a href="#cb15-531" aria-hidden="true" tabindex="-1"></a>I think $\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)$ is zero</span>
-<span id="cb15-532"><a href="#cb15-532" aria-hidden="true" tabindex="-1"></a>because, according to exchangeability, our $y_{i, j}$ are conditionally i.i.d.</span>
+<span id="cb15-531"><a href="#cb15-531" aria-hidden="true" tabindex="-1"></a>$\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)$ is expected to be zero</span>
+<span id="cb15-532"><a href="#cb15-532" aria-hidden="true" tabindex="-1"></a>because, according to exchangeability, $y_{i, j}$ are conditionally i.i.d.</span>
 <span id="cb15-533"><a href="#cb15-533" aria-hidden="true" tabindex="-1"></a>when $\theta_j, \sigma^2$ is known.</span>
 <span id="cb15-534"><a href="#cb15-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-535"><a href="#cb15-535" aria-hidden="true" tabindex="-1"></a>On the other hand, given our model, it seems like knowing about another $y_{i_1,</span>
-<span id="cb15-536"><a href="#cb15-536" aria-hidden="true" tabindex="-1"></a>j}$ *does* provide more information about $y_{i_2, j}$, and I expect them to</span>
+<span id="cb15-535"><a href="#cb15-535" aria-hidden="true" tabindex="-1"></a>On the other hand, given the model, knowing about another $y_{i_1,</span>
+<span id="cb15-536"><a href="#cb15-536" aria-hidden="true" tabindex="-1"></a>j}$ *does* appear to provide more information about $y_{i_2, j}$, and they are expected to</span>
 <span id="cb15-537"><a href="#cb15-537" aria-hidden="true" tabindex="-1"></a>covary positively with each other. Specifically, $y_{i_1, j}$ seems to give more</span>
-<span id="cb15-538"><a href="#cb15-538" aria-hidden="true" tabindex="-1"></a>information about what the mean $\theta_j$ is, and we expect values from the</span>
-<span id="cb15-539"><a href="#cb15-539" aria-hidden="true" tabindex="-1"></a>same $\theta_j$ to be closer together (due to decreased variability). I can't</span>
-<span id="cb15-540"><a href="#cb15-540" aria-hidden="true" tabindex="-1"></a>come up with a more formal mathematical justification, though.</span>
+<span id="cb15-538"><a href="#cb15-538" aria-hidden="true" tabindex="-1"></a>information about what the mean $\theta_j$ is, and values from the</span>
+<span id="cb15-539"><a href="#cb15-539" aria-hidden="true" tabindex="-1"></a>same $\theta_j$ are expected to be closer together (due to decreased variability). A more</span>
+<span id="cb15-540"><a href="#cb15-540" aria-hidden="true" tabindex="-1"></a>formal mathematical justification cannot be provided here.</span>
 <span id="cb15-541"><a href="#cb15-541" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-542"><a href="#cb15-542" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
 <span id="cb15-543"><a href="#cb15-543" aria-hidden="true" tabindex="-1"></a></span>
@@ -2752,8 +2752,8 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-754"><a href="#cb15-754" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">scales =</span> <span class="st">'free'</span>)</span>
 <span id="cb15-755"><a href="#cb15-755" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-756"><a href="#cb15-756" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-757"><a href="#cb15-757" aria-hidden="true" tabindex="-1"></a>Our prior estimates for $\mu$ and $\tau^2$ were fairly estimate, but our </span>
-<span id="cb15-758"><a href="#cb15-758" aria-hidden="true" tabindex="-1"></a>estimate for $\sigma^2$ was very far off. After this analysis, we have estimates</span>
+<span id="cb15-757"><a href="#cb15-757" aria-hidden="true" tabindex="-1"></a>The prior estimates for $\mu$ and $\tau^2$ were fairly accurate, but the </span>
+<span id="cb15-758"><a href="#cb15-758" aria-hidden="true" tabindex="-1"></a>estimate for $\sigma^2$ was very far off. After this analysis, estimates are obtained</span>
 <span id="cb15-759"><a href="#cb15-759" aria-hidden="true" tabindex="-1"></a>for $\mu$, the average amount of hours of schoolwork spent at a typical school, </span>
 <span id="cb15-760"><a href="#cb15-760" aria-hidden="true" tabindex="-1"></a>$\tau^2$, the variability between schools in the average hours of schoolwork, </span>
 <span id="cb15-761"><a href="#cb15-761" aria-hidden="true" tabindex="-1"></a>and $\sigma^2$, the variability among students' hours in each school.</span>
@@ -2779,9 +2779,9 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-783"><a href="#cb15-783" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(R_post<span class="sc">$</span>value)</span>
 <span id="cb15-784"><a href="#cb15-784" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-785"><a href="#cb15-785" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-786"><a href="#cb15-786" aria-hidden="true" tabindex="-1"></a>$R$ measures how much of the total variance in our data is between-group. Our</span>
+<span id="cb15-786"><a href="#cb15-786" aria-hidden="true" tabindex="-1"></a>$R$ measures how much of the total variance in the data is between-group. The</span>
 <span id="cb15-787"><a href="#cb15-787" aria-hidden="true" tabindex="-1"></a>prior didn't contain much information about this quantity, but after inference,</span>
-<span id="cb15-788"><a href="#cb15-788" aria-hidden="true" tabindex="-1"></a>we expect that around 25\% of our variance comes from between group variance</span>
+<span id="cb15-788"><a href="#cb15-788" aria-hidden="true" tabindex="-1"></a>the expectation is that around 25\% of the variance comes from between group variance</span>
 <span id="cb15-789"><a href="#cb15-789" aria-hidden="true" tabindex="-1"></a>($\tau^2$).</span>
 <span id="cb15-790"><a href="#cb15-790" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-791"><a href="#cb15-791" aria-hidden="true" tabindex="-1"></a><span class="fu">### d</span></span>

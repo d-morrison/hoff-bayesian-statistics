@@ -2441,7 +2441,7 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 <p><span class="header-section-number">3</span> Sampling from the conditional distributions</p>
 <p>Again, to proceed with Gibbs sampling, we simply need to calculate the full conditional distributions of the parameters. We already computed the full conditional for <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n\)</span> in 5.2. For <span class="math inline">\(\theta
 \mid \mathcal{N}(\mu_0, \tau_0^2)\)</span>, then <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n
-\sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> I will not reproduce here (see 5.2).</p>
+\sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> are not reproduced here (see 5.2).</p>
 <p>Now we find the full conditional for <span class="math inline">\(\sigma^2\)</span> using the exact same method as in 5.2:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -3000,7 +3000,7 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 <span id="cb21-3"><a></a><span class="co">#&gt; 227.5474</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>These samples are actually highly autocorrelated, hence the minimum effective sample sizes. But I’m not sure (?) the purpose of calculating the autocorrelation of the minimum and maximum <span class="math inline">\(\theta\)</span>?</p>
+<p>These samples are actually highly autocorrelated, hence the minimum effective sample sizes. However, the purpose of calculating the autocorrelation of the minimum and maximum <span class="math inline">\(\theta\)</span> is unclear.</p>
 </section><section id="d-1" class="slide level2"><h2>d</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>YCOMP <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">y =</span> YPRED, <span class="at">dataset =</span> <span class="st">&#39;predictive&#39;</span>), <span class="fu">data.frame</span>(<span class="at">y =</span> Y, <span class="at">dataset =</span> <span class="st">&#39;original&#39;</span>))</span>

@@ -450,9 +450,9 @@ window.Quarto = {
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">swim</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">'Exercises/swim.dat'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>To specify our prior, we let the prior expectation of our <span class="math inline">\(y\)</span>-intercept to be 23, and we let the prior expectation of the effect of training week by week to be 0, so <span class="math inline">\(\boldsymbol{\beta} = (23, 0)^T\)</span>.</p>
-<p>We expect no covariance with the <span class="math inline">\(\beta\)</span> coefficients, but we do have uncertainty about our initial <span class="math inline">\(\beta\)</span> estimates. Specifically, to let 95% of our uncertainty of the <span class="math inline">\(y\)</span>-intercept to fall in <span class="math inline">\([22, 24]\)</span>, we let <span class="math inline">\(\Sigma_{0(1, 1)} = 1/4\)</span> (so that <span class="math inline">\(\pm\)</span> 2 standard deviations is <span class="math inline">\(\pm\)</span> 1). We also expect that training has a relatively mild effect on time, so we let <span class="math inline">\(\Sigma_{0(2, 2)} = 0.1\)</span> which is just an arbitrarily chosen small variance.</p>
-<p>For our expectation of the variability of measurements, let’s similarly set <span class="math inline">\(\sigma^2_0 = 1/4\)</span> and only lightly center this prior with <span class="math inline">\(\nu_0 = 1\)</span>.</p>
+<p>To specify the prior, the prior expectation of the <span class="math inline">\(y\)</span>-intercept is set to 23, and the prior expectation of the effect of training week by week is set to 0, so <span class="math inline">\(\boldsymbol{\beta} = (23, 0)^T\)</span>.</p>
+<p>No covariance with the <span class="math inline">\(\beta\)</span> coefficients is expected, but there is uncertainty about the initial <span class="math inline">\(\beta\)</span> estimates. Specifically, to let 95% of the uncertainty of the <span class="math inline">\(y\)</span>-intercept fall in <span class="math inline">\([22, 24]\)</span>, <span class="math inline">\(\Sigma_{0(1, 1)} = 1/4\)</span> is set (so that <span class="math inline">\(\pm\)</span> 2 standard deviations is <span class="math inline">\(\pm\)</span> 1). Training is expected to have a relatively mild effect on time, so <span class="math inline">\(\Sigma_{0(2, 2)} = 0.1\)</span> is set, which is an arbitrarily chosen small variance.</p>
+<p>For the expectation of the variability of measurements, similarly set <span class="math inline">\(\sigma^2_0 = 1/4\)</span> and only lightly center this prior with <span class="math inline">\(\nu_0 = 1\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span> <span class="co"># mvrnorm</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -520,7 +520,7 @@ window.Quarto = {
 <span><span class="co">#&gt; 0.6524 0.0134 0.3060 0.0282</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>We notice that with our posterior predictive dataset, swimmer 1 is the fastest about 65% of the time by week 13, so we recommend that swimmer 1 race.</p>
+<p>With the posterior predictive dataset, swimmer 1 is the fastest about 65% of the time by week 13, so the recommendation is that swimmer 1 race.</p>
 </section></section><section id="section-1" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="section-1">
 <span class="header-section-number">1.2</span> 9.3</h2>
 <div class="cell" data-layout-align="center">
@@ -1261,17 +1261,17 @@ window.Quarto = {
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>swim <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/swim.dat'</span>)</span>
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>To specify our prior, we let the prior expectation of our $y$-intercept to be </span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>23, and we let the prior expectation of the effect of training week by week to</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>be 0, so $\boldsymbol{\beta} = (23, 0)^T$.</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>To specify the prior, the prior expectation of the $y$-intercept is set to </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>23, and the prior expectation of the effect of training week by week is set to</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>0, so $\boldsymbol{\beta} = (23, 0)^T$.</span>
 <span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>We expect no covariance with the $\beta$ coefficients, but we do have</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>uncertainty about our initial $\beta$ estimates. Specifically, to let 95% of our</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>uncertainty of the $y$-intercept to fall in $<span class="co">[</span><span class="ot">22, 24</span><span class="co">]</span>$, we let $\Sigma_{0(1, 1)} = 1/4$ (so that $\pm$ 2 standard deviations is $\pm$ 1).</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>We also expect that training has a relatively mild effect on time, so we let</span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>$\Sigma_{0(2, 2)} = 0.1$ which is just an arbitrarily chosen small variance.</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>No covariance with the $\beta$ coefficients is expected, but there is</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>uncertainty about the initial $\beta$ estimates. Specifically, to let 95% of the</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>uncertainty of the $y$-intercept fall in $<span class="co">[</span><span class="ot">22, 24</span><span class="co">]</span>$, $\Sigma_{0(1, 1)} = 1/4$ is set (so that $\pm$ 2 standard deviations is $\pm$ 1).</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>Training is expected to have a relatively mild effect on time, so</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>$\Sigma_{0(2, 2)} = 0.1$ is set, which is an arbitrarily chosen small variance.</span>
 <span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>For our expectation of the variability of measurements, let's similarly set </span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>For the expectation of the variability of measurements, similarly set </span>
 <span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>$\sigma^2_0 = 1/4$ and only lightly center this prior with $\nu_0 = 1$.</span>
 <span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -1339,8 +1339,8 @@ window.Quarto = {
 <span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(fastest_times) <span class="sc">/</span> <span class="fu">length</span>(fastest_times)</span>
 <span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a>We notice that with our posterior predictive dataset, swimmer 1 is the fastest </span>
-<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>about 65% of the time by week 13, so we recommend that swimmer 1 race.</span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a>With the posterior predictive dataset, swimmer 1 is the fastest </span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>about 65% of the time by week 13, so the recommendation is that swimmer 1 race.</span>
 <span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## 9.3</span></span>
 <span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a></span>

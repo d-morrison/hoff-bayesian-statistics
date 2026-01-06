@@ -2955,7 +2955,7 @@ Jesse Mu
 <p><span class="math display">\[
 p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_m)
 \]</span></p>
-<p>for which we’ll use a Gibbs sampler. We need to find the full conditionals for all unknown quantities above, which seems intimidating. In the Chapter 6 notes (“a shortcut for thinking about full conditionals”), however, I mention that obtaining the full conditional for a single parameter is fairly straightforward by simply writing the entire joint posterior but then treating the other parameters as constants that can be discarded via proportionality.</p>
+<p>for which we’ll use a Gibbs sampler. We need to find the full conditionals for all unknown quantities above, which seems intimidating. In the Chapter 6 notes In the Chapter 6 notes (“a shortcut for thinking about full conditionals”), it should be mentioned that obtaining the full conditional for a single parameter is fairly straightforward by simply writing the entire joint posterior but then treating the other parameters as constants that can be discarded via proportionality.</p>
 <p>To obtain the full joint posterior we will take use key independence assumptions between the parameters of our model. For example, given a group-specific mean <span class="math inline">\(\theta_j\)</span>, the corresponding random variables <span class="math inline">\(Y_{i, j}\)</span> depend only on <span class="math inline">\((\theta_j, \sigma^2)\)</span> and not on <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\tau^2\)</span> (this is implied in Figure 8.3).</p>
 <p><span class="math display">\[\begin{align}
 &amp; p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_m) \\
@@ -2969,7 +2969,7 @@ p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots,
 <p><span class="math display">\[p(\mu \mid \theta_1, \dots, \theta_m, \tau^2, \sigma^2, \boldsymbol{y}_1, \dots, \boldsymbol{y}_m) \propto p(\mu) \prod_{j=1}^m p(\theta_j \mid \mu, \tau^2)\]</span></p>
 <p>which in this case looks exactly like a standard one-sample Normal posterior from Chapter 6, so we borrow that result and replace the relevant variables from our priors. We can do this similarly for the other parameters.</p>
 </section><section id="quantities" class="slide level2"><h2>Quantities</h2>
-<p>Since the work is quite tedious, I leave out the derivations for the full conditionals of the parameters. To summarize, given priors</p>
+<p>Since the work is quite tedious, the derivations for the full conditionals of the parameters. To summarize, given priors</p>
 <p><span class="math display">\[\begin{align}
 \sigma^2 &amp;\sim \text{inverse-gamma}(\nu_0 / 2, \sigma_0^2 \nu_0 / 2) \\
 \tau^2 &amp;\sim \text{inverse-gamma}(\eta_0 / 2, \tau_0^2 \eta_0 / 2) \\
@@ -3081,7 +3081,7 @@ p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots,
 </details>
 </div>
 </section><section id="mcmc-diagnostics" class="slide level2"><h2>MCMC diagnostics</h2>
-<p>The book mentions here that it’s important to check convergence of the Gibbs sampler; I won’t do that here, but dividing the samples into groups of e.g. 500 samples, and ensuring that the mean values of the parameters don’t change too much from group to group is a good way to check, at least for a manageable number of parameters.</p>
+<p>The book mentions here that it’s important to check convergence of the Gibbs sampler; this is not done here, but dividing the samples into groups of e.g. 500 samples, and ensuring that the mean values of the parameters don’t change too much from group to group is a good way to check, at least for a manageable number of parameters.</p>
 </section></section><section id="posterior-summaries-and-shrinkage" class="title-slide slide level1 center" data-number="4.2"><h1>
 <span class="header-section-number">4.2</span> Posterior summaries and shrinkage</h1>
 <p>Notice from the full conditional of <span class="math inline">\(\theta_j\)</span> above that the expected value of <span class="math inline">\(\theta_j\)</span> is a weighted average of <span class="math inline">\(\bar{y}_j\)</span> and <span class="math inline">\(\mu\)</span>:</p>
@@ -3129,17 +3129,17 @@ p(\nu_0 \mid \sigma_0^2, \dots, \sigma_m^2) \propto \left( \frac{(\sigma_0^2 \nu
 \]</span></p>
 </section><section id="analysis-of-math-score-data" class="title-slide slide level1 center" data-number="5.1"><h1>
 <span class="header-section-number">5.1</span> Analysis of math score data</h1>
-<p>For time I haven’t reproduced the analysis here are there aren’t too many conclusions drawn - the point is just that you can let the variance vary across groups.</p>
+<p>For brevity, the analysis is not reproduced here as there aren’t too many conclusions drawn - the point is just that you can let the variance vary across groups.</p>
 <p><span class="header-section-number">6</span> Exercises</p>
 </section><section><section id="section" class="title-slide slide level1 center" data-number="6.1"><h1>
 <span class="header-section-number">6.1</span> 8.1</h1>
 
 </section><section id="a" class="slide level2"><h2>a</h2>
-<p>I expect <span class="math inline">\(\text{Var}(y_{i, j} \mid \mu, \tau^2)\)</span> to be bigger since it includes both within- and between-group sampling variability.</p>
+<p>The expectation is that <span class="math inline">\(\text{Var}(y_{i, j} \mid \mu, \tau^2)\)</span> will be bigger since it includes both within- and between-group sampling variability.</p>
 </section><section id="b" class="slide level2"><h2>b</h2>
-<p>I think <span class="math inline">\(\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)\)</span> is zero because, according to exchangeability, our <span class="math inline">\(y_{i, j}\)</span> are conditionally i.i.d. when <span class="math inline">\(\theta_j, \sigma^2\)</span> is known.</p>
-<p>On the other hand, given our model, it seems like knowing about another <span class="math inline">\(y_{i_1,
-j}\)</span> <em>does</em> provide more information about <span class="math inline">\(y_{i_2, j}\)</span>, and I expect them to covary positively with each other. Specifically, <span class="math inline">\(y_{i_1, j}\)</span> seems to give more information about what the mean <span class="math inline">\(\theta_j\)</span> is, and we expect values from the same <span class="math inline">\(\theta_j\)</span> to be closer together (due to decreased variability). I can’t come up with a more formal mathematical justification, though.</p>
+<p><span class="math inline">\(\text{Cov}(y_{i_1, j}, y_{i_2, j} \mid \theta_j, \sigma^2)\)</span> is expected to be zero because, according to exchangeability, <span class="math inline">\(y_{i, j}\)</span> are conditionally i.i.d. when <span class="math inline">\(\theta_j, \sigma^2\)</span> is known.</p>
+<p>On the other hand, given the model, knowing about another <span class="math inline">\(y_{i_1,
+j}\)</span> <em>does</em> appear to provide more information about <span class="math inline">\(y_{i_2, j}\)</span>, and they are expected to covary positively with each other. Specifically, <span class="math inline">\(y_{i_1, j}\)</span> seems to give more information about what the mean <span class="math inline">\(\theta_j\)</span> is, and values from the same <span class="math inline">\(\theta_j\)</span> are expected to be closer together (due to decreased variability). A more formal mathematical justification cannot be provided here.</p>
 </section><section id="c" class="slide level2"><h2>c</h2>
 <p><span class="math display">\[\begin{align}
 \text{Var}(y_{i, j} \mid \theta_j, \sigma^2) &amp;= \sigma^2 &amp; \text{By def.}\\
@@ -3334,7 +3334,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 </div>
 </div>
 </div>
-<p>Our prior estimates for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\tau^2\)</span> were fairly estimate, but our estimate for <span class="math inline">\(\sigma^2\)</span> was very far off. After this analysis, we have estimates for <span class="math inline">\(\mu\)</span>, the average amount of hours of schoolwork spent at a typical school, <span class="math inline">\(\tau^2\)</span>, the variability between schools in the average hours of schoolwork, and <span class="math inline">\(\sigma^2\)</span>, the variability among students’ hours in each school.</p>
+<p>The prior estimates for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\tau^2\)</span> were fairly accurate, but the estimate for <span class="math inline">\(\sigma^2\)</span> was very far off. After this analysis, estimates are obtained for <span class="math inline">\(\mu\)</span>, the average amount of hours of schoolwork spent at a typical school, <span class="math inline">\(\tau^2\)</span>, the variability between schools in the average hours of schoolwork, and <span class="math inline">\(\sigma^2\)</span>, the variability among students’ hours in each school.</p>
 </section><section id="c-1" class="slide level2"><h2>c</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>t20_prior <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="fl">1e6</span>, eta0 <span class="sc">/</span> <span class="dv">2</span>, eta0 <span class="sc">*</span> t20 <span class="sc">/</span> <span class="dv">2</span>))</span>
@@ -3363,7 +3363,7 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb12-3"><a></a><span class="co">#&gt; [1] 0.2616334</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><span class="math inline">\(R\)</span> measures how much of the total variance in our data is between-group. Our prior didn’t contain much information about this quantity, but after inference, we expect that around 25% of our variance comes from between group variance (<span class="math inline">\(\tau^2\)</span>).</p>
+<p><span class="math inline">\(R\)</span> measures how much of the total variance in the data is between-group. The prior didn’t contain much information about this quantity, but after inference, the expectation is that around 25% of the variance comes from between group variance (<span class="math inline">\(\tau^2\)</span>).</p>
 </section><section id="d-1" class="slide level2"><h2>d</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>theta7_lt_6 <span class="ot">=</span> THETA[, <span class="dv">7</span>] <span class="sc">&lt;</span> THETA[, <span class="dv">6</span>]</span>

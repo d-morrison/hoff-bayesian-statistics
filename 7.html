@@ -768,9 +768,9 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 </details>
 </div>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Note that this defines rmvnorm and rwish, but I am goint to use default</span></span>
-<span><span class="co"># implementations or packages to see what I would be using in the real world.</span></span>
-<span><span class="co"># Specifically we need MASS::mvrnorm (Modern Applied Statistics with S), and</span></span>
+<details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Note that this defines rmvnorm and rwish, but default</span></span>
+<span><span class="co"># implementations or packages are used here for real-world applications.</span></span>
+<span><span class="co"># Specifically MASS::mvrnorm (Modern Applied Statistics with S) is needed, and</span></span>
 <span><span class="co"># wishart comes default in newer R distributions with rWishart</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"Inline/chapter7.R"</span><span class="op">)</span></span>
 <span><span class="co"># Try plotting</span></span>
@@ -1209,16 +1209,16 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </div>
 <section id="a-2" class="level3" data-number="7.3.1"><h3 data-number="7.3.1" class="anchored" data-anchor-id="a-2">
 <span class="header-section-number">7.3.1</span> a</h3>
-<p>With typical intuitions about life expectancy and age of marriage, I suspect that the ages of most of the married couples will fall between 25 and 80. There may be slight age differences among men and women, but nothing that I’m confident enough to to encode in my prior. Thus I will set <span class="math inline">\(\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T\)</span></p>
-<p>I have no choice but to pick a semiconjugate prior distribution in this case, but it does seem intuitive that there are less married couples at ages 25 and 80 than there are married couples around age 50, thus justifying a bell curve centered around <span class="math inline">\(52.5\)</span> with variance <span class="math inline">\(13.75^2 \approx 189\)</span> such that approximately 95% of my prior falls within the range <span class="math inline">\((25, 80)\)</span>.</p>
-<p>I also have reason to believe the ages of the couples are quite tightly correlated, so knowing the above variance, I will aim for a prior correlation of <span class="math inline">\(0.75\)</span> Solving the correlation equation gives</p>
+<p>With typical intuitions about life expectancy and age of marriage, I suspect that the ages of most of the married couples will fall between 25 and 80. There may be slight age differences among men and women, but not enough to warrant encoding in the prior. Thus <span class="math inline">\(\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T\)</span> is set.</p>
+<p>A semiconjugate prior distribution is chosen in this case, as it seems intuitive that there are fewer married couples at ages 25 and 80 than there are married couples around age 50, thus justifying a bell curve centered around <span class="math inline">\(52.5\)</span> with variance <span class="math inline">\(13.75^2 \approx 189\)</span> such that approximately 95% of the prior falls within the range <span class="math inline">\((25, 80)\)</span>.</p>
+<p>The ages of the couples are expected to be quite tightly correlated, so knowing the above variance, a prior correlation of <span class="math inline">\(0.75\)</span> is targeted. Solving the correlation equation gives</p>
 <p><span class="math display">\[\begin{align}
 &amp; 0.75 = \frac{\sigma_{1, 2}}{189} \\
 \implies&amp; \sigma_{1, 2} = 141.75
 \end{align}\]</span></p>
-<p>So I will set <span class="math display">\[\Lambda_0 = \begin{bmatrix} 189 &amp; 141.75 \\ 141.75 &amp; 189 \end{bmatrix} \]</span></p>
-<p>Like previous problems, for the variance, I will set <span class="math inline">\(\mathbf{S}_0^{-1} =
-\Lambda_0\)</span> and <span class="math inline">\(\nu_0 = p + 2 = 4\)</span>. Note that this only loosely centers our covariance matrix prior on <span class="math inline">\(\Lambda_0\)</span>, so I am being a bit conservative in terms of my belief in the variance and the correlation between the ages.</p>
+<p>Thus <span class="math display">\[\Lambda_0 = \begin{bmatrix} 189 &amp; 141.75 \\ 141.75 &amp; 189 \end{bmatrix} \]</span> is set.</p>
+<p>Like previous problems, for the variance, <span class="math inline">\(\mathbf{S}_0^{-1} =
+\Lambda_0\)</span> and <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> are set. Note that this only loosely centers the covariance matrix prior on <span class="math inline">\(\Lambda_0\)</span>, representing a conservative approach in terms of belief in the variance and the correlation between the ages.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Y</span> <span class="op">=</span> <span class="va">agehw</span></span>
 <span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">agehw</span><span class="op">)</span></span>
@@ -1233,9 +1233,9 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </div>
 </section><section id="b-2" class="level3" data-number="7.3.2"><h3 data-number="7.3.2" class="anchored" data-anchor-id="b-2">
 <span class="header-section-number">7.3.2</span> b</h3>
-<p>The wording of the question is interesting - I assume I’m supposed to sample a fixed <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span> and from there sample <span class="math inline">\(100\)</span> points all with the same parameters. If I were to do this myself, I feel like I would sample a new data point for each sample of <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span>…</p>
-<p>In fact, because of that wording, I originally set <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> to loosely center my prior. But given that this variance will often produce uncorrelated prior predictive datasets, I’m increasing <span class="math inline">\(\nu_0\)</span> a bit…</p>
-<p>After increasing <span class="math inline">\(\nu_0\)</span>, I’m fairly comfortable with what these posterior predictive datasets look like.</p>
+<p>The wording of the question is interesting - the assumption is to sample a fixed <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span> and from there sample <span class="math inline">\(100\)</span> points all with the same parameters. An alternative approach would be to sample a new data point for each sample of <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span>.</p>
+<p>In fact, because of that wording, <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> was originally set to loosely center the prior. But given that this variance will often produce uncorrelated prior predictive datasets, <span class="math inline">\(\nu_0\)</span> is increased slightly.</p>
+<p>After increasing <span class="math inline">\(\nu_0\)</span>, the posterior predictive datasets appear satisfactory.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">N</span> <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="va">S</span> <span class="op">=</span> <span class="fl">12</span></span>
@@ -1332,7 +1332,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </div>
 </section><section id="d" class="level3" data-number="7.3.4"><h3 data-number="7.3.4" class="anchored" data-anchor-id="d">
 <span class="header-section-number">7.3.4</span> d</h3>
-<p>I haven’t done 7.2, but doing Jeffreys’ prior and a “diffuse prior” below will still be helpful to see what effect prior information has.</p>
+<p>Exercise 7.2 has not been completed, but doing Jeffreys’ prior and a “diffuse prior” below will still be helpful to see what effect prior information has.</p>
 <section id="i" class="level4"><h4 class="anchored" data-anchor-id="i">i</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">THETA</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="va">S</span>, ncol <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span>
@@ -1395,8 +1395,8 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </section></section><section id="e" class="level3" data-number="7.3.5"><h3 data-number="7.3.5" class="anchored" data-anchor-id="e">
 <span class="header-section-number">7.3.5</span> e</h3>
 <p>It doesn’t really seem like the prior information matters because the sample size is so large. Regardless of whether the prior is informative, the quantiles and correlations end up quite similar. Maybe the diffuse prior is slightly different, but it’s not a big difference.</p>
-<p>If we have a smaller sample size, this may be different. Let’s see what happens if I truncate the dataset to the first 25 variables and rerun with my informative prior and the diffuse prior:</p>
-<section id="my-prior" class="level4"><h4 class="anchored" data-anchor-id="my-prior">My prior</h4>
+<p>If a smaller sample size is used, this may be different. The following shows what happens when the dataset is truncated to the first 25 variables and rerun with the informative prior and the diffuse prior:</p>
+<section id="informative-prior" class="level4"><h4 class="anchored" data-anchor-id="informative-prior">Informative prior</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mu0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">52.5</span>, <span class="va">p</span><span class="op">)</span></span>
 <span><span class="va">lambda0</span> <span class="op">=</span> <span class="va">s0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">189</span>, <span class="fl">141.75</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">141.75</span>, <span class="fl">189</span><span class="op">)</span><span class="op">)</span></span>
@@ -2356,9 +2356,9 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb22-451"><a href="#cb22-451" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-452"><a href="#cb22-452" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-455"><a href="#cb22-455" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-456"><a href="#cb22-456" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that this defines rmvnorm and rwish, but I am goint to use default</span></span>
-<span id="cb22-457"><a href="#cb22-457" aria-hidden="true" tabindex="-1"></a><span class="co"># implementations or packages to see what I would be using in the real world.</span></span>
-<span id="cb22-458"><a href="#cb22-458" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifically we need MASS::mvrnorm (Modern Applied Statistics with S), and</span></span>
+<span id="cb22-456"><a href="#cb22-456" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that this defines rmvnorm and rwish, but default</span></span>
+<span id="cb22-457"><a href="#cb22-457" aria-hidden="true" tabindex="-1"></a><span class="co"># implementations or packages are used here for real-world applications.</span></span>
+<span id="cb22-458"><a href="#cb22-458" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifically MASS::mvrnorm (Modern Applied Statistics with S) is needed, and</span></span>
 <span id="cb22-459"><a href="#cb22-459" aria-hidden="true" tabindex="-1"></a><span class="co"># wishart comes default in newer R distributions with rWishart</span></span>
 <span id="cb22-460"><a href="#cb22-460" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"Inline/chapter7.R"</span>)</span>
 <span id="cb22-461"><a href="#cb22-461" aria-hidden="true" tabindex="-1"></a><span class="co"># Try plotting</span></span>
@@ -2830,30 +2830,30 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb22-941"><a href="#cb22-941" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-942"><a href="#cb22-942" aria-hidden="true" tabindex="-1"></a>With typical intuitions about life expectancy and age of marriage, I suspect</span>
 <span id="cb22-943"><a href="#cb22-943" aria-hidden="true" tabindex="-1"></a>that the ages of most of the married couples will fall between 25 and 80. There</span>
-<span id="cb22-944"><a href="#cb22-944" aria-hidden="true" tabindex="-1"></a>may be slight age differences among men and women, but nothing that I'm</span>
-<span id="cb22-945"><a href="#cb22-945" aria-hidden="true" tabindex="-1"></a>confident enough to to encode in my prior. Thus I will set $\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T$</span>
+<span id="cb22-944"><a href="#cb22-944" aria-hidden="true" tabindex="-1"></a>may be slight age differences among men and women, but not enough to warrant</span>
+<span id="cb22-945"><a href="#cb22-945" aria-hidden="true" tabindex="-1"></a>encoding in the prior. Thus $\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T$ is set.</span>
 <span id="cb22-946"><a href="#cb22-946" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-947"><a href="#cb22-947" aria-hidden="true" tabindex="-1"></a>I have no choice but to pick a semiconjugate prior distribution in this case,</span>
-<span id="cb22-948"><a href="#cb22-948" aria-hidden="true" tabindex="-1"></a>but it does seem intuitive that there are less married couples at ages 25 and 80</span>
+<span id="cb22-947"><a href="#cb22-947" aria-hidden="true" tabindex="-1"></a>A semiconjugate prior distribution is chosen in this case,</span>
+<span id="cb22-948"><a href="#cb22-948" aria-hidden="true" tabindex="-1"></a>as it seems intuitive that there are fewer married couples at ages 25 and 80</span>
 <span id="cb22-949"><a href="#cb22-949" aria-hidden="true" tabindex="-1"></a>than there are married couples around age 50, thus justifying a bell curve</span>
 <span id="cb22-950"><a href="#cb22-950" aria-hidden="true" tabindex="-1"></a>centered around $52.5$ with variance $13.75^2 \approx 189$ such that</span>
-<span id="cb22-951"><a href="#cb22-951" aria-hidden="true" tabindex="-1"></a>approximately 95\% of my prior falls within the range $(25, 80)$.</span>
+<span id="cb22-951"><a href="#cb22-951" aria-hidden="true" tabindex="-1"></a>approximately 95\% of the prior falls within the range $(25, 80)$.</span>
 <span id="cb22-952"><a href="#cb22-952" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-953"><a href="#cb22-953" aria-hidden="true" tabindex="-1"></a>I also have reason to believe the ages of the couples are quite tightly</span>
-<span id="cb22-954"><a href="#cb22-954" aria-hidden="true" tabindex="-1"></a>correlated, so knowing the above variance, I will aim for a prior correlation of</span>
-<span id="cb22-955"><a href="#cb22-955" aria-hidden="true" tabindex="-1"></a>$0.75$ Solving the correlation equation gives</span>
+<span id="cb22-953"><a href="#cb22-953" aria-hidden="true" tabindex="-1"></a>The ages of the couples are expected to be quite tightly</span>
+<span id="cb22-954"><a href="#cb22-954" aria-hidden="true" tabindex="-1"></a>correlated, so knowing the above variance, a prior correlation of</span>
+<span id="cb22-955"><a href="#cb22-955" aria-hidden="true" tabindex="-1"></a>$0.75$ is targeted. Solving the correlation equation gives</span>
 <span id="cb22-956"><a href="#cb22-956" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-957"><a href="#cb22-957" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
 <span id="cb22-958"><a href="#cb22-958" aria-hidden="true" tabindex="-1"></a>&amp; 0.75 = \frac{\sigma_{1, 2}}{189} <span class="sc">\\</span></span>
 <span id="cb22-959"><a href="#cb22-959" aria-hidden="true" tabindex="-1"></a>\implies&amp; \sigma_{1, 2} = 141.75</span>
 <span id="cb22-960"><a href="#cb22-960" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb22-961"><a href="#cb22-961" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-962"><a href="#cb22-962" aria-hidden="true" tabindex="-1"></a>So I will set $$\Lambda_0 = \begin{bmatrix} 189 &amp; 141.75 <span class="sc">\\</span> 141.75 &amp; 189 \end{bmatrix} $$</span>
+<span id="cb22-962"><a href="#cb22-962" aria-hidden="true" tabindex="-1"></a>Thus $$\Lambda_0 = \begin{bmatrix} 189 &amp; 141.75 <span class="sc">\\</span> 141.75 &amp; 189 \end{bmatrix} $$ is set.</span>
 <span id="cb22-963"><a href="#cb22-963" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-964"><a href="#cb22-964" aria-hidden="true" tabindex="-1"></a>Like previous problems, for the variance, I will set $\mathbf{S}_0^{-1} =</span>
-<span id="cb22-965"><a href="#cb22-965" aria-hidden="true" tabindex="-1"></a>\Lambda_0$ and $\nu_0 = p + 2 = 4$. Note that this only loosely centers our</span>
-<span id="cb22-966"><a href="#cb22-966" aria-hidden="true" tabindex="-1"></a>covariance matrix prior on $\Lambda_0$, so I am being a bit conservative in</span>
-<span id="cb22-967"><a href="#cb22-967" aria-hidden="true" tabindex="-1"></a>terms of my belief in the variance and the correlation between the ages.</span>
+<span id="cb22-964"><a href="#cb22-964" aria-hidden="true" tabindex="-1"></a>Like previous problems, for the variance, $\mathbf{S}_0^{-1} =</span>
+<span id="cb22-965"><a href="#cb22-965" aria-hidden="true" tabindex="-1"></a>\Lambda_0$ and $\nu_0 = p + 2 = 4$ are set. Note that this only loosely centers the</span>
+<span id="cb22-966"><a href="#cb22-966" aria-hidden="true" tabindex="-1"></a>covariance matrix prior on $\Lambda_0$, representing a conservative approach</span>
+<span id="cb22-967"><a href="#cb22-967" aria-hidden="true" tabindex="-1"></a>in terms of belief in the variance and the correlation between the ages.</span>
 <span id="cb22-968"><a href="#cb22-968" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-971"><a href="#cb22-971" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb22-972"><a href="#cb22-972" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> agehw</span>
@@ -2869,17 +2869,17 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb22-982"><a href="#cb22-982" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-983"><a href="#cb22-983" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
 <span id="cb22-984"><a href="#cb22-984" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-985"><a href="#cb22-985" aria-hidden="true" tabindex="-1"></a>The wording of the question is interesting - I assume I'm supposed to sample a </span>
+<span id="cb22-985"><a href="#cb22-985" aria-hidden="true" tabindex="-1"></a>The wording of the question is interesting - the assumption is to sample a </span>
 <span id="cb22-986"><a href="#cb22-986" aria-hidden="true" tabindex="-1"></a>fixed $\boldsymbol{\theta}, \Sigma$ and from there sample $100$ points all with </span>
-<span id="cb22-987"><a href="#cb22-987" aria-hidden="true" tabindex="-1"></a>the same parameters. If I were to do this myself, I feel like I would sample a</span>
-<span id="cb22-988"><a href="#cb22-988" aria-hidden="true" tabindex="-1"></a>new data point for each sample of $\boldsymbol{\theta}, \Sigma$...</span>
+<span id="cb22-987"><a href="#cb22-987" aria-hidden="true" tabindex="-1"></a>the same parameters. An alternative approach would be to sample a</span>
+<span id="cb22-988"><a href="#cb22-988" aria-hidden="true" tabindex="-1"></a>new data point for each sample of $\boldsymbol{\theta}, \Sigma$.</span>
 <span id="cb22-989"><a href="#cb22-989" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-990"><a href="#cb22-990" aria-hidden="true" tabindex="-1"></a>In fact, because of that wording, I originally set $\nu_0 = p + 2 = 4$ to</span>
-<span id="cb22-991"><a href="#cb22-991" aria-hidden="true" tabindex="-1"></a>loosely center my prior. But given that this variance will often produce uncorrelated</span>
-<span id="cb22-992"><a href="#cb22-992" aria-hidden="true" tabindex="-1"></a>prior predictive datasets, I'm increasing $\nu_0$ a bit...</span>
+<span id="cb22-990"><a href="#cb22-990" aria-hidden="true" tabindex="-1"></a>In fact, because of that wording, $\nu_0 = p + 2 = 4$ was originally set to</span>
+<span id="cb22-991"><a href="#cb22-991" aria-hidden="true" tabindex="-1"></a>loosely center the prior. But given that this variance will often produce uncorrelated</span>
+<span id="cb22-992"><a href="#cb22-992" aria-hidden="true" tabindex="-1"></a>prior predictive datasets, $\nu_0$ is increased slightly.</span>
 <span id="cb22-993"><a href="#cb22-993" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-994"><a href="#cb22-994" aria-hidden="true" tabindex="-1"></a>After increasing $\nu_0$, I'm fairly comfortable with what these posterior</span>
-<span id="cb22-995"><a href="#cb22-995" aria-hidden="true" tabindex="-1"></a>predictive datasets look like.</span>
+<span id="cb22-994"><a href="#cb22-994" aria-hidden="true" tabindex="-1"></a>After increasing $\nu_0$, the posterior</span>
+<span id="cb22-995"><a href="#cb22-995" aria-hidden="true" tabindex="-1"></a>predictive datasets appear satisfactory.</span>
 <span id="cb22-996"><a href="#cb22-996" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-999"><a href="#cb22-999" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb22-1000"><a href="#cb22-1000" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">100</span></span>
@@ -2963,7 +2963,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb22-1080"><a href="#cb22-1080" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-1081"><a href="#cb22-1081" aria-hidden="true" tabindex="-1"></a><span class="fu">### d</span></span>
 <span id="cb22-1082"><a href="#cb22-1082" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1083"><a href="#cb22-1083" aria-hidden="true" tabindex="-1"></a>I haven't done 7.2, but doing Jeffreys' prior and a "diffuse prior" below will</span>
+<span id="cb22-1083"><a href="#cb22-1083" aria-hidden="true" tabindex="-1"></a>Exercise 7.2 has not been completed, but doing Jeffreys' prior and a "diffuse prior" below will</span>
 <span id="cb22-1084"><a href="#cb22-1084" aria-hidden="true" tabindex="-1"></a>still be helpful to see what effect prior information has.</span>
 <span id="cb22-1085"><a href="#cb22-1085" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-1086"><a href="#cb22-1086" aria-hidden="true" tabindex="-1"></a><span class="fu">#### i</span></span>
@@ -3016,11 +3016,11 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb22-1137"><a href="#cb22-1137" aria-hidden="true" tabindex="-1"></a>and correlations end up quite similar. Maybe the diffuse prior is slightly </span>
 <span id="cb22-1138"><a href="#cb22-1138" aria-hidden="true" tabindex="-1"></a>different, but it's not a big difference.</span>
 <span id="cb22-1139"><a href="#cb22-1139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1140"><a href="#cb22-1140" aria-hidden="true" tabindex="-1"></a>If we have a smaller sample size, this may be different. Let's see what </span>
-<span id="cb22-1141"><a href="#cb22-1141" aria-hidden="true" tabindex="-1"></a>happens if I truncate the dataset to the first 25 variables and rerun with my </span>
+<span id="cb22-1140"><a href="#cb22-1140" aria-hidden="true" tabindex="-1"></a>If a smaller sample size is used, this may be different. The following shows what </span>
+<span id="cb22-1141"><a href="#cb22-1141" aria-hidden="true" tabindex="-1"></a>happens when the dataset is truncated to the first 25 variables and rerun with the </span>
 <span id="cb22-1142"><a href="#cb22-1142" aria-hidden="true" tabindex="-1"></a>informative prior and the diffuse prior:</span>
 <span id="cb22-1143"><a href="#cb22-1143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1144"><a href="#cb22-1144" aria-hidden="true" tabindex="-1"></a><span class="fu">#### My prior</span></span>
+<span id="cb22-1144"><a href="#cb22-1144" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Informative prior</span></span>
 <span id="cb22-1145"><a href="#cb22-1145" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-1148"><a href="#cb22-1148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb22-1149"><a href="#cb22-1149" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="fu">rep</span>(<span class="fl">52.5</span>, p)</span>

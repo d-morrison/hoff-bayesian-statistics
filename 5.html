@@ -794,10 +794,10 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s2.mc</span> <span class="op">=</span> <span class="fu"><a href="https://dkahle.github.io/invgamma/reference/invgamma.html">rinvgamma</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">s2n</span> <span class="op">*</span> <span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">s2.mc</span> <span class="op">/</span> <span class="va">kappan</span><span class="op">)</span><span class="op">)</span> <span class="co"># Accepts a vector of parameters</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">theta.mc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.814283</span></span>
+<span><span class="co">#&gt; [1] 1.813962</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">theta.mc</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%    97.5% </span></span>
-<span><span class="co">#&gt; 1.729155 1.900481</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 1.726661 1.899850</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -906,7 +906,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{exp}\left( \frac{\phi_1^2}{2\phi_2} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 \\ -(2\sigma^2)^{-1} \end{pmatrix}  \right) \\
 &amp;= \frac{1}{\sqrt{\pi}} (2\sigma^2)^{-1/2} \text{exp}\left( \frac{(\theta / \sigma^2)^2}{-2(2\sigma^2)^{-1}} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 \\ -(2\sigma^2)^{-1} \end{pmatrix} \right) \\
 \end{align}\]</span></p>
-<p>I am not going to do the exact algebra here, but notice that once you combine the exponential terms (and the matrix multiplication in the second exp), there are three separate terms added together. With a common factor of <span class="math inline">\(1 /
+<p>The exact algebra is omitted here, but note that once the exponential terms are combined (and the matrix multiplication in the second exp), there are three separate terms added together. With a common factor of <span class="math inline">\(1 /
 -2\sigma^2\)</span>, those three terms are the <span class="math inline">\(y^2\)</span>, <span class="math inline">\(2 \theta y\)</span>, and <span class="math inline">\(\theta^2\)</span> of the expanded normal density above.</p>
 <p>With exponential family models, we can now “read off” conjugate priors; for the <span class="math inline">\(p\)</span>-dimensional case, the prior is <span class="math inline">\(p(\boldsymbol{\phi} \mid n_0,
 \mathbf{t}_0) \propto c(\boldsymbol{\phi})^{n_0} \text{exp}(n_0 \mathbf{t}_0^T
@@ -954,25 +954,25 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 </div>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 5000 monte carlo samples. Need to estimate \sigma^2 before \theta.</span></span>
-<span><span class="co"># I can easily do means and confidence intervals of the \sigma^2, but for</span></span>
-<span><span class="co"># brevity, I will output only \theta</span></span>
+<span><span class="co"># Means and confidence intervals of the \sigma^2 can easily be computed, but for</span></span>
+<span><span class="co"># brevity, only \theta is output</span></span>
 <span><span class="va">school1.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school1.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school1.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school1.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      2.5%       50%     97.5% </span></span>
-<span><span class="co">#&gt;  7.805574  9.272871 10.807239</span></span>
+<span><span class="co">#&gt;  7.761914  9.295965 10.861498</span></span>
 <span></span>
 <span><span class="va">school2.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school2.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school2.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school2.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span><span class="co">#&gt; 5.223525 6.963489 8.727320</span></span>
+<span><span class="co">#&gt; 5.127859 6.960920 8.745387</span></span>
 <span></span>
 <span><span class="va">school3.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">3</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school3.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school3.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school3.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span><span class="co">#&gt; 5.716914 7.792536 9.792549</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 5.711732 7.835575 9.923848</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="b" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="b">
@@ -998,27 +998,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.0048</td>
+<td style="text-align: right;">0.0056</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0022</td>
+<td style="text-align: right;">0.0042</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.0158</td>
+<td style="text-align: right;">0.0156</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2488</td>
+<td style="text-align: right;">0.2420</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.6218</td>
+<td style="text-align: right;">0.6168</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1066</td>
+<td style="text-align: right;">0.1158</td>
 </tr>
 </tbody>
 </table>
@@ -1050,27 +1050,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.1110</td>
+<td style="text-align: right;">0.1144</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0926</td>
+<td style="text-align: right;">0.0892</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.1442</td>
+<td style="text-align: right;">0.1476</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2218</td>
+<td style="text-align: right;">0.2030</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.2426</td>
+<td style="text-align: right;">0.2452</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1878</td>
+<td style="text-align: right;">0.2006</td>
 </tr>
 </tbody>
 </table>
@@ -1081,10 +1081,10 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theta1.big.prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta1.big.prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.8706</span></span>
+<span><span class="co">#&gt; [1] 0.8588</span></span>
 <span><span class="va">y1.big.prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y1.big.prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.4644</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 0.4482</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section></section><section id="section-1" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="section-1">
@@ -1135,7 +1135,7 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <p>In general, there is weak evidence that <span class="math inline">\(\theta_A &lt; \theta_B\)</span>. Depending on the strength of a person’s confidence in the prior, as quantified by a “prior sample size” <span class="math inline">\(\nu_0 = \kappa_0\)</span>, the posterior probability starts at ~0.58 and declines as strength increases. However, it takes a <em>very</em> strong prior belief for the probability to dip below 0.50.</p>
 </section><section id="section-2" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="section-2">
 <span class="header-section-number">7.3</span> 5.3</h2>
-<p>I’ll derive <span class="math inline">\(p(\sigma^2 \mid y_1, \dots, y_n)\)</span>:</p>
+<p>The derivation of <span class="math inline">\(p(\sigma^2 \mid y_1, \dots, y_n)\)</span> is as follows:</p>
 <p><span class="math display">\[\begin{align}
 p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2)p(y_1, \dots, y_n \mid \sigma^2) \\
 &amp;= p(\sigma^2) \times \int p(y_1, \dots, y_n \mid \theta, \sigma^2) p(\theta \mid \sigma^2) \; d\theta \\
@@ -1149,7 +1149,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2)p(y_1, \dots, y_n \mid 
 \text{exp}\left(-\frac{1}{2} \frac{(\theta - \mu_0)^2}{\sigma^2 / \kappa_0}\right) \; d\theta \\
 &amp;\propto \dots
 \end{align}\]</span></p>
-<p>This is apparently non-trivial, and requires expanding the quadratic terms in the <span class="math inline">\(\text{exp}\)</span> terms. I’ll skip this for now.</p>
+<p>This is apparently non-trivial, and requires expanding the quadratic terms in the <span class="math inline">\(\text{exp}\)</span> terms. This step is skipped for now.</p>
 <!--
 The marginal posterior distribution on $\theta^2$ can be calculated using Bayes'
 rule above, or by simply plugging in the above posterior into
@@ -2381,8 +2381,8 @@ So:
 <span id="cb14-666"><a href="#cb14-666" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\sqrt{\pi}} (2\sigma^2)^{-1/2} \text{exp}\left( \frac{(\theta / \sigma^2)^2}{-2(2\sigma^2)^{-1}} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 <span class="sc">\\</span> -(2\sigma^2)^{-1} \end{pmatrix} \right) <span class="sc">\\</span></span>
 <span id="cb14-667"><a href="#cb14-667" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb14-668"><a href="#cb14-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-669"><a href="#cb14-669" aria-hidden="true" tabindex="-1"></a>I am not going to do the exact algebra here, but notice that once you combine</span>
-<span id="cb14-670"><a href="#cb14-670" aria-hidden="true" tabindex="-1"></a>the exponential terms (and the matrix multiplication in the second exp), there</span>
+<span id="cb14-669"><a href="#cb14-669" aria-hidden="true" tabindex="-1"></a>The exact algebra is omitted here, but note that once the</span>
+<span id="cb14-670"><a href="#cb14-670" aria-hidden="true" tabindex="-1"></a>exponential terms are combined (and the matrix multiplication in the second exp), there</span>
 <span id="cb14-671"><a href="#cb14-671" aria-hidden="true" tabindex="-1"></a>are three separate terms added together. With a common factor of $1 /</span>
 <span id="cb14-672"><a href="#cb14-672" aria-hidden="true" tabindex="-1"></a>-2\sigma^2$, those three terms are the   $y^2$, $2 \theta y$, and $\theta^2$ of</span>
 <span id="cb14-673"><a href="#cb14-673" aria-hidden="true" tabindex="-1"></a>the expanded normal density above.</span>
@@ -2446,8 +2446,8 @@ So:
 <span id="cb14-735"><a href="#cb14-735" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-738"><a href="#cb14-738" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb14-739"><a href="#cb14-739" aria-hidden="true" tabindex="-1"></a><span class="co"># 5000 monte carlo samples. Need to estimate \sigma^2 before \theta.</span></span>
-<span id="cb14-740"><a href="#cb14-740" aria-hidden="true" tabindex="-1"></a><span class="co"># I can easily do means and confidence intervals of the \sigma^2, but for</span></span>
-<span id="cb14-741"><a href="#cb14-741" aria-hidden="true" tabindex="-1"></a><span class="co"># brevity, I will output only \theta</span></span>
+<span id="cb14-740"><a href="#cb14-740" aria-hidden="true" tabindex="-1"></a><span class="co"># Means and confidence intervals of the \sigma^2 can easily be computed, but for</span></span>
+<span id="cb14-741"><a href="#cb14-741" aria-hidden="true" tabindex="-1"></a><span class="co"># brevity, only \theta is output</span></span>
 <span id="cb14-742"><a href="#cb14-742" aria-hidden="true" tabindex="-1"></a>school1.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
 <span id="cb14-743"><a href="#cb14-743" aria-hidden="true" tabindex="-1"></a>school1.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school1.s2.mc <span class="sc">/</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>kn))</span>
 <span id="cb14-744"><a href="#cb14-744" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school1.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
@@ -2553,7 +2553,7 @@ So:
 <span id="cb14-852"><a href="#cb14-852" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-853"><a href="#cb14-853" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.3</span></span>
 <span id="cb14-854"><a href="#cb14-854" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-855"><a href="#cb14-855" aria-hidden="true" tabindex="-1"></a>I'll derive $p(\sigma^2 \mid y_1, \dots, y_n)$:</span>
+<span id="cb14-855"><a href="#cb14-855" aria-hidden="true" tabindex="-1"></a>The derivation of $p(\sigma^2 \mid y_1, \dots, y_n)$ is as follows:</span>
 <span id="cb14-856"><a href="#cb14-856" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-857"><a href="#cb14-857" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
 <span id="cb14-858"><a href="#cb14-858" aria-hidden="true" tabindex="-1"></a>p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2)p(y_1, \dots, y_n \mid \sigma^2) <span class="sc">\\</span></span>
@@ -2569,7 +2569,7 @@ So:
 <span id="cb14-868"><a href="#cb14-868" aria-hidden="true" tabindex="-1"></a>&amp;\propto \dots</span>
 <span id="cb14-869"><a href="#cb14-869" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb14-870"><a href="#cb14-870" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-871"><a href="#cb14-871" aria-hidden="true" tabindex="-1"></a>This is apparently non-trivial, and requires expanding the quadratic terms in the $\text{exp}$ terms. I'll skip this for now.</span>
+<span id="cb14-871"><a href="#cb14-871" aria-hidden="true" tabindex="-1"></a>This is apparently non-trivial, and requires expanding the quadratic terms in the $\text{exp}$ terms. This step is skipped for now.</span>
 <span id="cb14-872"><a href="#cb14-872" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-873"><a href="#cb14-873" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
 <span id="cb14-874"><a href="#cb14-874" aria-hidden="true" tabindex="-1"></a><span class="co">The marginal posterior distribution on $\theta^2$ can be calculated using Bayes'</span></span>

@@ -551,7 +551,7 @@ TODO expand. also might include the J ratio (that's why it has to be symmetric)
 <p>Since proposal distributions for different parameters can all be different - could use Gibbs for some parameters (where Gibbs is just a special case of Metropolis-Hastings)</p>
 <section id="a-regression-model-with-correlated-errors" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="a-regression-model-with-correlated-errors">
 <span class="header-section-number">2.1.1</span> A regression model with correlated errors</h3>
-<p>Here I explore the idea of running multiple independent MCMC chains, then combining the data (which is theoretically OK). In <code>icecore_parallel.R</code> I take the MH algorithm for analyzing the icecore data and distribute it across multiple cores with <code><a href="https://rdrr.io/r/parallel/mclapply.html">parallel::mclapply</a></code>. That file creates <code>icecore_mcmc</code> which is analyzed here.</p>
+<p>This section explores running multiple independent MCMC chains and combining the data (which is theoretically OK). The approach in <code>icecore_parallel.R</code> is to take the MH algorithm for analyzing the icecore data and distribute it across multiple cores with <code><a href="https://rdrr.io/r/parallel/mclapply.html">parallel::mclapply</a></code>. That file creates <code>icecore_mcmc</code> which is analyzed here.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">'./icecore_mcmc'</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Run icecore_parallel.R first to get MCMC data"</span><span class="op">)</span></span>
@@ -639,13 +639,13 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 &amp;= \prod_{i = 1}^n \frac{\exp(y_i (\alpha + \beta x_i))}{1 + \exp(\alpha + \beta x_i)} \\
 \end{aligned}
 \]</span></p>
-<p>and I don’t think that can be simplified further.</p>
+<p>and this cannot be simplified further.</p>
 </section><section id="b" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="b">
 <span class="header-section-number">3.1.2</span> b</h3>
-<p>It’s helpful (I think) to think about this in terms of the log-odds i.e. <span class="math inline">\(\text{log-odds}(\theta_i) = a + \beta x_i\)</span>. If we have an uniformative prior where we by default assume no interaction between wingspan <span class="math inline">\(x_i\)</span> and nesting, then we should center our prior for <span class="math inline">\(\beta\)</span> around 0. If we also want to be uninformative about our prior proportion of nesting birds regardless of wingspan, then we should center our prior for <span class="math inline">\(\alpha\)</span> around 0 as well, our prior expectation regardless of <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\text{log-odds}(\theta_i) = 0 + 0 x_i = 0\)</span> (so not favoring nesting or not).</p>
-<p>The question is what to use for a prior distribution and how diffuse to make our priors. We would like priors for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> to be symmetric, so normal distributions for both make sense. And we want our prior to be uninformative, so we should set the variance of these normals high.</p>
-<p>If <span class="math inline">\(\alpha\)</span> is always 0, then as <span class="math inline">\(x\)</span> moves from 10 to 15, we want our possible values of <span class="math inline">\(\beta\)</span> to allow for a change in the log-odds ratio from approximately 0 to 1. Notice the log-odds ratio of some sufficiently small number e.g.&nbsp;<code>1e-5</code> is -11.5129155 which is roughly 10. Since <span class="math inline">\(x\)</span> at a minimum is 10, it makes sense to have most of our prior on <span class="math inline">\(\beta\)</span> in the range <span class="math inline">\([-10 / 10, 10 / 10] = [-1, 1]\)</span>, so I’ll set the standard deviation of the <span class="math inline">\(\beta\)</span> prior to 0.5 and the variance to 0.25.</p>
-<p>Similarly I’ll let the standard deviation of our <span class="math inline">\(\alpha\)</span> prior to be 5 and the variance 25, so that, if <span class="math inline">\(\beta = 0\)</span>, the most of the <span class="math inline">\(\alpha\)</span> prior falls in the log-odds interval <span class="math inline">\([-10, 10]\)</span>.</p>
+<p>It’s helpful to think about this in terms of the log-odds, i.e., <span class="math inline">\(\text{log-odds}(\theta_i) = a + \beta x_i\)</span>. With an uninformative prior where no interaction between wingspan <span class="math inline">\(x_i\)</span> and nesting is assumed by default, the prior for <span class="math inline">\(\beta\)</span> should be centered around 0. To also be uninformative about the prior proportion of nesting birds regardless of wingspan, the prior for <span class="math inline">\(\alpha\)</span> should be centered around 0 as well, so the prior expectation regardless of <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\text{log-odds}(\theta_i) = 0 + 0 x_i = 0\)</span> (thus not favoring nesting or not).</p>
+<p>The question is what to use for a prior distribution and how diffuse to make the priors. Priors for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> should be symmetric, so normal distributions for both make sense. For an uninformative prior, the variance of these normals should be set high.</p>
+<p>If <span class="math inline">\(\alpha\)</span> is always 0, then as <span class="math inline">\(x\)</span> moves from 10 to 15, the possible values of <span class="math inline">\(\beta\)</span> should allow for a change in the log-odds ratio from approximately 0 to 1. Note the log-odds ratio of some sufficiently small number e.g.&nbsp;<code>1e-5</code> is -11.5129155 which is roughly 10. Since <span class="math inline">\(x\)</span> at a minimum is 10, it makes sense to have most of the prior on <span class="math inline">\(\beta\)</span> in the range <span class="math inline">\([-10 / 10, 10 / 10] = [-1, 1]\)</span>, so the standard deviation of the <span class="math inline">\(\beta\)</span> prior is set to 0.5 and the variance to 0.25.</p>
+<p>Similarly, the standard deviation of the <span class="math inline">\(\alpha\)</span> prior to be 5 and the variance 25, so that, if <span class="math inline">\(\beta = 0\)</span>, the most of the <span class="math inline">\(\alpha\)</span> prior falls in the log-odds interval <span class="math inline">\([-10, 10]\)</span>.</p>
 <p>So</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -762,7 +762,7 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 </div>
 </section><section id="e" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="e">
 <span class="header-section-number">3.1.5</span> e</h3>
-<p>Using the samples of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, simply compute a distribution on <span class="math inline">\(f_{\alpha\beta}(x)\)</span>. We can then construct confidence intervals around this distribution. However, we need to do this for many <span class="math inline">\(x\)</span> values:</p>
+<p>Using the samples of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, simply compute a distribution on <span class="math inline">\(f_{\alpha\beta}(x)\)</span>. Confidence intervals can then be constructed around this distribution. However, this needs to be done for many <span class="math inline">\(x\)</span> values:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x_seq</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, length <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="va">quantiles</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">x_seq</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1374,8 +1374,8 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 <span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a><span class="fu">### A regression model with correlated errors</span></span>
 <span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a>Here I explore the idea of running multiple independent MCMC chains, then</span>
-<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>combining the data (which is theoretically OK). In <span class="in">`icecore_parallel.R`</span> I take </span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a>This section explores running multiple independent MCMC chains and</span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>combining the data (which is theoretically OK). The approach in <span class="in">`icecore_parallel.R`</span> is to take </span>
 <span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a>the MH algorithm for analyzing the icecore data and distribute it across </span>
 <span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>multiple cores with <span class="in">`parallel::mclapply`</span>. That file creates <span class="in">`icecore_mcmc`</span> which</span>
 <span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>is analyzed here.</span>
@@ -1454,32 +1454,32 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 <span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
 <span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>and I don't think that can be simplified further.</span>
+<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>and this cannot be simplified further.</span>
 <span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
 <span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>It's helpful (I think) to think about this in terms of the log-odds i.e.</span>
-<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>$\text{log-odds}(\theta_i) = a + \beta x_i$. If we have an uniformative prior</span>
-<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>where we by default assume no interaction between wingspan $x_i$ and nesting, </span>
-<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>then we should center our prior for $\beta$ around 0. If we also want to be </span>
-<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a>uninformative about our prior proportion of nesting birds regardless of</span>
-<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>wingspan, then we should center our prior for $\alpha$ around 0 as well, our</span>
-<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>prior expectation regardless of $x_i$ is $\text{log-odds}(\theta_i) = 0 + 0 x_i = 0$ (so not favoring nesting or not).</span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>It's helpful to think about this in terms of the log-odds, i.e.,</span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>$\text{log-odds}(\theta_i) = a + \beta x_i$. With an uninformative prior</span>
+<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>where no interaction between wingspan $x_i$ and nesting is assumed by default, </span>
+<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>the prior for $\beta$ should be centered around 0. To also be </span>
+<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a>uninformative about the prior proportion of nesting birds regardless of</span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>wingspan, the prior for $\alpha$ should be centered around 0 as well, so the</span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>prior expectation regardless of $x_i$ is $\text{log-odds}(\theta_i) = 0 + 0 x_i = 0$ (thus not favoring nesting or not).</span>
 <span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a>The question is what to use for a prior distribution and how diffuse to make our</span>
-<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>priors. We would like priors for $\alpha$ and $\beta$ to be symmetric, so normal</span>
-<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>distributions for both make sense. And we want our prior to be uninformative, so</span>
-<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a>we should set the variance of these normals high.</span>
+<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a>The question is what to use for a prior distribution and how diffuse to make the</span>
+<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>priors. Priors for $\alpha$ and $\beta$ should be symmetric, so normal</span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>distributions for both make sense. For an uninformative prior,</span>
+<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a>the variance of these normals should be set high.</span>
 <span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a>If $\alpha$ is always 0, then as $x$ moves from 10 to 15, we want our possible</span>
-<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>values of $\beta$ to allow for a change in the log-odds ratio from approximately</span>
-<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a>0 to 1. Notice the log-odds ratio of some sufficiently small number e.g. <span class="in">`1e-5`</span></span>
+<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a>If $\alpha$ is always 0, then as $x$ moves from 10 to 15, the possible</span>
+<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>values of $\beta$ should allow for a change in the log-odds ratio from approximately</span>
+<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a>0 to 1. Note the log-odds ratio of some sufficiently small number e.g. <span class="in">`1e-5`</span></span>
 <span id="cb15-230"><a href="#cb15-230" aria-hidden="true" tabindex="-1"></a>is <span class="in">`r log(1e-5 / (1 - 1e-5))`</span> which is roughly 10. Since $x$ at a minimum is 10,</span>
-<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a>it makes sense to have most of our prior on $\beta$ in the range $<span class="co">[</span><span class="ot">-10 / 10, 10 / 10</span><span class="co">]</span> = <span class="co">[</span><span class="ot">-1, 1</span><span class="co">]</span>$,</span>
-<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a>so I'll set the standard deviation of the $\beta$ prior to 0.5</span>
+<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a>it makes sense to have most of the prior on $\beta$ in the range $<span class="co">[</span><span class="ot">-10 / 10, 10 / 10</span><span class="co">]</span> = <span class="co">[</span><span class="ot">-1, 1</span><span class="co">]</span>$,</span>
+<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a>so the standard deviation of the $\beta$ prior is set to 0.5</span>
 <span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a>and the variance to 0.25.</span>
 <span id="cb15-234"><a href="#cb15-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a>Similarly I'll let the standard deviation of our</span>
+<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a>Similarly, the standard deviation of the</span>
 <span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a>$\alpha$ prior to be 5 and the variance 25, so that, if $\beta = 0$, the most of</span>
 <span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a>the $\alpha$ prior falls in the log-odds interval $<span class="co">[</span><span class="ot">-10, 10</span><span class="co">]</span>$.</span>
 <span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a></span>
@@ -1596,8 +1596,8 @@ p(\boldsymbol{y} \mid \alpha, \beta, x_i) &amp;= \prod_{i = 1}^n p(y_i \mid \alp
 <span id="cb15-353"><a href="#cb15-353" aria-hidden="true" tabindex="-1"></a><span class="fu">### e</span></span>
 <span id="cb15-354"><a href="#cb15-354" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-355"><a href="#cb15-355" aria-hidden="true" tabindex="-1"></a>Using the samples of $\alpha$ and $\beta$, simply compute a distribution on</span>
-<span id="cb15-356"><a href="#cb15-356" aria-hidden="true" tabindex="-1"></a>$f_{\alpha\beta}(x)$. We can then construct confidence intervals around this</span>
-<span id="cb15-357"><a href="#cb15-357" aria-hidden="true" tabindex="-1"></a>distribution. However, we need to do this for many $x$ values:</span>
+<span id="cb15-356"><a href="#cb15-356" aria-hidden="true" tabindex="-1"></a>$f_{\alpha\beta}(x)$. Confidence intervals can then be constructed around this</span>
+<span id="cb15-357"><a href="#cb15-357" aria-hidden="true" tabindex="-1"></a>distribution. However, this needs to be done for many $x$ values:</span>
 <span id="cb15-358"><a href="#cb15-358" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-361"><a href="#cb15-361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb15-362"><a href="#cb15-362" aria-hidden="true" tabindex="-1"></a>x_seq <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>

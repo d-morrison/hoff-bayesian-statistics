@@ -2377,7 +2377,7 @@ Jesse Mu
 <blockquote>
 <p><a href="http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf">Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model</a></p>
 </blockquote>
-<p>For this last project, I coded up a simple version of Charles Kemp’s Infinite Relational Model (IRM) in <code>irm.R</code> to co-cluster rows and columns of a simple 2-dimensional binary relation.</p>
+<p>For this last project, a simple version of Charles Kemp’s Infinite Relational Model (IRM) was coded in <code>irm.R</code> to co-cluster rows and columns of a simple 2-dimensional binary relation.</p>
 </section><section><section id="demo" class="title-slide slide level1 center" data-number="1.1"><h1>
 <span class="header-section-number">1.1</span> Demo</h1>
 <div class="cell" data-layout-align="center">
@@ -2385,7 +2385,7 @@ Jesse Mu
 </details>
 </div>
 </section><section id="sanity-check" class="slide level2"><h2>Sanity check</h2>
-<p>As a sanity check, we use the toy matrix in the original paper:</p>
+<p>As a sanity check, the toy matrix from the original paper is used:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>R <span class="ot">=</span> <span class="fu">rbind</span>(</span>
 <span id="cb2-2"><a></a>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
@@ -2409,10 +2409,10 @@ Jesse Mu
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>Z <span class="ot">=</span> <span class="fu">irm</span>(R, <span class="at">sweeps =</span> <span class="dv">1000</span>)</span>
 <span id="cb3-2"><a></a><span class="fu">top.n</span>(Z)</span>
-<span id="cb3-3"><a></a><span class="co">#&gt; 122121323 122121324 122321424 122123424 122323424 123121424 122221323 123131434 </span></span>
-<span id="cb3-4"><a></a><span class="co">#&gt;       875        37        32        11        11        11         7         6 </span></span>
-<span id="cb3-5"><a></a><span class="co">#&gt; 123131424 122121343 </span></span>
-<span id="cb3-6"><a></a><span class="co">#&gt;         2         1</span></span>
+<span id="cb3-3"><a></a><span class="co">#&gt; 122121323 122121324 122321424 122123424 123121424 122323424 123131434 122121343 </span></span>
+<span id="cb3-4"><a></a><span class="co">#&gt;       893        34        30        13         9         8         6         5 </span></span>
+<span id="cb3-5"><a></a><span class="co">#&gt; 122341526 122345627 </span></span>
+<span id="cb3-6"><a></a><span class="co">#&gt;         1         1</span></span>
 <span id="cb3-7"><a></a><span class="fu">plot.R</span>(R, <span class="fu">mode.irm</span>(Z))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

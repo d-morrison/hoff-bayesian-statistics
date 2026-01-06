@@ -2638,9 +2638,9 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 </details>
 </div>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Note that this defines rmvnorm and rwish, but I am goint to use default</span></span>
-<span id="cb2-2"><a></a><span class="co"># implementations or packages to see what I would be using in the real world.</span></span>
-<span id="cb2-3"><a></a><span class="co"># Specifically we need MASS::mvrnorm (Modern Applied Statistics with S), and</span></span>
+<details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Note that this defines rmvnorm and rwish, but default</span></span>
+<span id="cb2-2"><a></a><span class="co"># implementations or packages are used here for real-world applications.</span></span>
+<span id="cb2-3"><a></a><span class="co"># Specifically MASS::mvrnorm (Modern Applied Statistics with S) is needed, and</span></span>
 <span id="cb2-4"><a></a><span class="co"># wishart comes default in newer R distributions with rWishart</span></span>
 <span id="cb2-5"><a></a><span class="fu">source</span>(<span class="st">&quot;Inline/chapter7.R&quot;</span>)</span>
 <span id="cb2-6"><a></a><span class="co"># Try plotting</span></span>
@@ -3072,16 +3072,16 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </details>
 </div>
 </section><section id="a-2" class="slide level2"><h2>a</h2>
-<p>With typical intuitions about life expectancy and age of marriage, I suspect that the ages of most of the married couples will fall between 25 and 80. There may be slight age differences among men and women, but nothing that I’m confident enough to to encode in my prior. Thus I will set <span class="math inline">\(\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T\)</span></p>
-<p>I have no choice but to pick a semiconjugate prior distribution in this case, but it does seem intuitive that there are less married couples at ages 25 and 80 than there are married couples around age 50, thus justifying a bell curve centered around <span class="math inline">\(52.5\)</span> with variance <span class="math inline">\(13.75^2 \approx 189\)</span> such that approximately 95% of my prior falls within the range <span class="math inline">\((25, 80)\)</span>.</p>
-<p>I also have reason to believe the ages of the couples are quite tightly correlated, so knowing the above variance, I will aim for a prior correlation of <span class="math inline">\(0.75\)</span> Solving the correlation equation gives</p>
+<p>With typical intuitions about life expectancy and age of marriage, I suspect that the ages of most of the married couples will fall between 25 and 80. There may be slight age differences among men and women, but not enough to warrant encoding in the prior. Thus <span class="math inline">\(\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T\)</span> is set.</p>
+<p>A semiconjugate prior distribution is chosen in this case, as it seems intuitive that there are fewer married couples at ages 25 and 80 than there are married couples around age 50, thus justifying a bell curve centered around <span class="math inline">\(52.5\)</span> with variance <span class="math inline">\(13.75^2 \approx 189\)</span> such that approximately 95% of the prior falls within the range <span class="math inline">\((25, 80)\)</span>.</p>
+<p>The ages of the couples are expected to be quite tightly correlated, so knowing the above variance, a prior correlation of <span class="math inline">\(0.75\)</span> is targeted. Solving the correlation equation gives</p>
 <p><span class="math display">\[\begin{align}
 &amp; 0.75 = \frac{\sigma_{1, 2}}{189} \\
 \implies&amp; \sigma_{1, 2} = 141.75
 \end{align}\]</span></p>
-<p>So I will set <span class="math display">\[\Lambda_0 = \begin{bmatrix} 189 &amp; 141.75 \\ 141.75 &amp; 189 \end{bmatrix} \]</span></p>
-<p>Like previous problems, for the variance, I will set <span class="math inline">\(\mathbf{S}_0^{-1} =
-\Lambda_0\)</span> and <span class="math inline">\(\nu_0 = p + 2 = 4\)</span>. Note that this only loosely centers our covariance matrix prior on <span class="math inline">\(\Lambda_0\)</span>, so I am being a bit conservative in terms of my belief in the variance and the correlation between the ages.</p>
+<p>Thus <span class="math display">\[\Lambda_0 = \begin{bmatrix} 189 &amp; 141.75 \\ 141.75 &amp; 189 \end{bmatrix} \]</span> is set.</p>
+<p>Like previous problems, for the variance, <span class="math inline">\(\mathbf{S}_0^{-1} =
+\Lambda_0\)</span> and <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> are set. Note that this only loosely centers the covariance matrix prior on <span class="math inline">\(\Lambda_0\)</span>, representing a conservative approach in terms of belief in the variance and the correlation between the ages.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>Y <span class="ot">=</span> agehw</span>
 <span id="cb15-2"><a></a>p <span class="ot">=</span> <span class="fu">ncol</span>(agehw)</span>
@@ -3095,9 +3095,9 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </details>
 </div>
 </section><section id="b-2" class="slide level2"><h2>b</h2>
-<p>The wording of the question is interesting - I assume I’m supposed to sample a fixed <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span> and from there sample <span class="math inline">\(100\)</span> points all with the same parameters. If I were to do this myself, I feel like I would sample a new data point for each sample of <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span>…</p>
-<p>In fact, because of that wording, I originally set <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> to loosely center my prior. But given that this variance will often produce uncorrelated prior predictive datasets, I’m increasing <span class="math inline">\(\nu_0\)</span> a bit…</p>
-<p>After increasing <span class="math inline">\(\nu_0\)</span>, I’m fairly comfortable with what these posterior predictive datasets look like.</p>
+<p>The wording of the question is interesting - the assumption is to sample a fixed <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span> and from there sample <span class="math inline">\(100\)</span> points all with the same parameters. An alternative approach would be to sample a new data point for each sample of <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span>.</p>
+<p>In fact, because of that wording, <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> was originally set to loosely center the prior. But given that this variance will often produce uncorrelated prior predictive datasets, <span class="math inline">\(\nu_0\)</span> is increased slightly.</p>
+<p>After increasing <span class="math inline">\(\nu_0\)</span>, the posterior predictive datasets appear satisfactory.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>N <span class="ot">=</span> <span class="dv">100</span></span>
 <span id="cb16-2"><a></a>S <span class="ot">=</span> <span class="dv">12</span></span>
@@ -3192,7 +3192,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </details>
 </div>
 </section><section id="d" class="slide level2"><h2>d</h2>
-<p>I haven’t done 7.2, but doing Jeffreys’ prior and a “diffuse prior” below will still be helpful to see what effect prior information has.</p>
+<p>Exercise 7.2 has not been completed, but doing Jeffreys’ prior and a “diffuse prior” below will still be helpful to see what effect prior information has.</p>
 <h3 id="i">i</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>THETA <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> S, <span class="at">ncol =</span> p)</span>
@@ -3254,8 +3254,8 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </div>
 </section><section id="e" class="slide level2"><h2>e</h2>
 <p>It doesn’t really seem like the prior information matters because the sample size is so large. Regardless of whether the prior is informative, the quantiles and correlations end up quite similar. Maybe the diffuse prior is slightly different, but it’s not a big difference.</p>
-<p>If we have a smaller sample size, this may be different. Let’s see what happens if I truncate the dataset to the first 25 variables and rerun with my informative prior and the diffuse prior:</p>
-<h3 id="my-prior">My prior</h3>
+<p>If a smaller sample size is used, this may be different. The following shows what happens when the dataset is truncated to the first 25 variables and rerun with the informative prior and the diffuse prior:</p>
+<h3 id="informative-prior">Informative prior</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>mu0 <span class="ot">=</span> <span class="fu">rep</span>(<span class="fl">52.5</span>, p)</span>
 <span id="cb20-2"><a></a>lambda0 <span class="ot">=</span> s0 <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">189</span>, <span class="fl">141.75</span>), <span class="fu">c</span>(<span class="fl">141.75</span>, <span class="dv">189</span>))</span>

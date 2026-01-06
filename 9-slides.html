@@ -2378,9 +2378,9 @@ Jesse Mu
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>swim <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&#39;Exercises/swim.dat&#39;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>To specify our prior, we let the prior expectation of our <span class="math inline">\(y\)</span>-intercept to be 23, and we let the prior expectation of the effect of training week by week to be 0, so <span class="math inline">\(\boldsymbol{\beta} = (23, 0)^T\)</span>.</p>
-<p>We expect no covariance with the <span class="math inline">\(\beta\)</span> coefficients, but we do have uncertainty about our initial <span class="math inline">\(\beta\)</span> estimates. Specifically, to let 95% of our uncertainty of the <span class="math inline">\(y\)</span>-intercept to fall in <span class="math inline">\([22, 24]\)</span>, we let <span class="math inline">\(\Sigma_{0(1, 1)} = 1/4\)</span> (so that <span class="math inline">\(\pm\)</span> 2 standard deviations is <span class="math inline">\(\pm\)</span> 1). We also expect that training has a relatively mild effect on time, so we let <span class="math inline">\(\Sigma_{0(2, 2)} = 0.1\)</span> which is just an arbitrarily chosen small variance.</p>
-<p>For our expectation of the variability of measurements, let’s similarly set <span class="math inline">\(\sigma^2_0 = 1/4\)</span> and only lightly center this prior with <span class="math inline">\(\nu_0 = 1\)</span>.</p>
+<p>To specify the prior, the prior expectation of the <span class="math inline">\(y\)</span>-intercept is set to 23, and the prior expectation of the effect of training week by week is set to 0, so <span class="math inline">\(\boldsymbol{\beta} = (23, 0)^T\)</span>.</p>
+<p>No covariance with the <span class="math inline">\(\beta\)</span> coefficients is expected, but there is uncertainty about the initial <span class="math inline">\(\beta\)</span> estimates. Specifically, to let 95% of the uncertainty of the <span class="math inline">\(y\)</span>-intercept fall in <span class="math inline">\([22, 24]\)</span>, <span class="math inline">\(\Sigma_{0(1, 1)} = 1/4\)</span> is set (so that <span class="math inline">\(\pm\)</span> 2 standard deviations is <span class="math inline">\(\pm\)</span> 1). Training is expected to have a relatively mild effect on time, so <span class="math inline">\(\Sigma_{0(2, 2)} = 0.1\)</span> is set, which is an arbitrarily chosen small variance.</p>
+<p>For the expectation of the variability of measurements, similarly set <span class="math inline">\(\sigma^2_0 = 1/4\)</span> and only lightly center this prior with <span class="math inline">\(\nu_0 = 1\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(MASS) <span class="co"># mvrnorm</span></span>
 <span id="cb2-2"><a></a><span class="fu">library</span>(dplyr)</span>
@@ -2447,7 +2447,7 @@ Jesse Mu
 <span id="cb3-5"><a></a><span class="co">#&gt; 0.6524 0.0134 0.3060 0.0282</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>We notice that with our posterior predictive dataset, swimmer 1 is the fastest about 65% of the time by week 13, so we recommend that swimmer 1 race.</p>
+<p>With the posterior predictive dataset, swimmer 1 is the fastest about 65% of the time by week 13, so the recommendation is that swimmer 1 race.</p>
 </section></section><section><section id="section-1" class="title-slide slide level1 center" data-number="1.2"><h1>
 <span class="header-section-number">1.2</span> 9.3</h1>
 <div class="cell" data-layout-align="center">
