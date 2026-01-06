@@ -201,6 +201,8 @@ lintr::lint("2.qmd")
 
 ### Spell Checking
 
+**CRITICAL**: Always run spell checking before requesting code review or making commits with documentation changes.
+
 ```r
 # Run spell check on the repository
 spelling::spell_check_package()
@@ -208,6 +210,20 @@ spelling::spell_check_package()
 # Check specific files
 spelling::spell_check_files("README.md")
 ```
+
+**When to spell check**:
+- Before calling the `code_review` tool
+- After making changes to documentation files (`.qmd`, `.md`, `README.md`)
+- Before committing documentation changes
+- After making changes to any text content
+
+**Spell checking workflow**:
+1. Identify which files you've changed
+2. Run `spelling::spell_check_package()` to check all documentation
+3. Review any spelling errors found
+4. Either fix the spelling errors OR add legitimate technical terms to `inst/WORDLIST`
+5. Re-run spell check to verify all errors are resolved
+6. Only then proceed to code review or commit
 
 ## Code Style and Conventions
 
@@ -462,12 +478,17 @@ Additional guidelines:
    - Fix any linting errors or warnings
    - See the "Linting" section for detailed commands
 
-2. **Then request code review**
+2. **Run spell check on documentation changes**
+   - Run `spelling::spell_check_package()` if you changed any documentation files
+   - Fix spelling errors or add legitimate terms to `inst/WORDLIST`
+   - See the "Spell Checking" section for detailed commands
+
+3. **Then request code review**
    - Use the `code_review` tool to get automated feedback
-   - The tool must be called AFTER linting is complete
+   - The tool must be called AFTER linting and spell checking are complete
    - Review and address any valid comments from the code review
 
-3. **Finally run security checks**
+4. **Finally run security checks**
    - Use the `codeql_checker` tool after code review
    - Address any security vulnerabilities found
    - Re-run if you make significant changes
