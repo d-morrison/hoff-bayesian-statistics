@@ -2917,12 +2917,12 @@ p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\thet
 <span id="cb8-88"><a></a><span class="fu">colnames</span>(Y)</span>
 <span id="cb8-89"><a></a><span class="co">#&gt; [1] &quot;glu&quot;  &quot;bp&quot;   &quot;skin&quot; &quot;bmi&quot;</span></span>
 <span id="cb8-90"><a></a><span class="fu">colMeans</span>(THETA)</span>
-<span id="cb8-91"><a></a><span class="co">#&gt; [1] 123.52178  71.03603  29.37983  32.18410</span></span>
+<span id="cb8-91"><a></a><span class="co">#&gt; [1] 123.51682  71.04978  29.38495  32.18491</span></span>
 <span id="cb8-92"><a></a><span class="fu">apply</span>(THETA, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(d) <span class="fu">quantile</span>(d, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)))</span>
 <span id="cb8-93"><a></a><span class="co">#&gt;           [,1]     [,2]     [,3]     [,4]</span></span>
-<span id="cb8-94"><a></a><span class="co">#&gt; 2.5%  118.7156 69.46391 27.66852 31.33198</span></span>
-<span id="cb8-95"><a></a><span class="co">#&gt; 50%   123.5464 71.03404 29.39371 32.18888</span></span>
-<span id="cb8-96"><a></a><span class="co">#&gt; 97.5% 127.8989 72.68238 31.01718 33.03538</span></span>
+<span id="cb8-94"><a></a><span class="co">#&gt; 2.5%  118.7039 69.41573 27.62746 31.33561</span></span>
+<span id="cb8-95"><a></a><span class="co">#&gt; 50%   123.5534 71.05000 29.39057 32.18047</span></span>
+<span id="cb8-96"><a></a><span class="co">#&gt; 97.5% 127.8140 72.63692 31.05039 33.04161</span></span>
 <span id="cb8-97"><a></a></span>
 <span id="cb8-98"><a></a><span class="co"># Sample correlation matrices</span></span>
 <span id="cb8-99"><a></a>COR <span class="ot">=</span> <span class="fu">array</span>(<span class="at">dim =</span> <span class="fu">c</span>(p, p, <span class="dv">1000</span>))</span>
@@ -2937,10 +2937,10 @@ p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\thet
 <span id="cb8-108"><a></a><span class="co"># confidence intervals with quantile</span></span>
 <span id="cb8-109"><a></a><span class="fu">apply</span>(COR, <span class="at">MARGIN =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> mean)</span>
 <span id="cb8-110"><a></a><span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]</span></span>
-<span id="cb8-111"><a></a><span class="co">#&gt; [1,] 1.0000000 0.2236694 0.2474780 0.1887309</span></span>
-<span id="cb8-112"><a></a><span class="co">#&gt; [2,] 0.2236694 1.0000000 0.2481124 0.2348605</span></span>
-<span id="cb8-113"><a></a><span class="co">#&gt; [3,] 0.2474780 0.2481124 1.0000000 0.6509361</span></span>
-<span id="cb8-114"><a></a><span class="co">#&gt; [4,] 0.1887309 0.2348605 0.6509361 1.0000000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-111"><a></a><span class="co">#&gt; [1,] 1.0000000 0.2236531 0.2475843 0.1888097</span></span>
+<span id="cb8-112"><a></a><span class="co">#&gt; [2,] 0.2236531 1.0000000 0.2478914 0.2349531</span></span>
+<span id="cb8-113"><a></a><span class="co">#&gt; [3,] 0.2475843 0.2478914 1.0000000 0.6510103</span></span>
+<span id="cb8-114"><a></a><span class="co">#&gt; [4,] 0.1888097 0.2349531 0.6510103 1.0000000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><span class="header-section-number">7</span> Exercises</p>

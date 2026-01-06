@@ -1048,12 +1048,12 @@ p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\thet
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "glu"  "bp"   "skin" "bmi"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">THETA</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 123.52178  71.03603  29.37983  32.18410</span></span>
+<span><span class="co">#&gt; [1] 123.51682  71.04978  29.38495  32.18491</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">THETA</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">d</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           [,1]     [,2]     [,3]     [,4]</span></span>
-<span><span class="co">#&gt; 2.5%  118.7156 69.46391 27.66852 31.33198</span></span>
-<span><span class="co">#&gt; 50%   123.5464 71.03404 29.39371 32.18888</span></span>
-<span><span class="co">#&gt; 97.5% 127.8989 72.68238 31.01718 33.03538</span></span>
+<span><span class="co">#&gt; 2.5%  118.7039 69.41573 27.62746 31.33561</span></span>
+<span><span class="co">#&gt; 50%   123.5534 71.05000 29.39057 32.18047</span></span>
+<span><span class="co">#&gt; 97.5% 127.8140 72.63692 31.05039 33.04161</span></span>
 <span></span>
 <span><span class="co"># Sample correlation matrices</span></span>
 <span><span class="va">COR</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span>dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">p</span>, <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span>
@@ -1068,10 +1068,10 @@ p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\thet
 <span><span class="co"># confidence intervals with quantile</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">COR</span>, MARGIN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]</span></span>
-<span><span class="co">#&gt; [1,] 1.0000000 0.2236694 0.2474780 0.1887309</span></span>
-<span><span class="co">#&gt; [2,] 0.2236694 1.0000000 0.2481124 0.2348605</span></span>
-<span><span class="co">#&gt; [3,] 0.2474780 0.2481124 1.0000000 0.6509361</span></span>
-<span><span class="co">#&gt; [4,] 0.1887309 0.2348605 0.6509361 1.0000000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1,] 1.0000000 0.2236531 0.2475843 0.1888097</span></span>
+<span><span class="co">#&gt; [2,] 0.2236531 1.0000000 0.2478914 0.2349531</span></span>
+<span><span class="co">#&gt; [3,] 0.2475843 0.2478914 1.0000000 0.6510103</span></span>
+<span><span class="co">#&gt; [4,] 0.1888097 0.2349531 0.6510103 1.0000000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section></section><section id="exercises" class="level1" data-number="7"><h1 data-number="7">
