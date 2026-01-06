@@ -414,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What happens when you want to cluster your data, but the number of clusters is unknown? While some approaches involve fitting several models with a varying number of clusters to your data and comparing model fit statistics, the Bayesian approach is to specify a model which is allowed to dynamically grow the number of clusters as the complexity of the data warrants.</p>
 <p>The <strong>Infinite Relational Model</strong> is the prototypical example of such a model.</p>
 <blockquote class="blockquote">
-<p><a href="http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf">Kemp et al.&nbsp;(2006). Learning Systems of Concepts with an Infinite Relational Model</a></p>
+<p><a href="http://web.mit.edu/cocosci/archive/Papers/Kemp-etal-AAAI06.pdf">Kemp et al.&nbsp;(2006). Learning Systems of Concepts with an Infinite Relational Model</a></p>
 </blockquote>
 <p>For this last project, a simple version of Charles Kemp’s Infinite Relational Model (IRM) was coded in <code>irm.R</code> to co-cluster rows and columns of a simple 2-dimensional binary relation.</p>
 <section id="demo" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="demo">
@@ -449,10 +449,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Z</span> <span class="op">=</span> <span class="fu">irm</span><span class="op">(</span><span class="va">R</span>, sweeps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="fu">top.n</span><span class="op">(</span><span class="va">Z</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 122121323 122121324 122321424 122123424 123121424 122323424 123131434 122121343 </span></span>
-<span><span class="co">#&gt;       893        34        30        13         9         8         6         5 </span></span>
-<span><span class="co">#&gt; 122341526 122345627 </span></span>
-<span><span class="co">#&gt;         1         1</span></span>
+<span><span class="co">#&gt; 122121323 122321424 123121424 122123424 122121324 122131424 122221323 122323424 </span></span>
+<span><span class="co">#&gt;       891        32        21        13         9         8         7         6 </span></span>
+<span><span class="co">#&gt; 122121343 123131424 </span></span>
+<span><span class="co">#&gt;         3         3</span></span>
 <span><span class="fu">plot.R</span><span class="op">(</span><span class="va">R</span>, <span class="fu">mode.irm</span><span class="op">(</span><span class="va">Z</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -970,7 +970,7 @@ TODO: add 50 animals data
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>The **Infinite Relational Model** is the prototypical example of such a model.</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model</span><span class="co">](http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">Kemp et al. (2006). Learning Systems of Concepts with an Infinite Relational Model</span><span class="co">](http://web.mit.edu/cocosci/archive/Papers/Kemp-etal-AAAI06.pdf)</span></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>For this last project, a simple version of Charles Kemp's Infinite</span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>Relational Model (IRM) was coded in <span class="in">`irm.R`</span> to co-cluster rows and columns of a simple</span>
