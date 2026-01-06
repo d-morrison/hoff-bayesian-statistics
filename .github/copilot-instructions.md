@@ -221,7 +221,7 @@ spelling::spell_check_files("README.md")
 1. Identify which files you've changed
 2. Run `spelling::spell_check_package()` to check all documentation
 3. Review any spelling errors found
-4. Either fix the spelling errors OR add legitimate technical terms to `inst/WORDLIST`
+4. Either fix the spelling errors OR add legitimate technical terms to `inst/WORDLIST` (create this file if it doesn't exist, one word per line)
 5. Re-run spell check to verify all errors are resolved
 6. Only then proceed to code review or commit
 
@@ -480,7 +480,7 @@ Additional guidelines:
 
 2. **Run spell check on documentation changes**
    - Run `spelling::spell_check_package()` if you changed any documentation files
-   - Fix spelling errors or add legitimate terms to `inst/WORDLIST`
+   - Fix spelling errors or add legitimate terms to `inst/WORDLIST` (create if needed)
    - See the "Spell Checking" section for detailed commands
 
 3. **Then request code review**
@@ -500,8 +500,11 @@ Additional guidelines:
 # Step 1: Lint changed files
 lintr::lint("irm.R")  # Fix any issues found
 
-# Step 2: Then use code_review tool (via GitHub Copilot)
-# Step 3: Then use codeql_checker tool (via GitHub Copilot)
+# Step 2: Spell check (if documentation changed)
+spelling::spell_check_package()  # Fix any issues found
+
+# Step 3: Then use code_review tool (via GitHub Copilot)
+# Step 4: Then use codeql_checker tool (via GitHub Copilot)
 ```
 
 ### Dependencies
