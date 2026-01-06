@@ -32,8 +32,8 @@ of clusters as the complexity of the data warrants.
 
 The **Infinite Relational Model** is the prototypical example of such a model [@kemp2006].
 
-For this last project, I coded up a simple version of Charles Kemp's Infinite
-Relational Model (IRM) in `irm.R` to co-cluster rows and columns of a simple
+For this last project, a simple version of Charles Kemp's Infinite
+Relational Model (IRM) was coded in `irm.R` to co-cluster rows and columns of a simple
 2-dimensional binary relation.
 
 ## Demo
@@ -44,7 +44,7 @@ source('irm.R')
 
 ### Sanity check
 
-As a sanity check, we use the toy matrix in the original paper:
+As a sanity check, the toy matrix from the original paper is used:
 
 ```{r}
 R = rbind(
