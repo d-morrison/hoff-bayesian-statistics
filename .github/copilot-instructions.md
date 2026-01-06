@@ -493,7 +493,7 @@ Additional guidelines:
    - Address any security vulnerabilities found
    - Re-run if you make significant changes
 
-**CRITICAL**: Never call `code_review` without linting changed files first. Linting catches basic style and syntax issues that should be fixed before more comprehensive code review.
+**CRITICAL**: Never call `code_review` without linting changed files and spell checking documentation first. Linting catches basic style and syntax issues, and spell checking ensures documentation quality before more comprehensive code review.
 
 **Workflow example**:
 ```r
