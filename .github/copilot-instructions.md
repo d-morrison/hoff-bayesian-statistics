@@ -285,7 +285,7 @@ knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 ```
 ````
 
-Note: While the repository currently uses the older R Markdown style (`{r echo=FALSE, message=FALSE}`), the Quarto hashpipe syntax (`#|`) is preferred for new code.
+Note: While the repository currently uses the older R Markdown style (`{r echo=FALSE, message=FALSE}`), the Quarto hashpipe syntax (`#|`) is preferred for new and modified code.
 
 ### Mathematical Notation
 
@@ -565,8 +565,26 @@ Note: While the old R Markdown style (`{r echo=FALSE, message=FALSE}`) still wor
 
 ### Cross-References
 - Sections: `# Section {#sec-label}` then reference with `@sec-label`
-- Figures: `#| label: fig-name` in chunk options, reference with `@fig-name`
-- Tables: `#| label: tbl-name` in chunk options, reference with `@tbl-name`
+- Figures: Use div syntax with `:::` for cross-referenceable figures:
+  ```markdown
+  ::: {#fig-name}
+  ![](image.png)
+  
+  Caption text
+  :::
+  ```
+  Then reference with `@fig-name`
+- Tables: Use div syntax with `:::` for cross-referenceable tables:
+  ```markdown
+  ::: {#tbl-name}
+  | Col1 | Col2 |
+  |------|------|
+  | A    | B    |
+  
+  Caption text
+  :::
+  ```
+  Then reference with `@tbl-name`
 - Equations: `$$...$$ {#eq-label}` then reference with `@eq-label`
 
 ### Citations and References
@@ -605,6 +623,8 @@ Note: While the old R Markdown style (`{r echo=FALSE, message=FALSE}`) still wor
 - Define notation on first use
 - Align related equations using `\begin{align}...\end{align}`
 - Use `\text{}` for text within math mode
+- **LaTeX Macros**: Use https://github.com/d-morrison/macros as a git submodule for more concise LaTeX expressions
+  - When helpful new macros are needed, send PRs back to https://github.com/d-morrison/macros to add them
 - Common symbols:
   - `\theta` for parameters
   - `\mathcal{Y}` for sample spaces
