@@ -37,8 +37,10 @@ notes.txt
 /_site/
 /_slides/
 /_handouts/
+/site_libs/
 *.html
 **/*.quarto_ipynb
+*.rmarkdown
 _freeze
 *.deb
 *.tex
