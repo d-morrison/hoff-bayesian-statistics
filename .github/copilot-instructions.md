@@ -232,6 +232,14 @@ spelling::spell_check_files("path/to/modified/file.qmd")
 # Edit .aspell/defaults.pws to add project-specific words
 ```
 
+**Spell checking workflow**:
+1. Identify which files you've changed
+2. Run `spelling::spell_check_package()` to check all documentation
+3. Review any spelling errors found
+4. Either fix the spelling errors OR add legitimate technical terms to `inst/WORDLIST` (create this file if it doesn't exist, one word per line)
+5. Re-run spell check to verify all errors are resolved
+6. Only then proceed to code review or commit
+
 **Important notes**:
 - **Only fix spelling errors you introduced** - ignore pre-existing errors in unchanged files
 - Add legitimate technical terms (e.g., "Bayesian", "Gibbs", "MCMC") to `.aspell/defaults.pws`
