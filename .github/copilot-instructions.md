@@ -182,8 +182,9 @@ lintr::lint("icecore_parallel.R")
 # Lint all R files in the repository
 lintr::lint_dir()
 
-# Lint R code chunks in Quarto documents (requires extracting code)
-# This is typically done via the lint-changed-files workflow
+# Lint Quarto documents (lints R code chunks)
+lintr::lint("1.qmd")
+lintr::lint("2.qmd")
 ```
 
 **When to lint**:
@@ -194,7 +195,7 @@ lintr::lint_dir()
 **Linting workflow for changed files**:
 1. Identify which files you've changed
 2. For `.R` files: Run `lintr::lint("filename.R")` on each changed file
-3. For `.qmd` files: The R code chunks will be linted by the CI workflow
+3. For `.qmd` files: Run `lintr::lint("filename.qmd")` on each changed file to lint R code chunks
 4. Fix any linting errors or warnings
 5. Only then proceed to code review
 
