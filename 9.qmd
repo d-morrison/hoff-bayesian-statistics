@@ -122,7 +122,7 @@ crime = read.table('Exercises/crime.dat', header = TRUE)
 
 ```{r}
 y = crime$y
-X = crime %>% select(-y) %>% as.matrix
+X = crime %>% dplyr::select(-y) %>% as.matrix
 
 n = dim(X)[1]
 p = dim(X)[2]
@@ -168,7 +168,7 @@ rate of urban males 35-39).
 
 ```{r}
 y = crime$y
-X = crime %>% select(-y) %>% as.matrix
+X = crime %>% dplyr::select(-y) %>% as.matrix
 set.seed(1) # Reproducible!
 train_i = sample.int(length(y), size = round(length(y) / 2), replace = FALSE)
 ytr = y[train_i]
@@ -252,7 +252,7 @@ N = 100
 set.seed(1)
 pred_errors = t(sapply(1:N, function(i) {
   y = crime$y
-  X = crime %>% select(-y) %>% as.matrix
+  X = crime %>% dplyr::select(-y) %>% as.matrix
   train_i = sample.int(length(y), size = round(length(y) / 2), replace = FALSE)
   ytr = y[train_i]
   Xtr = X[train_i, ]
