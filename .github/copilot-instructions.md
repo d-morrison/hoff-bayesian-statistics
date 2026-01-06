@@ -291,14 +291,19 @@ date: "Date"
 
 ### Code Chunks
 
-Use R code chunks with appropriate options:
+Use R code chunks with Quarto's hashpipe syntax for options:
 
 ````markdown
-```{r echo=FALSE, message=FALSE}
+```{r}
+#| echo: false
+#| message: false
+
 library(ggplot2)
 knitr::opts_chunk$set(fig.align = 'center', message = FALSE)
 ```
 ````
+
+Note: While the repository currently uses the older R Markdown style (`{r echo=FALSE, message=FALSE}`), the Quarto hashpipe syntax (`#|`) is preferred for new and modified code.
 
 ### Mathematical Notation
 
@@ -585,9 +590,107 @@ This includes:
 
 This ensures the instructions stay current and helpful for both yourself and other contributors.
 
+## Common Quarto Patterns
+
+### Chunk Options
+Use Quarto's hashpipe (`#|`) syntax for chunk options at the top of code blocks:
+
+````markdown
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Your R code here
+```
+````
+
+Common chunk options:
+- `#| echo: false` - Hide code but show output (for figures)
+- `#| include: false` - Run code but hide both code and output (for setup)
+- `#| message: false` - Suppress messages
+- `#| warning: false` - Suppress warnings
+- `#| cache: true` - Cache results for expensive computations (use sparingly)
+- `#| fig-width: 7` and `#| fig-height: 5` - Control figure dimensions
+- `#| fig-cap: "Caption text"` - Add figure captions
+
+Note: While the old R Markdown style (`{r echo=FALSE, message=FALSE}`) still works, prefer the Quarto hashpipe syntax for new code.
+
+### Cross-References
+- Sections: `# Section {#sec-label}` then reference with `@sec-label`
+- Figures: Use div syntax with `:::` for cross-referenceable figures:
+  ```markdown
+  ::: {#fig-name}
+  ![](image.png)
+  
+  Caption text
+  :::
+  ```
+  Then reference with `@fig-name`
+- Tables: Use div syntax with `:::` for cross-referenceable tables:
+  ```markdown
+  ::: {#tbl-name}
+  | Col1 | Col2 |
+  |------|------|
+  | A    | B    |
+  
+  Caption text
+  :::
+  ```
+  Then reference with `@tbl-name`
+- Equations: `$$...$$ {#eq-label}` then reference with `@eq-label`
+
+### Citations and References
+- Use BibTeX for references when applicable
+- Add `bibliography: references.bib` to YAML front matter
+- Cite with `[@key]` for parenthetical or `@key` for textual citations
+
+### Code Folding and Annotation
+- The project uses `code-fold: true` by default (configured in `_quarto-website.yml`)
+- Override per-document or per-chunk as needed
+- Use `#| code-summary: "Descriptive text"` to customize the fold button text
+
+## Common R/Statistics Patterns
+
+### Reproducibility
+- **ALWAYS** set seeds for random number generation: `set.seed(123)` or `withr::local_seed(123)`
+- Document the seed value used for reproducibility
+- Use `sessionInfo()` or `renv::snapshot()` to capture package versions
+
+### Statistical Computing Best Practices
+- Compute on log scale when possible to avoid numerical underflow/overflow
+  - Example: `sum(log(likelihoods))` instead of `prod(likelihoods)`
+- Use vectorized operations instead of loops when possible
+- For MCMC: Monitor convergence, check trace plots, report effective sample size
+- Document prior distributions clearly in both code comments and prose
+
+### Data Visualization
+- Always label axes with units where applicable
+- Use colorblind-friendly palettes (e.g., `viridis`, `RColorBrewer`)
+- Include informative titles and captions
+- Consider both light and dark themes (project supports both)
+- Use `theme_minimal()` or `theme_bw()` for clean, professional plots
+
+### Mathematical Notation
+- Use consistent notation throughout the document
+- Define notation on first use
+- Align related equations using `\begin{align}...\end{align}`
+- Use `\text{}` for text within math mode
+- **LaTeX Macros**: Use https://github.com/d-morrison/macros as a git submodule for more concise LaTeX expressions
+  - When helpful new macros are needed, send PRs back to https://github.com/d-morrison/macros to add them
+- Common symbols:
+  - `\theta` for parameters
+  - `\mathcal{Y}` for sample spaces
+  - `\mid` for conditioning (not `|`)
+  - `\sim` for "distributed as"
+  - `\propto` for "proportional to"
+
 ## Getting Help
 
 - Project URL: https://d-morrison.github.io/hoff-bayesian-statistics/
 - GitHub: https://github.com/d-morrison/hoff-bayesian-statistics
 - Textbook: Hoff, Peter D. "A First Course in Bayesian Statistical Methods" (https://peterhoff.io/book/)
 - IRM Reference: Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model" (http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)
+- Quarto Documentation: https://quarto.org/docs/guide/
+- R for Data Science: https://r4ds.hadley.nz/
+- Bayesian Data Analysis (Gelman et al.): http://www.stat.columbia.edu/~gelman/book/
