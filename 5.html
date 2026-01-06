@@ -53,7 +53,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -794,10 +814,10 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s2.mc</span> <span class="op">=</span> <span class="fu"><a href="https://dkahle.github.io/invgamma/reference/invgamma.html">rinvgamma</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">s2n</span> <span class="op">*</span> <span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">s2.mc</span> <span class="op">/</span> <span class="va">kappan</span><span class="op">)</span><span class="op">)</span> <span class="co"># Accepts a vector of parameters</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">theta.mc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.814203</span></span>
+<span><span class="co">#&gt; [1] 1.814043</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">theta.mc</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%    97.5% </span></span>
-<span><span class="co">#&gt; 1.726625 1.899527</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 1.725781 1.900936</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -827,7 +847,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <!-- \begin{align} -->
 <!-- p(1 / \sigma^2 \mid \theta, y_1, \dots, y_n) &= \int p(1 / sigma^2 \mid) -->
 <!-- \end{align} -->
-<p>With <a href="http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/nuisance_parameters.pdf">“significant algebra”</a>, you can show that inference this way results in</p>
+<p>With “significant algebra” <span class="citation" data-cites="wood2009">(<a href="#ref-wood2009" role="doc-biblioref">Wood 2009</a>)</span>, you can show that inference this way results in</p>
 <p><span class="math display">\[\frac{\theta - \bar{y}}{s / \sqrt{n}} \mid y_1, \dots, y_n \sim t_{n - 1}\]</span></p>
 <p>i.e.&nbsp;a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. This is similar to the sampling distribution of <span class="math inline">\(t\)</span> statistic:</p>
 <p><span class="math display">\[\frac{\bar{Y} - \theta}{s / \sqrt{n}} \mid \theta \sim t_{n - 1}\]</span></p>
@@ -960,19 +980,19 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <span><span class="va">school1.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school1.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school1.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      2.5%       50%     97.5% </span></span>
-<span><span class="co">#&gt;  7.768188  9.271947 10.855807</span></span>
+<span><span class="co">#&gt;  7.783660  9.288107 10.821692</span></span>
 <span></span>
 <span><span class="va">school2.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school2.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school2.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school2.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span><span class="co">#&gt; 5.232969 6.966133 8.740794</span></span>
+<span><span class="co">#&gt; 5.127259 6.935474 8.700055</span></span>
 <span></span>
 <span><span class="va">school3.s2.mc</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">3</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">s2n</span> <span class="op">*</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">nun</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">school3.theta.mc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">mun</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">school3.s2.mc</span> <span class="op">/</span> <span class="va">params.df</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">$</span><span class="va">kn</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">school3.theta.mc</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span><span class="co">#&gt; 5.712398 7.784543 9.878294</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; 5.756709 7.805578 9.810233</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="b" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="b">
@@ -998,27 +1018,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.0060</td>
+<td style="text-align: right;">0.0054</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0020</td>
+<td style="text-align: right;">0.0026</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.0158</td>
+<td style="text-align: right;">0.0142</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2466</td>
+<td style="text-align: right;">0.2298</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.6136</td>
+<td style="text-align: right;">0.6382</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1160</td>
+<td style="text-align: right;">0.1098</td>
 </tr>
 </tbody>
 </table>
@@ -1050,27 +1070,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.1116</td>
+<td style="text-align: right;">0.1204</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0916</td>
+<td style="text-align: right;">0.0984</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.1464</td>
+<td style="text-align: right;">0.1402</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2104</td>
+<td style="text-align: right;">0.1960</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.2404</td>
+<td style="text-align: right;">0.2598</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1996</td>
+<td style="text-align: right;">0.1852</td>
 </tr>
 </tbody>
 </table>
@@ -1081,10 +1101,10 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theta1.big.prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.theta.mc</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta1.big.prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.8602</span></span>
+<span><span class="co">#&gt; [1] 0.868</span></span>
 <span><span class="va">y1.big.prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">school.y.mc</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y1.big.prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.4508</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; [1] 0.4558</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section></section><section id="section-1" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="section-1">
@@ -1226,7 +1246,7 @@ p_J(\theta, \sigma^2 \mid \mathbf{y}) &amp;\propto p_J(\theta, \sigma^2) p(\math
 &amp;= (\sigma^2)^{-(3 + n)/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right)
 \end{align}\]</span></p>
 <p>Yes, since there is some normalizing constant that results in the integral over <span class="math inline">\(p_J\)</span> being equal to 1.</p>
-<p>After some poking around, this is a <a href="https://www2.stat.duke.edu/courses/Fall10/sta114/notes15.pdf">normal-inverse-chi-squared distribution</a>.</p>
+<p>After some poking around, this is a normal-inverse-chi-squared distribution <span class="citation" data-cites="reif2010">(<a href="#ref-reif2010" role="doc-biblioref">Reif 2010</a>)</span>.</p>
 <!--
 For random variables $W, V$, the density function is
 
@@ -1237,8 +1257,7 @@ rs}{2v} \right)
 
 For the random variables $\theta, \sigma^2$, $r = n$ is obvious from $p_J$. The
 other parameters can be seen by expanding the exponential, where I borrow the
-normal likelihood reparameterization trick from
-[here](http://faculty.washington.edu/ezivot/econ583/mleLectures.pdf) (page 3):
+normal likelihood reparameterization trick from @zivot_mle (page 3):
 
 \begin{align}
 \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) &=
@@ -1259,7 +1278,15 @@ So:
 
 <!-- -->
 
-</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-reif2010" class="csl-entry" role="listitem">
+Reif, David. 2010. <span>“The Student’s t-Distribution.”</span> <a href="https://www2.stat.duke.edu/courses/Fall10/sta114/notes15.pdf">https://www2.stat.duke.edu/courses/Fall10/sta114/notes15.pdf</a>.
+</div>
+<div id="ref-wood2009" class="csl-entry" role="listitem">
+Wood, Frank. 2009. <span>“Nuisance Parameters.”</span> <a href="http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/nuisance_parameters.pdf">http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/nuisance_parameters.pdf</a>.
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2264,434 +2291,431 @@ So:
 <span id="cb14-549"><a href="#cb14-549" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- p(1 / \sigma^2 \mid \theta, y_1, \dots, y_n) &amp;= \int p(1 / sigma^2 \mid) --&gt;</span></span>
 <span id="cb14-550"><a href="#cb14-550" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- \end{align} --&gt;</span></span>
 <span id="cb14-551"><a href="#cb14-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-552"><a href="#cb14-552" aria-hidden="true" tabindex="-1"></a>With ["significant</span>
-<span id="cb14-553"><a href="#cb14-553" aria-hidden="true" tabindex="-1"></a>algebra"](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/nuisance_parameters.pdf), you can show that inference this way results in</span>
-<span id="cb14-554"><a href="#cb14-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-555"><a href="#cb14-555" aria-hidden="true" tabindex="-1"></a>$$\frac{\theta - \bar{y}}{s / \sqrt{n}} \mid y_1, \dots, y_n \sim t_{n - 1}$$</span>
-<span id="cb14-556"><a href="#cb14-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-557"><a href="#cb14-557" aria-hidden="true" tabindex="-1"></a>i.e. a $t$ distribution with $n - 1$ degrees of freedom. This is similar to the</span>
-<span id="cb14-558"><a href="#cb14-558" aria-hidden="true" tabindex="-1"></a>sampling distribution of $t$ statistic:</span>
-<span id="cb14-559"><a href="#cb14-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-560"><a href="#cb14-560" aria-hidden="true" tabindex="-1"></a>$$\frac{\bar{Y} - \theta}{s / \sqrt{n}} \mid \theta \sim t_{n - 1}$$</span>
-<span id="cb14-561"><a href="#cb14-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-562"><a href="#cb14-562" aria-hidden="true" tabindex="-1"></a>but like the Bayesian vs Frequentist</span>
-<span id="cb14-563"><a href="#cb14-563" aria-hidden="true" tabindex="-1"></a>confidence intervals discussion in Chapter 3, they are philosophically</span>
-<span id="cb14-564"><a href="#cb14-564" aria-hidden="true" tabindex="-1"></a>different. The first describes uncertainty about the true mean conditional on</span>
-<span id="cb14-565"><a href="#cb14-565" aria-hidden="true" tabindex="-1"></a>the data, while the second describes uncertainty about the observed sample mean</span>
-<span id="cb14-566"><a href="#cb14-566" aria-hidden="true" tabindex="-1"></a>given the true population mean.</span>
-<span id="cb14-567"><a href="#cb14-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-568"><a href="#cb14-568" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bias, variance, and mean squared error</span></span>
-<span id="cb14-569"><a href="#cb14-569" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-570"><a href="#cb14-570" aria-hidden="true" tabindex="-1"></a>Now we are diving into the properties of estimators for posterior parameters.</span>
-<span id="cb14-571"><a href="#cb14-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-572"><a href="#cb14-572" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A *point estimator* of an unknown parameter $\theta$ is a function that converts your data into a single element of the parameter space $\Theta$. Good point estimators should hopefully approximate (and *reliably* approximate) the true value of $\theta$; we can formalize these properties as the bias and mean squared error of estimators.</span></span>
-<span id="cb14-573"><a href="#cb14-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-574"><a href="#cb14-574" aria-hidden="true" tabindex="-1"></a>In Bayesian analysis, point estimators are usually functions of the posterior </span>
-<span id="cb14-575"><a href="#cb14-575" aria-hidden="true" tabindex="-1"></a>distribution of the parameter, such as the expectation.</span>
-<span id="cb14-576"><a href="#cb14-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-577"><a href="#cb14-577" aria-hidden="true" tabindex="-1"></a>The point estimator for the posterior of our normal sampling model and a normal</span>
-<span id="cb14-578"><a href="#cb14-578" aria-hidden="true" tabindex="-1"></a>prior is (call it $\hat{\theta_b}$)</span>
-<span id="cb14-579"><a href="#cb14-579" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-580"><a href="#cb14-580" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-581"><a href="#cb14-581" aria-hidden="true" tabindex="-1"></a>\hat{\theta_b} &amp;= \frac{\kappa_0 \mu_0 + n\bar{y}}{\kappa_n} <span class="sc">\\</span></span>
-<span id="cb14-582"><a href="#cb14-582" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{\kappa_0}{\kappa_0 + n} \mu_0 + \frac{n}{\kappa_0 + n}\bar{y} <span class="sc">\\</span></span>
-<span id="cb14-583"><a href="#cb14-583" aria-hidden="true" tabindex="-1"></a>&amp;= w \bar{y} + (1 - w) \mu_0</span>
-<span id="cb14-584"><a href="#cb14-584" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-585"><a href="#cb14-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-586"><a href="#cb14-586" aria-hidden="true" tabindex="-1"></a>where $w = \frac{n}{\kappa_0 + n}$.</span>
-<span id="cb14-587"><a href="#cb14-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-588"><a href="#cb14-588" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The **Bias** of an estimator $\hat{\theta}$ is $$\text{Bias}(\hat{\theta}) = \mathbb{E}(\hat{\theta}) - \theta$$. If $\text{Bias}(\hat{\theta}) = 0$ we say that $\hat{\theta}$ is an *unbiased* estimator; otherwise we say it is biased.</span></span>
-<span id="cb14-589"><a href="#cb14-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-590"><a href="#cb14-590" aria-hidden="true" tabindex="-1"></a>Consider the Bayesian $\hat{\theta_b}$ above versus the standard maximum</span>
-<span id="cb14-591"><a href="#cb14-591" aria-hidden="true" tabindex="-1"></a>likelihood estimator, $\hat{\theta_e} = \bar{y}$.</span>
-<span id="cb14-592"><a href="#cb14-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-593"><a href="#cb14-593" aria-hidden="true" tabindex="-1"></a>Notice that</span>
-<span id="cb14-594"><a href="#cb14-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-595"><a href="#cb14-595" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Bias}(\hat{\theta_e}) = \mathbb{E}(\hat{\theta_e}) - \theta = 0$, so $\hat{\theta_b}$ is unbiased;</span>
-<span id="cb14-596"><a href="#cb14-596" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Bias}(\hat{\theta_b}) = \mathbb{E}(\hat{\theta_b}) - \theta = w\theta + (1 - w)\mu_0 - \theta$. Notice that the first two terms add up to $\theta$ only if $\mu_0 = \theta$. For all $\mu \neq \theta$, $\hat{\theta_b}$ is biased!</span>
-<span id="cb14-597"><a href="#cb14-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-598"><a href="#cb14-598" aria-hidden="true" tabindex="-1"></a>A biased estimator seems undesirable, but can actually be useful in this</span>
-<span id="cb14-599"><a href="#cb14-599" aria-hidden="true" tabindex="-1"></a>setting. Imagine "biasing" the estimator *towards the true mean* to obtain a</span>
-<span id="cb14-600"><a href="#cb14-600" aria-hidden="true" tabindex="-1"></a>more accurate estimate. Thus it is useful to recall using the Mean Squared Error</span>
-<span id="cb14-601"><a href="#cb14-601" aria-hidden="true" tabindex="-1"></a>as another measure of estimator performance, which measures how close an</span>
-<span id="cb14-602"><a href="#cb14-602" aria-hidden="true" tabindex="-1"></a>estimator $\hat{\theta}$ will be to the true population parameter $\theta$, on</span>
-<span id="cb14-603"><a href="#cb14-603" aria-hidden="true" tabindex="-1"></a>average:</span>
-<span id="cb14-604"><a href="#cb14-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-605"><a href="#cb14-605" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The **Mean Squared Error** (MSE) of an estimator $\hat{\theta}$ is $$\text{MSE}(\hat{\theta}) = \text{Var}(\hat{\theta}) + \text{Bias}^2(\hat{\theta})$$</span></span>
-<span id="cb14-606"><a href="#cb14-606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-607"><a href="#cb14-607" aria-hidden="true" tabindex="-1"></a>Let's compare the MSE of $\hat{\theta_b}$ and $\hat{\theta_e}$:</span>
-<span id="cb14-608"><a href="#cb14-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-609"><a href="#cb14-609" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Var}(\hat{\theta_e}) = \text{Var}(\bar{y}) = \frac{\sigma^2}{n}$</span>
-<span id="cb14-610"><a href="#cb14-610" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Var}(\hat{\theta_b}) = \text{Var}(w \theta_0 + (1 - w)\mu_0) = \text{Var}(w \theta) = w^2 \frac{\sigma^2}{n}$</span>
-<span id="cb14-611"><a href="#cb14-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-612"><a href="#cb14-612" aria-hidden="true" tabindex="-1"></a>So</span>
-<span id="cb14-613"><a href="#cb14-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-614"><a href="#cb14-614" aria-hidden="true" tabindex="-1"></a>$$\text{MSE}(\hat{\theta_e}) = \text{Var}(\hat{\theta_e}) + \text{Bias}^2(\hat{\theta_e}) = \frac{\sigma^2}{n} + 0$$</span>
-<span id="cb14-615"><a href="#cb14-615" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-616"><a href="#cb14-616" aria-hidden="true" tabindex="-1"></a>\text{MSE}(\hat{\theta_b}) &amp;= \text{Var}(\hat{\theta_b}) + \text{Bias}^2(\hat{\theta_b}) <span class="sc">\\</span></span>
-<span id="cb14-617"><a href="#cb14-617" aria-hidden="true" tabindex="-1"></a>&amp;= w^2 \frac{\sigma^2}{n} + \left<span class="co">[</span><span class="ot"> w\theta + (1 - w)\mu_0 - \theta \right</span><span class="co">]</span>^2 <span class="sc">\\</span></span>
-<span id="cb14-618"><a href="#cb14-618" aria-hidden="true" tabindex="-1"></a>&amp;= w^2 \frac{\sigma^2}{n} + \left<span class="co">[</span><span class="ot"> (1 - w)\mu_0 - (1 - w)\theta \right</span><span class="co">]</span>^2 <span class="sc">\\</span></span>
-<span id="cb14-619"><a href="#cb14-619" aria-hidden="true" tabindex="-1"></a>&amp;= w^2 \frac{\sigma^2}{n} + (1 - w)^2(\mu_0 - \theta)^2 <span class="sc">\\</span></span>
-<span id="cb14-620"><a href="#cb14-620" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-621"><a href="#cb14-621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-622"><a href="#cb14-622" aria-hidden="true" tabindex="-1"></a>Notice that</span>
-<span id="cb14-623"><a href="#cb14-623" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-624"><a href="#cb14-624" aria-hidden="true" tabindex="-1"></a>&amp; \text{MSE}(\hat{\theta_b}) &lt; \text{MSE}(\hat{\theta_e}) <span class="sc">\\</span></span>
-<span id="cb14-625"><a href="#cb14-625" aria-hidden="true" tabindex="-1"></a>\implies&amp; w^2 \frac{\sigma^2}{n} + (1 - w)^2 (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} <span class="sc">\\</span></span>
-<span id="cb14-626"><a href="#cb14-626" aria-hidden="true" tabindex="-1"></a>\implies&amp; (1-w)^2(\mu_0 - \theta)^2 &lt; (1 - w^2) \frac{\sigma^2}{n} <span class="sc">\\</span></span>
-<span id="cb14-627"><a href="#cb14-627" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{1-w^2}{(1 - w)^2} <span class="sc">\\</span></span>
-<span id="cb14-628"><a href="#cb14-628" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{(1 - w)(1 + w)}{(1 - w)^2} &amp; \text{Difference of squares} <span class="sc">\\</span></span>
-<span id="cb14-629"><a href="#cb14-629" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{1 + w}{1 - w} <span class="sc">\\</span></span>
-<span id="cb14-630"><a href="#cb14-630" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{1 + \frac{n}{\kappa_0 + n}}{1 - \frac{n}{\kappa_0 + n}} &amp; \text{Def. of $w$} <span class="sc">\\</span></span>
-<span id="cb14-631"><a href="#cb14-631" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{\frac{\kappa_0 + 2n}{\kappa_0 + n}}{\frac{\kappa_0}{\kappa_0 + n}} <span class="sc">\\</span></span>
-<span id="cb14-632"><a href="#cb14-632" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{\kappa_0 + 2n}{\kappa_0 + n}\frac{\kappa_0 + n}{\kappa_0} <span class="sc">\\</span></span>
-<span id="cb14-633"><a href="#cb14-633" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{\kappa_0 + 2n}{\kappa_0} <span class="sc">\\</span></span>
-<span id="cb14-634"><a href="#cb14-634" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \sigma^2 \frac{\kappa_0 + 2n}{n\kappa_0} <span class="sc">\\</span></span>
-<span id="cb14-635"><a href="#cb14-635" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \sigma^2 \left( \frac{\kappa_0}{n\kappa_0} + \frac{2n}{n\kappa_0} \right) <span class="sc">\\</span></span>
-<span id="cb14-636"><a href="#cb14-636" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \sigma^2 \left( \frac{1}{n} + \frac{2}{\kappa_0} \right) <span class="sc">\\</span></span>
-<span id="cb14-637"><a href="#cb14-637" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-638"><a href="#cb14-638" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-639"><a href="#cb14-639" aria-hidden="true" tabindex="-1"></a>So the Bayesian estimator has lower mean squared error than the ML estimate as</span>
-<span id="cb14-640"><a href="#cb14-640" aria-hidden="true" tabindex="-1"></a>long as values of $\mu_0$ and $\kappa_0$ are picked such that this inequality</span>
-<span id="cb14-641"><a href="#cb14-641" aria-hidden="true" tabindex="-1"></a>holds - intutively, if your "guess" about the prior is not far from the truth.</span>
-<span id="cb14-642"><a href="#cb14-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-643"><a href="#cb14-643" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prior specification based on expectations</span></span>
-<span id="cb14-644"><a href="#cb14-644" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-645"><a href="#cb14-645" aria-hidden="true" tabindex="-1"></a>The normal model can be shown to be an 2-dimensional exponential model.</span>
-<span id="cb14-646"><a href="#cb14-646" aria-hidden="true" tabindex="-1"></a>A $p$-dimensional exponential family model has densities of the form</span>
-<span id="cb14-647"><a href="#cb14-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-648"><a href="#cb14-648" aria-hidden="true" tabindex="-1"></a>$$p(y \mid \boldsymbol{\phi}) = h(y) c(\boldsymbol{\phi}) \text{exp}\left( \boldsymbol{\phi}^T \mathbf{t}(y) \right)$$</span>
-<span id="cb14-649"><a href="#cb14-649" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-650"><a href="#cb14-650" aria-hidden="true" tabindex="-1"></a>Recall the normal density:</span>
-<span id="cb14-651"><a href="#cb14-651" aria-hidden="true" tabindex="-1"></a>$$p(y \mid \theta, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \text{exp} \left( - \frac{(y - \theta)^2}{2\sigma^2} \right)$$</span>
-<span id="cb14-652"><a href="#cb14-652" aria-hidden="true" tabindex="-1"></a>For clarity later, let's expand the quadratic term in the exponential:</span>
-<span id="cb14-653"><a href="#cb14-653" aria-hidden="true" tabindex="-1"></a>$$p(y \mid \theta, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \text{exp} \left( - \frac{y^2 - 2\theta y + \theta^2}{2\sigma^2} \right)$$</span>
-<span id="cb14-654"><a href="#cb14-654" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-655"><a href="#cb14-655" aria-hidden="true" tabindex="-1"></a>Given the exponential family parameters</span>
-<span id="cb14-656"><a href="#cb14-656" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-657"><a href="#cb14-657" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mathbf{t}(y) = (y, y^2)$</span>
-<span id="cb14-658"><a href="#cb14-658" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\boldsymbol{\phi} = (\theta / \sigma^2, -(2\sigma^2)^{-1})$</span>
-<span id="cb14-659"><a href="#cb14-659" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$c(\boldsymbol{\phi}) = | \phi_2 |^{1 / 2} \text{exp}\left(\phi_1^2 / (2\phi_2) \right)$</span>
-<span id="cb14-660"><a href="#cb14-660" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$h(y) = 1 / \sqrt{\pi}$</span>
-<span id="cb14-661"><a href="#cb14-661" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-662"><a href="#cb14-662" aria-hidden="true" tabindex="-1"></a>You can reconstruct the normal density:</span>
-<span id="cb14-663"><a href="#cb14-663" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-664"><a href="#cb14-664" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-665"><a href="#cb14-665" aria-hidden="true" tabindex="-1"></a>p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{exp}\left( \frac{\phi_1^2}{2\phi_2} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 <span class="sc">\\</span> -(2\sigma^2)^{-1} \end{pmatrix}  \right) <span class="sc">\\</span></span>
-<span id="cb14-666"><a href="#cb14-666" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\sqrt{\pi}} (2\sigma^2)^{-1/2} \text{exp}\left( \frac{(\theta / \sigma^2)^2}{-2(2\sigma^2)^{-1}} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 <span class="sc">\\</span> -(2\sigma^2)^{-1} \end{pmatrix} \right) <span class="sc">\\</span></span>
-<span id="cb14-667"><a href="#cb14-667" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-668"><a href="#cb14-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-669"><a href="#cb14-669" aria-hidden="true" tabindex="-1"></a>The exact algebra is omitted here, but note that once the</span>
-<span id="cb14-670"><a href="#cb14-670" aria-hidden="true" tabindex="-1"></a>exponential terms are combined (and the matrix multiplication in the second exp), there</span>
-<span id="cb14-671"><a href="#cb14-671" aria-hidden="true" tabindex="-1"></a>are three separate terms added together. With a common factor of $1 /</span>
-<span id="cb14-672"><a href="#cb14-672" aria-hidden="true" tabindex="-1"></a>-2\sigma^2$, those three terms are the   $y^2$, $2 \theta y$, and $\theta^2$ of</span>
-<span id="cb14-673"><a href="#cb14-673" aria-hidden="true" tabindex="-1"></a>the expanded normal density above.</span>
-<span id="cb14-674"><a href="#cb14-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-675"><a href="#cb14-675" aria-hidden="true" tabindex="-1"></a>With exponential family models, we can now "read off" conjugate priors; for the</span>
-<span id="cb14-676"><a href="#cb14-676" aria-hidden="true" tabindex="-1"></a>$p$-dimensional case, the prior is $p(\boldsymbol{\phi} \mid n_0,</span>
-<span id="cb14-677"><a href="#cb14-677" aria-hidden="true" tabindex="-1"></a>\mathbf{t}_0) \propto c(\boldsymbol{\phi})^{n_0} \text{exp}(n_0 \mathbf{t}_0^T</span>
-<span id="cb14-678"><a href="#cb14-678" aria-hidden="true" tabindex="-1"></a>\boldsymbol{\phi})$. Using the change of variables formula (which seems very</span>
-<span id="cb14-679"><a href="#cb14-679" aria-hidden="true" tabindex="-1"></a>complicated), you can reparamaterize the corresponding prior in terms of</span>
-<span id="cb14-680"><a href="#cb14-680" aria-hidden="true" tabindex="-1"></a>$\theta$ and $\sigma^2$, which gives a prior that is the product of two priors</span>
-<span id="cb14-681"><a href="#cb14-681" aria-hidden="true" tabindex="-1"></a>we had determined previously to be conjugate: the normal and inverse-gamma densities.</span>
-<span id="cb14-682"><a href="#cb14-682" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-683"><a href="#cb14-683" aria-hidden="true" tabindex="-1"></a>There are some more details on the significance of specifying $n_0$ and</span>
-<span id="cb14-684"><a href="#cb14-684" aria-hidden="true" tabindex="-1"></a>$\mathbf{t}_0$ that I am skipping, since it essentially mirrors the prior</span>
-<span id="cb14-685"><a href="#cb14-685" aria-hidden="true" tabindex="-1"></a>specification advice in the previous sections.</span>
-<span id="cb14-686"><a href="#cb14-686" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-687"><a href="#cb14-687" aria-hidden="true" tabindex="-1"></a><span class="fu"># Normal model for non-normal data</span></span>
-<span id="cb14-688"><a href="#cb14-688" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-689"><a href="#cb14-689" aria-hidden="true" tabindex="-1"></a>Because of the central limit theorem etc., we often use the normal model for</span>
-<span id="cb14-690"><a href="#cb14-690" aria-hidden="true" tabindex="-1"></a>non-normal data. This is especially applicable when 1) we are measuring summary</span>
-<span id="cb14-691"><a href="#cb14-691" aria-hidden="true" tabindex="-1"></a>statistics of a population, such as the mean, and 2) when we are measuring</span>
-<span id="cb14-692"><a href="#cb14-692" aria-hidden="true" tabindex="-1"></a>variables that might be the additive result of many underlying factors, which</span>
-<span id="cb14-693"><a href="#cb14-693" aria-hidden="true" tabindex="-1"></a>results in an approximately normal variable.</span>
-<span id="cb14-694"><a href="#cb14-694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-695"><a href="#cb14-695" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
-<span id="cb14-696"><a href="#cb14-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-697"><a href="#cb14-697" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1</span></span>
-<span id="cb14-698"><a href="#cb14-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-701"><a href="#cb14-701" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-702"><a href="#cb14-702" aria-hidden="true" tabindex="-1"></a>school1 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school1.dat'</span>)</span>
-<span id="cb14-703"><a href="#cb14-703" aria-hidden="true" tabindex="-1"></a>school2 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school2.dat'</span>)</span>
-<span id="cb14-704"><a href="#cb14-704" aria-hidden="true" tabindex="-1"></a>school3 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school3.dat'</span>)</span>
-<span id="cb14-705"><a href="#cb14-705" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-706"><a href="#cb14-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-707"><a href="#cb14-707" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
-<span id="cb14-708"><a href="#cb14-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-711"><a href="#cb14-711" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-712"><a href="#cb14-712" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb14-713"><a href="#cb14-713" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">4</span></span>
-<span id="cb14-714"><a href="#cb14-714" aria-hidden="true" tabindex="-1"></a>k0 <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb14-715"><a href="#cb14-715" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb14-716"><a href="#cb14-716" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-717"><a href="#cb14-717" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">lapply</span>(<span class="fu">list</span>(school1, school2, school3), <span class="cf">function</span>(sdata) {</span>
-<span id="cb14-718"><a href="#cb14-718" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Statistics of data</span></span>
-<span id="cb14-719"><a href="#cb14-719" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">length</span>(sdata)</span>
-<span id="cb14-720"><a href="#cb14-720" aria-hidden="true" tabindex="-1"></a>  ybar <span class="ot">=</span> <span class="fu">mean</span>(sdata)</span>
-<span id="cb14-721"><a href="#cb14-721" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">=</span> <span class="fu">var</span>(sdata)</span>
-<span id="cb14-722"><a href="#cb14-722" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-723"><a href="#cb14-723" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compute posterior values, mun, s2n, kappan, nun</span></span>
-<span id="cb14-724"><a href="#cb14-724" aria-hidden="true" tabindex="-1"></a>  kn <span class="ot">=</span> k0 <span class="sc">+</span> n</span>
-<span id="cb14-725"><a href="#cb14-725" aria-hidden="true" tabindex="-1"></a>  nun <span class="ot">=</span> nu0 <span class="sc">+</span> n</span>
-<span id="cb14-726"><a href="#cb14-726" aria-hidden="true" tabindex="-1"></a>  mun <span class="ot">=</span> (k0 <span class="sc">*</span> mu0 <span class="sc">+</span> n <span class="sc">*</span> ybar) <span class="sc">/</span> kn</span>
-<span id="cb14-727"><a href="#cb14-727" aria-hidden="true" tabindex="-1"></a>  s2n <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> nun) <span class="sc">*</span> (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2 <span class="sc">+</span> ((k0 <span class="sc">*</span> n) <span class="sc">/</span> kn) <span class="sc">*</span> (ybar <span class="sc">-</span> mu0)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb14-728"><a href="#cb14-728" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-729"><a href="#cb14-729" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">'mun'</span> <span class="ot">=</span> mun, <span class="st">'s2n'</span> <span class="ot">=</span> s2n, <span class="st">'kn'</span> <span class="ot">=</span> kn, <span class="st">'nun'</span> <span class="ot">=</span> nun)</span>
-<span id="cb14-730"><a href="#cb14-730" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb14-731"><a href="#cb14-731" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-732"><a href="#cb14-732" aria-hidden="true" tabindex="-1"></a>params.df <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(params[[<span class="dv">1</span>]], params[[<span class="dv">2</span>]], params[[<span class="dv">3</span>]]))</span>
-<span id="cb14-733"><a href="#cb14-733" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(params.df) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'school1'</span>, <span class="st">'school2'</span>, <span class="st">'school3'</span>)</span>
-<span id="cb14-734"><a href="#cb14-734" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-735"><a href="#cb14-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-738"><a href="#cb14-738" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-739"><a href="#cb14-739" aria-hidden="true" tabindex="-1"></a><span class="co"># 5000 monte carlo samples. Need to estimate \sigma^2 before \theta.</span></span>
-<span id="cb14-740"><a href="#cb14-740" aria-hidden="true" tabindex="-1"></a><span class="co"># Means and confidence intervals of the \sigma^2 can easily be computed, but for</span></span>
-<span id="cb14-741"><a href="#cb14-741" aria-hidden="true" tabindex="-1"></a><span class="co"># brevity, only \theta is output</span></span>
-<span id="cb14-742"><a href="#cb14-742" aria-hidden="true" tabindex="-1"></a>school1.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb14-743"><a href="#cb14-743" aria-hidden="true" tabindex="-1"></a>school1.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school1.s2.mc <span class="sc">/</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>kn))</span>
-<span id="cb14-744"><a href="#cb14-744" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school1.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
-<span id="cb14-745"><a href="#cb14-745" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-746"><a href="#cb14-746" aria-hidden="true" tabindex="-1"></a>school2.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb14-747"><a href="#cb14-747" aria-hidden="true" tabindex="-1"></a>school2.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school2.s2.mc <span class="sc">/</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>kn))</span>
-<span id="cb14-748"><a href="#cb14-748" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school2.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
-<span id="cb14-749"><a href="#cb14-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-750"><a href="#cb14-750" aria-hidden="true" tabindex="-1"></a>school3.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">3</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb14-751"><a href="#cb14-751" aria-hidden="true" tabindex="-1"></a>school3.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school3.s2.mc <span class="sc">/</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>kn))</span>
-<span id="cb14-752"><a href="#cb14-752" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school3.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
-<span id="cb14-753"><a href="#cb14-753" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-754"><a href="#cb14-754" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-755"><a href="#cb14-755" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
-<span id="cb14-756"><a href="#cb14-756" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-759"><a href="#cb14-759" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-760"><a href="#cb14-760" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(combinat)</span>
-<span id="cb14-761"><a href="#cb14-761" aria-hidden="true" tabindex="-1"></a>school.theta.mc <span class="ot">=</span> <span class="fu">list</span>(school1.theta.mc, school2.theta.mc, school3.theta.mc)</span>
-<span id="cb14-762"><a href="#cb14-762" aria-hidden="true" tabindex="-1"></a>perms <span class="ot">=</span> <span class="fu">permn</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb14-763"><a href="#cb14-763" aria-hidden="true" tabindex="-1"></a>theta.lt.probs <span class="ot">=</span> <span class="fu">lapply</span>(perms, <span class="cf">function</span>(perm) {</span>
-<span id="cb14-764"><a href="#cb14-764" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a vector e.g. c(1, 3, 2)</span></span>
-<span id="cb14-765"><a href="#cb14-765" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(school.theta.mc[[perm[<span class="dv">1</span>]]] <span class="sc">&lt;</span> school.theta.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&amp;</span></span>
-<span id="cb14-766"><a href="#cb14-766" aria-hidden="true" tabindex="-1"></a>         school.theta.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&lt;</span> school.theta.mc[[perm[<span class="dv">3</span>]]])</span>
-<span id="cb14-767"><a href="#cb14-767" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb14-768"><a href="#cb14-768" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(theta.lt.probs) <span class="ot">=</span> <span class="fu">sapply</span>(perms, <span class="cf">function</span>(v) <span class="fu">paste</span>(v, <span class="at">collapse =</span><span class="st">' &lt; '</span>))</span>
-<span id="cb14-769"><a href="#cb14-769" aria-hidden="true" tabindex="-1"></a>theta.lt.probs.stacked <span class="ot">=</span> <span class="fu">stack</span>(theta.lt.probs)[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)] <span class="co"># Reverse stack order</span></span>
-<span id="cb14-770"><a href="#cb14-770" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(theta.lt.probs.stacked, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">'inequality'</span>, <span class="st">'prob'</span>))</span>
-<span id="cb14-771"><a href="#cb14-771" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-772"><a href="#cb14-772" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-773"><a href="#cb14-773" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
-<span id="cb14-774"><a href="#cb14-774" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-777"><a href="#cb14-777" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-778"><a href="#cb14-778" aria-hidden="true" tabindex="-1"></a>school.s2.mc <span class="ot">=</span> <span class="fu">list</span>(school1.s2.mc, school2.s2.mc, school3.s2.mc)</span>
-<span id="cb14-779"><a href="#cb14-779" aria-hidden="true" tabindex="-1"></a>school.y.mc <span class="ot">=</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="cf">function</span>(i) {</span>
-<span id="cb14-780"><a href="#cb14-780" aria-hidden="true" tabindex="-1"></a>  this.s2 <span class="ot">=</span> school.s2.mc[[i]]</span>
-<span id="cb14-781"><a href="#cb14-781" aria-hidden="true" tabindex="-1"></a>  this.theta <span class="ot">=</span> school.theta.mc[[i]]</span>
-<span id="cb14-782"><a href="#cb14-782" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">5000</span>, this.theta, <span class="fu">sqrt</span>(this.s2))</span>
-<span id="cb14-783"><a href="#cb14-783" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb14-784"><a href="#cb14-784" aria-hidden="true" tabindex="-1"></a>y.lt.probs <span class="ot">=</span> <span class="fu">lapply</span>(perms, <span class="cf">function</span>(perm) {</span>
-<span id="cb14-785"><a href="#cb14-785" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a vector e.g. c(1, 3, 2)</span></span>
-<span id="cb14-786"><a href="#cb14-786" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(school.y.mc[[perm[<span class="dv">1</span>]]] <span class="sc">&lt;</span> school.y.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&amp;</span></span>
-<span id="cb14-787"><a href="#cb14-787" aria-hidden="true" tabindex="-1"></a>         school.y.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&lt;</span> school.y.mc[[perm[<span class="dv">3</span>]]])</span>
-<span id="cb14-788"><a href="#cb14-788" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb14-789"><a href="#cb14-789" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y.lt.probs) <span class="ot">=</span> <span class="fu">sapply</span>(perms, <span class="cf">function</span>(v) <span class="fu">paste</span>(v, <span class="at">collapse =</span><span class="st">' &lt; '</span>))</span>
-<span id="cb14-790"><a href="#cb14-790" aria-hidden="true" tabindex="-1"></a>y.lt.probs.stacked <span class="ot">=</span> <span class="fu">stack</span>(y.lt.probs)[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)] <span class="co"># Reverse stack order</span></span>
-<span id="cb14-791"><a href="#cb14-791" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(y.lt.probs.stacked, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">'inequality'</span>, <span class="st">'prob'</span>))</span>
-<span id="cb14-792"><a href="#cb14-792" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-793"><a href="#cb14-793" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-794"><a href="#cb14-794" aria-hidden="true" tabindex="-1"></a><span class="fu">### d</span></span>
-<span id="cb14-795"><a href="#cb14-795" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-798"><a href="#cb14-798" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-799"><a href="#cb14-799" aria-hidden="true" tabindex="-1"></a>theta1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">3</span>]])</span>
-<span id="cb14-800"><a href="#cb14-800" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta1.big.prob)</span>
-<span id="cb14-801"><a href="#cb14-801" aria-hidden="true" tabindex="-1"></a>y1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">3</span>]])</span>
-<span id="cb14-802"><a href="#cb14-802" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1.big.prob)</span>
-<span id="cb14-803"><a href="#cb14-803" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-804"><a href="#cb14-804" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-805"><a href="#cb14-805" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.2</span></span>
-<span id="cb14-806"><a href="#cb14-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-809"><a href="#cb14-809" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-810"><a href="#cb14-810" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">75</span></span>
-<span id="cb14-811"><a href="#cb14-811" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">100</span></span>
-<span id="cb14-812"><a href="#cb14-812" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-813"><a href="#cb14-813" aria-hidden="true" tabindex="-1"></a>n.a <span class="ot">=</span> n.b <span class="ot">=</span> <span class="dv">16</span></span>
-<span id="cb14-814"><a href="#cb14-814" aria-hidden="true" tabindex="-1"></a>ybar.a <span class="ot">=</span> <span class="fl">75.2</span></span>
-<span id="cb14-815"><a href="#cb14-815" aria-hidden="true" tabindex="-1"></a>s2.a <span class="ot">=</span> <span class="fl">7.3</span><span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb14-816"><a href="#cb14-816" aria-hidden="true" tabindex="-1"></a>ybar.b <span class="ot">=</span> <span class="fl">77.5</span></span>
-<span id="cb14-817"><a href="#cb14-817" aria-hidden="true" tabindex="-1"></a>s2.b <span class="ot">=</span> <span class="fl">8.1</span><span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb14-818"><a href="#cb14-818" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-819"><a href="#cb14-819" aria-hidden="true" tabindex="-1"></a>k0nu0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>)</span>
-<span id="cb14-820"><a href="#cb14-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-821"><a href="#cb14-821" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">=</span> <span class="fu">sapply</span>(k0nu0, <span class="cf">function</span>(p) {</span>
-<span id="cb14-822"><a href="#cb14-822" aria-hidden="true" tabindex="-1"></a>  <span class="co"># p is the common parameter for k0 and nu0</span></span>
-<span id="cb14-823"><a href="#cb14-823" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-824"><a href="#cb14-824" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate posterior parameters</span></span>
-<span id="cb14-825"><a href="#cb14-825" aria-hidden="true" tabindex="-1"></a>  kn.a <span class="ot">=</span> p <span class="sc">+</span> n.a</span>
-<span id="cb14-826"><a href="#cb14-826" aria-hidden="true" tabindex="-1"></a>  nun.a <span class="ot">=</span> p <span class="sc">+</span> n.a</span>
-<span id="cb14-827"><a href="#cb14-827" aria-hidden="true" tabindex="-1"></a>  mun.a <span class="ot">=</span> (p <span class="sc">*</span> mu0 <span class="sc">+</span> n.a <span class="sc">*</span> ybar.a) <span class="sc">/</span> kn.a</span>
-<span id="cb14-828"><a href="#cb14-828" aria-hidden="true" tabindex="-1"></a>  s2n.a <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> nun.a) <span class="sc">*</span> (p <span class="sc">*</span> s20 <span class="sc">+</span> (n.a <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2.a <span class="sc">+</span> ((p <span class="sc">*</span> n.a) <span class="sc">/</span> kn.a) <span class="sc">*</span> (ybar.a <span class="sc">-</span> mu0)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb14-829"><a href="#cb14-829" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-830"><a href="#cb14-830" aria-hidden="true" tabindex="-1"></a>  s2.a.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, nun.a <span class="sc">/</span> <span class="dv">2</span>, s2n.a <span class="sc">*</span> nun.a <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb14-831"><a href="#cb14-831" aria-hidden="true" tabindex="-1"></a>  theta.a.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, mun.a, <span class="fu">sqrt</span>(s2.a.mc<span class="sc">/</span>kn.a))</span>
-<span id="cb14-832"><a href="#cb14-832" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-833"><a href="#cb14-833" aria-hidden="true" tabindex="-1"></a>  kn.b <span class="ot">=</span> p <span class="sc">+</span> n.b</span>
-<span id="cb14-834"><a href="#cb14-834" aria-hidden="true" tabindex="-1"></a>  nun.b <span class="ot">=</span> p <span class="sc">+</span> n.b</span>
-<span id="cb14-835"><a href="#cb14-835" aria-hidden="true" tabindex="-1"></a>  mun.b <span class="ot">=</span> (p <span class="sc">*</span> mu0 <span class="sc">+</span> n.b <span class="sc">*</span> ybar.b) <span class="sc">/</span> kn.b</span>
-<span id="cb14-836"><a href="#cb14-836" aria-hidden="true" tabindex="-1"></a>  s2n.b <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> nun.b) <span class="sc">*</span> (p <span class="sc">*</span> s20 <span class="sc">+</span> (n.b <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2.b <span class="sc">+</span> ((p <span class="sc">*</span> n.b) <span class="sc">/</span> kn.b) <span class="sc">*</span> (ybar.b <span class="sc">-</span> mu0)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb14-837"><a href="#cb14-837" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-838"><a href="#cb14-838" aria-hidden="true" tabindex="-1"></a>  s2.b.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, nun.b <span class="sc">/</span> <span class="dv">2</span>, s2n.b <span class="sc">*</span> nun.b <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb14-839"><a href="#cb14-839" aria-hidden="true" tabindex="-1"></a>  theta.b.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, mun.b, <span class="fu">sqrt</span>(s2.b.mc<span class="sc">/</span>kn.b))</span>
-<span id="cb14-840"><a href="#cb14-840" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-841"><a href="#cb14-841" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(theta.a.mc <span class="sc">&lt;</span> theta.b.mc)</span>
-<span id="cb14-842"><a href="#cb14-842" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb14-843"><a href="#cb14-843" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-844"><a href="#cb14-844" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(k0nu0, prob, <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">'line'</span>, <span class="st">'point'</span>))</span>
-<span id="cb14-845"><a href="#cb14-845" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-846"><a href="#cb14-846" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-847"><a href="#cb14-847" aria-hidden="true" tabindex="-1"></a>In general, there is weak evidence that $\theta_A &lt; \theta_B$. Depending on the</span>
-<span id="cb14-848"><a href="#cb14-848" aria-hidden="true" tabindex="-1"></a>strength of a person's confidence in the prior, as quantified by a "prior sample</span>
-<span id="cb14-849"><a href="#cb14-849" aria-hidden="true" tabindex="-1"></a>size" $\nu_0 = \kappa_0$, the posterior probability starts at ~0.58 and declines</span>
-<span id="cb14-850"><a href="#cb14-850" aria-hidden="true" tabindex="-1"></a>as strength increases. However, it takes a *very* strong prior belief for the</span>
-<span id="cb14-851"><a href="#cb14-851" aria-hidden="true" tabindex="-1"></a>probability to dip below 0.50.</span>
-<span id="cb14-852"><a href="#cb14-852" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-853"><a href="#cb14-853" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.3</span></span>
-<span id="cb14-854"><a href="#cb14-854" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-855"><a href="#cb14-855" aria-hidden="true" tabindex="-1"></a>The derivation of $p(\sigma^2 \mid y_1, \dots, y_n)$ is as follows:</span>
-<span id="cb14-856"><a href="#cb14-856" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-857"><a href="#cb14-857" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-858"><a href="#cb14-858" aria-hidden="true" tabindex="-1"></a>p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2)p(y_1, \dots, y_n \mid \sigma^2) <span class="sc">\\</span></span>
-<span id="cb14-859"><a href="#cb14-859" aria-hidden="true" tabindex="-1"></a>&amp;= p(\sigma^2) \times \int p(y_1, \dots, y_n \mid \theta, \sigma^2) p(\theta \mid \sigma^2) \; d\theta <span class="sc">\\</span></span>
-<span id="cb14-860"><a href="#cb14-860" aria-hidden="true" tabindex="-1"></a>&amp;= \text{dinvgamma}(\sigma^2, \nu_0 / 2, \nu_0 \sigma_0^2 / 2) \int \left<span class="co">[</span><span class="ot"> \prod_{i=1}^n \text{dnorm}(y_i, \theta, \sigma^2) \right</span><span class="co">]</span> \times \text{dnorm}(\theta, \mu_0, \sigma^2 / \kappa_0)\; d\theta <span class="sc">\\</span></span>
-<span id="cb14-861"><a href="#cb14-861" aria-hidden="true" tabindex="-1"></a>&amp;= \text{dinvgamma}(\sigma^2, \nu_0 / 2, \nu_0 \sigma_0^2 / 2) \; \times <span class="sc">\\</span> &amp;\quad \int (2\pi</span>
-<span id="cb14-862"><a href="#cb14-862" aria-hidden="true" tabindex="-1"></a>\sigma^2)^{-n/2} \text{exp}\left( -\frac{1}{2} \sum \frac{(y_i -</span>
-<span id="cb14-863"><a href="#cb14-863" aria-hidden="true" tabindex="-1"></a>\theta)^2}{\sigma^2} \right) \times \frac{1}{\sqrt{2\pi\sigma^2 / \kappa_0}}</span>
-<span id="cb14-864"><a href="#cb14-864" aria-hidden="true" tabindex="-1"></a>\text{exp}\left(-\frac{1}{2} \frac{(\theta - \mu_0)^2}{\sigma^2 / \kappa_0}\right) \; d\theta <span class="sc">\\</span></span>
-<span id="cb14-865"><a href="#cb14-865" aria-hidden="true" tabindex="-1"></a>&amp;\propto \text{dinvgamma}(\sigma^2, \nu_0 / 2, \nu_0 \sigma_0^2 / 2) \; \times <span class="sc">\\</span> &amp;\quad \sigma^{2(-(n + 1)/2)} \int \text{exp}\left( -\frac{1}{2} \sum \frac{(y_i -</span>
-<span id="cb14-866"><a href="#cb14-866" aria-hidden="true" tabindex="-1"></a>\theta)^2}{\sigma^2} \right) \times </span>
-<span id="cb14-867"><a href="#cb14-867" aria-hidden="true" tabindex="-1"></a>\text{exp}\left(-\frac{1}{2} \frac{(\theta - \mu_0)^2}{\sigma^2 / \kappa_0}\right) \; d\theta <span class="sc">\\</span></span>
-<span id="cb14-868"><a href="#cb14-868" aria-hidden="true" tabindex="-1"></a>&amp;\propto \dots</span>
-<span id="cb14-869"><a href="#cb14-869" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-870"><a href="#cb14-870" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-871"><a href="#cb14-871" aria-hidden="true" tabindex="-1"></a>This is apparently non-trivial, and requires expanding the quadratic terms in the $\text{exp}$ terms. This step is skipped for now.</span>
-<span id="cb14-872"><a href="#cb14-872" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-873"><a href="#cb14-873" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
-<span id="cb14-874"><a href="#cb14-874" aria-hidden="true" tabindex="-1"></a><span class="co">The marginal posterior distribution on $\theta^2$ can be calculated using Bayes'</span></span>
-<span id="cb14-875"><a href="#cb14-875" aria-hidden="true" tabindex="-1"></a><span class="co">rule above, or by simply plugging in the above posterior into</span></span>
+<span id="cb14-552"><a href="#cb14-552" aria-hidden="true" tabindex="-1"></a>With "significant algebra" <span class="co">[</span><span class="ot">@wood2009</span><span class="co">]</span>, you can show that inference this way results in</span>
+<span id="cb14-553"><a href="#cb14-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-554"><a href="#cb14-554" aria-hidden="true" tabindex="-1"></a>$$\frac{\theta - \bar{y}}{s / \sqrt{n}} \mid y_1, \dots, y_n \sim t_{n - 1}$$</span>
+<span id="cb14-555"><a href="#cb14-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-556"><a href="#cb14-556" aria-hidden="true" tabindex="-1"></a>i.e. a $t$ distribution with $n - 1$ degrees of freedom. This is similar to the</span>
+<span id="cb14-557"><a href="#cb14-557" aria-hidden="true" tabindex="-1"></a>sampling distribution of $t$ statistic:</span>
+<span id="cb14-558"><a href="#cb14-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-559"><a href="#cb14-559" aria-hidden="true" tabindex="-1"></a>$$\frac{\bar{Y} - \theta}{s / \sqrt{n}} \mid \theta \sim t_{n - 1}$$</span>
+<span id="cb14-560"><a href="#cb14-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-561"><a href="#cb14-561" aria-hidden="true" tabindex="-1"></a>but like the Bayesian vs Frequentist</span>
+<span id="cb14-562"><a href="#cb14-562" aria-hidden="true" tabindex="-1"></a>confidence intervals discussion in Chapter 3, they are philosophically</span>
+<span id="cb14-563"><a href="#cb14-563" aria-hidden="true" tabindex="-1"></a>different. The first describes uncertainty about the true mean conditional on</span>
+<span id="cb14-564"><a href="#cb14-564" aria-hidden="true" tabindex="-1"></a>the data, while the second describes uncertainty about the observed sample mean</span>
+<span id="cb14-565"><a href="#cb14-565" aria-hidden="true" tabindex="-1"></a>given the true population mean.</span>
+<span id="cb14-566"><a href="#cb14-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-567"><a href="#cb14-567" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bias, variance, and mean squared error</span></span>
+<span id="cb14-568"><a href="#cb14-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-569"><a href="#cb14-569" aria-hidden="true" tabindex="-1"></a>Now we are diving into the properties of estimators for posterior parameters.</span>
+<span id="cb14-570"><a href="#cb14-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-571"><a href="#cb14-571" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A *point estimator* of an unknown parameter $\theta$ is a function that converts your data into a single element of the parameter space $\Theta$. Good point estimators should hopefully approximate (and *reliably* approximate) the true value of $\theta$; we can formalize these properties as the bias and mean squared error of estimators.</span></span>
+<span id="cb14-572"><a href="#cb14-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-573"><a href="#cb14-573" aria-hidden="true" tabindex="-1"></a>In Bayesian analysis, point estimators are usually functions of the posterior </span>
+<span id="cb14-574"><a href="#cb14-574" aria-hidden="true" tabindex="-1"></a>distribution of the parameter, such as the expectation.</span>
+<span id="cb14-575"><a href="#cb14-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-576"><a href="#cb14-576" aria-hidden="true" tabindex="-1"></a>The point estimator for the posterior of our normal sampling model and a normal</span>
+<span id="cb14-577"><a href="#cb14-577" aria-hidden="true" tabindex="-1"></a>prior is (call it $\hat{\theta_b}$)</span>
+<span id="cb14-578"><a href="#cb14-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-579"><a href="#cb14-579" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-580"><a href="#cb14-580" aria-hidden="true" tabindex="-1"></a>\hat{\theta_b} &amp;= \frac{\kappa_0 \mu_0 + n\bar{y}}{\kappa_n} <span class="sc">\\</span></span>
+<span id="cb14-581"><a href="#cb14-581" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{\kappa_0}{\kappa_0 + n} \mu_0 + \frac{n}{\kappa_0 + n}\bar{y} <span class="sc">\\</span></span>
+<span id="cb14-582"><a href="#cb14-582" aria-hidden="true" tabindex="-1"></a>&amp;= w \bar{y} + (1 - w) \mu_0</span>
+<span id="cb14-583"><a href="#cb14-583" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-584"><a href="#cb14-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-585"><a href="#cb14-585" aria-hidden="true" tabindex="-1"></a>where $w = \frac{n}{\kappa_0 + n}$.</span>
+<span id="cb14-586"><a href="#cb14-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-587"><a href="#cb14-587" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The **Bias** of an estimator $\hat{\theta}$ is $$\text{Bias}(\hat{\theta}) = \mathbb{E}(\hat{\theta}) - \theta$$. If $\text{Bias}(\hat{\theta}) = 0$ we say that $\hat{\theta}$ is an *unbiased* estimator; otherwise we say it is biased.</span></span>
+<span id="cb14-588"><a href="#cb14-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-589"><a href="#cb14-589" aria-hidden="true" tabindex="-1"></a>Consider the Bayesian $\hat{\theta_b}$ above versus the standard maximum</span>
+<span id="cb14-590"><a href="#cb14-590" aria-hidden="true" tabindex="-1"></a>likelihood estimator, $\hat{\theta_e} = \bar{y}$.</span>
+<span id="cb14-591"><a href="#cb14-591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-592"><a href="#cb14-592" aria-hidden="true" tabindex="-1"></a>Notice that</span>
+<span id="cb14-593"><a href="#cb14-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-594"><a href="#cb14-594" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Bias}(\hat{\theta_e}) = \mathbb{E}(\hat{\theta_e}) - \theta = 0$, so $\hat{\theta_b}$ is unbiased;</span>
+<span id="cb14-595"><a href="#cb14-595" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Bias}(\hat{\theta_b}) = \mathbb{E}(\hat{\theta_b}) - \theta = w\theta + (1 - w)\mu_0 - \theta$. Notice that the first two terms add up to $\theta$ only if $\mu_0 = \theta$. For all $\mu \neq \theta$, $\hat{\theta_b}$ is biased!</span>
+<span id="cb14-596"><a href="#cb14-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-597"><a href="#cb14-597" aria-hidden="true" tabindex="-1"></a>A biased estimator seems undesirable, but can actually be useful in this</span>
+<span id="cb14-598"><a href="#cb14-598" aria-hidden="true" tabindex="-1"></a>setting. Imagine "biasing" the estimator *towards the true mean* to obtain a</span>
+<span id="cb14-599"><a href="#cb14-599" aria-hidden="true" tabindex="-1"></a>more accurate estimate. Thus it is useful to recall using the Mean Squared Error</span>
+<span id="cb14-600"><a href="#cb14-600" aria-hidden="true" tabindex="-1"></a>as another measure of estimator performance, which measures how close an</span>
+<span id="cb14-601"><a href="#cb14-601" aria-hidden="true" tabindex="-1"></a>estimator $\hat{\theta}$ will be to the true population parameter $\theta$, on</span>
+<span id="cb14-602"><a href="#cb14-602" aria-hidden="true" tabindex="-1"></a>average:</span>
+<span id="cb14-603"><a href="#cb14-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-604"><a href="#cb14-604" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The **Mean Squared Error** (MSE) of an estimator $\hat{\theta}$ is $$\text{MSE}(\hat{\theta}) = \text{Var}(\hat{\theta}) + \text{Bias}^2(\hat{\theta})$$</span></span>
+<span id="cb14-605"><a href="#cb14-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-606"><a href="#cb14-606" aria-hidden="true" tabindex="-1"></a>Let's compare the MSE of $\hat{\theta_b}$ and $\hat{\theta_e}$:</span>
+<span id="cb14-607"><a href="#cb14-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-608"><a href="#cb14-608" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Var}(\hat{\theta_e}) = \text{Var}(\bar{y}) = \frac{\sigma^2}{n}$</span>
+<span id="cb14-609"><a href="#cb14-609" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\text{Var}(\hat{\theta_b}) = \text{Var}(w \theta_0 + (1 - w)\mu_0) = \text{Var}(w \theta) = w^2 \frac{\sigma^2}{n}$</span>
+<span id="cb14-610"><a href="#cb14-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-611"><a href="#cb14-611" aria-hidden="true" tabindex="-1"></a>So</span>
+<span id="cb14-612"><a href="#cb14-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-613"><a href="#cb14-613" aria-hidden="true" tabindex="-1"></a>$$\text{MSE}(\hat{\theta_e}) = \text{Var}(\hat{\theta_e}) + \text{Bias}^2(\hat{\theta_e}) = \frac{\sigma^2}{n} + 0$$</span>
+<span id="cb14-614"><a href="#cb14-614" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-615"><a href="#cb14-615" aria-hidden="true" tabindex="-1"></a>\text{MSE}(\hat{\theta_b}) &amp;= \text{Var}(\hat{\theta_b}) + \text{Bias}^2(\hat{\theta_b}) <span class="sc">\\</span></span>
+<span id="cb14-616"><a href="#cb14-616" aria-hidden="true" tabindex="-1"></a>&amp;= w^2 \frac{\sigma^2}{n} + \left<span class="co">[</span><span class="ot"> w\theta + (1 - w)\mu_0 - \theta \right</span><span class="co">]</span>^2 <span class="sc">\\</span></span>
+<span id="cb14-617"><a href="#cb14-617" aria-hidden="true" tabindex="-1"></a>&amp;= w^2 \frac{\sigma^2}{n} + \left<span class="co">[</span><span class="ot"> (1 - w)\mu_0 - (1 - w)\theta \right</span><span class="co">]</span>^2 <span class="sc">\\</span></span>
+<span id="cb14-618"><a href="#cb14-618" aria-hidden="true" tabindex="-1"></a>&amp;= w^2 \frac{\sigma^2}{n} + (1 - w)^2(\mu_0 - \theta)^2 <span class="sc">\\</span></span>
+<span id="cb14-619"><a href="#cb14-619" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-620"><a href="#cb14-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-621"><a href="#cb14-621" aria-hidden="true" tabindex="-1"></a>Notice that</span>
+<span id="cb14-622"><a href="#cb14-622" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-623"><a href="#cb14-623" aria-hidden="true" tabindex="-1"></a>&amp; \text{MSE}(\hat{\theta_b}) &lt; \text{MSE}(\hat{\theta_e}) <span class="sc">\\</span></span>
+<span id="cb14-624"><a href="#cb14-624" aria-hidden="true" tabindex="-1"></a>\implies&amp; w^2 \frac{\sigma^2}{n} + (1 - w)^2 (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} <span class="sc">\\</span></span>
+<span id="cb14-625"><a href="#cb14-625" aria-hidden="true" tabindex="-1"></a>\implies&amp; (1-w)^2(\mu_0 - \theta)^2 &lt; (1 - w^2) \frac{\sigma^2}{n} <span class="sc">\\</span></span>
+<span id="cb14-626"><a href="#cb14-626" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{1-w^2}{(1 - w)^2} <span class="sc">\\</span></span>
+<span id="cb14-627"><a href="#cb14-627" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{(1 - w)(1 + w)}{(1 - w)^2} &amp; \text{Difference of squares} <span class="sc">\\</span></span>
+<span id="cb14-628"><a href="#cb14-628" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{1 + w}{1 - w} <span class="sc">\\</span></span>
+<span id="cb14-629"><a href="#cb14-629" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{1 + \frac{n}{\kappa_0 + n}}{1 - \frac{n}{\kappa_0 + n}} &amp; \text{Def. of $w$} <span class="sc">\\</span></span>
+<span id="cb14-630"><a href="#cb14-630" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{\frac{\kappa_0 + 2n}{\kappa_0 + n}}{\frac{\kappa_0}{\kappa_0 + n}} <span class="sc">\\</span></span>
+<span id="cb14-631"><a href="#cb14-631" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{\kappa_0 + 2n}{\kappa_0 + n}\frac{\kappa_0 + n}{\kappa_0} <span class="sc">\\</span></span>
+<span id="cb14-632"><a href="#cb14-632" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \frac{\sigma^2}{n} \frac{\kappa_0 + 2n}{\kappa_0} <span class="sc">\\</span></span>
+<span id="cb14-633"><a href="#cb14-633" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \sigma^2 \frac{\kappa_0 + 2n}{n\kappa_0} <span class="sc">\\</span></span>
+<span id="cb14-634"><a href="#cb14-634" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \sigma^2 \left( \frac{\kappa_0}{n\kappa_0} + \frac{2n}{n\kappa_0} \right) <span class="sc">\\</span></span>
+<span id="cb14-635"><a href="#cb14-635" aria-hidden="true" tabindex="-1"></a>\implies&amp; (\mu_0 - \theta)^2 &lt; \sigma^2 \left( \frac{1}{n} + \frac{2}{\kappa_0} \right) <span class="sc">\\</span></span>
+<span id="cb14-636"><a href="#cb14-636" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-637"><a href="#cb14-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-638"><a href="#cb14-638" aria-hidden="true" tabindex="-1"></a>So the Bayesian estimator has lower mean squared error than the ML estimate as</span>
+<span id="cb14-639"><a href="#cb14-639" aria-hidden="true" tabindex="-1"></a>long as values of $\mu_0$ and $\kappa_0$ are picked such that this inequality</span>
+<span id="cb14-640"><a href="#cb14-640" aria-hidden="true" tabindex="-1"></a>holds - intutively, if your "guess" about the prior is not far from the truth.</span>
+<span id="cb14-641"><a href="#cb14-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-642"><a href="#cb14-642" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prior specification based on expectations</span></span>
+<span id="cb14-643"><a href="#cb14-643" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-644"><a href="#cb14-644" aria-hidden="true" tabindex="-1"></a>The normal model can be shown to be an 2-dimensional exponential model.</span>
+<span id="cb14-645"><a href="#cb14-645" aria-hidden="true" tabindex="-1"></a>A $p$-dimensional exponential family model has densities of the form</span>
+<span id="cb14-646"><a href="#cb14-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-647"><a href="#cb14-647" aria-hidden="true" tabindex="-1"></a>$$p(y \mid \boldsymbol{\phi}) = h(y) c(\boldsymbol{\phi}) \text{exp}\left( \boldsymbol{\phi}^T \mathbf{t}(y) \right)$$</span>
+<span id="cb14-648"><a href="#cb14-648" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-649"><a href="#cb14-649" aria-hidden="true" tabindex="-1"></a>Recall the normal density:</span>
+<span id="cb14-650"><a href="#cb14-650" aria-hidden="true" tabindex="-1"></a>$$p(y \mid \theta, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \text{exp} \left( - \frac{(y - \theta)^2}{2\sigma^2} \right)$$</span>
+<span id="cb14-651"><a href="#cb14-651" aria-hidden="true" tabindex="-1"></a>For clarity later, let's expand the quadratic term in the exponential:</span>
+<span id="cb14-652"><a href="#cb14-652" aria-hidden="true" tabindex="-1"></a>$$p(y \mid \theta, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \text{exp} \left( - \frac{y^2 - 2\theta y + \theta^2}{2\sigma^2} \right)$$</span>
+<span id="cb14-653"><a href="#cb14-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-654"><a href="#cb14-654" aria-hidden="true" tabindex="-1"></a>Given the exponential family parameters</span>
+<span id="cb14-655"><a href="#cb14-655" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-656"><a href="#cb14-656" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mathbf{t}(y) = (y, y^2)$</span>
+<span id="cb14-657"><a href="#cb14-657" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\boldsymbol{\phi} = (\theta / \sigma^2, -(2\sigma^2)^{-1})$</span>
+<span id="cb14-658"><a href="#cb14-658" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$c(\boldsymbol{\phi}) = | \phi_2 |^{1 / 2} \text{exp}\left(\phi_1^2 / (2\phi_2) \right)$</span>
+<span id="cb14-659"><a href="#cb14-659" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$h(y) = 1 / \sqrt{\pi}$</span>
+<span id="cb14-660"><a href="#cb14-660" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-661"><a href="#cb14-661" aria-hidden="true" tabindex="-1"></a>You can reconstruct the normal density:</span>
+<span id="cb14-662"><a href="#cb14-662" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-663"><a href="#cb14-663" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-664"><a href="#cb14-664" aria-hidden="true" tabindex="-1"></a>p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{exp}\left( \frac{\phi_1^2}{2\phi_2} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 <span class="sc">\\</span> -(2\sigma^2)^{-1} \end{pmatrix}  \right) <span class="sc">\\</span></span>
+<span id="cb14-665"><a href="#cb14-665" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\sqrt{\pi}} (2\sigma^2)^{-1/2} \text{exp}\left( \frac{(\theta / \sigma^2)^2}{-2(2\sigma^2)^{-1}} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 <span class="sc">\\</span> -(2\sigma^2)^{-1} \end{pmatrix} \right) <span class="sc">\\</span></span>
+<span id="cb14-666"><a href="#cb14-666" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-667"><a href="#cb14-667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-668"><a href="#cb14-668" aria-hidden="true" tabindex="-1"></a>The exact algebra is omitted here, but note that once the</span>
+<span id="cb14-669"><a href="#cb14-669" aria-hidden="true" tabindex="-1"></a>exponential terms are combined (and the matrix multiplication in the second exp), there</span>
+<span id="cb14-670"><a href="#cb14-670" aria-hidden="true" tabindex="-1"></a>are three separate terms added together. With a common factor of $1 /</span>
+<span id="cb14-671"><a href="#cb14-671" aria-hidden="true" tabindex="-1"></a>-2\sigma^2$, those three terms are the   $y^2$, $2 \theta y$, and $\theta^2$ of</span>
+<span id="cb14-672"><a href="#cb14-672" aria-hidden="true" tabindex="-1"></a>the expanded normal density above.</span>
+<span id="cb14-673"><a href="#cb14-673" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-674"><a href="#cb14-674" aria-hidden="true" tabindex="-1"></a>With exponential family models, we can now "read off" conjugate priors; for the</span>
+<span id="cb14-675"><a href="#cb14-675" aria-hidden="true" tabindex="-1"></a>$p$-dimensional case, the prior is $p(\boldsymbol{\phi} \mid n_0,</span>
+<span id="cb14-676"><a href="#cb14-676" aria-hidden="true" tabindex="-1"></a>\mathbf{t}_0) \propto c(\boldsymbol{\phi})^{n_0} \text{exp}(n_0 \mathbf{t}_0^T</span>
+<span id="cb14-677"><a href="#cb14-677" aria-hidden="true" tabindex="-1"></a>\boldsymbol{\phi})$. Using the change of variables formula (which seems very</span>
+<span id="cb14-678"><a href="#cb14-678" aria-hidden="true" tabindex="-1"></a>complicated), you can reparamaterize the corresponding prior in terms of</span>
+<span id="cb14-679"><a href="#cb14-679" aria-hidden="true" tabindex="-1"></a>$\theta$ and $\sigma^2$, which gives a prior that is the product of two priors</span>
+<span id="cb14-680"><a href="#cb14-680" aria-hidden="true" tabindex="-1"></a>we had determined previously to be conjugate: the normal and inverse-gamma densities.</span>
+<span id="cb14-681"><a href="#cb14-681" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-682"><a href="#cb14-682" aria-hidden="true" tabindex="-1"></a>There are some more details on the significance of specifying $n_0$ and</span>
+<span id="cb14-683"><a href="#cb14-683" aria-hidden="true" tabindex="-1"></a>$\mathbf{t}_0$ that I am skipping, since it essentially mirrors the prior</span>
+<span id="cb14-684"><a href="#cb14-684" aria-hidden="true" tabindex="-1"></a>specification advice in the previous sections.</span>
+<span id="cb14-685"><a href="#cb14-685" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-686"><a href="#cb14-686" aria-hidden="true" tabindex="-1"></a><span class="fu"># Normal model for non-normal data</span></span>
+<span id="cb14-687"><a href="#cb14-687" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-688"><a href="#cb14-688" aria-hidden="true" tabindex="-1"></a>Because of the central limit theorem etc., we often use the normal model for</span>
+<span id="cb14-689"><a href="#cb14-689" aria-hidden="true" tabindex="-1"></a>non-normal data. This is especially applicable when 1) we are measuring summary</span>
+<span id="cb14-690"><a href="#cb14-690" aria-hidden="true" tabindex="-1"></a>statistics of a population, such as the mean, and 2) when we are measuring</span>
+<span id="cb14-691"><a href="#cb14-691" aria-hidden="true" tabindex="-1"></a>variables that might be the additive result of many underlying factors, which</span>
+<span id="cb14-692"><a href="#cb14-692" aria-hidden="true" tabindex="-1"></a>results in an approximately normal variable.</span>
+<span id="cb14-693"><a href="#cb14-693" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-694"><a href="#cb14-694" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
+<span id="cb14-695"><a href="#cb14-695" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-696"><a href="#cb14-696" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1</span></span>
+<span id="cb14-697"><a href="#cb14-697" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-700"><a href="#cb14-700" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-701"><a href="#cb14-701" aria-hidden="true" tabindex="-1"></a>school1 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school1.dat'</span>)</span>
+<span id="cb14-702"><a href="#cb14-702" aria-hidden="true" tabindex="-1"></a>school2 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school2.dat'</span>)</span>
+<span id="cb14-703"><a href="#cb14-703" aria-hidden="true" tabindex="-1"></a>school3 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school3.dat'</span>)</span>
+<span id="cb14-704"><a href="#cb14-704" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-705"><a href="#cb14-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-706"><a href="#cb14-706" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
+<span id="cb14-707"><a href="#cb14-707" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-710"><a href="#cb14-710" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-711"><a href="#cb14-711" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb14-712"><a href="#cb14-712" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb14-713"><a href="#cb14-713" aria-hidden="true" tabindex="-1"></a>k0 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb14-714"><a href="#cb14-714" aria-hidden="true" tabindex="-1"></a>nu0 <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb14-715"><a href="#cb14-715" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-716"><a href="#cb14-716" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">lapply</span>(<span class="fu">list</span>(school1, school2, school3), <span class="cf">function</span>(sdata) {</span>
+<span id="cb14-717"><a href="#cb14-717" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Statistics of data</span></span>
+<span id="cb14-718"><a href="#cb14-718" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">length</span>(sdata)</span>
+<span id="cb14-719"><a href="#cb14-719" aria-hidden="true" tabindex="-1"></a>  ybar <span class="ot">=</span> <span class="fu">mean</span>(sdata)</span>
+<span id="cb14-720"><a href="#cb14-720" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">=</span> <span class="fu">var</span>(sdata)</span>
+<span id="cb14-721"><a href="#cb14-721" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-722"><a href="#cb14-722" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compute posterior values, mun, s2n, kappan, nun</span></span>
+<span id="cb14-723"><a href="#cb14-723" aria-hidden="true" tabindex="-1"></a>  kn <span class="ot">=</span> k0 <span class="sc">+</span> n</span>
+<span id="cb14-724"><a href="#cb14-724" aria-hidden="true" tabindex="-1"></a>  nun <span class="ot">=</span> nu0 <span class="sc">+</span> n</span>
+<span id="cb14-725"><a href="#cb14-725" aria-hidden="true" tabindex="-1"></a>  mun <span class="ot">=</span> (k0 <span class="sc">*</span> mu0 <span class="sc">+</span> n <span class="sc">*</span> ybar) <span class="sc">/</span> kn</span>
+<span id="cb14-726"><a href="#cb14-726" aria-hidden="true" tabindex="-1"></a>  s2n <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> nun) <span class="sc">*</span> (nu0 <span class="sc">*</span> s20 <span class="sc">+</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2 <span class="sc">+</span> ((k0 <span class="sc">*</span> n) <span class="sc">/</span> kn) <span class="sc">*</span> (ybar <span class="sc">-</span> mu0)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb14-727"><a href="#cb14-727" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-728"><a href="#cb14-728" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">'mun'</span> <span class="ot">=</span> mun, <span class="st">'s2n'</span> <span class="ot">=</span> s2n, <span class="st">'kn'</span> <span class="ot">=</span> kn, <span class="st">'nun'</span> <span class="ot">=</span> nun)</span>
+<span id="cb14-729"><a href="#cb14-729" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-730"><a href="#cb14-730" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-731"><a href="#cb14-731" aria-hidden="true" tabindex="-1"></a>params.df <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(params[[<span class="dv">1</span>]], params[[<span class="dv">2</span>]], params[[<span class="dv">3</span>]]))</span>
+<span id="cb14-732"><a href="#cb14-732" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(params.df) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'school1'</span>, <span class="st">'school2'</span>, <span class="st">'school3'</span>)</span>
+<span id="cb14-733"><a href="#cb14-733" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-734"><a href="#cb14-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-737"><a href="#cb14-737" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-738"><a href="#cb14-738" aria-hidden="true" tabindex="-1"></a><span class="co"># 5000 monte carlo samples. Need to estimate \sigma^2 before \theta.</span></span>
+<span id="cb14-739"><a href="#cb14-739" aria-hidden="true" tabindex="-1"></a><span class="co"># Means and confidence intervals of the \sigma^2 can easily be computed, but for</span></span>
+<span id="cb14-740"><a href="#cb14-740" aria-hidden="true" tabindex="-1"></a><span class="co"># brevity, only \theta is output</span></span>
+<span id="cb14-741"><a href="#cb14-741" aria-hidden="true" tabindex="-1"></a>school1.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb14-742"><a href="#cb14-742" aria-hidden="true" tabindex="-1"></a>school1.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school1.s2.mc <span class="sc">/</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>kn))</span>
+<span id="cb14-743"><a href="#cb14-743" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school1.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
+<span id="cb14-744"><a href="#cb14-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-745"><a href="#cb14-745" aria-hidden="true" tabindex="-1"></a>school2.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb14-746"><a href="#cb14-746" aria-hidden="true" tabindex="-1"></a>school2.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school2.s2.mc <span class="sc">/</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>kn))</span>
+<span id="cb14-747"><a href="#cb14-747" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school2.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
+<span id="cb14-748"><a href="#cb14-748" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-749"><a href="#cb14-749" aria-hidden="true" tabindex="-1"></a>school3.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">3</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb14-750"><a href="#cb14-750" aria-hidden="true" tabindex="-1"></a>school3.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school3.s2.mc <span class="sc">/</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>kn))</span>
+<span id="cb14-751"><a href="#cb14-751" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(school3.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
+<span id="cb14-752"><a href="#cb14-752" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-753"><a href="#cb14-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-754"><a href="#cb14-754" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb14-755"><a href="#cb14-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-758"><a href="#cb14-758" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-759"><a href="#cb14-759" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(combinat)</span>
+<span id="cb14-760"><a href="#cb14-760" aria-hidden="true" tabindex="-1"></a>school.theta.mc <span class="ot">=</span> <span class="fu">list</span>(school1.theta.mc, school2.theta.mc, school3.theta.mc)</span>
+<span id="cb14-761"><a href="#cb14-761" aria-hidden="true" tabindex="-1"></a>perms <span class="ot">=</span> <span class="fu">permn</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb14-762"><a href="#cb14-762" aria-hidden="true" tabindex="-1"></a>theta.lt.probs <span class="ot">=</span> <span class="fu">lapply</span>(perms, <span class="cf">function</span>(perm) {</span>
+<span id="cb14-763"><a href="#cb14-763" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a vector e.g. c(1, 3, 2)</span></span>
+<span id="cb14-764"><a href="#cb14-764" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(school.theta.mc[[perm[<span class="dv">1</span>]]] <span class="sc">&lt;</span> school.theta.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&amp;</span></span>
+<span id="cb14-765"><a href="#cb14-765" aria-hidden="true" tabindex="-1"></a>         school.theta.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&lt;</span> school.theta.mc[[perm[<span class="dv">3</span>]]])</span>
+<span id="cb14-766"><a href="#cb14-766" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-767"><a href="#cb14-767" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(theta.lt.probs) <span class="ot">=</span> <span class="fu">sapply</span>(perms, <span class="cf">function</span>(v) <span class="fu">paste</span>(v, <span class="at">collapse =</span><span class="st">' &lt; '</span>))</span>
+<span id="cb14-768"><a href="#cb14-768" aria-hidden="true" tabindex="-1"></a>theta.lt.probs.stacked <span class="ot">=</span> <span class="fu">stack</span>(theta.lt.probs)[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)] <span class="co"># Reverse stack order</span></span>
+<span id="cb14-769"><a href="#cb14-769" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(theta.lt.probs.stacked, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">'inequality'</span>, <span class="st">'prob'</span>))</span>
+<span id="cb14-770"><a href="#cb14-770" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-771"><a href="#cb14-771" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-772"><a href="#cb14-772" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
+<span id="cb14-773"><a href="#cb14-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-776"><a href="#cb14-776" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-777"><a href="#cb14-777" aria-hidden="true" tabindex="-1"></a>school.s2.mc <span class="ot">=</span> <span class="fu">list</span>(school1.s2.mc, school2.s2.mc, school3.s2.mc)</span>
+<span id="cb14-778"><a href="#cb14-778" aria-hidden="true" tabindex="-1"></a>school.y.mc <span class="ot">=</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb14-779"><a href="#cb14-779" aria-hidden="true" tabindex="-1"></a>  this.s2 <span class="ot">=</span> school.s2.mc[[i]]</span>
+<span id="cb14-780"><a href="#cb14-780" aria-hidden="true" tabindex="-1"></a>  this.theta <span class="ot">=</span> school.theta.mc[[i]]</span>
+<span id="cb14-781"><a href="#cb14-781" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">5000</span>, this.theta, <span class="fu">sqrt</span>(this.s2))</span>
+<span id="cb14-782"><a href="#cb14-782" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-783"><a href="#cb14-783" aria-hidden="true" tabindex="-1"></a>y.lt.probs <span class="ot">=</span> <span class="fu">lapply</span>(perms, <span class="cf">function</span>(perm) {</span>
+<span id="cb14-784"><a href="#cb14-784" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a vector e.g. c(1, 3, 2)</span></span>
+<span id="cb14-785"><a href="#cb14-785" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(school.y.mc[[perm[<span class="dv">1</span>]]] <span class="sc">&lt;</span> school.y.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&amp;</span></span>
+<span id="cb14-786"><a href="#cb14-786" aria-hidden="true" tabindex="-1"></a>         school.y.mc[[perm[<span class="dv">2</span>]]] <span class="sc">&lt;</span> school.y.mc[[perm[<span class="dv">3</span>]]])</span>
+<span id="cb14-787"><a href="#cb14-787" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-788"><a href="#cb14-788" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y.lt.probs) <span class="ot">=</span> <span class="fu">sapply</span>(perms, <span class="cf">function</span>(v) <span class="fu">paste</span>(v, <span class="at">collapse =</span><span class="st">' &lt; '</span>))</span>
+<span id="cb14-789"><a href="#cb14-789" aria-hidden="true" tabindex="-1"></a>y.lt.probs.stacked <span class="ot">=</span> <span class="fu">stack</span>(y.lt.probs)[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)] <span class="co"># Reverse stack order</span></span>
+<span id="cb14-790"><a href="#cb14-790" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(y.lt.probs.stacked, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">'inequality'</span>, <span class="st">'prob'</span>))</span>
+<span id="cb14-791"><a href="#cb14-791" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-792"><a href="#cb14-792" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-793"><a href="#cb14-793" aria-hidden="true" tabindex="-1"></a><span class="fu">### d</span></span>
+<span id="cb14-794"><a href="#cb14-794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-797"><a href="#cb14-797" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-798"><a href="#cb14-798" aria-hidden="true" tabindex="-1"></a>theta1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">3</span>]])</span>
+<span id="cb14-799"><a href="#cb14-799" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta1.big.prob)</span>
+<span id="cb14-800"><a href="#cb14-800" aria-hidden="true" tabindex="-1"></a>y1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">3</span>]])</span>
+<span id="cb14-801"><a href="#cb14-801" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1.big.prob)</span>
+<span id="cb14-802"><a href="#cb14-802" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-803"><a href="#cb14-803" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-804"><a href="#cb14-804" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.2</span></span>
+<span id="cb14-805"><a href="#cb14-805" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-808"><a href="#cb14-808" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-809"><a href="#cb14-809" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">75</span></span>
+<span id="cb14-810"><a href="#cb14-810" aria-hidden="true" tabindex="-1"></a>s20 <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb14-811"><a href="#cb14-811" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-812"><a href="#cb14-812" aria-hidden="true" tabindex="-1"></a>n.a <span class="ot">=</span> n.b <span class="ot">=</span> <span class="dv">16</span></span>
+<span id="cb14-813"><a href="#cb14-813" aria-hidden="true" tabindex="-1"></a>ybar.a <span class="ot">=</span> <span class="fl">75.2</span></span>
+<span id="cb14-814"><a href="#cb14-814" aria-hidden="true" tabindex="-1"></a>s2.a <span class="ot">=</span> <span class="fl">7.3</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb14-815"><a href="#cb14-815" aria-hidden="true" tabindex="-1"></a>ybar.b <span class="ot">=</span> <span class="fl">77.5</span></span>
+<span id="cb14-816"><a href="#cb14-816" aria-hidden="true" tabindex="-1"></a>s2.b <span class="ot">=</span> <span class="fl">8.1</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb14-817"><a href="#cb14-817" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-818"><a href="#cb14-818" aria-hidden="true" tabindex="-1"></a>k0nu0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>)</span>
+<span id="cb14-819"><a href="#cb14-819" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-820"><a href="#cb14-820" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">=</span> <span class="fu">sapply</span>(k0nu0, <span class="cf">function</span>(p) {</span>
+<span id="cb14-821"><a href="#cb14-821" aria-hidden="true" tabindex="-1"></a>  <span class="co"># p is the common parameter for k0 and nu0</span></span>
+<span id="cb14-822"><a href="#cb14-822" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-823"><a href="#cb14-823" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate posterior parameters</span></span>
+<span id="cb14-824"><a href="#cb14-824" aria-hidden="true" tabindex="-1"></a>  kn.a <span class="ot">=</span> p <span class="sc">+</span> n.a</span>
+<span id="cb14-825"><a href="#cb14-825" aria-hidden="true" tabindex="-1"></a>  nun.a <span class="ot">=</span> p <span class="sc">+</span> n.a</span>
+<span id="cb14-826"><a href="#cb14-826" aria-hidden="true" tabindex="-1"></a>  mun.a <span class="ot">=</span> (p <span class="sc">*</span> mu0 <span class="sc">+</span> n.a <span class="sc">*</span> ybar.a) <span class="sc">/</span> kn.a</span>
+<span id="cb14-827"><a href="#cb14-827" aria-hidden="true" tabindex="-1"></a>  s2n.a <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> nun.a) <span class="sc">*</span> (p <span class="sc">*</span> s20 <span class="sc">+</span> (n.a <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2.a <span class="sc">+</span> ((p <span class="sc">*</span> n.a) <span class="sc">/</span> kn.a) <span class="sc">*</span> (ybar.a <span class="sc">-</span> mu0)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb14-828"><a href="#cb14-828" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-829"><a href="#cb14-829" aria-hidden="true" tabindex="-1"></a>  s2.a.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, nun.a <span class="sc">/</span> <span class="dv">2</span>, s2n.a <span class="sc">*</span> nun.a <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb14-830"><a href="#cb14-830" aria-hidden="true" tabindex="-1"></a>  theta.a.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, mun.a, <span class="fu">sqrt</span>(s2.a.mc<span class="sc">/</span>kn.a))</span>
+<span id="cb14-831"><a href="#cb14-831" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-832"><a href="#cb14-832" aria-hidden="true" tabindex="-1"></a>  kn.b <span class="ot">=</span> p <span class="sc">+</span> n.b</span>
+<span id="cb14-833"><a href="#cb14-833" aria-hidden="true" tabindex="-1"></a>  nun.b <span class="ot">=</span> p <span class="sc">+</span> n.b</span>
+<span id="cb14-834"><a href="#cb14-834" aria-hidden="true" tabindex="-1"></a>  mun.b <span class="ot">=</span> (p <span class="sc">*</span> mu0 <span class="sc">+</span> n.b <span class="sc">*</span> ybar.b) <span class="sc">/</span> kn.b</span>
+<span id="cb14-835"><a href="#cb14-835" aria-hidden="true" tabindex="-1"></a>  s2n.b <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">/</span> nun.b) <span class="sc">*</span> (p <span class="sc">*</span> s20 <span class="sc">+</span> (n.b <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2.b <span class="sc">+</span> ((p <span class="sc">*</span> n.b) <span class="sc">/</span> kn.b) <span class="sc">*</span> (ybar.b <span class="sc">-</span> mu0)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb14-836"><a href="#cb14-836" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-837"><a href="#cb14-837" aria-hidden="true" tabindex="-1"></a>  s2.b.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, nun.b <span class="sc">/</span> <span class="dv">2</span>, s2n.b <span class="sc">*</span> nun.b <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb14-838"><a href="#cb14-838" aria-hidden="true" tabindex="-1"></a>  theta.b.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, mun.b, <span class="fu">sqrt</span>(s2.b.mc<span class="sc">/</span>kn.b))</span>
+<span id="cb14-839"><a href="#cb14-839" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-840"><a href="#cb14-840" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(theta.a.mc <span class="sc">&lt;</span> theta.b.mc)</span>
+<span id="cb14-841"><a href="#cb14-841" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-842"><a href="#cb14-842" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-843"><a href="#cb14-843" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(k0nu0, prob, <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">'line'</span>, <span class="st">'point'</span>))</span>
+<span id="cb14-844"><a href="#cb14-844" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-845"><a href="#cb14-845" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-846"><a href="#cb14-846" aria-hidden="true" tabindex="-1"></a>In general, there is weak evidence that $\theta_A &lt; \theta_B$. Depending on the</span>
+<span id="cb14-847"><a href="#cb14-847" aria-hidden="true" tabindex="-1"></a>strength of a person's confidence in the prior, as quantified by a "prior sample</span>
+<span id="cb14-848"><a href="#cb14-848" aria-hidden="true" tabindex="-1"></a>size" $\nu_0 = \kappa_0$, the posterior probability starts at ~0.58 and declines</span>
+<span id="cb14-849"><a href="#cb14-849" aria-hidden="true" tabindex="-1"></a>as strength increases. However, it takes a *very* strong prior belief for the</span>
+<span id="cb14-850"><a href="#cb14-850" aria-hidden="true" tabindex="-1"></a>probability to dip below 0.50.</span>
+<span id="cb14-851"><a href="#cb14-851" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-852"><a href="#cb14-852" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.3</span></span>
+<span id="cb14-853"><a href="#cb14-853" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-854"><a href="#cb14-854" aria-hidden="true" tabindex="-1"></a>The derivation of $p(\sigma^2 \mid y_1, \dots, y_n)$ is as follows:</span>
+<span id="cb14-855"><a href="#cb14-855" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-856"><a href="#cb14-856" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-857"><a href="#cb14-857" aria-hidden="true" tabindex="-1"></a>p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2)p(y_1, \dots, y_n \mid \sigma^2) <span class="sc">\\</span></span>
+<span id="cb14-858"><a href="#cb14-858" aria-hidden="true" tabindex="-1"></a>&amp;= p(\sigma^2) \times \int p(y_1, \dots, y_n \mid \theta, \sigma^2) p(\theta \mid \sigma^2) \; d\theta <span class="sc">\\</span></span>
+<span id="cb14-859"><a href="#cb14-859" aria-hidden="true" tabindex="-1"></a>&amp;= \text{dinvgamma}(\sigma^2, \nu_0 / 2, \nu_0 \sigma_0^2 / 2) \int \left<span class="co">[</span><span class="ot"> \prod_{i=1}^n \text{dnorm}(y_i, \theta, \sigma^2) \right</span><span class="co">]</span> \times \text{dnorm}(\theta, \mu_0, \sigma^2 / \kappa_0)\; d\theta <span class="sc">\\</span></span>
+<span id="cb14-860"><a href="#cb14-860" aria-hidden="true" tabindex="-1"></a>&amp;= \text{dinvgamma}(\sigma^2, \nu_0 / 2, \nu_0 \sigma_0^2 / 2) \; \times <span class="sc">\\</span> &amp;\quad \int (2\pi</span>
+<span id="cb14-861"><a href="#cb14-861" aria-hidden="true" tabindex="-1"></a>\sigma^2)^{-n/2} \text{exp}\left( -\frac{1}{2} \sum \frac{(y_i -</span>
+<span id="cb14-862"><a href="#cb14-862" aria-hidden="true" tabindex="-1"></a>\theta)^2}{\sigma^2} \right) \times \frac{1}{\sqrt{2\pi\sigma^2 / \kappa_0}}</span>
+<span id="cb14-863"><a href="#cb14-863" aria-hidden="true" tabindex="-1"></a>\text{exp}\left(-\frac{1}{2} \frac{(\theta - \mu_0)^2}{\sigma^2 / \kappa_0}\right) \; d\theta <span class="sc">\\</span></span>
+<span id="cb14-864"><a href="#cb14-864" aria-hidden="true" tabindex="-1"></a>&amp;\propto \text{dinvgamma}(\sigma^2, \nu_0 / 2, \nu_0 \sigma_0^2 / 2) \; \times <span class="sc">\\</span> &amp;\quad \sigma^{2(-(n + 1)/2)} \int \text{exp}\left( -\frac{1}{2} \sum \frac{(y_i -</span>
+<span id="cb14-865"><a href="#cb14-865" aria-hidden="true" tabindex="-1"></a>\theta)^2}{\sigma^2} \right) \times </span>
+<span id="cb14-866"><a href="#cb14-866" aria-hidden="true" tabindex="-1"></a>\text{exp}\left(-\frac{1}{2} \frac{(\theta - \mu_0)^2}{\sigma^2 / \kappa_0}\right) \; d\theta <span class="sc">\\</span></span>
+<span id="cb14-867"><a href="#cb14-867" aria-hidden="true" tabindex="-1"></a>&amp;\propto \dots</span>
+<span id="cb14-868"><a href="#cb14-868" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-869"><a href="#cb14-869" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-870"><a href="#cb14-870" aria-hidden="true" tabindex="-1"></a>This is apparently non-trivial, and requires expanding the quadratic terms in the $\text{exp}$ terms. This step is skipped for now.</span>
+<span id="cb14-871"><a href="#cb14-871" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-872"><a href="#cb14-872" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb14-873"><a href="#cb14-873" aria-hidden="true" tabindex="-1"></a><span class="co">The marginal posterior distribution on $\theta^2$ can be calculated using Bayes'</span></span>
+<span id="cb14-874"><a href="#cb14-874" aria-hidden="true" tabindex="-1"></a><span class="co">rule above, or by simply plugging in the above posterior into</span></span>
+<span id="cb14-875"><a href="#cb14-875" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-876"><a href="#cb14-876" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-877"><a href="#cb14-877" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-878"><a href="#cb14-878" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
-<span id="cb14-879"><a href="#cb14-879" aria-hidden="true" tabindex="-1"></a><span class="co">p(\theta \mid y_1, \dots, y_n) &amp;= \int p(\theta, \sigma^2 \mid y_1, \dots, y_n) \; d\sigma \\</span></span>
-<span id="cb14-880"><a href="#cb14-880" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \int \text{dnorm}(\theta, )</span></span>
-<span id="cb14-881"><a href="#cb14-881" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \int p(\theta \mid \sigma^2, y_1, \dots, y_n) \times p(\sigma^2 \mid y_1, \dots, y_n) \; d\sigma \\</span></span>
-<span id="cb14-882"><a href="#cb14-882" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \int \left[ \frac{1}{\sqrt{2\pi \tau_n^2}} \text{exp}(-\frac{1}{2} \frac{(\theta - \mu_n)^2}{\tau_n^2})  \right] \times \left[ \right] \\</span></span>
-<span id="cb14-883"><a href="#cb14-883" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
-<span id="cb14-884"><a href="#cb14-884" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
-<span id="cb14-885"><a href="#cb14-885" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-886"><a href="#cb14-886" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.4</span></span>
-<span id="cb14-887"><a href="#cb14-887" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-888"><a href="#cb14-888" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
-<span id="cb14-889"><a href="#cb14-889" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-890"><a href="#cb14-890" aria-hidden="true" tabindex="-1"></a>The log-likelihood function $\ell$ is</span>
-<span id="cb14-891"><a href="#cb14-891" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-892"><a href="#cb14-892" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-893"><a href="#cb14-893" aria-hidden="true" tabindex="-1"></a>\ell(Y \mid \theta, \sigma^2) &amp;= \log \left<span class="co">[</span><span class="ot"> \frac{1}{\sqrt{2\pi\sigma^2}} \text{exp}\left(-\frac{1}{2}\sum_{i=1}^n \frac{(y_i - \theta)^2}{\sigma^2} \right) \right</span><span class="co">]</span> <span class="sc">\\</span></span>
-<span id="cb14-894"><a href="#cb14-894" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2} \log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \theta)^2 <span class="sc">\\</span></span>
-<span id="cb14-895"><a href="#cb14-895" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2} \log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n y_i^2 -2\theta y_i + \theta^2 <span class="sc">\\</span></span>
-<span id="cb14-896"><a href="#cb14-896" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2} \log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \left(  \sum y_i^2 - 2\theta \sum y_i + n \theta^2 \right)</span>
-<span id="cb14-897"><a href="#cb14-897" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-898"><a href="#cb14-898" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-899"><a href="#cb14-899" aria-hidden="true" tabindex="-1"></a>The first derivatives are</span>
-<span id="cb14-900"><a href="#cb14-900" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-901"><a href="#cb14-901" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-902"><a href="#cb14-902" aria-hidden="true" tabindex="-1"></a>\ell_\theta(Y \mid \theta, \sigma) &amp;= \frac{\sum y_i - n\theta}{\sigma^2} <span class="sc">\\</span></span>
-<span id="cb14-903"><a href="#cb14-903" aria-hidden="true" tabindex="-1"></a>\ell_{\sigma^2}(Y \mid \theta, \sigma) &amp;= -\frac{n}{2\sigma^2} + \frac{\sum y_i^2}{2(\sigma^2)^2} - \frac{2\theta \sum y_i}{2(\sigma^2)^2} + \frac{n\theta^2}{2(\sigma^2)^2} <span class="sc">\\</span></span>
-<span id="cb14-904"><a href="#cb14-904" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-905"><a href="#cb14-905" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-906"><a href="#cb14-906" aria-hidden="true" tabindex="-1"></a>So the $2 \times 2$ matrix $I(\theta, \sigma^2)$ is (expectations wrt $Y$)</span>
-<span id="cb14-907"><a href="#cb14-907" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-908"><a href="#cb14-908" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-909"><a href="#cb14-909" aria-hidden="true" tabindex="-1"></a>I(\theta, \sigma^2) &amp;=</span>
-<span id="cb14-910"><a href="#cb14-910" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
-<span id="cb14-911"><a href="#cb14-911" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( \ell_{\theta\theta}(Y \mid \theta, \sigma) \right) &amp; -\mathbb{E}\left( \ell_{\theta\sigma^2}(Y \mid \theta, \sigma) \right) <span class="sc">\\</span></span>
-<span id="cb14-912"><a href="#cb14-912" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( \ell_{\sigma^2\theta}(Y \mid \theta, \sigma) \right) &amp; -\mathbb{E}\left( \ell_{\sigma^2\sigma^2}(Y \mid \theta, \sigma) \right)<span class="sc">\\</span></span>
-<span id="cb14-913"><a href="#cb14-913" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} <span class="sc">\\</span></span>
-<span id="cb14-914"><a href="#cb14-914" aria-hidden="true" tabindex="-1"></a>&amp;= \begin{bmatrix}</span>
-<span id="cb14-915"><a href="#cb14-915" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( -\frac{n}{\sigma^2} \right) &amp;</span>
-<span id="cb14-916"><a href="#cb14-916" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( -\frac{\sum y_i - n\theta}{(\sigma^2)^2}\right) <span class="sc">\\</span></span>
-<span id="cb14-917"><a href="#cb14-917" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( -\frac{\sum y_i - n\theta}{(\sigma^2)^2}\right) &amp;</span>
-<span id="cb14-918"><a href="#cb14-918" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( \frac{n}{2(\sigma^2)^2} - \frac{\sum y_i^2 - 2\theta\sum y_i + n\theta^2}{(\sigma^2)^3}\right) <span class="sc">\\</span></span>
-<span id="cb14-919"><a href="#cb14-919" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} <span class="sc">\\</span></span>
-<span id="cb14-920"><a href="#cb14-920" aria-hidden="true" tabindex="-1"></a>&amp;= \begin{bmatrix}</span>
-<span id="cb14-921"><a href="#cb14-921" aria-hidden="true" tabindex="-1"></a>\frac{n}{\sigma^2} &amp;</span>
-<span id="cb14-922"><a href="#cb14-922" aria-hidden="true" tabindex="-1"></a>-\left( -\frac{n\theta - n\theta}{(\sigma^2)^2} \right) <span class="sc">\\</span></span>
-<span id="cb14-923"><a href="#cb14-923" aria-hidden="true" tabindex="-1"></a>-\left( -\frac{n\theta - n\theta}{(\sigma^2)^2} \right) &amp;</span>
-<span id="cb14-924"><a href="#cb14-924" aria-hidden="true" tabindex="-1"></a>-\frac{n}{2(\sigma^2)^2} + \frac{\mathbb{E}(\sum y_i^2 - 2\theta\sum y_i + n\theta^2)}{(\sigma^2)^3} <span class="sc">\\</span></span>
-<span id="cb14-925"><a href="#cb14-925" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} <span class="sc">\\</span></span>
-<span id="cb14-926"><a href="#cb14-926" aria-hidden="true" tabindex="-1"></a>&amp;= \begin{bmatrix}</span>
-<span id="cb14-927"><a href="#cb14-927" aria-hidden="true" tabindex="-1"></a>\frac{n}{\sigma^2} &amp;</span>
-<span id="cb14-928"><a href="#cb14-928" aria-hidden="true" tabindex="-1"></a>0 <span class="sc">\\</span></span>
-<span id="cb14-929"><a href="#cb14-929" aria-hidden="true" tabindex="-1"></a>0 &amp;</span>
-<span id="cb14-930"><a href="#cb14-930" aria-hidden="true" tabindex="-1"></a>\frac{n}{2(\sigma^2)^2} <span class="sc">\\</span></span>
-<span id="cb14-931"><a href="#cb14-931" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
-<span id="cb14-932"><a href="#cb14-932" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-933"><a href="#cb14-933" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-934"><a href="#cb14-934" aria-hidden="true" tabindex="-1"></a>The last one is derived as follows:</span>
-<span id="cb14-935"><a href="#cb14-935" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-936"><a href="#cb14-936" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-937"><a href="#cb14-937" aria-hidden="true" tabindex="-1"></a>-\frac{n}{2(\sigma^2)^2} + \frac{\mathbb{E}(\sum y_i^2 - 2\theta\sum y_i + n\theta^2)}{(\sigma^2)^3} &amp;= -\frac{n}{2(\sigma^2)^2} + \frac{n(\theta^2 + \sigma^2) - 2\theta(n\theta) + n\theta^2}{(\sigma^2)^3} <span class="sc">\\</span></span>
-<span id="cb14-938"><a href="#cb14-938" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2(\sigma^2)^2} + \frac{n\sigma^2}{(\sigma^2)^3} <span class="sc">\\</span></span>
-<span id="cb14-939"><a href="#cb14-939" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2(\sigma^2)^2} + \frac{2n}{2(\sigma^2)^2} <span class="sc">\\</span></span>
-<span id="cb14-940"><a href="#cb14-940" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{2(\sigma^2)^2}</span>
-<span id="cb14-941"><a href="#cb14-941" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-942"><a href="#cb14-942" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-943"><a href="#cb14-943" aria-hidden="true" tabindex="-1"></a>So Jeffrey's prior is</span>
-<span id="cb14-944"><a href="#cb14-944" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-945"><a href="#cb14-945" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-946"><a href="#cb14-946" aria-hidden="true" tabindex="-1"></a>p_J(\theta, \sigma^2) &amp;\propto \sqrt{|I(\theta, \sigma^2)|} <span class="sc">\\</span></span>
-<span id="cb14-947"><a href="#cb14-947" aria-hidden="true" tabindex="-1"></a>&amp;= \sqrt{\frac{n^2}{2(\sigma^2)^3}} <span class="sc">\\</span></span>
-<span id="cb14-948"><a href="#cb14-948" aria-hidden="true" tabindex="-1"></a>&amp;\propto \sqrt{\frac{n^2}{2}} \sqrt{\frac{1}{(\sigma^2)^3}} <span class="sc">\\</span></span>
-<span id="cb14-949"><a href="#cb14-949" aria-hidden="true" tabindex="-1"></a>&amp;\propto (\sigma^2)^{-3/2}.</span>
-<span id="cb14-950"><a href="#cb14-950" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-951"><a href="#cb14-951" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-952"><a href="#cb14-952" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
-<span id="cb14-953"><a href="#cb14-953" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-954"><a href="#cb14-954" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb14-955"><a href="#cb14-955" aria-hidden="true" tabindex="-1"></a>p_J(\theta, \sigma^2 \mid \mathbf{y}) &amp;\propto p_J(\theta, \sigma^2) p(\mathbf{y} \mid \theta, \sigma^2) <span class="sc">\\</span></span>
-<span id="cb14-956"><a href="#cb14-956" aria-hidden="true" tabindex="-1"></a>&amp;\propto (\sigma^2)^{-3/2} \times (\sigma^2)^{-n/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) <span class="sc">\\</span></span>
-<span id="cb14-957"><a href="#cb14-957" aria-hidden="true" tabindex="-1"></a>&amp;= (\sigma^2)^{-(3 + n)/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right)</span>
-<span id="cb14-958"><a href="#cb14-958" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb14-959"><a href="#cb14-959" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-960"><a href="#cb14-960" aria-hidden="true" tabindex="-1"></a>Yes, since there is some normalizing constant that results in the integral over</span>
-<span id="cb14-961"><a href="#cb14-961" aria-hidden="true" tabindex="-1"></a>$p_J$ being equal to 1.</span>
-<span id="cb14-962"><a href="#cb14-962" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-963"><a href="#cb14-963" aria-hidden="true" tabindex="-1"></a>After some poking around, this is a [normal-inverse-chi-squared </span>
-<span id="cb14-964"><a href="#cb14-964" aria-hidden="true" tabindex="-1"></a>distribution](https://www2.stat.duke.edu/courses/Fall10/sta114/notes15.pdf).</span>
-<span id="cb14-965"><a href="#cb14-965" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-966"><a href="#cb14-966" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
-<span id="cb14-967"><a href="#cb14-967" aria-hidden="true" tabindex="-1"></a><span class="co">For random variables $W, V$, the density function is</span></span>
-<span id="cb14-968"><a href="#cb14-968" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-969"><a href="#cb14-969" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
-<span id="cb14-970"><a href="#cb14-970" aria-hidden="true" tabindex="-1"></a><span class="co">f(w, v; m, k, r, s) &amp;\propto v^{-(r + 3)/2} \text{exp}\left(-\frac{k(w-m)^2 +</span></span>
-<span id="cb14-971"><a href="#cb14-971" aria-hidden="true" tabindex="-1"></a><span class="co">rs}{2v} \right)</span></span>
-<span id="cb14-972"><a href="#cb14-972" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
-<span id="cb14-973"><a href="#cb14-973" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-974"><a href="#cb14-974" aria-hidden="true" tabindex="-1"></a><span class="co">For the random variables $\theta, \sigma^2$, $r = n$ is obvious from $p_J$. The</span></span>
-<span id="cb14-975"><a href="#cb14-975" aria-hidden="true" tabindex="-1"></a><span class="co">other parameters can be seen by expanding the exponential, where I borrow the</span></span>
-<span id="cb14-976"><a href="#cb14-976" aria-hidden="true" tabindex="-1"></a><span class="co">normal likelihood reparameterization trick from</span></span>
-<span id="cb14-977"><a href="#cb14-977" aria-hidden="true" tabindex="-1"></a><span class="co">[here](http://faculty.washington.edu/ezivot/econ583/mleLectures.pdf) (page 3):</span></span>
-<span id="cb14-978"><a href="#cb14-978" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-979"><a href="#cb14-979" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
-<span id="cb14-980"><a href="#cb14-980" aria-hidden="true" tabindex="-1"></a><span class="co">\text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) &amp;=</span></span>
-<span id="cb14-981"><a href="#cb14-981" aria-hidden="true" tabindex="-1"></a><span class="co">\text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left(y_i - \bar{y} + \bar{y} - \theta \right) \right) \\</span></span>
-<span id="cb14-982"><a href="#cb14-982" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left((y_i -\bar{y})^2 + 2(y_i - \bar{y})(\bar{y} - \theta) + (\bar{y} - \theta)^2 \right) \right)\\</span></span>
-<span id="cb14-983"><a href="#cb14-983" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left((y_i - \bar{y})^2 + n(\bar{y} - \theta)^2 \right) \right) \\</span></span>
-<span id="cb14-984"><a href="#cb14-984" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left((y_i - \bar{y})^2 + n(\bar{y} - \theta)^2 \right) \right) \\</span></span>
-<span id="cb14-985"><a href="#cb14-985" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left(n(\theta - \bar{y})^2 + (y_i - \bar{y})^2 \right) \right)  \\</span></span>
-<span id="cb14-986"><a href="#cb14-986" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
-<span id="cb14-987"><a href="#cb14-987" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-988"><a href="#cb14-988" aria-hidden="true" tabindex="-1"></a><span class="co">So:</span></span>
-<span id="cb14-989"><a href="#cb14-989" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-990"><a href="#cb14-990" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
-<span id="cb14-991"><a href="#cb14-991" aria-hidden="true" tabindex="-1"></a><span class="co">\left( \{\theta, \sigma^2\} \; \middle| \; \mathbf{y} \right) &amp;\sim \mathcal{N}_{\chi^{-2}}(\bar{y}, n, n, \frac{1}{n}\sum (y_i - \bar{y})^2)</span></span>
-<span id="cb14-992"><a href="#cb14-992" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
-<span id="cb14-993"><a href="#cb14-993" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
+<span id="cb14-877"><a href="#cb14-877" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
+<span id="cb14-878"><a href="#cb14-878" aria-hidden="true" tabindex="-1"></a><span class="co">p(\theta \mid y_1, \dots, y_n) &amp;= \int p(\theta, \sigma^2 \mid y_1, \dots, y_n) \; d\sigma \\</span></span>
+<span id="cb14-879"><a href="#cb14-879" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \int \text{dnorm}(\theta, )</span></span>
+<span id="cb14-880"><a href="#cb14-880" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \int p(\theta \mid \sigma^2, y_1, \dots, y_n) \times p(\sigma^2 \mid y_1, \dots, y_n) \; d\sigma \\</span></span>
+<span id="cb14-881"><a href="#cb14-881" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \int \left[ \frac{1}{\sqrt{2\pi \tau_n^2}} \text{exp}(-\frac{1}{2} \frac{(\theta - \mu_n)^2}{\tau_n^2})  \right] \times \left[ \right] \\</span></span>
+<span id="cb14-882"><a href="#cb14-882" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
+<span id="cb14-883"><a href="#cb14-883" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
+<span id="cb14-884"><a href="#cb14-884" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-885"><a href="#cb14-885" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.4</span></span>
+<span id="cb14-886"><a href="#cb14-886" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-887"><a href="#cb14-887" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
+<span id="cb14-888"><a href="#cb14-888" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-889"><a href="#cb14-889" aria-hidden="true" tabindex="-1"></a>The log-likelihood function $\ell$ is</span>
+<span id="cb14-890"><a href="#cb14-890" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-891"><a href="#cb14-891" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-892"><a href="#cb14-892" aria-hidden="true" tabindex="-1"></a>\ell(Y \mid \theta, \sigma^2) &amp;= \log \left<span class="co">[</span><span class="ot"> \frac{1}{\sqrt{2\pi\sigma^2}} \text{exp}\left(-\frac{1}{2}\sum_{i=1}^n \frac{(y_i - \theta)^2}{\sigma^2} \right) \right</span><span class="co">]</span> <span class="sc">\\</span></span>
+<span id="cb14-893"><a href="#cb14-893" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2} \log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \theta)^2 <span class="sc">\\</span></span>
+<span id="cb14-894"><a href="#cb14-894" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2} \log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n y_i^2 -2\theta y_i + \theta^2 <span class="sc">\\</span></span>
+<span id="cb14-895"><a href="#cb14-895" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2} \log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \left(  \sum y_i^2 - 2\theta \sum y_i + n \theta^2 \right)</span>
+<span id="cb14-896"><a href="#cb14-896" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-897"><a href="#cb14-897" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-898"><a href="#cb14-898" aria-hidden="true" tabindex="-1"></a>The first derivatives are</span>
+<span id="cb14-899"><a href="#cb14-899" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-900"><a href="#cb14-900" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-901"><a href="#cb14-901" aria-hidden="true" tabindex="-1"></a>\ell_\theta(Y \mid \theta, \sigma) &amp;= \frac{\sum y_i - n\theta}{\sigma^2} <span class="sc">\\</span></span>
+<span id="cb14-902"><a href="#cb14-902" aria-hidden="true" tabindex="-1"></a>\ell_{\sigma^2}(Y \mid \theta, \sigma) &amp;= -\frac{n}{2\sigma^2} + \frac{\sum y_i^2}{2(\sigma^2)^2} - \frac{2\theta \sum y_i}{2(\sigma^2)^2} + \frac{n\theta^2}{2(\sigma^2)^2} <span class="sc">\\</span></span>
+<span id="cb14-903"><a href="#cb14-903" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-904"><a href="#cb14-904" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-905"><a href="#cb14-905" aria-hidden="true" tabindex="-1"></a>So the $2 \times 2$ matrix $I(\theta, \sigma^2)$ is (expectations wrt $Y$)</span>
+<span id="cb14-906"><a href="#cb14-906" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-907"><a href="#cb14-907" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-908"><a href="#cb14-908" aria-hidden="true" tabindex="-1"></a>I(\theta, \sigma^2) &amp;=</span>
+<span id="cb14-909"><a href="#cb14-909" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb14-910"><a href="#cb14-910" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( \ell_{\theta\theta}(Y \mid \theta, \sigma) \right) &amp; -\mathbb{E}\left( \ell_{\theta\sigma^2}(Y \mid \theta, \sigma) \right) <span class="sc">\\</span></span>
+<span id="cb14-911"><a href="#cb14-911" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( \ell_{\sigma^2\theta}(Y \mid \theta, \sigma) \right) &amp; -\mathbb{E}\left( \ell_{\sigma^2\sigma^2}(Y \mid \theta, \sigma) \right)<span class="sc">\\</span></span>
+<span id="cb14-912"><a href="#cb14-912" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} <span class="sc">\\</span></span>
+<span id="cb14-913"><a href="#cb14-913" aria-hidden="true" tabindex="-1"></a>&amp;= \begin{bmatrix}</span>
+<span id="cb14-914"><a href="#cb14-914" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( -\frac{n}{\sigma^2} \right) &amp;</span>
+<span id="cb14-915"><a href="#cb14-915" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( -\frac{\sum y_i - n\theta}{(\sigma^2)^2}\right) <span class="sc">\\</span></span>
+<span id="cb14-916"><a href="#cb14-916" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( -\frac{\sum y_i - n\theta}{(\sigma^2)^2}\right) &amp;</span>
+<span id="cb14-917"><a href="#cb14-917" aria-hidden="true" tabindex="-1"></a>-\mathbb{E}\left( \frac{n}{2(\sigma^2)^2} - \frac{\sum y_i^2 - 2\theta\sum y_i + n\theta^2}{(\sigma^2)^3}\right) <span class="sc">\\</span></span>
+<span id="cb14-918"><a href="#cb14-918" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} <span class="sc">\\</span></span>
+<span id="cb14-919"><a href="#cb14-919" aria-hidden="true" tabindex="-1"></a>&amp;= \begin{bmatrix}</span>
+<span id="cb14-920"><a href="#cb14-920" aria-hidden="true" tabindex="-1"></a>\frac{n}{\sigma^2} &amp;</span>
+<span id="cb14-921"><a href="#cb14-921" aria-hidden="true" tabindex="-1"></a>-\left( -\frac{n\theta - n\theta}{(\sigma^2)^2} \right) <span class="sc">\\</span></span>
+<span id="cb14-922"><a href="#cb14-922" aria-hidden="true" tabindex="-1"></a>-\left( -\frac{n\theta - n\theta}{(\sigma^2)^2} \right) &amp;</span>
+<span id="cb14-923"><a href="#cb14-923" aria-hidden="true" tabindex="-1"></a>-\frac{n}{2(\sigma^2)^2} + \frac{\mathbb{E}(\sum y_i^2 - 2\theta\sum y_i + n\theta^2)}{(\sigma^2)^3} <span class="sc">\\</span></span>
+<span id="cb14-924"><a href="#cb14-924" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} <span class="sc">\\</span></span>
+<span id="cb14-925"><a href="#cb14-925" aria-hidden="true" tabindex="-1"></a>&amp;= \begin{bmatrix}</span>
+<span id="cb14-926"><a href="#cb14-926" aria-hidden="true" tabindex="-1"></a>\frac{n}{\sigma^2} &amp;</span>
+<span id="cb14-927"><a href="#cb14-927" aria-hidden="true" tabindex="-1"></a>0 <span class="sc">\\</span></span>
+<span id="cb14-928"><a href="#cb14-928" aria-hidden="true" tabindex="-1"></a>0 &amp;</span>
+<span id="cb14-929"><a href="#cb14-929" aria-hidden="true" tabindex="-1"></a>\frac{n}{2(\sigma^2)^2} <span class="sc">\\</span></span>
+<span id="cb14-930"><a href="#cb14-930" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb14-931"><a href="#cb14-931" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-932"><a href="#cb14-932" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-933"><a href="#cb14-933" aria-hidden="true" tabindex="-1"></a>The last one is derived as follows:</span>
+<span id="cb14-934"><a href="#cb14-934" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-935"><a href="#cb14-935" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-936"><a href="#cb14-936" aria-hidden="true" tabindex="-1"></a>-\frac{n}{2(\sigma^2)^2} + \frac{\mathbb{E}(\sum y_i^2 - 2\theta\sum y_i + n\theta^2)}{(\sigma^2)^3} &amp;= -\frac{n}{2(\sigma^2)^2} + \frac{n(\theta^2 + \sigma^2) - 2\theta(n\theta) + n\theta^2}{(\sigma^2)^3} <span class="sc">\\</span></span>
+<span id="cb14-937"><a href="#cb14-937" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2(\sigma^2)^2} + \frac{n\sigma^2}{(\sigma^2)^3} <span class="sc">\\</span></span>
+<span id="cb14-938"><a href="#cb14-938" aria-hidden="true" tabindex="-1"></a>&amp;= -\frac{n}{2(\sigma^2)^2} + \frac{2n}{2(\sigma^2)^2} <span class="sc">\\</span></span>
+<span id="cb14-939"><a href="#cb14-939" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{2(\sigma^2)^2}</span>
+<span id="cb14-940"><a href="#cb14-940" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-941"><a href="#cb14-941" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-942"><a href="#cb14-942" aria-hidden="true" tabindex="-1"></a>So Jeffrey's prior is</span>
+<span id="cb14-943"><a href="#cb14-943" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-944"><a href="#cb14-944" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-945"><a href="#cb14-945" aria-hidden="true" tabindex="-1"></a>p_J(\theta, \sigma^2) &amp;\propto \sqrt{|I(\theta, \sigma^2)|} <span class="sc">\\</span></span>
+<span id="cb14-946"><a href="#cb14-946" aria-hidden="true" tabindex="-1"></a>&amp;= \sqrt{\frac{n^2}{2(\sigma^2)^3}} <span class="sc">\\</span></span>
+<span id="cb14-947"><a href="#cb14-947" aria-hidden="true" tabindex="-1"></a>&amp;\propto \sqrt{\frac{n^2}{2}} \sqrt{\frac{1}{(\sigma^2)^3}} <span class="sc">\\</span></span>
+<span id="cb14-948"><a href="#cb14-948" aria-hidden="true" tabindex="-1"></a>&amp;\propto (\sigma^2)^{-3/2}.</span>
+<span id="cb14-949"><a href="#cb14-949" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-950"><a href="#cb14-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-951"><a href="#cb14-951" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb14-952"><a href="#cb14-952" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-953"><a href="#cb14-953" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb14-954"><a href="#cb14-954" aria-hidden="true" tabindex="-1"></a>p_J(\theta, \sigma^2 \mid \mathbf{y}) &amp;\propto p_J(\theta, \sigma^2) p(\mathbf{y} \mid \theta, \sigma^2) <span class="sc">\\</span></span>
+<span id="cb14-955"><a href="#cb14-955" aria-hidden="true" tabindex="-1"></a>&amp;\propto (\sigma^2)^{-3/2} \times (\sigma^2)^{-n/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) <span class="sc">\\</span></span>
+<span id="cb14-956"><a href="#cb14-956" aria-hidden="true" tabindex="-1"></a>&amp;= (\sigma^2)^{-(3 + n)/2} \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right)</span>
+<span id="cb14-957"><a href="#cb14-957" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb14-958"><a href="#cb14-958" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-959"><a href="#cb14-959" aria-hidden="true" tabindex="-1"></a>Yes, since there is some normalizing constant that results in the integral over</span>
+<span id="cb14-960"><a href="#cb14-960" aria-hidden="true" tabindex="-1"></a>$p_J$ being equal to 1.</span>
+<span id="cb14-961"><a href="#cb14-961" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-962"><a href="#cb14-962" aria-hidden="true" tabindex="-1"></a>After some poking around, this is a normal-inverse-chi-squared distribution <span class="co">[</span><span class="ot">@reif2010</span><span class="co">]</span>.</span>
+<span id="cb14-963"><a href="#cb14-963" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-964"><a href="#cb14-964" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb14-965"><a href="#cb14-965" aria-hidden="true" tabindex="-1"></a><span class="co">For random variables $W, V$, the density function is</span></span>
+<span id="cb14-966"><a href="#cb14-966" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-967"><a href="#cb14-967" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
+<span id="cb14-968"><a href="#cb14-968" aria-hidden="true" tabindex="-1"></a><span class="co">f(w, v; m, k, r, s) &amp;\propto v^{-(r + 3)/2} \text{exp}\left(-\frac{k(w-m)^2 +</span></span>
+<span id="cb14-969"><a href="#cb14-969" aria-hidden="true" tabindex="-1"></a><span class="co">rs}{2v} \right)</span></span>
+<span id="cb14-970"><a href="#cb14-970" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
+<span id="cb14-971"><a href="#cb14-971" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-972"><a href="#cb14-972" aria-hidden="true" tabindex="-1"></a><span class="co">For the random variables $\theta, \sigma^2$, $r = n$ is obvious from $p_J$. The</span></span>
+<span id="cb14-973"><a href="#cb14-973" aria-hidden="true" tabindex="-1"></a><span class="co">other parameters can be seen by expanding the exponential, where I borrow the</span></span>
+<span id="cb14-974"><a href="#cb14-974" aria-hidden="true" tabindex="-1"></a><span class="co">normal likelihood reparameterization trick from @zivot_mle (page 3):</span></span>
+<span id="cb14-975"><a href="#cb14-975" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-976"><a href="#cb14-976" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
+<span id="cb14-977"><a href="#cb14-977" aria-hidden="true" tabindex="-1"></a><span class="co">\text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n (y_i - \theta)^2 \right) &amp;=</span></span>
+<span id="cb14-978"><a href="#cb14-978" aria-hidden="true" tabindex="-1"></a><span class="co">\text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left(y_i - \bar{y} + \bar{y} - \theta \right) \right) \\</span></span>
+<span id="cb14-979"><a href="#cb14-979" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left((y_i -\bar{y})^2 + 2(y_i - \bar{y})(\bar{y} - \theta) + (\bar{y} - \theta)^2 \right) \right)\\</span></span>
+<span id="cb14-980"><a href="#cb14-980" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left((y_i - \bar{y})^2 + n(\bar{y} - \theta)^2 \right) \right) \\</span></span>
+<span id="cb14-981"><a href="#cb14-981" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left((y_i - \bar{y})^2 + n(\bar{y} - \theta)^2 \right) \right) \\</span></span>
+<span id="cb14-982"><a href="#cb14-982" aria-hidden="true" tabindex="-1"></a><span class="co">&amp;= \text{exp}\left(-\frac{1}{2\sigma^2} \sum_{i = 1}^n \left(n(\theta - \bar{y})^2 + (y_i - \bar{y})^2 \right) \right)  \\</span></span>
+<span id="cb14-983"><a href="#cb14-983" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
+<span id="cb14-984"><a href="#cb14-984" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-985"><a href="#cb14-985" aria-hidden="true" tabindex="-1"></a><span class="co">So:</span></span>
+<span id="cb14-986"><a href="#cb14-986" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-987"><a href="#cb14-987" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{align}</span></span>
+<span id="cb14-988"><a href="#cb14-988" aria-hidden="true" tabindex="-1"></a><span class="co">\left( \{\theta, \sigma^2\} \; \middle| \; \mathbf{y} \right) &amp;\sim \mathcal{N}_{\chi^{-2}}(\bar{y}, n, n, \frac{1}{n}\sum (y_i - \bar{y})^2)</span></span>
+<span id="cb14-989"><a href="#cb14-989" aria-hidden="true" tabindex="-1"></a><span class="co">\end{align}</span></span>
+<span id="cb14-990"><a href="#cb14-990" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

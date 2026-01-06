@@ -53,7 +53,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -716,7 +736,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 \end{aligned}
 \]</span></p>
 <p>only holds if the autocorrelation of the samples is zero. If there is positive autocorrelation in the samples, the variance of the sample mean increases, which “reduces” <span class="math inline">\(n\)</span>. So by obtaining estimates of the variance of the population (by estimating the variance of the sample) and estimates of the variance of the mean, we can solve for <span class="math inline">\(n\)</span> which is an “effective sample size”.</p>
-<p>Estimating the variance of the mean, given that we cannot assume an independent sample, is nontrivial, and requires calculating the <a href="http://faculty.arts.ubc.ca/vmarmer/econ627/627_10_02.pdf">spectral density estimate at frequency zero</a> which is “a convenient way to represent the sequence of autocovariances” of a stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.</p>
+<p>Estimating the variance of the mean, given that we cannot assume an independent sample, is nontrivial, and requires calculating the spectral density estimate at frequency zero <span class="citation" data-cites="marmer_gibbs">(<a href="#ref-marmer_gibbs" role="doc-biblioref">Marmer 2010</a>)</span> which is “a convenient way to represent the sequence of autocovariances” of a stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.</p>
 <p>This is implemented as the <code>effectiveSize</code> function in R, which abridged looks like this:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show R code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">coda</span><span class="op">)</span></span>
@@ -1121,7 +1141,12 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 
 <!-- -->
 
-</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-marmer_gibbs" class="csl-entry" role="listitem">
+Marmer, Vadim. 2010. <span>“The Gibbs Sampler.”</span> <a href="http://faculty.arts.ubc.ca/vmarmer/econ627/627_10_02.pdf">http://faculty.arts.ubc.ca/vmarmer/econ627/627_10_02.pdf</a>.
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1964,8 +1989,8 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 <span id="cb23-387"><a href="#cb23-387" aria-hidden="true" tabindex="-1"></a>mean, we can solve for $n$ which is an "effective sample size".</span>
 <span id="cb23-388"><a href="#cb23-388" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-389"><a href="#cb23-389" aria-hidden="true" tabindex="-1"></a>Estimating the variance of the mean, given that we cannot assume an independent</span>
-<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a>sample, is nontrivial, and requires calculating the [spectral density estimate</span>
-<span id="cb23-391"><a href="#cb23-391" aria-hidden="true" tabindex="-1"></a>at frequency zero](http://faculty.arts.ubc.ca/vmarmer/econ627/627_10_02.pdf)</span>
+<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a>sample, is nontrivial, and requires calculating the spectral density estimate</span>
+<span id="cb23-391"><a href="#cb23-391" aria-hidden="true" tabindex="-1"></a>at frequency zero <span class="co">[</span><span class="ot">@marmer_gibbs</span><span class="co">]</span></span>
 <span id="cb23-392"><a href="#cb23-392" aria-hidden="true" tabindex="-1"></a>which is "a convenient way to represent the sequence of autocovariances" of a</span>
 <span id="cb23-393"><a href="#cb23-393" aria-hidden="true" tabindex="-1"></a>stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.</span>
 <span id="cb23-394"><a href="#cb23-394" aria-hidden="true" tabindex="-1"></a></span>

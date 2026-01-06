@@ -53,7 +53,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -672,7 +692,7 @@ n}\frac{y}{n} = \frac{1}{2 + n}\\
 <p>And clearly the expectation is more sensible as a predictor of future <span class="math inline">\(\tilde{Y}\)</span>. But <span class="math inline">\(\theta_{MAP}\)</span> is not as unreasonable when there is a non-uniform prior…</p>
 </section></section><section id="confidence-regions" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="confidence-regions">
 <span class="header-section-number">1.4</span> Confidence regions</h2>
-<p>See <a href="https://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval">this StackExchange question</a> for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</p>
+<p>See <span class="citation" data-cites="stackexchange_confidence">Cross Validated (<a href="#ref-stackexchange_confidence" role="doc-biblioref">2010</a>)</span> for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</p>
 <p>Bayesian confidence interval is an interval <span class="math inline">\([l(y), u(y)]\)</span> with the following property:</p>
 <p><span class="math display">\[\begin{align}
 P(l(y) &lt; \theta &lt; u(y) \mid Y = y) = .95
@@ -1340,7 +1360,7 @@ p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right|
 </div>
 </div>
 </div>
-<p>This prior is also visualized via Monte-Carlo simulation in exercise 4.6. One perhaps counterintuitive result here is that for a Beta-Binomial model, an uninformative (uniform) prior on <span class="math inline">\(\theta\)</span> <em>does</em> result in an informative prior on the log-odds. This was apparently a “major criticism of Bayesian inference” led by R.A. Fisher. For more information about this (and an introduction into the Jeffreys’ prior exercises next up), see <a href="https://www2.stat.duke.edu/courses/Fall11/sta114/jeffreys.pdf">these lecture notes</a>.</p>
+<p>This prior is also visualized via Monte-Carlo simulation in exercise 4.6. One perhaps counterintuitive result here is that for a Beta-Binomial model, an uninformative (uniform) prior on <span class="math inline">\(\theta\)</span> <em>does</em> result in an informative prior on the log-odds. This was apparently a “major criticism of Bayesian inference” led by R.A. Fisher. For more information about this (and an introduction into the Jeffreys’ prior exercises next up), see <span class="citation" data-cites="zhu2011">Zhu (<a href="#ref-zhu2011" role="doc-biblioref">2011</a>)</span>.</p>
 <p>Point: it is impossible to have a totally diffuse prior on a random variable with infinite support such as the log-odds, though…</p>
 </section><section id="b-5" class="level3" data-number="4.7.2"><h3 data-number="4.7.2" class="anchored" data-anchor-id="b-5">
 <span class="header-section-number">4.7.2</span> b</h3>
@@ -1483,7 +1503,15 @@ f(\theta, y) &amp;= \sqrt{I(\theta)} \times p(y \mid \theta) \\
 
 <!-- -->
 
-</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-stackexchange_confidence" class="csl-entry" role="listitem">
+Cross Validated. 2010. <span>“What’s the Difference Between a Confidence Interval and a Credible Interval?”</span> Stack Exchange. <a href="https://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval">https://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval</a>.
+</div>
+<div id="ref-zhu2011" class="csl-entry" role="listitem">
+Zhu, Hao Helen. 2011. <span>“Jeffreys Prior.”</span> <a href="https://www2.stat.duke.edu/courses/Fall11/sta114/jeffreys.pdf">https://www2.stat.duke.edu/courses/Fall11/sta114/jeffreys.pdf</a>.
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2204,7 +2232,7 @@ f(\theta, y) &amp;= \sqrt{I(\theta)} \times p(y \mid \theta) \\
 <span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a><span class="fu">## Confidence regions</span></span>
 <span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>See <span class="co">[</span><span class="ot">this StackExchange question</span><span class="co">](https://stats.stackexchange.com/questions/2272/whats-the-difference-between-a-confidence-interval-and-a-credible-interval)</span> for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>See @stackexchange_confidence for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</span>
 <span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a>Bayesian confidence interval is an interval $<span class="co">[</span><span class="ot">l(y), u(y)</span><span class="co">]</span>$ with the following property:</span>
 <span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a></span>
@@ -2985,187 +3013,186 @@ f(\theta, y) &amp;= \sqrt{I(\theta)} \times p(y \mid \theta) \\
 <span id="cb18-1064"><a href="#cb18-1064" aria-hidden="true" tabindex="-1"></a>uninformative (uniform) prior on $\theta$ *does* result in an informative prior</span>
 <span id="cb18-1065"><a href="#cb18-1065" aria-hidden="true" tabindex="-1"></a>on the log-odds. This was apparently a "major criticism of Bayesian inference" </span>
 <span id="cb18-1066"><a href="#cb18-1066" aria-hidden="true" tabindex="-1"></a>led by R.A. Fisher. For more information about this (and an introduction into </span>
-<span id="cb18-1067"><a href="#cb18-1067" aria-hidden="true" tabindex="-1"></a>the Jeffreys' prior exercises next up), see [these lecture </span>
-<span id="cb18-1068"><a href="#cb18-1068" aria-hidden="true" tabindex="-1"></a>notes](https://www2.stat.duke.edu/courses/Fall11/sta114/jeffreys.pdf).</span>
-<span id="cb18-1069"><a href="#cb18-1069" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1070"><a href="#cb18-1070" aria-hidden="true" tabindex="-1"></a>Point: it is impossible to have a totally diffuse prior on a random variable</span>
-<span id="cb18-1071"><a href="#cb18-1071" aria-hidden="true" tabindex="-1"></a>with infinite support such as the log-odds, though...</span>
-<span id="cb18-1072"><a href="#cb18-1072" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1073"><a href="#cb18-1073" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
-<span id="cb18-1074"><a href="#cb18-1074" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1075"><a href="#cb18-1075" aria-hidden="true" tabindex="-1"></a>If $\psi = g(\theta) = \log \theta$, then</span>
-<span id="cb18-1076"><a href="#cb18-1076" aria-hidden="true" tabindex="-1"></a>let $\theta = h(\psi) = e^\psi$. Then, by the change of</span>
-<span id="cb18-1077"><a href="#cb18-1077" aria-hidden="true" tabindex="-1"></a>variables formula,</span>
-<span id="cb18-1078"><a href="#cb18-1078" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1079"><a href="#cb18-1079" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1080"><a href="#cb18-1080" aria-hidden="true" tabindex="-1"></a>p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| <span class="sc">\\</span></span>
-<span id="cb18-1081"><a href="#cb18-1081" aria-hidden="true" tabindex="-1"></a>&amp;= \left<span class="co">[</span><span class="ot"> \frac{b^a}{\Gamma(a)} \text{exp}\left(\psi (a - 1)\right) \text{exp}\left( -b e^\psi \right)  \right</span><span class="co">]</span> \times \text{exp}\left( \psi \right) <span class="sc">\\</span></span>
+<span id="cb18-1067"><a href="#cb18-1067" aria-hidden="true" tabindex="-1"></a>the Jeffreys' prior exercises next up), see @zhu2011.</span>
+<span id="cb18-1068"><a href="#cb18-1068" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1069"><a href="#cb18-1069" aria-hidden="true" tabindex="-1"></a>Point: it is impossible to have a totally diffuse prior on a random variable</span>
+<span id="cb18-1070"><a href="#cb18-1070" aria-hidden="true" tabindex="-1"></a>with infinite support such as the log-odds, though...</span>
+<span id="cb18-1071"><a href="#cb18-1071" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1072"><a href="#cb18-1072" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb18-1073"><a href="#cb18-1073" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1074"><a href="#cb18-1074" aria-hidden="true" tabindex="-1"></a>If $\psi = g(\theta) = \log \theta$, then</span>
+<span id="cb18-1075"><a href="#cb18-1075" aria-hidden="true" tabindex="-1"></a>let $\theta = h(\psi) = e^\psi$. Then, by the change of</span>
+<span id="cb18-1076"><a href="#cb18-1076" aria-hidden="true" tabindex="-1"></a>variables formula,</span>
+<span id="cb18-1077"><a href="#cb18-1077" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1078"><a href="#cb18-1078" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1079"><a href="#cb18-1079" aria-hidden="true" tabindex="-1"></a>p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| <span class="sc">\\</span></span>
+<span id="cb18-1080"><a href="#cb18-1080" aria-hidden="true" tabindex="-1"></a>&amp;= \left<span class="co">[</span><span class="ot"> \frac{b^a}{\Gamma(a)} \text{exp}\left(\psi (a - 1)\right) \text{exp}\left( -b e^\psi \right)  \right</span><span class="co">]</span> \times \text{exp}\left( \psi \right) <span class="sc">\\</span></span>
+<span id="cb18-1081"><a href="#cb18-1081" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{b^a}{\Gamma(a)} \text{exp}\left(a\psi - \psi - b e^\psi + \psi \right) <span class="sc">\\</span></span>
 <span id="cb18-1082"><a href="#cb18-1082" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{b^a}{\Gamma(a)} \text{exp}\left(a\psi - \psi - b e^\psi + \psi \right) <span class="sc">\\</span></span>
-<span id="cb18-1083"><a href="#cb18-1083" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{b^a}{\Gamma(a)} \text{exp}\left(a\psi - \psi - b e^\psi + \psi \right) <span class="sc">\\</span></span>
-<span id="cb18-1084"><a href="#cb18-1084" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{b^a}{\Gamma(a)} \text{exp}\left(a\psi - b e^\psi \right)</span>
-<span id="cb18-1085"><a href="#cb18-1085" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1086"><a href="#cb18-1086" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1089"><a href="#cb18-1089" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb18-1090"><a href="#cb18-1090" aria-hidden="true" tabindex="-1"></a>dpsi <span class="ot">=</span> <span class="cf">function</span>(psi, a, b) {</span>
-<span id="cb18-1091"><a href="#cb18-1091" aria-hidden="true" tabindex="-1"></a>  (b<span class="sc">^</span>a) <span class="sc">/</span> (<span class="fu">gamma</span>(a)) <span class="sc">*</span> <span class="fu">exp</span>(a <span class="sc">*</span> psi <span class="sc">-</span> b <span class="sc">*</span> <span class="fu">exp</span>(psi))</span>
-<span id="cb18-1092"><a href="#cb18-1092" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-1093"><a href="#cb18-1093" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1094"><a href="#cb18-1094" aria-hidden="true" tabindex="-1"></a><span class="co"># To verify this is a valid PDF - with various a and b, integral should be approximately 1</span></span>
-<span id="cb18-1095"><a href="#cb18-1095" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(p) <span class="fu">dpsi</span>(p, <span class="dv">2</span>, <span class="dv">2</span>), <span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb18-1096"><a href="#cb18-1096" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(p) <span class="fu">dpsi</span>(p, <span class="dv">4</span>, <span class="dv">8</span>), <span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb18-1097"><a href="#cb18-1097" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(p) <span class="fu">dpsi</span>(p, <span class="dv">10</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb18-1098"><a href="#cb18-1098" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1099"><a href="#cb18-1099" aria-hidden="true" tabindex="-1"></a>psi <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb18-1100"><a href="#cb18-1100" aria-hidden="true" tabindex="-1"></a>density <span class="ot">=</span> <span class="fu">dpsi</span>(psi, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb18-1101"><a href="#cb18-1101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1102"><a href="#cb18-1102" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(psi, density, <span class="at">geom =</span> <span class="st">'line'</span>)</span>
-<span id="cb18-1103"><a href="#cb18-1103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-1104"><a href="#cb18-1104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1105"><a href="#cb18-1105" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.12</span></span>
-<span id="cb18-1106"><a href="#cb18-1106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1107"><a href="#cb18-1107" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
-<span id="cb18-1108"><a href="#cb18-1108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1109"><a href="#cb18-1109" aria-hidden="true" tabindex="-1"></a>If $Y$ is Binomial, then $p(y \mid \theta) = {n \choose y} \theta^y (1 - \theta)^{n - y}$.</span>
-<span id="cb18-1110"><a href="#cb18-1110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1111"><a href="#cb18-1111" aria-hidden="true" tabindex="-1"></a>So $I(\theta) = -\mathbb{E}(\partial^2 \ell(y \mid \theta) / \partial \theta^2 )$ where $\ell(y \mid \theta) = \log p(y \mid \theta)$. Now,</span>
-<span id="cb18-1112"><a href="#cb18-1112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1113"><a href="#cb18-1113" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1114"><a href="#cb18-1114" aria-hidden="true" tabindex="-1"></a>\ell(y \mid \theta) &amp;= \log p(y \mid \theta) <span class="sc">\\</span></span>
-<span id="cb18-1115"><a href="#cb18-1115" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( {n \choose y} \theta^y (1 - \theta)^{n - y} \right) <span class="sc">\\</span></span>
-<span id="cb18-1116"><a href="#cb18-1116" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( {n \choose y} \right) + y \log(\theta) + (n - y) \log(1 - \theta) <span class="sc">\\</span></span>
-<span id="cb18-1117"><a href="#cb18-1117" aria-hidden="true" tabindex="-1"></a>\ell_\theta(y \mid \theta) &amp;= \frac{y}{\theta}- \frac{n - y}{1 - \theta} <span class="sc">\\</span></span>
-<span id="cb18-1118"><a href="#cb18-1118" aria-hidden="true" tabindex="-1"></a>\ell_{\theta \theta}(y \mid \theta) &amp;= - \frac{y}{\theta^2} - \frac{n - y}{(1 - \theta)^2} <span class="sc">\\</span></span>
-<span id="cb18-1119"><a href="#cb18-1119" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1120"><a href="#cb18-1120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1121"><a href="#cb18-1121" aria-hidden="true" tabindex="-1"></a>So</span>
-<span id="cb18-1122"><a href="#cb18-1122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1123"><a href="#cb18-1123" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1124"><a href="#cb18-1124" aria-hidden="true" tabindex="-1"></a>I(\theta) &amp;= -\mathbb{E}\left( -\frac{y}{\theta^2} - \frac{n - y}{(1 - \theta)^2} \right) <span class="sc">\\</span></span>
-<span id="cb18-1125"><a href="#cb18-1125" aria-hidden="true" tabindex="-1"></a>&amp;= - \left( -\frac{1}{\theta^2} \mathbb{E}(y) - \frac{1}{(1 - \theta)^2} \mathbb{E}(n - y) \right) <span class="sc">\\</span></span>
-<span id="cb18-1126"><a href="#cb18-1126" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n\theta}{\theta^2} + \frac{n - n\theta}{(1 - \theta)^2} <span class="sc">\\</span></span>
-<span id="cb18-1127"><a href="#cb18-1127" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{\theta} + \frac{n}{1 - \theta} <span class="sc">\\</span></span>
-<span id="cb18-1128"><a href="#cb18-1128" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{\theta (1 - \theta)}</span>
-<span id="cb18-1129"><a href="#cb18-1129" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1130"><a href="#cb18-1130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1131"><a href="#cb18-1131" aria-hidden="true" tabindex="-1"></a>So Jeffreys' prior distribution is</span>
-<span id="cb18-1132"><a href="#cb18-1132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1133"><a href="#cb18-1133" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1134"><a href="#cb18-1134" aria-hidden="true" tabindex="-1"></a>p_J(\theta) &amp;= c \times \sqrt{\frac{n}{\theta (1 - \theta)}} <span class="sc">\\</span></span>
-<span id="cb18-1135"><a href="#cb18-1135" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1136"><a href="#cb18-1136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1137"><a href="#cb18-1137" aria-hidden="true" tabindex="-1"></a>where</span>
-<span id="cb18-1138"><a href="#cb18-1138" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb18-1139"><a href="#cb18-1139" aria-hidden="true" tabindex="-1"></a>c = \left( \int_0^1 \sqrt{\frac{n}{\theta(1 - \theta)}} \; d\theta \right)^{-1}.</span>
-<span id="cb18-1140"><a href="#cb18-1140" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb18-1141"><a href="#cb18-1141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1142"><a href="#cb18-1142" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
-<span id="cb18-1143"><a href="#cb18-1143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1144"><a href="#cb18-1144" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1145"><a href="#cb18-1145" aria-hidden="true" tabindex="-1"></a>\ell(y \mid \psi) &amp;= \log p(y \mid \psi) <span class="sc">\\</span></span>
-<span id="cb18-1146"><a href="#cb18-1146" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( {n \choose y} e^{\psi y} (1 + e^\psi)^{-n} \right) <span class="sc">\\</span></span>
-<span id="cb18-1147"><a href="#cb18-1147" aria-hidden="true" tabindex="-1"></a>&amp;= \log {n \choose y} + \psi y - n \log \left(1 + e^\psi \right) <span class="sc">\\</span></span>
-<span id="cb18-1148"><a href="#cb18-1148" aria-hidden="true" tabindex="-1"></a>\ell_\psi(y \mid \psi) &amp;= y - \frac{n e^\psi}{e^\psi + 1} <span class="sc">\\</span></span>
-<span id="cb18-1149"><a href="#cb18-1149" aria-hidden="true" tabindex="-1"></a>\ell_{\psi \psi}(y \mid \psi) &amp;= - \frac{n e^\psi}{\left( e^\psi + 1 \right)^2}</span>
-<span id="cb18-1150"><a href="#cb18-1150" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1151"><a href="#cb18-1151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1152"><a href="#cb18-1152" aria-hidden="true" tabindex="-1"></a>So</span>
-<span id="cb18-1153"><a href="#cb18-1153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1154"><a href="#cb18-1154" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1155"><a href="#cb18-1155" aria-hidden="true" tabindex="-1"></a>I(\psi) &amp;= -\mathbb{E}\left( - \frac{n e^\psi}{\left( e^\psi + 1 \right)^2}\right) <span class="sc">\\</span></span>
-<span id="cb18-1156"><a href="#cb18-1156" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n e^\psi}{\left( e^\psi + 1 \right)^2} <span class="sc">\\</span></span>
-<span id="cb18-1157"><a href="#cb18-1157" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1158"><a href="#cb18-1158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1159"><a href="#cb18-1159" aria-hidden="true" tabindex="-1"></a>Then Jeffreys prior is</span>
-<span id="cb18-1160"><a href="#cb18-1160" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1161"><a href="#cb18-1161" aria-hidden="true" tabindex="-1"></a>p_J(\psi) &amp;\propto \sqrt{ \frac{n e^\psi}{\left( e^\psi + 1 \right)^2} } <span class="sc">\\</span></span>
-<span id="cb18-1162"><a href="#cb18-1162" aria-hidden="true" tabindex="-1"></a>&amp;\propto \frac{\sqrt{n e^\psi}}{e^\psi + 1}</span>
-<span id="cb18-1163"><a href="#cb18-1163" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1164"><a href="#cb18-1164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1165"><a href="#cb18-1165" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
-<span id="cb18-1166"><a href="#cb18-1166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1167"><a href="#cb18-1167" aria-hidden="true" tabindex="-1"></a>If $\psi = g(\theta) = \log \frac{\theta}{1 - \theta}$, then </span>
-<span id="cb18-1168"><a href="#cb18-1168" aria-hidden="true" tabindex="-1"></a>let $\theta = h(\psi) = \frac{e^\psi}{1 + e^\psi}$. Then, by the change of</span>
-<span id="cb18-1169"><a href="#cb18-1169" aria-hidden="true" tabindex="-1"></a>variables formula,</span>
-<span id="cb18-1170"><a href="#cb18-1170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1171"><a href="#cb18-1171" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1172"><a href="#cb18-1172" aria-hidden="true" tabindex="-1"></a>p_{\psi}(\psi) &amp;\propto p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| <span class="sc">\\</span></span>
-<span id="cb18-1173"><a href="#cb18-1173" aria-hidden="true" tabindex="-1"></a>&amp;\propto \sqrt{\frac{n}{\frac{e^\psi}{1 + e^\psi} \left(1 - \frac{e^\psi}{1 + e^\psi}\right)}} \times \frac{e^\psi}{(e^\psi + 1)^2} <span class="sc">\\</span></span>
-<span id="cb18-1174"><a href="#cb18-1174" aria-hidden="true" tabindex="-1"></a>&amp;\propto \sqrt{\frac{n(e^\psi + 1)^2}{e^\psi} } \times \frac{e^\psi}{(e^\psi + 1)^2} <span class="sc">\\</span></span>
-<span id="cb18-1175"><a href="#cb18-1175" aria-hidden="true" tabindex="-1"></a>&amp;\propto \frac{\sqrt{n}(e^\psi + 1)}{\sqrt{e^\psi}} \times \frac{e^\psi}{(e^\psi + 1)^2} <span class="sc">\\</span></span>
-<span id="cb18-1176"><a href="#cb18-1176" aria-hidden="true" tabindex="-1"></a>&amp;\propto \frac{\sqrt{n}\sqrt{e^\psi}}{e^\psi + 1} <span class="sc">\\</span></span>
-<span id="cb18-1177"><a href="#cb18-1177" aria-hidden="true" tabindex="-1"></a>&amp;\propto p_J(\psi).</span>
-<span id="cb18-1178"><a href="#cb18-1178" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1179"><a href="#cb18-1179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1180"><a href="#cb18-1180" aria-hidden="true" tabindex="-1"></a>In this case, it has been demonstrated that Jeffreys' prior is invariant under monotone transformation.</span>
-<span id="cb18-1181"><a href="#cb18-1181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1182"><a href="#cb18-1182" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.13</span></span>
-<span id="cb18-1183"><a href="#cb18-1183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1184"><a href="#cb18-1184" aria-hidden="true" tabindex="-1"></a>Improper Jeffreys' prior</span>
-<span id="cb18-1185"><a href="#cb18-1185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1186"><a href="#cb18-1186" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
-<span id="cb18-1187"><a href="#cb18-1187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1188"><a href="#cb18-1188" aria-hidden="true" tabindex="-1"></a>If $Y \sim \text{Poisson}(\theta)$, $p(y) = \frac{\theta^y e^{-\theta}}{y!}$.</span>
-<span id="cb18-1189"><a href="#cb18-1189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1190"><a href="#cb18-1190" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1191"><a href="#cb18-1191" aria-hidden="true" tabindex="-1"></a>\ell(y \mid \theta) &amp;= \log p(y \mid \theta) <span class="sc">\\</span></span>
-<span id="cb18-1192"><a href="#cb18-1192" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( \frac{\theta^y e^{-\theta}}{y!} \right) <span class="sc">\\</span></span>
-<span id="cb18-1193"><a href="#cb18-1193" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( \frac{1}{y!} \right) + y \log (\theta) - \theta <span class="sc">\\</span></span>
-<span id="cb18-1194"><a href="#cb18-1194" aria-hidden="true" tabindex="-1"></a>\ell_\theta(y \mid \theta) &amp;= \frac{y}{\theta} - 1<span class="sc">\\</span></span>
-<span id="cb18-1195"><a href="#cb18-1195" aria-hidden="true" tabindex="-1"></a>\ell_{\theta \theta}(y \mid \theta) &amp;= -\frac{y}{\theta^2} <span class="sc">\\</span></span>
-<span id="cb18-1196"><a href="#cb18-1196" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1197"><a href="#cb18-1197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1198"><a href="#cb18-1198" aria-hidden="true" tabindex="-1"></a>So</span>
-<span id="cb18-1199"><a href="#cb18-1199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1200"><a href="#cb18-1200" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1201"><a href="#cb18-1201" aria-hidden="true" tabindex="-1"></a>I(\psi) &amp;= -\mathbb{E}\left( - \frac{y}{\theta^2} \right) <span class="sc">\\</span></span>
-<span id="cb18-1202"><a href="#cb18-1202" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\theta^2} \mathbb{E}(y) <span class="sc">\\</span></span>
-<span id="cb18-1203"><a href="#cb18-1203" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{\theta}{\theta^2} <span class="sc">\\</span></span>
-<span id="cb18-1204"><a href="#cb18-1204" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\theta}</span>
-<span id="cb18-1205"><a href="#cb18-1205" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1206"><a href="#cb18-1206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1207"><a href="#cb18-1207" aria-hidden="true" tabindex="-1"></a>and Jeffreys' prior is</span>
-<span id="cb18-1208"><a href="#cb18-1208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1209"><a href="#cb18-1209" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1210"><a href="#cb18-1210" aria-hidden="true" tabindex="-1"></a>p_J(\theta) &amp;= c \times \sqrt{\frac{1}{\theta}} <span class="sc">\\</span></span>
-<span id="cb18-1211"><a href="#cb18-1211" aria-hidden="true" tabindex="-1"></a>&amp;= c \times \frac{1}{\sqrt{\theta}}</span>
-<span id="cb18-1212"><a href="#cb18-1212" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1213"><a href="#cb18-1213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1214"><a href="#cb18-1214" aria-hidden="true" tabindex="-1"></a>Notice that, to be a proper probability distribution, it must be the case that</span>
-<span id="cb18-1215"><a href="#cb18-1215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1216"><a href="#cb18-1216" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1217"><a href="#cb18-1217" aria-hidden="true" tabindex="-1"></a>\int_0^{\infty} c \times \frac{1}{\sqrt{\theta}} \; d\theta = c \int_0^{\infty} \frac{1}{\sqrt{\theta}} \; d\theta = 1</span>
-<span id="cb18-1218"><a href="#cb18-1218" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1219"><a href="#cb18-1219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1220"><a href="#cb18-1220" aria-hidden="true" tabindex="-1"></a>However, this integral does not converge ($p$-test, $p = 1/2$), so there is no</span>
-<span id="cb18-1221"><a href="#cb18-1221" aria-hidden="true" tabindex="-1"></a>value of $c$ such that this is a valid probability distribution. Thus (per the</span>
-<span id="cb18-1222"><a href="#cb18-1222" aria-hidden="true" tabindex="-1"></a>name of the exercise) this is an *improper* Jeffreys' prior.</span>
-<span id="cb18-1223"><a href="#cb18-1223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1224"><a href="#cb18-1224" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
-<span id="cb18-1225"><a href="#cb18-1225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1226"><a href="#cb18-1226" aria-hidden="true" tabindex="-1"></a>However, even if $p_J(\theta)$ is not a valid probability distribution, we can</span>
-<span id="cb18-1227"><a href="#cb18-1227" aria-hidden="true" tabindex="-1"></a>still imagine performing "inference" using this prior.</span>
-<span id="cb18-1228"><a href="#cb18-1228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1229"><a href="#cb18-1229" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1230"><a href="#cb18-1230" aria-hidden="true" tabindex="-1"></a>f(\theta, y) &amp;= \sqrt{I(\theta)} \times p(y \mid \theta) <span class="sc">\\</span></span>
-<span id="cb18-1231"><a href="#cb18-1231" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\sqrt{\theta}} \times  \frac{\theta^y e^{-\theta}}{y!} <span class="sc">\\</span></span>
-<span id="cb18-1232"><a href="#cb18-1232" aria-hidden="true" tabindex="-1"></a>&amp;= \theta^{-1/2} \times  \frac{\theta^y e^{-\theta}}{\Gamma(y + 1)} <span class="sc">\\</span></span>
-<span id="cb18-1233"><a href="#cb18-1233" aria-hidden="true" tabindex="-1"></a>&amp;= \theta^{y - 1/2} e^{-\theta} \frac{1}{\Gamma(y + 1)} <span class="sc">\\</span></span>
-<span id="cb18-1234"><a href="#cb18-1234" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1235"><a href="#cb18-1235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1236"><a href="#cb18-1236" aria-hidden="true" tabindex="-1"></a>As a function of $\theta$ only, this is proportional to</span>
-<span id="cb18-1237"><a href="#cb18-1237" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-1238"><a href="#cb18-1238" aria-hidden="true" tabindex="-1"></a>\dots &amp;\propto \theta^{y - 1/2} e^{-\theta} <span class="sc">\\</span></span>
-<span id="cb18-1239"><a href="#cb18-1239" aria-hidden="true" tabindex="-1"></a>&amp;\propto \text{dgamma}(\theta, y + \frac{1/2}, 1)</span>
-<span id="cb18-1240"><a href="#cb18-1240" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-1241"><a href="#cb18-1241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1242"><a href="#cb18-1242" aria-hidden="true" tabindex="-1"></a>Since $\Gamma(y + \frac{1/2}, 1)$, $y &gt;= 0$ *is* a valid parameterization of a </span>
-<span id="cb18-1243"><a href="#cb18-1243" aria-hidden="true" tabindex="-1"></a>Gamma density, it follows that $f(\theta, y)$ can be normalized such that it </span>
-<span id="cb18-1244"><a href="#cb18-1244" aria-hidden="true" tabindex="-1"></a>represents a valid posterior density for $\theta$. Actually calculating</span>
-<span id="cb18-1245"><a href="#cb18-1245" aria-hidden="true" tabindex="-1"></a>$f(\theta, y) / \int f(\theta, y) \; d\theta$ yields such a Gamma density.</span>
-<span id="cb18-1246"><a href="#cb18-1246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-1247"><a href="#cb18-1247" aria-hidden="true" tabindex="-1"></a>Notes: the prior in a) can be thought of as an improper $\text{Gamma}(1/2, 0)$. </span>
-<span id="cb18-1248"><a href="#cb18-1248" aria-hidden="true" tabindex="-1"></a>Since improper Jeffreys' priors are not real probability densities, </span>
-<span id="cb18-1249"><a href="#cb18-1249" aria-hidden="true" tabindex="-1"></a>their usage is controversial for some. (Who?)</span>
+<span id="cb18-1083"><a href="#cb18-1083" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{b^a}{\Gamma(a)} \text{exp}\left(a\psi - b e^\psi \right)</span>
+<span id="cb18-1084"><a href="#cb18-1084" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1085"><a href="#cb18-1085" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1088"><a href="#cb18-1088" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-1089"><a href="#cb18-1089" aria-hidden="true" tabindex="-1"></a>dpsi <span class="ot">=</span> <span class="cf">function</span>(psi, a, b) {</span>
+<span id="cb18-1090"><a href="#cb18-1090" aria-hidden="true" tabindex="-1"></a>  (b<span class="sc">^</span>a) <span class="sc">/</span> (<span class="fu">gamma</span>(a)) <span class="sc">*</span> <span class="fu">exp</span>(a <span class="sc">*</span> psi <span class="sc">-</span> b <span class="sc">*</span> <span class="fu">exp</span>(psi))</span>
+<span id="cb18-1091"><a href="#cb18-1091" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-1092"><a href="#cb18-1092" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1093"><a href="#cb18-1093" aria-hidden="true" tabindex="-1"></a><span class="co"># To verify this is a valid PDF - with various a and b, integral should be approximately 1</span></span>
+<span id="cb18-1094"><a href="#cb18-1094" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(p) <span class="fu">dpsi</span>(p, <span class="dv">2</span>, <span class="dv">2</span>), <span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb18-1095"><a href="#cb18-1095" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(p) <span class="fu">dpsi</span>(p, <span class="dv">4</span>, <span class="dv">8</span>), <span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb18-1096"><a href="#cb18-1096" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(p) <span class="fu">dpsi</span>(p, <span class="dv">10</span>, <span class="dv">1</span>), <span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb18-1097"><a href="#cb18-1097" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1098"><a href="#cb18-1098" aria-hidden="true" tabindex="-1"></a>psi <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb18-1099"><a href="#cb18-1099" aria-hidden="true" tabindex="-1"></a>density <span class="ot">=</span> <span class="fu">dpsi</span>(psi, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb18-1100"><a href="#cb18-1100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1101"><a href="#cb18-1101" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(psi, density, <span class="at">geom =</span> <span class="st">'line'</span>)</span>
+<span id="cb18-1102"><a href="#cb18-1102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-1103"><a href="#cb18-1103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1104"><a href="#cb18-1104" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.12</span></span>
+<span id="cb18-1105"><a href="#cb18-1105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1106"><a href="#cb18-1106" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
+<span id="cb18-1107"><a href="#cb18-1107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1108"><a href="#cb18-1108" aria-hidden="true" tabindex="-1"></a>If $Y$ is Binomial, then $p(y \mid \theta) = {n \choose y} \theta^y (1 - \theta)^{n - y}$.</span>
+<span id="cb18-1109"><a href="#cb18-1109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1110"><a href="#cb18-1110" aria-hidden="true" tabindex="-1"></a>So $I(\theta) = -\mathbb{E}(\partial^2 \ell(y \mid \theta) / \partial \theta^2 )$ where $\ell(y \mid \theta) = \log p(y \mid \theta)$. Now,</span>
+<span id="cb18-1111"><a href="#cb18-1111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1112"><a href="#cb18-1112" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1113"><a href="#cb18-1113" aria-hidden="true" tabindex="-1"></a>\ell(y \mid \theta) &amp;= \log p(y \mid \theta) <span class="sc">\\</span></span>
+<span id="cb18-1114"><a href="#cb18-1114" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( {n \choose y} \theta^y (1 - \theta)^{n - y} \right) <span class="sc">\\</span></span>
+<span id="cb18-1115"><a href="#cb18-1115" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( {n \choose y} \right) + y \log(\theta) + (n - y) \log(1 - \theta) <span class="sc">\\</span></span>
+<span id="cb18-1116"><a href="#cb18-1116" aria-hidden="true" tabindex="-1"></a>\ell_\theta(y \mid \theta) &amp;= \frac{y}{\theta}- \frac{n - y}{1 - \theta} <span class="sc">\\</span></span>
+<span id="cb18-1117"><a href="#cb18-1117" aria-hidden="true" tabindex="-1"></a>\ell_{\theta \theta}(y \mid \theta) &amp;= - \frac{y}{\theta^2} - \frac{n - y}{(1 - \theta)^2} <span class="sc">\\</span></span>
+<span id="cb18-1118"><a href="#cb18-1118" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1119"><a href="#cb18-1119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1120"><a href="#cb18-1120" aria-hidden="true" tabindex="-1"></a>So</span>
+<span id="cb18-1121"><a href="#cb18-1121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1122"><a href="#cb18-1122" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1123"><a href="#cb18-1123" aria-hidden="true" tabindex="-1"></a>I(\theta) &amp;= -\mathbb{E}\left( -\frac{y}{\theta^2} - \frac{n - y}{(1 - \theta)^2} \right) <span class="sc">\\</span></span>
+<span id="cb18-1124"><a href="#cb18-1124" aria-hidden="true" tabindex="-1"></a>&amp;= - \left( -\frac{1}{\theta^2} \mathbb{E}(y) - \frac{1}{(1 - \theta)^2} \mathbb{E}(n - y) \right) <span class="sc">\\</span></span>
+<span id="cb18-1125"><a href="#cb18-1125" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n\theta}{\theta^2} + \frac{n - n\theta}{(1 - \theta)^2} <span class="sc">\\</span></span>
+<span id="cb18-1126"><a href="#cb18-1126" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{\theta} + \frac{n}{1 - \theta} <span class="sc">\\</span></span>
+<span id="cb18-1127"><a href="#cb18-1127" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{\theta (1 - \theta)}</span>
+<span id="cb18-1128"><a href="#cb18-1128" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1129"><a href="#cb18-1129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1130"><a href="#cb18-1130" aria-hidden="true" tabindex="-1"></a>So Jeffreys' prior distribution is</span>
+<span id="cb18-1131"><a href="#cb18-1131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1132"><a href="#cb18-1132" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1133"><a href="#cb18-1133" aria-hidden="true" tabindex="-1"></a>p_J(\theta) &amp;= c \times \sqrt{\frac{n}{\theta (1 - \theta)}} <span class="sc">\\</span></span>
+<span id="cb18-1134"><a href="#cb18-1134" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1135"><a href="#cb18-1135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1136"><a href="#cb18-1136" aria-hidden="true" tabindex="-1"></a>where</span>
+<span id="cb18-1137"><a href="#cb18-1137" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-1138"><a href="#cb18-1138" aria-hidden="true" tabindex="-1"></a>c = \left( \int_0^1 \sqrt{\frac{n}{\theta(1 - \theta)}} \; d\theta \right)^{-1}.</span>
+<span id="cb18-1139"><a href="#cb18-1139" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-1140"><a href="#cb18-1140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1141"><a href="#cb18-1141" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb18-1142"><a href="#cb18-1142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1143"><a href="#cb18-1143" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1144"><a href="#cb18-1144" aria-hidden="true" tabindex="-1"></a>\ell(y \mid \psi) &amp;= \log p(y \mid \psi) <span class="sc">\\</span></span>
+<span id="cb18-1145"><a href="#cb18-1145" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( {n \choose y} e^{\psi y} (1 + e^\psi)^{-n} \right) <span class="sc">\\</span></span>
+<span id="cb18-1146"><a href="#cb18-1146" aria-hidden="true" tabindex="-1"></a>&amp;= \log {n \choose y} + \psi y - n \log \left(1 + e^\psi \right) <span class="sc">\\</span></span>
+<span id="cb18-1147"><a href="#cb18-1147" aria-hidden="true" tabindex="-1"></a>\ell_\psi(y \mid \psi) &amp;= y - \frac{n e^\psi}{e^\psi + 1} <span class="sc">\\</span></span>
+<span id="cb18-1148"><a href="#cb18-1148" aria-hidden="true" tabindex="-1"></a>\ell_{\psi \psi}(y \mid \psi) &amp;= - \frac{n e^\psi}{\left( e^\psi + 1 \right)^2}</span>
+<span id="cb18-1149"><a href="#cb18-1149" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1150"><a href="#cb18-1150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1151"><a href="#cb18-1151" aria-hidden="true" tabindex="-1"></a>So</span>
+<span id="cb18-1152"><a href="#cb18-1152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1153"><a href="#cb18-1153" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1154"><a href="#cb18-1154" aria-hidden="true" tabindex="-1"></a>I(\psi) &amp;= -\mathbb{E}\left( - \frac{n e^\psi}{\left( e^\psi + 1 \right)^2}\right) <span class="sc">\\</span></span>
+<span id="cb18-1155"><a href="#cb18-1155" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n e^\psi}{\left( e^\psi + 1 \right)^2} <span class="sc">\\</span></span>
+<span id="cb18-1156"><a href="#cb18-1156" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1157"><a href="#cb18-1157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1158"><a href="#cb18-1158" aria-hidden="true" tabindex="-1"></a>Then Jeffreys prior is</span>
+<span id="cb18-1159"><a href="#cb18-1159" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1160"><a href="#cb18-1160" aria-hidden="true" tabindex="-1"></a>p_J(\psi) &amp;\propto \sqrt{ \frac{n e^\psi}{\left( e^\psi + 1 \right)^2} } <span class="sc">\\</span></span>
+<span id="cb18-1161"><a href="#cb18-1161" aria-hidden="true" tabindex="-1"></a>&amp;\propto \frac{\sqrt{n e^\psi}}{e^\psi + 1}</span>
+<span id="cb18-1162"><a href="#cb18-1162" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1163"><a href="#cb18-1163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1164"><a href="#cb18-1164" aria-hidden="true" tabindex="-1"></a><span class="fu">### c</span></span>
+<span id="cb18-1165"><a href="#cb18-1165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1166"><a href="#cb18-1166" aria-hidden="true" tabindex="-1"></a>If $\psi = g(\theta) = \log \frac{\theta}{1 - \theta}$, then </span>
+<span id="cb18-1167"><a href="#cb18-1167" aria-hidden="true" tabindex="-1"></a>let $\theta = h(\psi) = \frac{e^\psi}{1 + e^\psi}$. Then, by the change of</span>
+<span id="cb18-1168"><a href="#cb18-1168" aria-hidden="true" tabindex="-1"></a>variables formula,</span>
+<span id="cb18-1169"><a href="#cb18-1169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1170"><a href="#cb18-1170" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1171"><a href="#cb18-1171" aria-hidden="true" tabindex="-1"></a>p_{\psi}(\psi) &amp;\propto p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| <span class="sc">\\</span></span>
+<span id="cb18-1172"><a href="#cb18-1172" aria-hidden="true" tabindex="-1"></a>&amp;\propto \sqrt{\frac{n}{\frac{e^\psi}{1 + e^\psi} \left(1 - \frac{e^\psi}{1 + e^\psi}\right)}} \times \frac{e^\psi}{(e^\psi + 1)^2} <span class="sc">\\</span></span>
+<span id="cb18-1173"><a href="#cb18-1173" aria-hidden="true" tabindex="-1"></a>&amp;\propto \sqrt{\frac{n(e^\psi + 1)^2}{e^\psi} } \times \frac{e^\psi}{(e^\psi + 1)^2} <span class="sc">\\</span></span>
+<span id="cb18-1174"><a href="#cb18-1174" aria-hidden="true" tabindex="-1"></a>&amp;\propto \frac{\sqrt{n}(e^\psi + 1)}{\sqrt{e^\psi}} \times \frac{e^\psi}{(e^\psi + 1)^2} <span class="sc">\\</span></span>
+<span id="cb18-1175"><a href="#cb18-1175" aria-hidden="true" tabindex="-1"></a>&amp;\propto \frac{\sqrt{n}\sqrt{e^\psi}}{e^\psi + 1} <span class="sc">\\</span></span>
+<span id="cb18-1176"><a href="#cb18-1176" aria-hidden="true" tabindex="-1"></a>&amp;\propto p_J(\psi).</span>
+<span id="cb18-1177"><a href="#cb18-1177" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1178"><a href="#cb18-1178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1179"><a href="#cb18-1179" aria-hidden="true" tabindex="-1"></a>In this case, it has been demonstrated that Jeffreys' prior is invariant under monotone transformation.</span>
+<span id="cb18-1180"><a href="#cb18-1180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1181"><a href="#cb18-1181" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.13</span></span>
+<span id="cb18-1182"><a href="#cb18-1182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1183"><a href="#cb18-1183" aria-hidden="true" tabindex="-1"></a>Improper Jeffreys' prior</span>
+<span id="cb18-1184"><a href="#cb18-1184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1185"><a href="#cb18-1185" aria-hidden="true" tabindex="-1"></a><span class="fu">### a</span></span>
+<span id="cb18-1186"><a href="#cb18-1186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1187"><a href="#cb18-1187" aria-hidden="true" tabindex="-1"></a>If $Y \sim \text{Poisson}(\theta)$, $p(y) = \frac{\theta^y e^{-\theta}}{y!}$.</span>
+<span id="cb18-1188"><a href="#cb18-1188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1189"><a href="#cb18-1189" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1190"><a href="#cb18-1190" aria-hidden="true" tabindex="-1"></a>\ell(y \mid \theta) &amp;= \log p(y \mid \theta) <span class="sc">\\</span></span>
+<span id="cb18-1191"><a href="#cb18-1191" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( \frac{\theta^y e^{-\theta}}{y!} \right) <span class="sc">\\</span></span>
+<span id="cb18-1192"><a href="#cb18-1192" aria-hidden="true" tabindex="-1"></a>&amp;= \log \left( \frac{1}{y!} \right) + y \log (\theta) - \theta <span class="sc">\\</span></span>
+<span id="cb18-1193"><a href="#cb18-1193" aria-hidden="true" tabindex="-1"></a>\ell_\theta(y \mid \theta) &amp;= \frac{y}{\theta} - 1<span class="sc">\\</span></span>
+<span id="cb18-1194"><a href="#cb18-1194" aria-hidden="true" tabindex="-1"></a>\ell_{\theta \theta}(y \mid \theta) &amp;= -\frac{y}{\theta^2} <span class="sc">\\</span></span>
+<span id="cb18-1195"><a href="#cb18-1195" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1196"><a href="#cb18-1196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1197"><a href="#cb18-1197" aria-hidden="true" tabindex="-1"></a>So</span>
+<span id="cb18-1198"><a href="#cb18-1198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1199"><a href="#cb18-1199" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1200"><a href="#cb18-1200" aria-hidden="true" tabindex="-1"></a>I(\psi) &amp;= -\mathbb{E}\left( - \frac{y}{\theta^2} \right) <span class="sc">\\</span></span>
+<span id="cb18-1201"><a href="#cb18-1201" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\theta^2} \mathbb{E}(y) <span class="sc">\\</span></span>
+<span id="cb18-1202"><a href="#cb18-1202" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{\theta}{\theta^2} <span class="sc">\\</span></span>
+<span id="cb18-1203"><a href="#cb18-1203" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\theta}</span>
+<span id="cb18-1204"><a href="#cb18-1204" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1205"><a href="#cb18-1205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1206"><a href="#cb18-1206" aria-hidden="true" tabindex="-1"></a>and Jeffreys' prior is</span>
+<span id="cb18-1207"><a href="#cb18-1207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1208"><a href="#cb18-1208" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1209"><a href="#cb18-1209" aria-hidden="true" tabindex="-1"></a>p_J(\theta) &amp;= c \times \sqrt{\frac{1}{\theta}} <span class="sc">\\</span></span>
+<span id="cb18-1210"><a href="#cb18-1210" aria-hidden="true" tabindex="-1"></a>&amp;= c \times \frac{1}{\sqrt{\theta}}</span>
+<span id="cb18-1211"><a href="#cb18-1211" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1212"><a href="#cb18-1212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1213"><a href="#cb18-1213" aria-hidden="true" tabindex="-1"></a>Notice that, to be a proper probability distribution, it must be the case that</span>
+<span id="cb18-1214"><a href="#cb18-1214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1215"><a href="#cb18-1215" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1216"><a href="#cb18-1216" aria-hidden="true" tabindex="-1"></a>\int_0^{\infty} c \times \frac{1}{\sqrt{\theta}} \; d\theta = c \int_0^{\infty} \frac{1}{\sqrt{\theta}} \; d\theta = 1</span>
+<span id="cb18-1217"><a href="#cb18-1217" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1218"><a href="#cb18-1218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1219"><a href="#cb18-1219" aria-hidden="true" tabindex="-1"></a>However, this integral does not converge ($p$-test, $p = 1/2$), so there is no</span>
+<span id="cb18-1220"><a href="#cb18-1220" aria-hidden="true" tabindex="-1"></a>value of $c$ such that this is a valid probability distribution. Thus (per the</span>
+<span id="cb18-1221"><a href="#cb18-1221" aria-hidden="true" tabindex="-1"></a>name of the exercise) this is an *improper* Jeffreys' prior.</span>
+<span id="cb18-1222"><a href="#cb18-1222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1223"><a href="#cb18-1223" aria-hidden="true" tabindex="-1"></a><span class="fu">### b</span></span>
+<span id="cb18-1224"><a href="#cb18-1224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1225"><a href="#cb18-1225" aria-hidden="true" tabindex="-1"></a>However, even if $p_J(\theta)$ is not a valid probability distribution, we can</span>
+<span id="cb18-1226"><a href="#cb18-1226" aria-hidden="true" tabindex="-1"></a>still imagine performing "inference" using this prior.</span>
+<span id="cb18-1227"><a href="#cb18-1227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1228"><a href="#cb18-1228" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1229"><a href="#cb18-1229" aria-hidden="true" tabindex="-1"></a>f(\theta, y) &amp;= \sqrt{I(\theta)} \times p(y \mid \theta) <span class="sc">\\</span></span>
+<span id="cb18-1230"><a href="#cb18-1230" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{1}{\sqrt{\theta}} \times  \frac{\theta^y e^{-\theta}}{y!} <span class="sc">\\</span></span>
+<span id="cb18-1231"><a href="#cb18-1231" aria-hidden="true" tabindex="-1"></a>&amp;= \theta^{-1/2} \times  \frac{\theta^y e^{-\theta}}{\Gamma(y + 1)} <span class="sc">\\</span></span>
+<span id="cb18-1232"><a href="#cb18-1232" aria-hidden="true" tabindex="-1"></a>&amp;= \theta^{y - 1/2} e^{-\theta} \frac{1}{\Gamma(y + 1)} <span class="sc">\\</span></span>
+<span id="cb18-1233"><a href="#cb18-1233" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1234"><a href="#cb18-1234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1235"><a href="#cb18-1235" aria-hidden="true" tabindex="-1"></a>As a function of $\theta$ only, this is proportional to</span>
+<span id="cb18-1236"><a href="#cb18-1236" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-1237"><a href="#cb18-1237" aria-hidden="true" tabindex="-1"></a>\dots &amp;\propto \theta^{y - 1/2} e^{-\theta} <span class="sc">\\</span></span>
+<span id="cb18-1238"><a href="#cb18-1238" aria-hidden="true" tabindex="-1"></a>&amp;\propto \text{dgamma}(\theta, y + \frac{1/2}, 1)</span>
+<span id="cb18-1239"><a href="#cb18-1239" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-1240"><a href="#cb18-1240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1241"><a href="#cb18-1241" aria-hidden="true" tabindex="-1"></a>Since $\Gamma(y + \frac{1/2}, 1)$, $y &gt;= 0$ *is* a valid parameterization of a </span>
+<span id="cb18-1242"><a href="#cb18-1242" aria-hidden="true" tabindex="-1"></a>Gamma density, it follows that $f(\theta, y)$ can be normalized such that it </span>
+<span id="cb18-1243"><a href="#cb18-1243" aria-hidden="true" tabindex="-1"></a>represents a valid posterior density for $\theta$. Actually calculating</span>
+<span id="cb18-1244"><a href="#cb18-1244" aria-hidden="true" tabindex="-1"></a>$f(\theta, y) / \int f(\theta, y) \; d\theta$ yields such a Gamma density.</span>
+<span id="cb18-1245"><a href="#cb18-1245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-1246"><a href="#cb18-1246" aria-hidden="true" tabindex="-1"></a>Notes: the prior in a) can be thought of as an improper $\text{Gamma}(1/2, 0)$. </span>
+<span id="cb18-1247"><a href="#cb18-1247" aria-hidden="true" tabindex="-1"></a>Since improper Jeffreys' priors are not real probability densities, </span>
+<span id="cb18-1248"><a href="#cb18-1248" aria-hidden="true" tabindex="-1"></a>their usage is controversial for some. (Who?)</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
