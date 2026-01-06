@@ -172,14 +172,32 @@ quarto::quarto_render("1.qmd")
 
 ### Linting
 
+**CRITICAL**: Always lint changed files before requesting code review.
+
 ```r
 # Lint R code files
 lintr::lint("irm.R")
 lintr::lint("icecore_parallel.R")
 
-# Lint R code chunks in Quarto documents (requires extracting code)
-# This is typically done via the lint-changed-files workflow
+# Lint all R files in the repository
+lintr::lint_dir()
+
+# Lint Quarto documents (lints R code chunks)
+lintr::lint("1.qmd")
+lintr::lint("2.qmd")
 ```
+
+**When to lint**:
+- Before calling the `code_review` tool
+- After making changes to R files (`.R`) or Quarto documents (`.qmd`)
+- Before committing code changes
+
+**Linting workflow for changed files**:
+1. Identify which files you've changed
+2. For `.R` files: Run `lintr::lint("filename.R")` on each changed file
+3. For `.qmd` files: Run `lintr::lint("filename.qmd")` on each changed file to lint R code chunks
+4. Fix any linting errors or warnings
+5. Only then proceed to code review
 
 ### Spell Checking
 
@@ -424,6 +442,36 @@ Additional guidelines:
 - Fix any rendering issues before requesting review
 - This practice helps maintain the quality of rendered outputs and streamlines the contribution process
 - Note: The CI/CD workflows (preview.yml and publish.yml) will also render the website, but catching issues locally saves time
+
+### Code Review Workflow
+
+**MANDATORY ORDER OF OPERATIONS** before finalizing a pull request:
+
+1. **Lint changed files FIRST**
+   - Run `lintr::lint()` on all changed `.R` files
+   - Fix any linting errors or warnings
+   - See the "Linting" section for detailed commands
+
+2. **Then request code review**
+   - Use the `code_review` tool to get automated feedback
+   - The tool must be called AFTER linting is complete
+   - Review and address any valid comments from the code review
+
+3. **Finally run security checks**
+   - Use the `codeql_checker` tool after code review
+   - Address any security vulnerabilities found
+   - Re-run if you make significant changes
+
+**CRITICAL**: Never call `code_review` without linting changed files first. Linting catches basic style and syntax issues that should be fixed before more comprehensive code review.
+
+**Workflow example**:
+```r
+# Step 1: Lint changed files
+lintr::lint("irm.R")  # Fix any issues found
+
+# Step 2: Then use code_review tool (via GitHub Copilot)
+# Step 3: Then use codeql_checker tool (via GitHub Copilot)
+```
 
 ### Dependencies
 
