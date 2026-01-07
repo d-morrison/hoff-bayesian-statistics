@@ -1,5 +1,6 @@
 ---
 title: "Hoff Bayesian Statistics"
+author: "Jesse Mu"
 format:
   html: default
   revealjs:

@@ -1,6 +1,8 @@
 project:
   output-dir: _slides
 
+author: "Jesse Mu"
+
 format:
   revealjs:
     lightbox: true

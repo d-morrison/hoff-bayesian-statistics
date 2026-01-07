@@ -5,6 +5,8 @@ project:
     - "*.qmd"
     - "!FCBS_FILES.md"
 
+author: "Jesse Mu"
+
 website:
   title: "Hoff Bayesian Statistics"
   site-url: https://d-morrison.github.io/hoff-bayesian-statistics/

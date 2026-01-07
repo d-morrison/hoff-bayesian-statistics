@@ -13,6 +13,8 @@ project:
     - "10.qmd"
     - "irm.qmd"
 
+author: "Jesse Mu"
+
 format:
   pdf:
     geometry:
