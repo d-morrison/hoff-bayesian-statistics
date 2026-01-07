@@ -385,13 +385,15 @@ Y \mid \theta \sim \text{Binomial}(20, \theta),
 <span id="cb3-10"><a></a><span class="fu">rownames</span>(d) <span class="ot">=</span> Theta0</span>
 <span id="cb3-11"><a></a><span class="fu">colnames</span>(d) <span class="ot">=</span> W</span>
 <span id="cb3-12"><a></a></span>
-<span id="cb3-13"><a></a>df <span class="ot">=</span> <span class="fu">melt</span>(d)</span>
-<span id="cb3-14"><a></a><span class="fu">colnames</span>(df) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'theta0'</span>, <span class="st">'w'</span>, <span class="st">'theta'</span>)</span>
-<span id="cb3-15"><a></a></span>
-<span id="cb3-16"><a></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> w, <span class="at">y =</span> theta0, <span class="at">z =</span> theta)) <span class="sc">+</span></span>
-<span id="cb3-17"><a></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ..level..))</span>
-<span id="cb3-18"><a></a><span class="fu">library</span>(directlabels)</span>
-<span id="cb3-19"><a></a><span class="fu">direct.label</span>(p, <span class="at">method =</span> <span class="st">'bottom.pieces'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-13"><a></a>df <span class="ot">=</span> <span class="fu">as.data.frame</span>(d) <span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">'theta0'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>theta0, <span class="at">names_to =</span> <span class="st">'w'</span>, <span class="at">values_to =</span> <span class="st">'theta'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-16"><a></a>  <span class="fu">mutate</span>(<span class="at">theta0 =</span> <span class="fu">as.numeric</span>(theta0), <span class="at">w =</span> <span class="fu">as.numeric</span>(w))</span>
+<span id="cb3-17"><a></a></span>
+<span id="cb3-18"><a></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> w, <span class="at">y =</span> theta0, <span class="at">z =</span> theta)) <span class="sc">+</span></span>
+<span id="cb3-19"><a></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ..level..))</span>
+<span id="cb3-20"><a></a><span class="fu">library</span>(directlabels)</span>
+<span id="cb3-21"><a></a><span class="fu">direct.label</span>(p, <span class="at">method =</span> <span class="st">'bottom.pieces'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><figcaption>Expected value of the posterior for theta, for combinations of theta0 and w</figcaption><div class="quarto-figure quarto-figure-center">

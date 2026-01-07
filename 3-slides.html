@@ -506,10 +506,11 @@ p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \dots \\
 <span id="cb2-10"><a></a>  <span class="at">pos.theta1 =</span> <span class="fu">dgamma</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.01</span>), a <span class="sc">+</span> sy1, b <span class="sc">+</span> n1),</span>
 <span id="cb2-11"><a></a>  <span class="at">pos.theta2 =</span> <span class="fu">dgamma</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.01</span>), a <span class="sc">+</span> sy2, b <span class="sc">+</span> n2)</span>
 <span id="cb2-12"><a></a>)</span>
-<span id="cb2-13"><a></a>df.long <span class="ot">=</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="st">'theta'</span>, <span class="at">variable_name =</span> <span class="st">'dist'</span>)</span>
-<span id="cb2-14"><a></a><span class="fu">ggplot</span>(df.long, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> value, <span class="at">group =</span> dist, <span class="at">color =</span> dist)) <span class="sc">+</span></span>
-<span id="cb2-15"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb2-16"><a></a>  <span class="fu">ylab</span>(<span class="st">'probability'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-13"><a></a>df.long <span class="ot">=</span> df <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>theta, <span class="at">names_to =</span> <span class="st">'dist'</span>, <span class="at">values_to =</span> <span class="st">'value'</span>)</span>
+<span id="cb2-15"><a></a><span class="fu">ggplot</span>(df.long, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> value, <span class="at">group =</span> dist, <span class="at">color =</span> dist)) <span class="sc">+</span></span>
+<span id="cb2-16"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a></a>  <span class="fu">ylab</span>(<span class="st">'probability'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><a href="3_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="3_files/figure-html/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="672"></a></p>
@@ -739,15 +740,17 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 <span id="cb8-12"><a></a><span class="fu">rownames</span>(d) <span class="ot">=</span> Theta0</span>
 <span id="cb8-13"><a></a><span class="fu">colnames</span>(d) <span class="ot">=</span> W</span>
 <span id="cb8-14"><a></a></span>
-<span id="cb8-15"><a></a>df <span class="ot">=</span> <span class="fu">melt</span>(d)</span>
-<span id="cb8-16"><a></a><span class="fu">colnames</span>(df) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'theta0'</span>, <span class="st">'w'</span>, <span class="st">'theta'</span>)</span>
-<span id="cb8-17"><a></a></span>
-<span id="cb8-18"><a></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> w, <span class="at">y =</span> theta0, <span class="at">z =</span> theta)) <span class="sc">+</span></span>
-<span id="cb8-19"><a></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ..level..)) <span class="sc">+</span></span>
-<span id="cb8-20"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>)) <span class="sc">+</span></span>
-<span id="cb8-21"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> Theta0)</span>
-<span id="cb8-22"><a></a><span class="fu">library</span>(directlabels)</span>
-<span id="cb8-23"><a></a><span class="fu">direct.label</span>(p, <span class="at">method =</span> <span class="st">'bottom.pieces'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-15"><a></a>df <span class="ot">=</span> <span class="fu">as.data.frame</span>(d) <span class="sc">|&gt;</span></span>
+<span id="cb8-16"><a></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">'theta0'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-17"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>theta0, <span class="at">names_to =</span> <span class="st">'w'</span>, <span class="at">values_to =</span> <span class="st">'theta'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-18"><a></a>  <span class="fu">mutate</span>(<span class="at">theta0 =</span> <span class="fu">as.numeric</span>(theta0), <span class="at">w =</span> <span class="fu">as.numeric</span>(w))</span>
+<span id="cb8-19"><a></a></span>
+<span id="cb8-20"><a></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> w, <span class="at">y =</span> theta0, <span class="at">z =</span> theta)) <span class="sc">+</span></span>
+<span id="cb8-21"><a></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ..level..)) <span class="sc">+</span></span>
+<span id="cb8-22"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>)) <span class="sc">+</span></span>
+<span id="cb8-23"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> Theta0)</span>
+<span id="cb8-24"><a></a><span class="fu">library</span>(directlabels)</span>
+<span id="cb8-25"><a></a><span class="fu">direct.label</span>(p, <span class="at">method =</span> <span class="st">'bottom.pieces'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><a href="3_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="3_files/figure-html/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="672"></a></p>

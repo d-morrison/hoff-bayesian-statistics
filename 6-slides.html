@@ -295,11 +295,13 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 <span id="cb1-28"><a></a><span class="fu">colnames</span>(d) <span class="ot">=</span> Sigma2</span>
 <span id="cb1-29"><a></a>d <span class="ot">=</span> d <span class="sc">/</span> <span class="fu">sum</span>(d)</span>
 <span id="cb1-30"><a></a></span>
-<span id="cb1-31"><a></a>df <span class="ot">=</span> <span class="fu">melt</span>(d)</span>
-<span id="cb1-32"><a></a><span class="fu">colnames</span>(df) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'theta'</span>, <span class="st">'sigma2'</span>, <span class="st">'density'</span>)</span>
-<span id="cb1-33"><a></a></span>
-<span id="cb1-34"><a></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> sigma2, <span class="at">z =</span> density)) <span class="sc">+</span></span>
-<span id="cb1-35"><a></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">color =</span> ..level..))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-31"><a></a>df <span class="ot">=</span> <span class="fu">as.data.frame</span>(d) <span class="sc">|&gt;</span></span>
+<span id="cb1-32"><a></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">'theta'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-33"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>theta, <span class="at">names_to =</span> <span class="st">'sigma2'</span>, <span class="at">values_to =</span> <span class="st">'density'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-34"><a></a>  <span class="fu">mutate</span>(<span class="at">theta =</span> <span class="fu">as.numeric</span>(theta), <span class="at">sigma2 =</span> <span class="fu">as.numeric</span>(sigma2))</span>
+<span id="cb1-35"><a></a></span>
+<span id="cb1-36"><a></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> sigma2, <span class="at">z =</span> density)) <span class="sc">+</span></span>
+<span id="cb1-37"><a></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">color =</span> ..level..))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><a href="6_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="6_files/figure-html/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="672"></a></p>

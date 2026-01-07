@@ -306,7 +306,7 @@ Jesse Mu
 </section><section id="a" class="slide level2"><h2>a</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
-<span id="cb5-2"><a></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
+<span id="cb5-2"><a></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
 <span id="cb5-3"><a></a></span>
 <span id="cb5-4"><a></a>n <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">1</span>]</span>
 <span id="cb5-5"><a></a>p <span class="ot">=</span> <span class="fu">dim</span>(X)[<span class="dv">2</span>]</span>
@@ -335,7 +335,7 @@ Jesse Mu
 <span id="cb6-4"><a></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(y) <span class="sc">!</span>(y[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> y[<span class="dv">3</span>]))</span>
 <span id="cb6-5"><a></a></span>
 <span id="cb6-6"><a></a>beta_df <span class="ot">=</span> <span class="fu">as.data.frame</span>(beta) <span class="sc">%&gt;%</span></span>
-<span id="cb6-7"><a></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">'variable'</span>, <span class="at">val =</span> <span class="st">'coefficient'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">'variable'</span>, <span class="at">values_to =</span> <span class="st">'coefficient'</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb6-8"><a></a>  <span class="fu">mutate</span>(<span class="at">signif =</span> signif[variable])</span>
 <span id="cb6-9"><a></a></span>
 <span id="cb6-10"><a></a><span class="fu">ggplot</span>(beta_df, <span class="fu">aes</span>(<span class="at">x =</span> variable, <span class="at">y =</span> coefficient, <span class="at">color =</span> signif)) <span class="sc">+</span></span>
@@ -352,7 +352,7 @@ Jesse Mu
 </section><section id="b-1" class="slide level2"><h2>b</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
-<span id="cb7-2"><a></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
+<span id="cb7-2"><a></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
 <span id="cb7-3"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># Reproducible!</span></span>
 <span id="cb7-4"><a></a>train_i <span class="ot">=</span> <span class="fu">sample.int</span>(<span class="fu">length</span>(y), <span class="at">size =</span> <span class="fu">round</span>(<span class="fu">length</span>(y) <span class="sc">/</span> <span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb7-5"><a></a>ytr <span class="ot">=</span> y[train_i]</span>
@@ -461,7 +461,7 @@ Jesse Mu
 <span id="cb12-3"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb12-4"><a></a>pred_errors <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="cf">function</span>(i) {</span>
 <span id="cb12-5"><a></a>  y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
-<span id="cb12-6"><a></a>  X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
+<span id="cb12-6"><a></a>  X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
 <span id="cb12-7"><a></a>  train_i <span class="ot">=</span> <span class="fu">sample.int</span>(<span class="fu">length</span>(y), <span class="at">size =</span> <span class="fu">round</span>(<span class="fu">length</span>(y) <span class="sc">/</span> <span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb12-8"><a></a>  ytr <span class="ot">=</span> y[train_i]</span>
 <span id="cb12-9"><a></a>  Xtr <span class="ot">=</span> X[train_i, ]</span>
