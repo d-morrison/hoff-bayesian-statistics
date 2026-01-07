@@ -226,6 +226,7 @@ posterior precision, and
 
 # The inverse-Wishart distribution
 
+::: notes
 We've seen the (semi)conjugate prior and posterior distribution for the mean.
 Now to the covariance matrix $\Sigma$. Remember that for the univariate normal
 distribution, a semi-conjugate prior distribution for the variance was the 
@@ -233,6 +234,7 @@ inverse-Gamma distribution. Similarly, for the multivariate case, a
 semi-conjugate prior distribution for the covariance matrix is the inverse of 
 the multivariate analog of the Gamma distribution, known as a Wishart 
 distribution.
+:::
 
 Generating samples from a Wishart distribution is analogous to sampling a set of
 variables from a multivariate normal distribution and calculating the empirical
@@ -609,6 +611,7 @@ $$
 \mathbf{Y}_{\text{miss}}^{(s)} \sim p(\mathbf{Y}_{\text{miss}} \mid \mathbf{Y}_{\text{obs}}, \boldsymbol{\theta}^{(s)}, \Sigma^{(s)})
 $$
 
+::: notes
 Specifically, to sample from the above, we simply sample the missing values of
 each data point independently. For a data point $\boldsymbol{y}$ with missing
 values, let $a$ be the indices of the observed values and $b$ be the indices of
@@ -616,6 +619,7 @@ the missing values. Then it is shown that sampling $\boldsymbol{y}_{[b]}$ given
 known observed variables and the parameters $\boldsymbol{\theta}$ and $\Sigma$
 also follows a multivariate normal distribution, but with mean and covariance
 matrices with dimension $| b |$ that take into account the existing variables:
+:::
 
 \begin{align}
 \boldsymbol{y}_{[b]} \mid \boldsymbol{y}_{[a]}, \boldsymbol{\theta}, \Sigma \sim \mathcal{N}(\boldsymbol{\theta}_{b \mid a}, \Sigma_{b \mid a})
