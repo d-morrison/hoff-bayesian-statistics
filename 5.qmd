@@ -80,12 +80,16 @@ which $\sum y_i^2, \sum y_i$ are recoverable).
 quadratic terms in the exponential function, i.e. $\text{exp}(c_1 (\theta -
 c_2)^2)$
 
+::: notes
 In particular, 2 is a new strategy for trying to identify the conjugate prior 
 family. Since the exponential terms in the sampling model and prior distribution
 must be combined to produce the same class of posterior distribution, we must
 pick a prior distribution $\propto \text{exp}(c_1, (\theta - c_2)^2)$.
 Conveniently, normal distributions themselves have these terms. We can verify
-that the normal family is conjugate to the normal sampling model. Let $\theta \mid \sigma^2 \sim \mathcal{N}(\mu_0, \tau_0^2)$ (interpretations of the prior parameters comes later):
+that the normal family is conjugate to the normal sampling model. 
+:::
+
+Let $\theta \mid \sigma^2 \sim \mathcal{N}(\mu_0, \tau_0^2)$ (interpretations of the prior parameters comes later):
 
 \begin{align}
 p(\theta \mid \sigma^2, y_1, \dots, y_n) &\propto p(y_1, \dots, y_n \mid \theta, \sigma^2) \times p(\theta \mid \sigma^2) \\
@@ -369,6 +373,7 @@ where
 - $\nu_n = \nu_0 + n$, like $\kappa_n$
 - $\sigma_n^2 = \frac{1}{\nu_n} \left[ \nu_0 \sigma_0^2 + (n - 1)s^2 + \frac{\kappa_0 n}{\kappa_n} (\bar{y} - \mu_0)^2 \right]$
 
+::: notes
 $\nu_n$ is fairly intuitive, it acts as a sample size which is the "prior sample
 size" of the variance plus the sample size $n$. $\sigma_n^2$ is a bit harder to
 understand. There are three terms here. The first, $\nu_0 \sigma_0^2$, can be
@@ -381,6 +386,7 @@ increases the posterior variance if the observed sample mean $(\bar{y})$ is
 variance. All three "sum of squares-ish" terms are combined, then divided by the
 total number of "observations" $\nu_n = n + \nu_0$, as commonly done to estimate
 variance from a sample.
+:::
 
 ## Summary of posterior inference
 

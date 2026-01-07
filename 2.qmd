@@ -23,26 +23,33 @@ library(dplyr)
 
 <!-- Begin writing -->
 
+::: notes
 This section will be brief, as it is just a review of probability. However, as
 exchangeability and de Finetti's theorem are important especially in Bayesian
 statistics, I'll go into more depth there.
+:::
 
 # Belief functions and properties
 
+::: notes
 Let $F, G,$ and $H$ be events. A "belief" function $\text{Be}(\cdot)$ should
 correspond to certain intuitions about our beliefs about the likelihood of
 events. Probabilitiy functions have axioms that satisfy our notions of belief:
+:::
 
 1. Contradictions and tautologies: $0 = P(\text{not } H \mid H) \leq P(F \mid H) \leq P(H \mid H) = 1$
 2. Addition rule: $P(F \cup G \mid H) = P(F \mid H) + P(G \mid H) \text{ if $F \cap G = \emptyset$}$
 3. Multiplication rule: $P(F \cap G \mid H) = P(G \mid H) P(F \mid G \cap H)$
 
+::: notes
 Note that the axioms of probability and theorems discussed in this section are
 the same whether you subscribe to a Bayesian or frequentist interpretation of
 probability.
+:::
 
 # Events, partitions, and Bayes' rule
 
+::: notes
 Consider a set $\mathcal{H}$, which is the "set of all possible truths." We can 
 partition $\mathcal{H}$ into discrete subsets $\{H_1, \dots, H_k\}$,
 where only one subset consists of the truth.
@@ -50,11 +57,14 @@ where only one subset consists of the truth.
 We can assign probabilities whether each of these sets contains the truth. 
 First, some event in $\mathcal{H}$ is true, so $P(\mathcal{H}) = 1$. Let $E$ be 
 some observation (in this case related to the truth of one $H_i$). Then,
+:::
 
 - Rule of total probability: $\sum_i P(H_i) = 1$
 - Marginal probability: $P(E) = \sum_i P(E \cap H_i) = \sum_i P(E \mid H_i) P(H_i)$
+::: notes
   - The total probability of an event occurring is the sum of all of its
   probabilities under the possible partitions of truths
+:::
 - Bayes' rule: \begin{align}
 P(H_i \mid E) = \frac{\overbrace{P(E \mid H_i)}^{\text{likelihood}} \overbrace{P(H_i)}^{\text{prior}}}{P(E)}
 \end{align}

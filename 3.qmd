@@ -179,6 +179,7 @@ expressed with a constant $c = f(a, b)$: $p(\theta) = c \theta^{a - 1}(1
 $p(\theta)$ and $p(\theta \mid y)$ are both proportional to $\theta^{a - 1} (1 -
 \theta)^{b - 1}$ by some constant $c$.
 
+---
 
 Now, since we know that as probability distributions, $\int p(\theta) = \int
 p(\theta \mid y) \; d\theta = 1$, we also know that the functions share the same *scale*,
@@ -197,9 +198,11 @@ distributions.
 > *conjugate priors* of a sampling model $p(y \mid \theta)$ if $$ p(\theta) \in
 \mathcal{P} \implies p(\theta \mid y) \in \mathcal{P}.$$
 
+::: notes
 Conjugate priors are very convenient and making certain calculations easy, since
 there is some convenient closed form solution for the distribution of a model
 posterior given a model prior and observed data.
+:::
 
 Now, if you remember from Chatper 1, since the expectation of a Beta
 distribution is $\frac{a}{a + b}$,
@@ -209,6 +212,7 @@ distribution is $\frac{a}{a + b}$,
 &= \frac{a + b}{a + b + n} \frac{a}{a + b} + \frac{n}{a + b + n}\frac{y}{n} \\
 \end{align}
 
+::: notes
 Where $\theta_0 = \frac{a}{a + b}$ can be seen as our "prior expectation",
 $\frac{y}{n}$ is the sample mean, and $w = a + b$ can be seen as the strength of
 belief in our prior. I leave the equation expressed above with the $a$s and $b$s
@@ -218,13 +222,18 @@ and $a + b$ as the "prior sample size". If you play around with the equation
 above, seeing how the values change with various $a$ and $b$ prior choices,
 you'll notice it has several nice properties that intuitively balance the
 expectation and strength of our prior with the amount of data we receive.
+:::
 
 ### Prediction
 
 Assume we've already seen data $y_1, \dots y_n$ and we want to predict value of
-the next observation $\tilde{Y}$. Intuitively we should predict $\tilde{Y} = 1$
+the next observation $\tilde{Y}$. 
+
+::: notes
+Intuitively we should predict $\tilde{Y} = 1$
 with probability equal to the expectation of $\theta$ given our data (according
 to the Bayesian framework). These calculations confirm this:
+:::
 
 \begin{align}
 p(\tilde{Y} = 1 \mid y) &= \int p(\tilde{Y} = 1, \theta \mid y) \; d\theta & \text{(LTP)} \\
@@ -233,6 +242,7 @@ p(\tilde{Y} = 1 \mid y) &= \int p(\tilde{Y} = 1, \theta \mid y) \; d\theta & \te
 &= \mathbb{E}(\theta \mid y).
 \end{align}
 
+::: notes
 Note that in this case the posterior predictive distribution is very easy to
 predict and is (as it can only possibly be) a Bernoulli distribution with a
 certain probability $p$. When posterior distributions become more complicated,
@@ -251,10 +261,13 @@ n}\frac{y}{n} = \frac{1}{2 + n}\\
 \end{align}
 
 And clearly the expectation is more sensible as a predictor of future $\tilde{Y}$. But $\theta_{MAP}$ is not as unreasonable when there is a non-uniform prior...
+:::
 
 ## Confidence regions
 
+::: notes
 See @stackexchange_confidence for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.
+:::
 
 Bayesian confidence interval is an interval $[l(y), u(y)]$ with the following property:
 
