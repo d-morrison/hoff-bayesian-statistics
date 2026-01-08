@@ -101,11 +101,12 @@ are no alternative methods
 
 ## As models of cognition
 
-::: notes
 An appeal of Bayesian learning is that it is also cognitively intuitive. Humans 
 have beliefs about the world, whose uncertainty can be expressed 
-probabilistically. Then, given data, these beliefs are rationally updated. There
-is a rich tradition in modeling human cognition using Bayesian methods to great
+probabilistically. Then, given data, these beliefs are rationally updated.
+
+::: notes
+There is a rich tradition in modeling human cognition using Bayesian methods to great
 success, with plenty of work done in showing how people's beliefs and knowledge
 about the world can be expressed probabilistically [e.g., @griffiths2006]
 
@@ -294,11 +295,13 @@ predictors $\mathbf{X} = (\mathbf{x}_1, \dots, \mathbf{x}_342)$.
 
 ## Bayesian regression does better than standard linear regression
 
-::: notes
 The standard ordinary least squares (OLS) estimate of $\mathbf{\beta}$ does 
 worse than the Bayesian method on the test set. This is due to overfitting, and 
 OLS's "inability to recognize when the sample size is too small to accurately 
-estimate the regression coefficients." Sparse linear regression models are key 
+estimate the regression coefficients."
+
+::: notes
+Sparse linear regression models are key 
 here, and the Bayesian sparsity prior performs well; the common lasso technique 
 introduced by @tibshirani1996 is also
 popular, but this in fact corresponds to Bayesian methods for a special case.
