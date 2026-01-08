@@ -32,6 +32,8 @@ known as Monte Carlo methods.
 
 # The Monte Carlo method
 
+---
+
 We continue the last chapter, where we found posterior distributions for women
 without ($\theta_1$) and with bachelor's degrees ($\theta_2$). Recall
 
@@ -207,6 +209,7 @@ $$
 \hat{\theta} \pm 1.96 \sqrt{\hat{\sigma}^2 / S}
 $$
 
+::: notes
 where $\hat{\sigma}^2$ is the unbiased estimator of the population variance 
 (hence the *approximate* confidence interval; divide by $S - 1$, not $S$). Using
 this, we can estimate the number of samples we ought to take to report our estimate
@@ -218,9 +221,11 @@ number of samples to run. It is possible, however, to run a smaller number of
 samples first to determine an estimate of $\hat{\sigma}^2$ and thus the standard
 error, then conservatively use that estimate to identify the size of $S$ 
 required for the desired precision.
+:::
 
 # Posterior inference for arbitrary functions
 
+::: notes
 If we can sample $\theta^{(1)}, \dots, \theta^{(S)} \sim p(\theta \mid y)$ i.i.d., then
 we can obtain distributions for any arbitrary function $g(\theta)$. We just need
 to sample $S$ $\theta^{(i)}$, then apply $g$ to each $\theta^{(i)}$ to obtain the value
@@ -229,6 +234,7 @@ sampling from $p(\gamma \mid y)$. Thus, by the sample law of large numbers and
 central limit theorem derivations as before, Monte Carlo estimations can
 estimate arbitrary functions to any degree of accuracy. This is very powerful
 and flexible!
+:::
 
 ## Example: Log-odds
 
@@ -353,6 +359,8 @@ ggplot(combined, aes(x = value, group = type, color = type)) +
 
 # Sampling from predictive distributions
 
+---
+
 Recall that predictive distributions are distributions of new realizations of a
 random variable when existing data have been conditioned on and unknown
 quantities (i.e. parameters) are integrated out.
@@ -368,6 +376,8 @@ posterior distribution of $\theta, \tilde{Y}$, and the sequence $\{\tilde{y}^{(1
 $\tilde{Y}$ (if we had an infinite number of samples, we would be "summing" over all theta).
 
 # Posterior predictive model checking
+
+---
 
 Because exercises 4.3 and 4.8 address this, this section is skipped for now.
 

@@ -25,6 +25,8 @@ library(dplyr)
 
 # A semiconjugate prior distribution
 
+---
+
 In Chapter 5, we performed two-parameter inference by decomposing the prior
 $p(\theta, \sigma^2) = p(\theta \mid \sigma^2) p(\sigma^2)$. So our prior
 distribution on $\theta$ relates to the variance $\sigma^2$:
@@ -48,6 +50,7 @@ $$
 p(\theta, \sigma^2 \mid y_1, \dots, y_n) \propto p(\theta, \sigma^2) \times p(y_1, \dots, y_n \mid \theta, \sigma^2)
 $$
 
+::: notes
 that can easily be sampled from. However, as it turns out, the full conditionals
 $p(\theta \mid \sigma^2, y_1, \dots, y_n)$ and $p(\sigma^2 \mid \theta, y_1,
 \dots, y_n)$ are easy to specify, as when evaluating the formulas, we can simply
@@ -56,8 +59,11 @@ distributions. A technicue called Gibbs sampling allows us to take advantage of
 this by constructing a sampler that approximates the (unknown) joint
 distribution by sampling iteratively from the (known) full conditional
 distributions.
+:::
 
 # Discrete approximations
+
+---
 
 Why posterior densities are hard to calculate for nonconjugate priors using
 Bayes rule?
@@ -127,6 +133,8 @@ ggplot(df, aes(x = theta, y = sigma2, z = density)) +
 
 # Sampling from the conditional distributions
 
+---
+
 Again, to proceed with Gibbs sampling, we simply need to calculate the full
 conditional distributions of the parameters. We already computed the
 full conditional for $\theta \mid \sigma^2, y_1, \dots, y_n$ in 5.2. For $\theta
@@ -163,6 +171,8 @@ $\theta_j$ for $j \neq i$ as constants (and thus discardable to maintain
 proportionality). This is used in later chapters (e.g. 8.3.1)
 
 # Gibbs sampling
+
+---
 
 From this, Gibbs sampling proceeds as follows:
 
@@ -256,6 +266,8 @@ midge.df = phi.df
 
 # General properties of the Gibbs sampler
 
+---
+
 Under conditions that will be met for our models, like the law of large numbers
 for standard monte carlo sampling, a sufficient number of Gibbs samples
 approaches the target distribution. The question of course is how many samples
@@ -267,6 +279,8 @@ two concepts should be separated: Gibbs sampling is a general framework for
 is.
 
 # Introduction to MCMC diagnostics
+
+---
 
 For an example of the importance of assessing convergence of Gibbs sampling,
 consider the following target distribution, a 45-10-45 mixture of

@@ -28,6 +28,7 @@ groups. In this chapter we cover the Bayesian approach to doing this.
 
 # Comparing two groups
 
+::: notes
 A standard method in (frequentist) introductory statistics for comparing the 
 means of two populations is to compute the $t$-statistic of the observed mean 
 difference and obtain the two-sided $p$-value. Then, if $p < 0.05$ (or any other
@@ -43,6 +44,7 @@ Consider borderline cases in which our $p$-value is close to 0.05. It seems like
 a technicality to treat the means as completely different if e.g. $p = 0.051$,
 and completely the same if $p = 0.049$ - a difference that could hypothetically
 be observed by simply sampling one more data point.
+:::
 
 The Bayesian approach is to treat the two populations as being sampled from a 
 common mean $\theta$ plus some difference $\delta$, where we estimate both 
@@ -154,8 +156,10 @@ mean(Y12[, 1] > Y12[, 2])
 
 # Comparing multiple groups
 
+---
+
 Let's extend this to a $> 2$ group case. Assume for our example above that we
-have many schools, which we assume are samples from a populatio of schools. So
+have many schools, which we assume are samples from a population of schools. So
 our dataset is *hierarchical* or *multilevel* since there are samples of schools
 and within each school samples of students.
 
@@ -188,6 +192,8 @@ $$
 Note that we can extend this hierarchy arbitrarily.
 
 # The hierarchical normal model
+
+---
 
 The key of the hierarchical normal model is to treat the data within a group as
 being normally distributed with some mean $\theta_j$ and variance $\sigma^2$, and the means among
@@ -285,6 +291,8 @@ standard inverse gamma posterior which depends on $\sum \sum (y_{i, j} -
 \theta)^2$ which is the pooled variance across all groups (see also $\sum n_j$).
 
 # Example: Math scores in U.S. public schools
+
+---
 
 We now look at the full dataset of math scores from 100 schools:
 
@@ -444,6 +452,7 @@ ybar[82]
 ybar[46]
 ```
 
+::: notes
 Even though the sample mean of school 82 is lower than school 46, the posterior
 expectation of $\theta_{82}$ is *higher* than $\theta_{46}$, because school 82 has a
 very small sample and thus is affected more by a pull towards $\mu$. While this
@@ -452,9 +461,11 @@ $\theta_{46}$ is low than there is $\theta_{82}$ is low due to the wide
 discrepancy in sample sizes. The assumption that $\theta_j$ stem from one $\mu$,
 then, takes a "conservative" approach to estimating the $\theta_{82}$ with
 little data.
+:::
 
 # Hierarchical modeling of means and variances
 
+::: notes
 The previous model assumed common variance within groups $\sigma^2$. This is 
 actually fairly common, perhaps less because of empirical justification for 
 assuming common within-group variance than lack of interest in the variance of 
@@ -462,6 +473,7 @@ the groups. But of course, the inaccuracy of this assumption could result in
 errors in analysis. It's fairly straightforward to simply add another 
 hierarchical layer for the variance too, and jointly estimate the group-specific
 means and variances, as well as the common mean and variance parameters.
+:::
 
 To implement this, we let $\theta_j$ depend on $\boldsymbol{y}_j$ and (new!) a
 group $j$-specific $\sigma_j^2$, so our full conditional distribution is
