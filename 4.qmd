@@ -32,6 +32,7 @@ known as Monte Carlo methods.
 
 # The Monte Carlo method
 
+::: notes
 We continue the last chapter, where we found posterior distributions for women
 without ($\theta_1$) and with bachelor's degrees ($\theta_2$). Recall
 
@@ -39,6 +40,7 @@ without ($\theta_1$) and with bachelor's degrees ($\theta_2$). Recall
 \left(\theta_1 \;\middle|\; \sum_i Y_{i, 1} = 217\right) &\sim \text{Gamma}(219, 112) \\
 \left(\theta_2 \;\middle|\; \sum_i Y_{i, 2} = 217\right) &\sim \text{Gamma}(68, 45)
 \end{align}
+:::
 
 ```{r echo=FALSE}
 a = 2
@@ -357,6 +359,7 @@ ggplot(combined, aes(x = value, group = type, color = type)) +
 
 # Sampling from predictive distributions
 
+::: notes
 Recall that predictive distributions are distributions of new realizations of a
 random variable when existing data have been conditioned on and unknown
 quantities (i.e. parameters) are integrated out.
@@ -370,10 +373,13 @@ $\theta$, and then sample a $y^{(i)}$ for each $\theta^{(i)}$. Specifically, $\{
 posterior distribution of $\theta, \tilde{Y}$, and the sequence $\{\tilde{y}^{(1)},
 \dots, \tilde{y}^{(S)}\}$ are samples from the *marginal* posterior distribution of
 $\tilde{Y}$ (if we had an infinite number of samples, we would be "summing" over all theta).
+:::
 
 # Posterior predictive model checking
 
+::: notes
 Because exercises 4.3 and 4.8 address this, this section is skipped for now.
+:::
 
 # Exercises
 

@@ -156,10 +156,12 @@ mean(Y12[, 1] > Y12[, 2])
 
 # Comparing multiple groups
 
+::: notes
 Let's extend this to a $> 2$ group case. Assume for our example above that we
 have many schools, which we assume are samples from a populatio of schools. So
 our dataset is *hierarchical* or *multilevel* since there are samples of schools
 and within each school samples of students.
+:::
 
 ## Exchangeability and hierarchical models
 
@@ -191,11 +193,13 @@ Note that we can extend this hierarchy arbitrarily.
 
 # The hierarchical normal model
 
+::: notes
 The key of the hierarchical normal model is to treat the data within a group as
 being normally distributed with some mean $\theta_j$ and variance $\sigma^2$, and the means among
 groups to *also* be normally distributed according to some other mean $\mu$ and
 variance $\tau^2$. Note that for now we're assuming that the data within groups share a 
 common variance $\sigma^2$ that doesn't depend on the group $j$.
+:::
 
 Specifically, we have
 
@@ -288,7 +292,9 @@ standard inverse gamma posterior which depends on $\sum \sum (y_{i, j} -
 
 # Example: Math scores in U.S. public schools
 
+::: notes
 We now look at the full dataset of math scores from 100 schools:
+:::
 
 
 ```{r echo=FALSE}

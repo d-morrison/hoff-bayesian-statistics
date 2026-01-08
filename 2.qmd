@@ -71,6 +71,7 @@ P(H_i \mid E) = \frac{\overbrace{P(E \mid H_i)}^{\text{likelihood}} \overbrace{P
 
 # Independence
 
+::: notes
 Two events $F$ and $G$ are *independent* if $P(F \cap G) = P(F) P(G)$.
 
 Two events $F$ and $G$ are *conditionally independent* given $H$ if
@@ -83,9 +84,11 @@ This implies $P(F \mid H \cap G) = P(F \mid H)$. That is, if we know about $H$,
 and $F$ and $G$ are conditionally independent given $H$, then knowing $G$ does
 not change our belief about $H$. This is a key property leveraged in Bayesian
 networks.
+:::
 
 # Random variables and their distributions
 
+::: notes
 A random variable $Y$ is *discrete* if the set of all its possible values 
 $\mathcal{Y}$ is countable, i.e. they can be enumerated   $\mathcal{Y} = \{y_1, y_2, \dots \}$ Examples include the binomial and poisson 
 distributions. Discrete random variables have a *probability mass function*
@@ -106,6 +109,7 @@ F(y) = P(Y \leq y) = \int_{-\infty}^y f(x) \; dx
 \end{align}
 
 Examples include the normal and beta distributions.
+:::
 
 ## Descriptions of distributions
 
@@ -193,6 +197,7 @@ $$
 
 # Exchangeability
 
+::: notes
 In many situations with several random variables, we would intuit that the
 specific order of observation of these random variables aren't important. For
 example, consider a random sample of 3 participants from an infinite
@@ -202,10 +207,12 @@ $$p(0, 0, 1) = p(1, 0, 0) = p(0, 1, 0).$$
 
 since the likelihood of a person having the property or not is $\theta$,
 regardless of the sample. This property is called exchangeability.
+:::
 
 > Exchangability. Let $Y_1, \dots, Y_n$ be random variables. If $p(y_1, \dots,
 > y_n) = p(y_{\pi_1}, \dots, y_{\pi_n})$ for all permutations $\pi$ of $\{1, \dots, n\}$, then $Y_1, \dots, Y_n$ are exchangable.
 
+::: notes
 If $Y_1, \dots Y_n$ are i.i.d., then they are exchangeable:
 
 \begin{align}
@@ -221,9 +228,11 @@ observe $X_j$s should result in a change of opinion about the distribution of
 coin flip outcomes (e.g. gradually learning coin bias). So Bayesian 
 statisticians should assume *exchangeability*, a weaker condition than 
 *independence*.
+:::
 
 # de Finetti's theorem
 
+::: notes
 > de Finetti's theorem. Let $Y_1, \dots, Y_n$ be a finite subset of an infinitely exchangeable but **not necessarily i.i.d.** random variables: $$p(y_1, \dots, y_n) = p(y_{\pi_1}, \dots, y_{\pi_n})$$ for all partitions $\pi$. Then our model can be written as
 > $$p(y_1, \dots, y_n) = \int \left( \prod_1^n p(y_i \mid \theta) \right) p(\theta) \; d\theta.$$
 
@@ -232,6 +241,7 @@ $$Y_1, \dots, Y_n \mid \theta \text{ are i.i.d.} \Leftrightarrow Y_1, \dots, Y_n
 
 Importantly, if we sample from a sufficiently large population, then we can
 model the sample variables as being approximately conditionally i.i.d.
+:::
 
 ## Proof for {0, 1} random variables
 

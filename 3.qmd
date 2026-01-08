@@ -25,6 +25,7 @@ library(dplyr)
 
 # The Binomial model
 
+::: notes
 1998 General Social Survey: Females over age 65, $1 = \text{happy}$, $0 = 
 \text{unhappy}$. $n = 129$. So let the survey be 129 exchangeable random 
 variables $Y_1, \dots, Y_{129}$.
@@ -38,6 +39,7 @@ p(y_1, \dots, y_{129} \mid \theta) = \theta^{\sum_{i} y_i} (1 - \theta)^{129 -
 \end{align}
 
 Now we need to specify our prior distribution
+:::
 
 ## Uniform prior
 
@@ -322,12 +324,14 @@ entire curve. The analytical calculation for these is not straightforward; compu
 
 # The Poisson model
 
+::: notes
 This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).
 
 Recall the PDF of a Poisson distribution - if $Y \sim \text{Poisson}(\theta)$ then
 
 - $p(Y = y \mid \theta) = \theta^y e^{-\theta} / y!$
 - $\mathbb{E}(Y) = \text{Var}(Y) = \theta$
+:::
 
 ## Posterior inference
 
@@ -488,6 +492,7 @@ is about 0.97.
 
 # Exponential families and conjugate priors
 
+::: notes
 Binomial and Poisson models are *exponential family models*.
 
 > **Exponential family model**: a model whose densities can be expressed as
@@ -511,6 +516,7 @@ p(\phi \mid y_1, \dots, y_n) &\propto p(\phi) \times p(y_1, \dots, y_n \mid \phi
 
 For this class of priors, we can interpret $n_0$ as a "prior sample size" and
 $t_0$ is the prior expectation of the sufficient statistic $t(Y)$.
+:::
 
 ## Example: Binomial model
 
