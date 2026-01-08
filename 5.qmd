@@ -25,6 +25,8 @@ library(dplyr)
 
 # The normal model
 
+---
+
 A normal variable $Y$ with mean $\theta$ and variance $\sigma^2$ (and thus
 standard deviation $\sigma$) we denote
 
@@ -45,6 +47,8 @@ standard deviations of the mean when constructing priors: 68, 95, and 99.7%,
 respectively.
 
 # Inference for the mean, conditional on the variance
+
+---
 
 There are two parameters in the normal model. For simplicity, let's first assume
 that the variance is known. Later we will show how we can perform inference
@@ -80,12 +84,16 @@ which $\sum y_i^2, \sum y_i$ are recoverable).
 quadratic terms in the exponential function, i.e. $\text{exp}(c_1 (\theta -
 c_2)^2)$
 
+::: notes
 In particular, 2 is a new strategy for trying to identify the conjugate prior 
 family. Since the exponential terms in the sampling model and prior distribution
 must be combined to produce the same class of posterior distribution, we must
 pick a prior distribution $\propto \text{exp}(c_1, (\theta - c_2)^2)$.
 Conveniently, normal distributions themselves have these terms. We can verify
-that the normal family is conjugate to the normal sampling model. Let $\theta \mid \sigma^2 \sim \mathcal{N}(\mu_0, \tau_0^2)$ (interpretations of the prior parameters comes later):
+that the normal family is conjugate to the normal sampling model. 
+:::
+
+Let $\theta \mid \sigma^2 \sim \mathcal{N}(\mu_0, \tau_0^2)$ (interpretations of the prior parameters comes later):
 
 \begin{align}
 p(\theta \mid \sigma^2, y_1, \dots, y_n) &\propto p(y_1, \dots, y_n \mid \theta, \sigma^2) \times p(\theta \mid \sigma^2) \\
@@ -219,6 +227,8 @@ qnorm(c(0.025, 0.975), 1.805, sqrt(0.002))
 ```
 
 # Joint inference for the mean and variance
+
+---
 
 For joint inference, we wish to compute the joint probability distribution of
 $(\theta, \sigma^2)$ given the data, which proceeds much like before
@@ -369,6 +379,7 @@ where
 - $\nu_n = \nu_0 + n$, like $\kappa_n$
 - $\sigma_n^2 = \frac{1}{\nu_n} \left[ \nu_0 \sigma_0^2 + (n - 1)s^2 + \frac{\kappa_0 n}{\kappa_n} (\bar{y} - \mu_0)^2 \right]$
 
+::: notes
 $\nu_n$ is fairly intuitive, it acts as a sample size which is the "prior sample
 size" of the variance plus the sample size $n$. $\sigma_n^2$ is a bit harder to
 understand. There are three terms here. The first, $\nu_0 \sigma_0^2$, can be
@@ -381,6 +392,7 @@ increases the posterior variance if the observed sample mean $(\bar{y})$ is
 variance. All three "sum of squares-ish" terms are combined, then divided by the
 total number of "observations" $\nu_n = n + \nu_0$, as commonly done to estimate
 variance from a sample.
+:::
 
 ## Summary of posterior inference
 
@@ -557,6 +569,8 @@ given the true population mean.
 
 # Bias, variance, and mean squared error
 
+---
+
 Now we are diving into the properties of estimators for posterior parameters.
 
 > A *point estimator* of an unknown parameter $\theta$ is a function that converts your data into a single element of the parameter space $\Theta$. Good point estimators should hopefully approximate (and *reliably* approximate) the true value of $\theta$; we can formalize these properties as the bias and mean squared error of estimators.
@@ -632,6 +646,8 @@ holds - intutively, if your "guess" about the prior is not far from the truth.
 
 # Prior specification based on expectations
 
+---
+
 The normal model can be shown to be an 2-dimensional exponential model.
 A $p$-dimensional exponential family model has densities of the form
 
@@ -675,6 +691,8 @@ $\mathbf{t}_0$ that I am skipping, since it essentially mirrors the prior
 specification advice in the previous sections.
 
 # Normal model for non-normal data
+
+---
 
 Because of the central limit theorem etc., we often use the normal model for
 non-normal data. This is especially applicable when 1) we are measuring summary

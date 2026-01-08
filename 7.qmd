@@ -25,6 +25,8 @@ library(dplyr)
 
 # The multivariate normal density
 
+---
+
 ## Example: reading comprehension
 
 We make the step to two variables by example. Consider a sample ($n = 22$) of
@@ -149,6 +151,8 @@ ggplot(df, aes(x = y1, y = y2, z = density)) +
 
 # A semiconjugate prior distribution for the mean
 
+---
+
 At this point we have given up on computing a full closed form solution for
 the posterior, as it's too complicated. Rather, if we compute conjugate priors
 and posteriors for the full conditional distributions of the
@@ -226,6 +230,7 @@ posterior precision, and
 
 # The inverse-Wishart distribution
 
+::: notes
 We've seen the (semi)conjugate prior and posterior distribution for the mean.
 Now to the covariance matrix $\Sigma$. Remember that for the univariate normal
 distribution, a semi-conjugate prior distribution for the variance was the 
@@ -233,6 +238,7 @@ inverse-Gamma distribution. Similarly, for the multivariate case, a
 semi-conjugate prior distribution for the covariance matrix is the inverse of 
 the multivariate analog of the Gamma distribution, known as a Wishart 
 distribution.
+:::
 
 Generating samples from a Wishart distribution is analogous to sampling a set of
 variables from a multivariate normal distribution and calculating the empirical
@@ -351,6 +357,8 @@ informative.
 
 # Summary of inference with the multivariate normal
 
+---
+
 Like in Chapter 5, here we summarize the moving parts of inference with the 
 multivariate normal sampling model. There are four prior parameters (note some
 are matrices):
@@ -387,6 +395,8 @@ The updated parameters are
 - $\Lambda_n = (\Lambda_0^{-1} + n\Sigma^{-1})^{-1}$
  
 # Gibbs sampling of the mean and covariance
+
+---
 
 Knowing these values, we can now perform Gibbs sampling to sample from
 $p(\boldsymbol{\theta}, \Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y_n})$.
@@ -566,6 +576,8 @@ population means and individuals when drawing conclusions about your data.
 
 # Missing data and imputation
 
+---
+
 Another useful application of Bayesian analysis and the multivariate normal
 model is the imputation of missing data. There are various naive ways to deal with missing data in datasets:
 
@@ -609,6 +621,7 @@ $$
 \mathbf{Y}_{\text{miss}}^{(s)} \sim p(\mathbf{Y}_{\text{miss}} \mid \mathbf{Y}_{\text{obs}}, \boldsymbol{\theta}^{(s)}, \Sigma^{(s)})
 $$
 
+::: notes
 Specifically, to sample from the above, we simply sample the missing values of
 each data point independently. For a data point $\boldsymbol{y}$ with missing
 values, let $a$ be the indices of the observed values and $b$ be the indices of
@@ -616,6 +629,7 @@ the missing values. Then it is shown that sampling $\boldsymbol{y}_{[b]}$ given
 known observed variables and the parameters $\boldsymbol{\theta}$ and $\Sigma$
 also follows a multivariate normal distribution, but with mean and covariance
 matrices with dimension $| b |$ that take into account the existing variables:
+:::
 
 \begin{align}
 \boldsymbol{y}_{[b]} \mid \boldsymbol{y}_{[a]}, \boldsymbol{\theta}, \Sigma \sim \mathcal{N}(\boldsymbol{\theta}_{b \mid a}, \Sigma_{b \mid a})

@@ -25,6 +25,8 @@ library(dplyr)
 
 # Introduction
 
+---
+
 *Bayesian inference*: the process of learning by updating prior probabilistic
 beliefs in light of new information. Data analysis tools built on these foundations are known as *Bayesian methods*.
 
@@ -78,11 +80,15 @@ estimate is the same as the ML estimate.
 
 # Why Bayes?
 
+---
+
 ## As an approach to probability and statistics
 
+::: notes
 The debate between Bayesians and frequentists dives into some very philosophical
 issues. Cox's theorem (1946, 1961) gives a formal proof for thinking about
 probabilities using a Bayesian approach. An explanation of these proofs can be found in @vanhorn2003.
+:::
 
 Outside of formal mathematical grounding, Bayesian methods have excellent 
 practical benefits as data analysis tools:
@@ -97,16 +103,21 @@ are no alternative methods
 
 An appeal of Bayesian learning is that it is also cognitively intuitive. Humans 
 have beliefs about the world, whose uncertainty can be expressed 
-probabilistically. Then, given data, these beliefs are rationally updated. There
-is a rich tradition in modeling human cognition using Bayesian methods to great
+probabilistically. Then, given data, these beliefs are rationally updated.
+
+::: notes
+There is a rich tradition in modeling human cognition using Bayesian methods to great
 success, with plenty of work done in showing how people's beliefs and knowledge
 about the world can be expressed probabilistically [e.g., @griffiths2006]
 
 Bayesianism is not without its detractors, however. Some critics argue that the 
 evidence that Bayesian analysis is weak, and that sufficiently sophisticated
 models are unfalsifiable. See @bowers2012, comment by @griffiths2012, reply by @bowers2012reply.
+:::
 
 # Example 1: Estimating the probability of a rare event
+
+---
 
 We are interested in the prevelance of a disease in a city. Let $\theta
 \in [0, 1]$ be the fraction of infected individuals.
@@ -226,6 +237,7 @@ direct.label(p, method = 'bottom.pieces')
 
 ## Comparison to non-Bayesian methods
 
+::: notes
 When we use the frequentist maximum likelihood estimator, we get an estimated 
 $\theta_{ML} = 0$. Since our estimate is subject to sampling error, we commonly 
 construct confidence intervals for these estimates.
@@ -238,6 +250,7 @@ at all like the normal distribution For an observation $Y = 20$, for example,
 the Wald CI is, regardless of level of confidence, just $0$. We wouldn't want
 to say with 99.999% confidence that the population mean is 0, given our small
 sample size.
+:::
 
 The previous Bayesian estimate, however, works well for both small and large n. 
 With small $n$, the estimator allows us to encode prior beliefs about the true 
@@ -247,6 +260,7 @@ $$
 \hat{\theta} = \mathbb{E}(\theta \mid Y = y) = \frac{n}{n + w}\frac{y}{n} + \frac{w}{n + w}\theta_0.
 $$
 
+::: notes
 Notice that this is kind of an average between the prior expectation $\theta_0$
 and the observed proportion of the data $\frac{y}{n}$, weighted by the amount
 of data $n$. For large $n$, $\hat{\theta}$ becomes dominated by the data,
@@ -254,8 +268,11 @@ regardless of prior estimate and confidence.
 
 Theoretical details on the properties of Bayesian estimators are covered later
 in Section 5.4.
+:::
 
 # Example 2: Building a predictive model
+
+---
 
 A brief synopsis of an example in Chapter 9, where we want to build a 
 predictive model of diabeates progression from 64 variables such as age, sex and
@@ -281,12 +298,18 @@ predictors $\mathbf{X} = (\mathbf{x}_1, \dots, \mathbf{x}_342)$.
 The standard ordinary least squares (OLS) estimate of $\mathbf{\beta}$ does 
 worse than the Bayesian method on the test set. This is due to overfitting, and 
 OLS's "inability to recognize when the sample size is too small to accurately 
-estimate the regression coefficients." Sparse linear regression models are key 
+estimate the regression coefficients."
+
+::: notes
+Sparse linear regression models are key 
 here, and the Bayesian sparsity prior performs well; the common lasso technique 
 introduced by @tibshirani1996 is also
 popular, but this in fact corresponds to Bayesian methods for a special case.
+:::
 
 # Next steps
+
+---
 
 - Chapter 2: probability
 - Chapters 3, 4: One-parameter statistical models
