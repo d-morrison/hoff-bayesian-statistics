@@ -158,7 +158,7 @@ mean(Y12[, 1] > Y12[, 2])
 
 ::: notes
 Let's extend this to a $> 2$ group case. Assume for our example above that we
-have many schools, which we assume are samples from a populatio of schools. So
+have many schools, which we assume are samples from a population of schools. So
 our dataset is *hierarchical* or *multilevel* since there are samples of schools
 and within each school samples of students.
 :::
