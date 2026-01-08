@@ -221,7 +221,7 @@ Jesse Mu
 
   <p class="date">2016-11-10</p>
 </section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> The multivariate normal density</p>
-</section><section id="example-reading-comprehension" class="title-slide slide level1 center" data-number="1.1"><h1>
+</section><section class="slide level2"></section><section id="example-reading-comprehension" class="title-slide slide level1 center" data-number="1.1"><h1>
 <span class="header-section-number">1.1</span> Example: reading comprehension</h1>
 <p>We make the step to two variables by example. Consider a sample (<span class="math inline">\(n = 22\)</span>) of children who are given reading comprehension tests before and after receiving a particular instructional method. So each student has a before and after test score. We can denote these <em>two</em> variables for student <span class="math inline">\(i\)</span> as a vector <span class="math inline">\(\mathbf{Y}_i\)</span>, where <span class="math inline">\(Y_{i, 1}\)</span> is the before score, and <span class="math inline">\(Y_{i, 2}\)</span> is the after score:</p>
 <p><span class="math display">\[\begin{align}
@@ -235,7 +235,7 @@ Y_{i, 2} \\
 &amp;= \frac{\sigma_{1, 2}}{\sigma_1 \sigma_2} \\
 &amp;= \frac{\sigma_{1, 2}}{\sqrt{\sigma_1^2 \sigma_2^2}}
 \end{align}\]</span></p>
-</section><section id="multivariate-normal-density" class="title-slide slide level1 center scrollable" data-number="1.2"><h1>
+</section><section><section id="multivariate-normal-density" class="title-slide slide level1 center" data-number="1.2"><h1>
 <span class="header-section-number">1.2</span> Multivariate normal density</h1>
 <p>If <span class="math display">\[\begin{align}
 \mathbf{y} &amp;= \begin{pmatrix}
@@ -278,7 +278,7 @@ p(\mathbf{y} \mid \boldsymbol{\theta}, \Sigma) = (2\pi)^{-p / 2} | \Sigma |^{-1/
 </div>
 </div>
 <p><span class="header-section-number">2</span> A semiconjugate prior distribution for the mean</p>
-<p>At this point we have given up on computing a full closed form solution for the posterior, as it’s too complicated. Rather, if we compute conjugate priors and posteriors for the full conditional distributions of the <span class="math inline">\(\boldsymbol{\theta}\)</span> and <span class="math inline">\(\Sigma\)</span> separately, we can use Gibbs sampling to easily estimate the joint posterior distribution. Let’s start by calculating <span class="math inline">\(\boldsymbol{\theta}\)</span> first:</p>
+</section><section class="slide level2 scrollable"><p>At this point we have given up on computing a full closed form solution for the posterior, as it’s too complicated. Rather, if we compute conjugate priors and posteriors for the full conditional distributions of the <span class="math inline">\(\boldsymbol{\theta}\)</span> and <span class="math inline">\(\Sigma\)</span> separately, we can use Gibbs sampling to easily estimate the joint posterior distribution. Let’s start by calculating <span class="math inline">\(\boldsymbol{\theta}\)</span> first:</p>
 <p>Analogous the univariate case, for the multivariate normal distribution, a conjugate prior for the population mean is a multivariate normal.</p>
 <p>Let <span class="math inline">\(\boldsymbol{\mu}_0\)</span> be the prior mean, and <span class="math inline">\(\Lambda_0\)</span> be the covariance matrix of <span class="math inline">\(\boldsymbol{\mu}_0\)</span>. Then let <span class="math inline">\(\boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_0, \Lambda_0)\)</span>. What does this prior look like?</p>
 <p><span class="math display">\[\begin{align}
@@ -366,7 +366,7 @@ p(\boldsymbol{\theta} \mid \Sigma) p(\mathbf{y}_1, \dots, \mathbf{y}_n \mid
 <span class="math inline">\(\mathbb{E}(\Sigma^{-1}) = \nu_0 \mathbf{S}_0^{-1}\)</span> (instead of <span class="math inline">\(\Phi_0\)</span>)</li>
 <li>
 <span class="math inline">\(\mathbb{E}(\Sigma) = \frac{1}{\nu_0 - p - 1} \mathbf{S}_0\)</span> (so not exactly the inverse of <span class="math inline">\(\mathbf{S}_0^{-1}\)</span>)</li>
-</ul></section><section id="specifying-parameters" class="title-slide slide level1 center" data-number="3.1"><h1>
+</ul></section></section><section id="specifying-parameters" class="title-slide slide level1 center" data-number="3.1"><h1>
 <span class="header-section-number">3.1</span> Specifying parameters</h1>
 <p>Specifying parameters is somewhat interesting for the inverse-Wishart becase there are many of them - we need to specify the entire covariance matrix. If we have a prior expectation of a covariance matrix <span class="math inline">\(\Sigma_0\)</span>, then we can center our prior around it in two suggested ways:</p>
 <ul>
@@ -374,7 +374,7 @@ p(\boldsymbol{\theta} \mid \Sigma) p(\mathbf{y}_1, \dots, \mathbf{y}_n \mid
 <li>Set <span class="math inline">\(\nu_0 = p + 2\)</span> and let <span class="math inline">\(\mathbf{S}_0 = \Sigma_0\)</span>, such that <span class="math inline">\(\mathbb{E}(\Sigma) = \frac{1}{p + 2 - p - 1}\Sigma_0 = \Sigma_0\)</span> but only loosely centered around <span class="math inline">\(\Sigma_0\)</span> (due to fairly small <span class="math inline">\(\nu_0\)</span>)</li>
 </ul>
 <p>For an “empirical Bayes” approach, we can center our prior around the empirical covariance matrix of our sample.</p>
-</section><section id="full-conditional-distribution-of-sigma-mid-boldsymboly_1-dots-boldsymboly_n-boldsymboltheta" class="title-slide slide level1 center" data-number="3.2"><h1>
+</section><section><section id="full-conditional-distribution-of-sigma-mid-boldsymboly_1-dots-boldsymboly_n-boldsymboltheta" class="title-slide slide level1 center" data-number="3.2"><h1>
 <span class="header-section-number">3.2</span> Full conditional distribution of <span class="math inline">\(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}\)</span>
 </h1>
 <p>There is an intimidating normalizing constant for the inverse-Wishart. All we need to know is if <span class="math inline">\(\Sigma \sim \text{inverse-Wishart}(\nu_0, \mathbf{S}_0^{-1})\)</span>,</p>
@@ -419,18 +419,8 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 \end{align}\]</span></p>
 <p>So the Bayesian estimator is a biased estimator, but is still demonstrably consistent as <span class="math inline">\(n \to \infty\)</span>. As mentioned in Chapter 5, we hope that the estimator is biased more towards the true mean, as long as the prior is mildly informative.</p>
 <p><span class="header-section-number">4</span> Summary of inference with the multivariate normal</p>
-<aside class="notes"><p>Like in Chapter 5, here we summarize the moving parts of inference with the multivariate normal sampling model. There are four prior parameters (note some are matrices):</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section id="semiconjugate-prior" class="title-slide slide level1 center" data-number="4.1"><h1>
+</section><section class="slide level2"><p>Like in Chapter 5, here we summarize the moving parts of inference with the multivariate normal sampling model. There are four prior parameters (note some are matrices):</p>
+</section></section><section id="semiconjugate-prior" class="title-slide slide level1 center" data-number="4.1"><h1>
 <span class="header-section-number">4.1</span> (Semiconjugate) prior</h1>
 <ul>
 <li>
@@ -462,7 +452,7 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 </ul>
 <p>Somewhat similar to the univariate case, the estimate of the covariance matrix for the inverse-Wishart prior is decoupled from the estimate of the covariance of the mean vector in the multivariate normal prior, although it’s common to set these the same (but again, see rules for determining <span class="math inline">\(\nu_0\)</span>).</p>
 <p>Note that this is somewhat <em>different</em> than the univariate case; since there were no covariances to worry about, what was decoupled was “prior sample sizes” from which the prior variance and prior mean are observed. Like here, it was also common to set these the same.</p>
-</section><section id="posterior" class="title-slide slide level1 center scrollable" data-number="4.2"><h1>
+</section><section><section id="posterior" class="title-slide slide level1 center" data-number="4.2"><h1>
 <span class="header-section-number">4.2</span> Posterior</h1>
 <p>The updated parameters are</p>
 <ul>
@@ -473,22 +463,12 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 <li><span class="math inline">\(\Lambda_n = (\Lambda_0^{-1} + n\Sigma^{-1})^{-1}\)</span></li>
 </ul>
 <p><span class="header-section-number">5</span> Gibbs sampling of the mean and covariance</p>
-<aside class="notes"><p>Knowing these values, we can now perform Gibbs sampling to sample from <span class="math inline">\(p(\boldsymbol{\theta}, \Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y_n})\)</span>. Specifically, we start with an estimate of one of the two values - <span class="math inline">\(\Sigma^{(0)}\)</span> for simplicity - and use the following algorithm:</p>
+</section><section class="slide level2 scrollable"><p>Knowing these values, we can now perform Gibbs sampling to sample from <span class="math inline">\(p(\boldsymbol{\theta}, \Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y_n})\)</span>. Specifically, we start with an estimate of one of the two values - <span class="math inline">\(\Sigma^{(0)}\)</span> for simplicity - and use the following algorithm:</p>
 <ol type="1">
 <li>Sample <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)} \sim \mathcal{N}(\boldsymbol{\mu}_n,
 \Lambda_n)\)</span> where the parameters are calculated as above. This depends on the inverse of the previous <span class="math inline">\(\Sigma^{(s)}\)</span>.</li>
 <li>Sample <span class="math inline">\(\Sigma^{(s + 1)} \sim \text{inverse-Wishart}(\nu_n, \mathbf{S}_n^{-1})\)</span>, where the parameters depend on <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)}\)</span>.</li>
-</ol><style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section><section id="example-reading-comprehension-1" class="title-slide slide level1 center" data-number="5.1"><h1>
+</ol></section></section><section><section id="example-reading-comprehension-1" class="title-slide slide level1 center" data-number="5.1"><h1>
 <span class="header-section-number">5.1</span> Example: reading comprehension</h1>
 <p>We return to the example of two reading comprehension exams, given pre- and post-training.</p>
 </section><section id="specifying-prior" class="slide level2"><h2>Specifying prior</h2>
@@ -632,23 +612,13 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 </div>
 <p>Importantly, the probability of an individual having a higher post-test score than pre-test is much lower than the near-1 probability of the difference in mean test scores. It’s important to have clarified the difference between population means and individuals when drawing conclusions about your data.</p>
 <p><span class="header-section-number">6</span> Missing data and imputation</p>
-<aside class="notes"><p>Another useful application of Bayesian analysis and the multivariate normal model is the imputation of missing data. There are various naive ways to deal with missing data in datasets:</p>
+</section><section class="slide level2"><p>Another useful application of Bayesian analysis and the multivariate normal model is the imputation of missing data. There are various naive ways to deal with missing data in datasets:</p>
 <ul>
 <li>listwise deletion: just discard points with missing data. But this wastes valuable data!</li>
 <li>replace missing variables for points with the mean of that variable for the entire dataset. But this results in inaccurate estimates, since a data point’s other variables may contain information about the data point’s</li>
 </ul>
 <p>The Bayesian approach offers a neat solution around this. The idea is that the likelihood of a datapoint with missing values is the likelihood of the observed values while integrating over the missing values.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>Specifically, let’s assume in a dataset <span class="math inline">\(\boldsymbol{Y}\)</span> with missing values, we have a corresponding matrix <span class="math inline">\(\boldsymbol{O}\)</span> which contains a 1 if the corresponding element in <span class="math inline">\(\boldsymbol{Y}\)</span> exists, else 0. (This is just to help us mathematically indicate which variables are missing)</p>
+<p>Specifically, let’s assume in a dataset <span class="math inline">\(\boldsymbol{Y}\)</span> with missing values, we have a corresponding matrix <span class="math inline">\(\boldsymbol{O}\)</span> which contains a 1 if the corresponding element in <span class="math inline">\(\boldsymbol{Y}\)</span> exists, else 0. (This is just to help us mathematically indicate which variables are missing)</p>
 <p>Then consider a single observation <span class="math inline">\(\boldsymbol{y}_i\)</span>. We have</p>
 <p><span class="math display">\[\begin{align}
 p(\boldsymbol{o}_i, \{ y_{i, j} \; : \; o_{i, j} = 1 \} \mid \boldsymbol{\theta}, \Sigma) &amp;=

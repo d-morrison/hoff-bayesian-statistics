@@ -240,8 +240,8 @@ Jesse Mu
 </div>
 
   <p class="date">2016-10-07</p>
-</section><section class="slide level2 scrollable"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> The normal model</p>
-<aside class="notes"><p>A normal variable <span class="math inline">\(Y\)</span> with mean <span class="math inline">\(\theta\)</span> and variance <span class="math inline">\(\sigma^2\)</span> (and thus standard deviation <span class="math inline">\(\sigma\)</span>) we denote</p>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> The normal model</p>
+</section><section class="slide level2"><p>A normal variable <span class="math inline">\(Y\)</span> with mean <span class="math inline">\(\theta\)</span> and variance <span class="math inline">\(\sigma^2\)</span> (and thus standard deviation <span class="math inline">\(\sigma\)</span>) we denote</p>
 <p><span class="math display">\[Y \sim \mathcal{N}(\theta, \sigma^2)\]</span></p>
 <p>and <span class="math inline">\(Y\)</span> has PDF</p>
 <p><span class="math display">\[
@@ -250,18 +250,9 @@ p(y) = \frac{1}{\sqrt{2\pi\sigma}} \text{exp}\left(-\frac{1}{2} \frac{(y - \thet
 <p>Due to the central limit theorem, the normal model is used all the time to model sample averages or values known to be the additive result of several random variables.</p>
 <ul>
 <li>It’s useful to remember the percentage of values lying within 1, 2, or 3 standard deviations of the mean when constructing priors: 68, 95, and 99.7%, respectively.</li>
-</ul><style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">2</span> Inference for the mean, conditional on the variance</p>
-<p>There are two parameters in the normal model. For simplicity, let’s first assume that the variance is known. Later we will show how we can perform inference jointly for the mean and variance, but this result will still be useful especially in Chapter 6, where Gibbs sampling requires full conditional distributions of individual parameters.</p>
+</ul>
+<p><span class="header-section-number">2</span> Inference for the mean, conditional on the variance</p>
+</section><section class="slide level2 scrollable"><p>There are two parameters in the normal model. For simplicity, let’s first assume that the variance is known. Later we will show how we can perform inference jointly for the mean and variance, but this result will still be useful especially in Chapter 6, where Gibbs sampling requires full conditional distributions of individual parameters.</p>
 <p>To do inference assuming <span class="math inline">\(\sigma^2\)</span> is known, we need to identify the sampling distribution and prior distribution, since we must calculate</p>
 <p><span class="math display">\[\begin{align}
 p(\theta \mid \sigma^2, y_1, \dots, y_n) \propto p(y_1, \dots, y_n \mid \theta, \sigma^2) \times p(\theta \mid \sigma^2)
@@ -352,7 +343,7 @@ p(\theta \mid \sigma^2, y_1, \dots, y_n) &amp;\propto \text{exp}\left[ -\frac{1}
 <p>where <span class="math inline">\(\theta \sim \mathcal{N}(\mu_n, \tau_n^2\)</span>, <span class="math inline">\(\tilde{\epsilon} \sim
 \mathcal{N}(0, \sigma^2)\)</span>. So adding these normal distributions together gives</p>
 <p><span class="math display">\[\tilde{Y} \mid \sigma^2, y_1, \dots, y_n \sim \mathcal{N}(\mu_n, \tau_n^2 + \sigma^2)\]</span></p>
-</section><section id="example-midge-wing-data" class="title-slide slide level1 center" data-number="2.3"><h1>
+</section><section><section id="example-midge-wing-data" class="title-slide slide level1 center" data-number="2.3"><h1>
 <span class="header-section-number">2.3</span> Example: Midge wing data</h1>
 <p>The wing lengths of 9 members of a species of “midge” are measured. We are interested in estimates of the mean wing length and variance. Prior information from other populations suggests that wing lengths are typically around 1.9mm, so our initial estimate <span class="math inline">\(\mu_0 = 1.9\)</span>. One way of assigning a prior estimate of the variance of the mean <span class="math inline">\(\tau_0^2\)</span> is to pick the spread of the prior such that all of its mass is above 0, since wing lengths can’t be negative. So we select <span class="math inline">\(\tau_0\)</span> such that 2 standard deviations from 1.9 &gt; 0: <span class="math inline">\(\tau_0 = 0.95\)</span>.</p>
 <p>Our data are:</p>
@@ -376,22 +367,12 @@ p(\theta \mid \sigma^2, y_1, \dots, y_n) &amp;\propto \text{exp}\left[ -\frac{1}
 </details>
 </div>
 <p><span class="header-section-number">3</span> Joint inference for the mean and variance</p>
-<aside class="notes"><p>For joint inference, we wish to compute the joint probability distribution of <span class="math inline">\((\theta, \sigma^2)\)</span> given the data, which proceeds much like before</p>
+</section><section class="slide level2"><p>For joint inference, we wish to compute the joint probability distribution of <span class="math inline">\((\theta, \sigma^2)\)</span> given the data, which proceeds much like before</p>
 <p><span class="math display">\[
 p(\theta, \sigma^2 \mid y_1, \dots, y_n) = \frac{p(y_1, \dots, y_n \mid \theta, \sigma^2) p(\theta, \sigma^2)}{p(y_1, \dots, y_n)}
 \]</span></p>
 <p>Notice that the only real difference in this two parameter case is the joint prior <span class="math inline">\(p(\theta, \sigma^2)\)</span>, which we should select a conjugate prior distribution for to simplify posterior calculation.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>Notice that if we split up</p>
+<p>Notice that if we split up</p>
 <p><span class="math display">\[p(\theta, \sigma^2) = p(\theta \mid \sigma^2) p(\sigma^2)\]</span> then, from the previous section, we already know that the normal distribution is a conjugate prior for the <span class="math inline">\(p(\theta \mid \sigma^2)\)</span>: <span class="math inline">\(\mathcal{N}(\mu_0, \tau_0^2)\)</span>. With this selection, we have</p>
 <p><span class="math display">\[\begin{align}
 p(\theta, \sigma^2) &amp;= p(\theta \mid \sigma^2) p(\sigma^2) \\
@@ -417,7 +398,7 @@ p(\theta, \sigma^2) &amp;= \text{dnorm}(\theta, \mu_0, \tau = \sigma / \sqrt{\ka
 <span class="math inline">\(\text{Var}(\sigma^2)\)</span> decreases as <span class="math inline">\(\nu_0\)</span> increases.</li>
 </ul>
 <p>From this you can already intuit how <span class="math inline">\(\nu_0\)</span> is a sample size, and <span class="math inline">\(\sigma^2_0\)</span> is an initial guess of the sample variance where the expectation of <span class="math inline">\(\sigma^2\)</span> more closely approaches <span class="math inline">\(\sigma^2_0\)</span> as <span class="math inline">\(\nu_0\)</span> increases.</p>
-</section><section id="posterior-inference" class="title-slide slide level1 center" data-number="3.1"><h1>
+</section></section><section id="posterior-inference" class="title-slide slide level1 center" data-number="3.1"><h1>
 <span class="header-section-number">3.1</span> Posterior inference</h1>
 <p>Now we have fully specified (1) our prior distributions:</p>
 <p><span class="math display">\[\begin{align}
@@ -606,10 +587,10 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>s2.mc <span class="ot">=</span> <span class="fu">rinvgamma</span>(<span class="dv">10000</span>, nun <span class="sc">/</span> <span class="dv">2</span>, s2n <span class="sc">*</span> nun <span class="sc">/</span> <span class="dv">2</span>)</span>
 <span id="cb5-2"><a></a>theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, mun, <span class="fu">sqrt</span>(s2.mc <span class="sc">/</span> kappan)) <span class="co"># Accepts a vector of parameters</span></span>
 <span id="cb5-3"><a></a><span class="fu">mean</span>(theta.mc)</span>
-<span id="cb5-4"><a></a><span class="co">#&gt; [1] 1.814096</span></span>
+<span id="cb5-4"><a></a><span class="co">#&gt; [1] 1.814349</span></span>
 <span id="cb5-5"><a></a><span class="fu">quantile</span>(theta.mc, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
 <span id="cb5-6"><a></a><span class="co">#&gt;     2.5%    97.5% </span></span>
-<span id="cb5-7"><a></a><span class="co">#&gt; 1.724515 1.900654</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-7"><a></a><span class="co">#&gt; 1.726614 1.902545</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -622,7 +603,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 </div>
 </div>
 </div>
-</section><section id="improper-priors" class="title-slide slide level1 center" data-number="3.5"><h1>
+</section><section><section id="improper-priors" class="title-slide slide level1 center" data-number="3.5"><h1>
 <span class="header-section-number">3.5</span> Improper priors</h1>
 <p>What if we want to use <em>no</em> prior information? See what happens to our posterior distribution <span class="math inline">\(\kappa_0, \nu_0 \rightarrow 0\)</span>. Using the formula above,</p>
 <ul>
@@ -645,22 +626,12 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <p><span class="math display">\[\frac{\bar{Y} - \theta}{s / \sqrt{n}} \mid \theta \sim t_{n - 1}\]</span></p>
 <p>but like the Bayesian vs Frequentist confidence intervals discussion in Chapter 3, they are philosophically different. The first describes uncertainty about the true mean conditional on the data, while the second describes uncertainty about the observed sample mean given the true population mean.</p>
 <p><span class="header-section-number">4</span> Bias, variance, and mean squared error</p>
-<aside class="notes"><p>Now we are diving into the properties of estimators for posterior parameters.</p>
+</section><section class="slide level2"><p>Now we are diving into the properties of estimators for posterior parameters.</p>
 <blockquote>
 <p>A <em>point estimator</em> of an unknown parameter <span class="math inline">\(\theta\)</span> is a function that converts your data into a single element of the parameter space <span class="math inline">\(\Theta\)</span>. Good point estimators should hopefully approximate (and <em>reliably</em> approximate) the true value of <span class="math inline">\(\theta\)</span>; we can formalize these properties as the bias and mean squared error of estimators.</p>
 </blockquote>
 <p>In Bayesian analysis, point estimators are usually functions of the posterior distribution of the parameter, such as the expectation.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>The point estimator for the posterior of our normal sampling model and a normal prior is (call it <span class="math inline">\(\hat{\theta_b}\)</span>)</p>
+<p>The point estimator for the posterior of our normal sampling model and a normal prior is (call it <span class="math inline">\(\hat{\theta_b}\)</span>)</p>
 <p><span class="math display">\[\begin{align}
 \hat{\theta_b} &amp;= \frac{\kappa_0 \mu_0 + n\bar{y}}{\kappa_n} \\
 &amp;= \frac{\kappa_0}{\kappa_0 + n} \mu_0 + \frac{n}{\kappa_0 + n}\bar{y} \\
@@ -711,7 +682,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 \end{align}\]</span></p>
 <p>So the Bayesian estimator has lower mean squared error than the ML estimate as long as values of <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\kappa_0\)</span> are picked such that this inequality holds - intutively, if your “guess” about the prior is not far from the truth.</p>
 <p><span class="header-section-number">5</span> Prior specification based on expectations</p>
-<aside class="notes"><p>The normal model can be shown to be an 2-dimensional exponential model. A <span class="math inline">\(p\)</span>-dimensional exponential family model has densities of the form</p>
+</section><section class="slide level2"><p>The normal model can be shown to be an 2-dimensional exponential model. A <span class="math inline">\(p\)</span>-dimensional exponential family model has densities of the form</p>
 <p><span class="math display">\[p(y \mid \boldsymbol{\phi}) = h(y) c(\boldsymbol{\phi}) \text{exp}\left( \boldsymbol{\phi}^T \mathbf{t}(y) \right)\]</span></p>
 <p>Recall the normal density: <span class="math display">\[p(y \mid \theta, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \text{exp} \left( - \frac{(y - \theta)^2}{2\sigma^2} \right)\]</span> For clarity later, let’s expand the quadratic term in the exponential: <span class="math display">\[p(y \mid \theta, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \text{exp} \left( - \frac{y^2 - 2\theta y + \theta^2}{2\sigma^2} \right)\]</span></p>
 <p>Given the exponential family parameters</p>
@@ -722,17 +693,7 @@ p(\sigma^2 \mid y_1, \dots, y_n) &amp;\propto p(\sigma^2) p(y_1, \dots, y_n \mid
 <li><span class="math inline">\(h(y) = 1 / \sqrt{\pi}\)</span></li>
 </ul>
 <p>You can reconstruct the normal density:</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="math display">\[\begin{align}
+<p><span class="math display">\[\begin{align}
 p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{exp}\left( \frac{\phi_1^2}{2\phi_2} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 \\ -(2\sigma^2)^{-1} \end{pmatrix}  \right) \\
 &amp;= \frac{1}{\sqrt{\pi}} (2\sigma^2)^{-1/2} \text{exp}\left( \frac{(\theta / \sigma^2)^2}{-2(2\sigma^2)^{-1}} \right) \text{exp} \left(\begin{pmatrix} y &amp; y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 \\ -(2\sigma^2)^{-1} \end{pmatrix} \right) \\
 \end{align}\]</span></p>
@@ -743,19 +704,9 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 \boldsymbol{\phi})\)</span>. Using the change of variables formula (which seems very complicated), you can reparamaterize the corresponding prior in terms of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\sigma^2\)</span>, which gives a prior that is the product of two priors we had determined previously to be conjugate: the normal and inverse-gamma densities.</p>
 <p>There are some more details on the significance of specifying <span class="math inline">\(n_0\)</span> and <span class="math inline">\(\mathbf{t}_0\)</span> that I am skipping, since it essentially mirrors the prior specification advice in the previous sections.</p>
 <p><span class="header-section-number">6</span> Normal model for non-normal data</p>
-<aside class="notes"><p>Because of the central limit theorem etc., we often use the normal model for non-normal data. This is especially applicable when 1) we are measuring summary statistics of a population, such as the mean, and 2) when we are measuring variables that might be the additive result of many underlying factors, which results in an approximately normal variable.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">7</span> Exercises</p>
-</section><section><section id="section" class="title-slide slide level1 center" data-number="7.1"><h1>
+</section><section class="slide level2"><p>Because of the central limit theorem etc., we often use the normal model for non-normal data. This is especially applicable when 1) we are measuring summary statistics of a population, such as the mean, and 2) when we are measuring variables that might be the additive result of many underlying factors, which results in an approximately normal variable.</p>
+<p><span class="header-section-number">7</span> Exercises</p>
+</section></section><section><section id="section" class="title-slide slide level1 center" data-number="7.1"><h1>
 <span class="header-section-number">7.1</span> 5.1</h1>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>school1 <span class="ot">=</span> <span class="fu">scan</span>(<span class="st">'Exercises/school1.dat'</span>)</span>
@@ -797,19 +748,19 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <span id="cb9-5"><a></a>school1.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">1</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school1.s2.mc <span class="sc">/</span> params.df[<span class="dv">1</span>, ]<span class="sc">$</span>kn))</span>
 <span id="cb9-6"><a></a><span class="fu">quantile</span>(school1.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
 <span id="cb9-7"><a></a><span class="co">#&gt;      2.5%       50%     97.5% </span></span>
-<span id="cb9-8"><a></a><span class="co">#&gt;  7.768789  9.300644 10.899818</span></span>
+<span id="cb9-8"><a></a><span class="co">#&gt;  7.793145  9.296314 10.832386</span></span>
 <span id="cb9-9"><a></a></span>
 <span id="cb9-10"><a></a>school2.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
 <span id="cb9-11"><a></a>school2.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">2</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school2.s2.mc <span class="sc">/</span> params.df[<span class="dv">2</span>, ]<span class="sc">$</span>kn))</span>
 <span id="cb9-12"><a></a><span class="fu">quantile</span>(school2.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
 <span id="cb9-13"><a></a><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span id="cb9-14"><a></a><span class="co">#&gt; 5.106540 6.944550 8.737362</span></span>
+<span id="cb9-14"><a></a><span class="co">#&gt; 5.165456 6.960017 8.722000</span></span>
 <span id="cb9-15"><a></a></span>
 <span id="cb9-16"><a></a>school3.s2.mc <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">3</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>s2n <span class="sc">*</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>nun <span class="sc">/</span> <span class="dv">2</span>)</span>
 <span id="cb9-17"><a></a>school3.theta.mc <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>, params.df[<span class="dv">3</span>, ]<span class="sc">$</span>mun, <span class="fu">sqrt</span>(school3.s2.mc <span class="sc">/</span> params.df[<span class="dv">3</span>, ]<span class="sc">$</span>kn))</span>
 <span id="cb9-18"><a></a><span class="fu">quantile</span>(school3.theta.mc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span>
 <span id="cb9-19"><a></a><span class="co">#&gt;     2.5%      50%    97.5% </span></span>
-<span id="cb9-20"><a></a><span class="co">#&gt; 5.757446 7.785477 9.807112</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-20"><a></a><span class="co">#&gt; 5.729955 7.806274 9.857787</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="b" class="slide level2"><h2>b</h2>
@@ -834,27 +785,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.0072</td>
+<td style="text-align: right;">0.0080</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0034</td>
+<td style="text-align: right;">0.0030</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.0154</td>
+<td style="text-align: right;">0.0150</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2438</td>
+<td style="text-align: right;">0.2444</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.6234</td>
+<td style="text-align: right;">0.6202</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1068</td>
+<td style="text-align: right;">0.1094</td>
 </tr>
 </tbody>
 </table>
@@ -885,27 +836,27 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 &lt; 2 &lt; 3</td>
-<td style="text-align: right;">0.1192</td>
+<td style="text-align: right;">0.1152</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1 &lt; 3 &lt; 2</td>
-<td style="text-align: right;">0.0846</td>
+<td style="text-align: right;">0.0960</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3 &lt; 1 &lt; 2</td>
-<td style="text-align: right;">0.1518</td>
+<td style="text-align: right;">0.1336</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3 &lt; 2 &lt; 1</td>
-<td style="text-align: right;">0.2010</td>
+<td style="text-align: right;">0.2106</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2 &lt; 3 &lt; 1</td>
-<td style="text-align: right;">0.2486</td>
+<td style="text-align: right;">0.2420</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 &lt; 1 &lt; 3</td>
-<td style="text-align: right;">0.1948</td>
+<td style="text-align: right;">0.2026</td>
 </tr>
 </tbody>
 </table>
@@ -915,10 +866,10 @@ p(y \mid \boldsymbol{\phi}) &amp;= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{e
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>theta1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.theta.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.theta.mc[[<span class="dv">3</span>]])</span>
 <span id="cb12-2"><a></a><span class="fu">print</span>(theta1.big.prob)</span>
-<span id="cb12-3"><a></a><span class="co">#&gt; [1] 0.8672</span></span>
+<span id="cb12-3"><a></a><span class="co">#&gt; [1] 0.8646</span></span>
 <span id="cb12-4"><a></a>y1.big.prob <span class="ot">=</span> <span class="fu">mean</span>(school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">2</span>]] <span class="sc">&amp;</span> school.y.mc[[<span class="dv">1</span>]] <span class="sc">&gt;</span> school.y.mc[[<span class="dv">3</span>]])</span>
 <span id="cb12-5"><a></a><span class="fu">print</span>(y1.big.prob)</span>
-<span id="cb12-6"><a></a><span class="co">#&gt; [1] 0.4496</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-6"><a></a><span class="co">#&gt; [1] 0.4526</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section></section><section id="section-1" class="title-slide slide level1 center" data-number="7.2"><h1>

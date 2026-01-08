@@ -242,22 +242,12 @@ Jesse Mu
   <p class="date">2016-09-28</p>
 </section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p>Why Monte Carlo? Often we want to calculate either arbitrary properties of posterior distributions or complex posterior distributions themselves. Often, clean analytical solutions for posterior distributions are difficult to obtain. By using computational methods, we can approximate arbitrarily complex posterior probability calculations by repeatedly sampling posteriors. Such techniques are known as Monte Carlo methods.</p>
 <p><span class="header-section-number">1</span> The Monte Carlo method</p>
-<aside class="notes"><p>We continue the last chapter, where we found posterior distributions for women without (<span class="math inline">\(\theta_1\)</span>) and with bachelor’s degrees (<span class="math inline">\(\theta_2\)</span>). Recall</p>
+</section><section class="slide level2"><p>We continue the last chapter, where we found posterior distributions for women without (<span class="math inline">\(\theta_1\)</span>) and with bachelor’s degrees (<span class="math inline">\(\theta_2\)</span>). Recall</p>
 <p><span class="math display">\[\begin{align}
 \left(\theta_1 \;\middle|\; \sum_i Y_{i, 1} = 217\right) &amp;\sim \text{Gamma}(219, 112) \\
 \left(\theta_2 \;\middle|\; \sum_i Y_{i, 2} = 217\right) &amp;\sim \text{Gamma}(68, 45)
 \end{align}\]</span></p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><a href="4_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="4_files/figure-html/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="672"></a></p>
@@ -332,15 +322,15 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10 samples</td>
-<td style="text-align: right;">1.394790</td>
+<td style="text-align: right;">1.476358</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">1.521682</td>
+<td style="text-align: right;">1.510507</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">1.513477</td>
+<td style="text-align: right;">1.514924</td>
 </tr>
 </tbody>
 </table>
@@ -362,15 +352,15 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10 samples</td>
-<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.900</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">0.930</td>
+<td style="text-align: right;">0.890</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">0.899</td>
+<td style="text-align: right;">0.885</td>
 </tr>
 </tbody>
 </table>
@@ -476,7 +466,7 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 </div>
 </div>
 </div>
-</section><section id="example-2-functions-of-two-parameters" class="title-slide slide level1 center" data-number="2.2"><h1>
+</section><section><section id="example-2-functions-of-two-parameters" class="title-slide slide level1 center" data-number="2.2"><h1>
 <span class="header-section-number">2.2</span> Example 2: Functions of two parameters</h1>
 <p>We can now return back to the earlier example with two separate Poisson models of the number of children of women’s without and with bachelor’s degrees. Since <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are independent, we can sample a pair <span class="math inline">\((\theta^{(i)}_1,
 \theta^{(i)}_2)\)</span> from separate samples from <span class="math inline">\(p(\theta_1 \mid y)\)</span> and <span class="math inline">\(p(\theta_2
@@ -491,7 +481,7 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <span id="cb7-2"><a></a>theta1.mc <span class="ot">=</span> <span class="fu">rgamma</span>(N, <span class="dv">219</span>, <span class="dv">112</span>)</span>
 <span id="cb7-3"><a></a>theta2.mc <span class="ot">=</span> <span class="fu">rgamma</span>(N, <span class="dv">68</span>, <span class="dv">45</span>)</span>
 <span id="cb7-4"><a></a><span class="fu">mean</span>(theta1.mc <span class="sc">&gt;</span> theta2.mc)</span>
-<span id="cb7-5"><a></a><span class="co">#&gt; [1] 0.9726</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-5"><a></a><span class="co">#&gt; [1] 0.971</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Also, like the gamma example above, we can calculate some arbitrary function. Say we are interested in the ratio <span class="math inline">\(f(\theta_1, \theta_2) = \theta_1/\theta_2\)</span> of the means. On average, how many times more children do women without bachelor’s degrees have compared to those with bachelor’s degrees. Then we sample multiple pairs <span class="math inline">\((\theta^{(i)}_1, \theta^{(i)}_2)\)</span>, and multiple pairs <span class="math inline">\(\gamma^i =
@@ -533,34 +523,14 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 </div>
 </div>
 <p><span class="header-section-number">3</span> Sampling from predictive distributions</p>
-<aside class="notes"><p>Recall that predictive distributions are distributions of new realizations of a random variable when existing data have been conditioned on and unknown quantities (i.e.&nbsp;parameters) are integrated out.</p>
+</section><section class="slide level2"><p>Recall that predictive distributions are distributions of new realizations of a random variable when existing data have been conditioned on and unknown quantities (i.e.&nbsp;parameters) are integrated out.</p>
 <p>For example, given a prior distribution <span class="math inline">\(p(\theta)\)</span>, how can we calculate the <em>prior predictive distribution</em> <span class="math inline">\(p(\tilde{y})\)</span>? Often we have an analytical solution for the form a posterior predictive distribution for a given model. But often we can simply sample many <span class="math inline">\(\theta^{(i)}\)</span> from our posterior distribution on <span class="math inline">\(\theta\)</span>, and then sample a <span class="math inline">\(y^{(i)}\)</span> for each <span class="math inline">\(\theta^{(i)}\)</span>. Specifically, <span class="math inline">\(\{(\theta,
 \tilde{y}) \}^{(1)}, \dots, (\theta, \tilde{y})^{(S)} \}\)</span> are samples from the joint posterior distribution of <span class="math inline">\(\theta, \tilde{Y}\)</span>, and the sequence <span class="math inline">\(\{\tilde{y}^{(1)},
 \dots, \tilde{y}^{(S)}\}\)</span> are samples from the <em>marginal</em> posterior distribution of <span class="math inline">\(\tilde{Y}\)</span> (if we had an infinite number of samples, we would be “summing” over all theta).</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">4</span> Posterior predictive model checking</p>
-<aside class="notes"><p>Because exercises 4.3 and 4.8 address this, this section is skipped for now.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">5</span> Exercises</p>
-</section><section id="section" class="title-slide slide level1 center" data-number="5.1"><h1>
+<p><span class="header-section-number">4</span> Posterior predictive model checking</p>
+</section><section class="slide level2"><p>Because exercises 4.3 and 4.8 address this, this section is skipped for now.</p>
+<p><span class="header-section-number">5</span> Exercises</p>
+</section></section><section id="section" class="title-slide slide level1 center" data-number="5.1"><h1>
 <span class="header-section-number">5.1</span> 4.1</h1>
 <p>For the county in exercise 3.1, <span class="math inline">\(\theta_3 \mid \sum Y_i = y \sim \text{Beta}(58,
 44)\)</span>.</p>
@@ -571,7 +541,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>theta1.mc <span class="ot">=</span> <span class="fu">rbeta</span>(<span class="dv">5000</span>, <span class="dv">58</span>, <span class="dv">44</span>)</span>
 <span id="cb9-2"><a></a>theta2.mc <span class="ot">=</span> <span class="fu">rbeta</span>(<span class="dv">5000</span>, <span class="dv">31</span>, <span class="dv">21</span>)</span>
 <span id="cb9-3"><a></a><span class="fu">mean</span>(theta1.mc <span class="sc">&lt;</span> theta2.mc)</span>
-<span id="cb9-4"><a></a><span class="co">#&gt; [1] 0.6254</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-4"><a></a><span class="co">#&gt; [1] 0.649</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section><section id="section-1" class="title-slide slide level1 center" data-number="5.2"><h1>
@@ -582,7 +552,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>theta.a <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, <span class="dv">237</span>, <span class="dv">20</span>)</span>
 <span id="cb10-2"><a></a>theta.b <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, <span class="dv">125</span>, <span class="dv">14</span>)</span>
 <span id="cb10-3"><a></a><span class="fu">mean</span>(theta.b <span class="sc">&lt;</span> theta.a)</span>
-<span id="cb10-4"><a></a><span class="co">#&gt; [1] 0.9938</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-4"><a></a><span class="co">#&gt; [1] 0.9958</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="b" class="slide level2"><h2>b</h2>
@@ -720,7 +690,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">quantile</span>(ynew.mc, <span class="fu">c</span>(.<span class="dv">125</span>, .<span class="dv">875</span>))</span>
 <span id="cb19-2"><a></a><span class="co">#&gt;    12.5%    87.5% </span></span>
-<span id="cb19-3"><a></a><span class="co">#&gt; 7.176328 8.562132</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-3"><a></a><span class="co">#&gt; 7.175620 8.573552</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="c-1" class="slide level2"><h2>c</h2>
@@ -743,7 +713,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 </div>
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a></span>
 <span id="cb21-2"><a></a>dens<span class="sc">$</span>x[<span class="fu">c</span>(<span class="fu">min</span>(<span class="fu">which</span>(in.hdp)), <span class="fu">max</span>(<span class="fu">which</span>(in.hdp)))]</span>
-<span id="cb21-3"><a></a><span class="co">#&gt; [1] 7.170826 8.568486</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-3"><a></a><span class="co">#&gt; [1] 7.191391 8.589501</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Since the distribution of weights is relatively symmetric and normally distributed, the HDP and quantile confidence intervals are quite similar.</p>
@@ -790,14 +760,14 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <span id="cb24-3"><a></a><span class="co">#&gt; [1] "Theta difference:"</span></span>
 <span id="cb24-4"><a></a><span class="fu">print</span>(<span class="fu">quantile</span>(theta.diff, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
 <span id="cb24-5"><a></a><span class="co">#&gt;      2.5%     97.5% </span></span>
-<span id="cb24-6"><a></a><span class="co">#&gt; 0.1465951 0.7343225</span></span>
+<span id="cb24-6"><a></a><span class="co">#&gt; 0.1430282 0.7479448</span></span>
 <span id="cb24-7"><a></a></span>
 <span id="cb24-8"><a></a>ynew.diff <span class="ot">=</span> ynewB <span class="sc">-</span> ynewA</span>
 <span id="cb24-9"><a></a><span class="fu">print</span>(<span class="st">"Ynew difference:"</span>)</span>
 <span id="cb24-10"><a></a><span class="co">#&gt; [1] "Ynew difference:"</span></span>
 <span id="cb24-11"><a></a><span class="fu">print</span>(<span class="fu">quantile</span>(ynew.diff, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
 <span id="cb24-12"><a></a><span class="co">#&gt;  2.5% 97.5% </span></span>
-<span id="cb24-13"><a></a><span class="co">#&gt;    -2     4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-13"><a></a><span class="co">#&gt;    -2     3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Since the confidence interval for <span class="math inline">\(\theta_B - \theta_A\)</span> does not contain zero, we believe with at least approximately 95% probability that the true posterior mean <span class="math inline">\(\theta_B\)</span> is greater than <span class="math inline">\(\theta_A\)</span>. However, the same does not hold true for the means of the difference between two individuals sampled from this distribution, due to the increased uncertainty in the posterior predictive distribution.</p>
@@ -825,7 +795,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <p>(Observe that the mean of the nobach population is around 1.4)</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">mean</span>(ynewB)</span>
-<span id="cb26-2"><a></a><span class="co">#&gt; [1] 1.4004</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-2"><a></a><span class="co">#&gt; [1] 1.3826</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="d-1" class="slide level2 smaller scrollable"><h2>d</h2>

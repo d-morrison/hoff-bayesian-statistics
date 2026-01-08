@@ -241,7 +241,7 @@ Jesse Mu
 
   <p class="date">2016-11-04</p>
 </section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> A semiconjugate prior distribution</p>
-<p>In Chapter 5, we performed two-parameter inference by decomposing the prior <span class="math inline">\(p(\theta, \sigma^2) = p(\theta \mid \sigma^2) p(\sigma^2)\)</span>. So our prior distribution on <span class="math inline">\(\theta\)</span> relates to the variance <span class="math inline">\(\sigma^2\)</span>:</p>
+</section><section class="slide level2"><p>In Chapter 5, we performed two-parameter inference by decomposing the prior <span class="math inline">\(p(\theta, \sigma^2) = p(\theta \mid \sigma^2) p(\sigma^2)\)</span>. So our prior distribution on <span class="math inline">\(\theta\)</span> relates to the variance <span class="math inline">\(\sigma^2\)</span>:</p>
 <p><span class="math display">\[
 \theta \mid \sigma^2 \sim \mathcal{N}(\mu_0, \sigma^2 / \kappa_0)
 \]</span></p>
@@ -263,7 +263,7 @@ p(\theta, \sigma^2 \mid y_1, \dots, y_n) \propto p(\theta, \sigma^2) \times p(y_
           overflow: hidden!important;
           display:block!important;
       }</style></aside><p><span class="header-section-number">2</span> Discrete approximations</p>
-<aside class="notes"><p>Why posterior densities are hard to calculate for nonconjugate priors using Bayes rule?</p>
+</section><section class="slide level2"><p>Why posterior densities are hard to calculate for nonconjugate priors using Bayes rule?</p>
 <p><span class="math display">\[
 \begin{aligned}
 p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
@@ -273,17 +273,7 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 \]</span></p>
 <p>The numerator here is often easy to calculate, but the denominator is often prohibitively hard to compute. When the numerator is not known to be proportional to a known probability distribution, we can’t get the full joint density without the denominator.</p>
 <p>Notice however that we can still evaluate relative probabilites of <span class="math inline">\(\boldsymbol{\theta}_a\)</span> and <span class="math inline">\(\boldsymbol{\theta}_b\)</span>, as their ratio cancels out the integral. More generally, we can create a discrete approximation of the probabilities by evaluating the numerator of this density for values of <span class="math inline">\(\boldsymbol{\theta}\)</span> across an <span class="math inline">\(n\)</span>-dimensional grid, then dividing each of these unnormalized densities by the sum of the entire grid.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>Funnily, this is pretty much what I have been doing in the past chapters when plotting heatmaps:</p>
+<p>Funnily, this is pretty much what I have been doing in the past chapters when plotting heatmaps:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.64</span>, <span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.74</span>, <span class="fl">1.82</span>, <span class="fl">1.82</span>, <span class="fl">1.82</span>, <span class="fl">1.90</span>, <span class="fl">2.08</span>)</span>
 <span id="cb1-2"><a></a></span>
@@ -330,20 +320,10 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 </div>
 </div>
 <p><span class="header-section-number">3</span> Sampling from the conditional distributions</p>
-<aside class="notes"><p>Again, to proceed with Gibbs sampling, we simply need to calculate the full conditional distributions of the parameters. We already computed the full conditional for <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n\)</span> in 5.2. For <span class="math inline">\(\theta
+</section><section class="slide level2"><p>Again, to proceed with Gibbs sampling, we simply need to calculate the full conditional distributions of the parameters. We already computed the full conditional for <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n\)</span> in 5.2. For <span class="math inline">\(\theta
 \mid \mathcal{N}(\mu_0, \tau_0^2)\)</span>, then <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n
 \sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> are not reproduced here (see 5.2).</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>Now we find the full conditional for <span class="math inline">\(\sigma^2\)</span> using the exact same method as in 5.2:</p>
+<p>Now we find the full conditional for <span class="math inline">\(\sigma^2\)</span> using the exact same method as in 5.2:</p>
 <p><span class="math display">\[
 \begin{aligned}
 p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
@@ -363,7 +343,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 \mathbf{y})\)</span>, simply evaluate the full joint posterior while treating all <span class="math inline">\(\theta_j\)</span> for <span class="math inline">\(j \neq i\)</span> as constants (and thus discardable to maintain proportionality). This is used in later chapters (e.g.&nbsp;8.3.1)</p>
 </blockquote>
 <p><span class="header-section-number">4</span> Gibbs sampling</p>
-<aside class="notes"><p>From this, Gibbs sampling proceeds as follows:</p>
+</section><section class="slide level2"><p>From this, Gibbs sampling proceeds as follows:</p>
 <p>Begin with start values <span class="math inline">\(\theta_i^{(0)}\)</span> for all <span class="math inline">\(i\)</span>. Usually these can be standard naive estimates of the parameters. Also, you technically only have to have start values for <em>all but one</em> parameter, because now…</p>
 <ul>
 <li>(WOLOG) Sample <span class="math inline">\(\theta_1^{(1)} \sim p(\theta_1 \mid \theta_2^{(0)}, \dots,
@@ -373,18 +353,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 <span class="math inline">\(\boldsymbol{\theta}^{(1)} = \begin{pmatrix} \theta_1^{(1)} &amp; \cdots &amp; \theta_n^{(1)} \end{pmatrix}\)</span> is your first Gibbs sample.</li>
 <li>Given Gibbs sample <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span>, for further samples, sample each <span class="math inline">\(\theta_i^{(s + 1)}\)</span> individually as before, conditioning on the <span class="math inline">\(\theta_i^{(s)}\)</span> of the previous gibbs sampling <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span> <em>and</em> the new samples <span class="math inline">\(\theta_i^{(s + 1)}\)</span> as they are received. Then <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)} = \begin{pmatrix} \theta_1^{(s + 1)} &amp; \cdots &amp; \theta_n^{(s + 1)} \end{pmatrix}\)</span> is the <span class="math inline">\(s + 1\)</span>th Gibbs sample.</li>
 </ul>
-<p>Notice that the <span class="math inline">\(s + 1\)</span>th sample is only conditionally dependent on the <span class="math inline">\(s\)</span>th sample, hence the term “Markov Chain Monte Carlo”.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>Once these samples are obtained, you can treat them like a standard Monte Carlo sample, and compute all of the desired quantities.</p>
+<p>Notice that the <span class="math inline">\(s + 1\)</span>th sample is only conditionally dependent on the <span class="math inline">\(s\)</span>th sample, hence the term “Markov Chain Monte Carlo”. Once these samples are obtained, you can treat them like a standard Monte Carlo sample, and compute all of the desired quantities.</p>
 <p>The following is an example for our midge length data:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>S <span class="ot">=</span> <span class="dv">1000</span></span>
@@ -451,31 +420,11 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 </details>
 </div>
 <p><span class="header-section-number">5</span> General properties of the Gibbs sampler</p>
-<aside class="notes"><p>Under conditions that will be met for our models, like the law of large numbers for standard monte carlo sampling, a sufficient number of Gibbs samples approaches the target distribution. The question of course is how many samples is enough, which is covered in the next section.</p>
+</section><section class="slide level2"><p>Under conditions that will be met for our models, like the law of large numbers for standard monte carlo sampling, a sufficient number of Gibbs samples approaches the target distribution. The question of course is how many samples is enough, which is covered in the next section.</p>
 <p>Another important point is that Gibbs sampling is not a Bayesian model. These two concepts should be separated: Gibbs sampling is a general framework for “observing” the posterior probability distribution, whatever that distribution is.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">6</span> Introduction to MCMC diagnostics</p>
-<aside class="notes"><p>For an example of the importance of assessing convergence of Gibbs sampling, consider the following target distribution, a 45-10-45 mixture of <span class="math inline">\(\mathcal{N}(-3, 1/3), \mathcal{N}(0, 1/3), \mathcal{N}(3, 1/3)\)</span>:</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><div class="cell" data-layout-align="center">
+<p><span class="header-section-number">6</span> Introduction to MCMC diagnostics</p>
+</section><section class="slide level2"><p>For an example of the importance of assessing convergence of Gibbs sampling, consider the following target distribution, a 45-10-45 mixture of <span class="math inline">\(\mathcal{N}(-3, 1/3), \mathcal{N}(0, 1/3), \mathcal{N}(3, 1/3)\)</span>:</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><a href="6_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="6_files/figure-html/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="672"></a></p>

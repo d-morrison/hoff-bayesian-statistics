@@ -275,7 +275,7 @@ Jesse Mu
 <li><span class="math inline">\(\nu_n \sigma_n^2 = \nu_0 \sigma_0^2 + \sum_{i = 1}^{n_1} (y_{i, 1} - \left[\mu + \delta \right])^2 + \sum_{i = 1}^{n_2} (y_{i, 2} - \left[ \mu - \delta \right])^2\)</span></li>
 </ul>
 </li>
-</ul></section></section><section id="analysis-of-the-math-score-data" class="title-slide slide level1 center" data-number="1.2"><h1>
+</ul></section></section><section><section id="analysis-of-the-math-score-data" class="title-slide slide level1 center" data-number="1.2"><h1>
 <span class="header-section-number">1.2</span> Analysis of the math score data</h1>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">source</span>(<span class="st">'Replication/chapter8.R'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -776,18 +776,8 @@ Jesse Mu
 </details>
 </div>
 <p><span class="header-section-number">2</span> Comparing multiple groups</p>
-<aside class="notes"><p>Let’s extend this to a <span class="math inline">\(&gt; 2\)</span> group case. Assume for our example above that we have many schools, which we assume are samples from a population of schools. So our dataset is <em>hierarchical</em> or <em>multilevel</em> since there are samples of schools and within each school samples of students.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section id="exchangeability-and-hierarchical-models" class="title-slide slide level1 center" data-number="2.1"><h1>
+</section><section class="slide level2"><p>Let’s extend this to a <span class="math inline">\(&gt; 2\)</span> group case. Assume for our example above that we have many schools, which we assume are samples from a population of schools. So our dataset is <em>hierarchical</em> or <em>multilevel</em> since there are samples of schools and within each school samples of students.</p>
+</section></section><section><section id="exchangeability-and-hierarchical-models" class="title-slide slide level1 center" data-number="2.1"><h1>
 <span class="header-section-number">2.1</span> Exchangeability and hierarchical models</h1>
 <p>Using de Finetti’s theorem and assuming exchangability, we knew previously that for a single group, we can treat the data within the group as being conditionally i.i.d. given a parameter, which we call the <strong>within-group sampling variability</strong>:</p>
 <p><span class="math display">\[
@@ -803,18 +793,8 @@ Jesse Mu
 \]</span></p>
 <p>Note that we can extend this hierarchy arbitrarily.</p>
 <p><span class="header-section-number">3</span> The hierarchical normal model</p>
-<aside class="notes"><p>The key of the hierarchical normal model is to treat the data within a group as being normally distributed with some mean <span class="math inline">\(\theta_j\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, and the means among groups to <em>also</em> be normally distributed according to some other mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\tau^2\)</span>. Note that for now we’re assuming that the data within groups share a common variance <span class="math inline">\(\sigma^2\)</span> that doesn’t depend on the group <span class="math inline">\(j\)</span>.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p>Specifically, we have</p>
+</section><section class="slide level2"><p>The key of the hierarchical normal model is to treat the data within a group as being normally distributed with some mean <span class="math inline">\(\theta_j\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, and the means among groups to <em>also</em> be normally distributed according to some other mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\tau^2\)</span>. Note that for now we’re assuming that the data within groups share a common variance <span class="math inline">\(\sigma^2\)</span> that doesn’t depend on the group <span class="math inline">\(j\)</span>.</p>
+<p>Specifically, we have</p>
 <ul>
 <li><span class="math inline">\(Y_{i, j} \sim \mathcal{N}(\theta_j, \sigma^2)\)</span></li>
 <li><span class="math inline">\(\theta_j \sim \mathcal{N}(\mu, \tau^2)\)</span></li>
@@ -826,7 +806,7 @@ Jesse Mu
 \mu^2 &amp;\sim \mathcal{N}(\mu_0, \gamma_0^2)
 \end{align}\]</span></p>
 <p><strong>Fig 8.3</strong> isn’t reproduced here in these notes but is important for visualizing the model. It especially helps to know how Bayesian networks are interpreted, which helps explain the conditional dependencies.</p>
-</section><section><section id="posterior-inference" class="title-slide slide level1 center" data-number="3.1"><h1>
+</section></section><section><section id="posterior-inference" class="title-slide slide level1 center" data-number="3.1"><h1>
 <span class="header-section-number">3.1</span> Posterior inference</h1>
 
 </section><section id="intuition" class="slide level2"><h2>Intuition</h2>
@@ -864,18 +844,8 @@ p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots,
 <p>It’s worth briefly discussing what these values represent. The full conditionals for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\tau^2\)</span> look like standard normal posteriors. Similarly, the full conditional for <span class="math inline">\(\theta_j\)</span> looks like a normal posterior dependent only on the specific subgroup <span class="math inline">\(\boldsymbol{y}_j\)</span> and the common variance <span class="math inline">\(\sigma^2\)</span>. Lastly (and most interestingly), notice that the posterior for <span class="math inline">\(\sigma^2\)</span> looks like a standard inverse gamma posterior which depends on <span class="math inline">\(\sum \sum (y_{i, j} -
 \theta)^2\)</span> which is the pooled variance across all groups (see also <span class="math inline">\(\sum n_j\)</span>).</p>
 <p><span class="header-section-number">4</span> Example: Math scores in U.S. public schools</p>
-<aside class="notes"><p>We now look at the full dataset of math scores from 100 schools:</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><div class="cell" data-layout-align="center">
+</section><section class="slide level2"><p>We now look at the full dataset of math scores from 100 schools:</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><a href="8_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-73"><img data-src="8_files/figure-html/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="672"></a></p>

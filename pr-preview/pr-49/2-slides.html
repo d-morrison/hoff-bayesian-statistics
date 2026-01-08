@@ -306,24 +306,14 @@ P(H_i \mid E) = \frac{\overbrace{P(E \mid H_i)}^{\text{likelihood}} \overbrace{P
 </li>
 </ul>
 <p><span class="header-section-number">3</span> Independence</p>
-<aside class="notes"><p>Two events <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are <em>independent</em> if <span class="math inline">\(P(F \cap G) = P(F) P(G)\)</span>.</p>
+</section><section class="slide level2"><p>Two events <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are <em>independent</em> if <span class="math inline">\(P(F \cap G) = P(F) P(G)\)</span>.</p>
 <p>Two events <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are <em>conditionally independent</em> given <span class="math inline">\(H\)</span> if</p>
 <p><span class="math display">\[\begin{align}
 P(F \cap G \mid H) = P(F \mid H) P(G \mid H)
 \end{align}\]</span></p>
 <p>This implies <span class="math inline">\(P(F \mid H \cap G) = P(F \mid H)\)</span>. That is, if we know about <span class="math inline">\(H\)</span>, and <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are conditionally independent given <span class="math inline">\(H\)</span>, then knowing <span class="math inline">\(G\)</span> does not change our belief about <span class="math inline">\(H\)</span>. This is a key property leveraged in Bayesian networks.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">4</span> Random variables and their distributions</p>
-<aside class="notes"><p>A random variable <span class="math inline">\(Y\)</span> is <em>discrete</em> if the set of all its possible values <span class="math inline">\(\mathcal{Y}\)</span> is countable, i.e.&nbsp;they can be enumerated <span class="math inline">\(\mathcal{Y} = \{y_1, y_2, \dots \}\)</span> Examples include the binomial and poisson distributions. Discrete random variables have a <em>probability mass function</em> (PMF) <span class="math inline">\(f(y) = P(Y = y)\)</span> which assigns a certain probability to every discrete point in its sample space. From this probability mass function, a <em>continuous distribution function</em> (CDF) is also defined:</p>
+<p><span class="header-section-number">4</span> Random variables and their distributions</p>
+</section><section class="slide level2"><p>A random variable <span class="math inline">\(Y\)</span> is <em>discrete</em> if the set of all its possible values <span class="math inline">\(\mathcal{Y}\)</span> is countable, i.e.&nbsp;they can be enumerated <span class="math inline">\(\mathcal{Y} = \{y_1, y_2, \dots \}\)</span> Examples include the binomial and poisson distributions. Discrete random variables have a <em>probability mass function</em> (PMF) <span class="math inline">\(f(y) = P(Y = y)\)</span> which assigns a certain probability to every discrete point in its sample space. From this probability mass function, a <em>continuous distribution function</em> (CDF) is also defined:</p>
 <p><span class="math display">\[F(y) = P(Y \leq y) = \sum_{y_i \leq y} f(y_i)\]</span></p>
 <p><span class="math inline">\(Y\)</span> is <em>continuous</em> if <span class="math inline">\(\mathcal{Y}\)</span> can take <em>any</em> value in an interval. Therefore, the probability of <span class="math inline">\(Y\)</span> taking a single value in the sample space is 0. So instead we describe such distributions with <em>probability density functions</em> (PDFs) <span class="math inline">\(f(y)\)</span>, which must be integrated over an interval to obtain a probability: <span class="math inline">\(P(a \leq y \leq b) =
 \int_a^b f(y) \; dy\)</span>. These variables also have CDFs:</p>
@@ -331,17 +321,7 @@ P(F \cap G \mid H) = P(F \mid H) P(G \mid H)
 F(y) = P(Y \leq y) = \int_{-\infty}^y f(x) \; dx
 \end{align}\]</span></p>
 <p>Examples include the normal and beta distributions.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section id="descriptions-of-distributions" class="title-slide slide level1 center" data-number="4.1"><h1>
+</section><section id="descriptions-of-distributions" class="title-slide slide level1 center" data-number="4.1"><h1>
 <span class="header-section-number">4.1</span> Descriptions of distributions</h1>
 <p>In the same way that we use the mean, mode, and median to describe samples, we can use them to describe distributions. Notice that for many distributions, these quantities are <em>not</em> the same.</p>
 <p>We also use variance and quantiles to measure the <em>spread</em> of distributions.</p>
@@ -375,7 +355,7 @@ p(y_2) &amp;= \int_{-\infty}^{\infty} p(y_1, y_2) \; dy_1 \\
 \end{align}\]</span></p>
 <p>With the marginal densities, you can compute the conditional densities <span class="math inline">\(p(y_2
 \mid y_1) = p(y_1, y_2) / p(y_1)\)</span>, etc.</p>
-</section></section><section id="independent-random-variables" class="title-slide slide level1 center" data-number="4.3"><h1>
+</section></section><section><section id="independent-random-variables" class="title-slide slide level1 center" data-number="4.3"><h1>
 <span class="header-section-number">4.3</span> Independent random variables</h1>
 <p>Let <span class="math inline">\(Y_1, \dots, Y_n\)</span> be random variables dependent on a common parameter <span class="math inline">\(\theta\)</span>. Then <span class="math inline">\(Y_1 \dots, Y_n\)</span> are conditionally independent given <span class="math inline">\(\theta\)</span> if</p>
 <p><span class="math display">\[\begin{align}
@@ -390,24 +370,14 @@ p(y_1, \dots, y_n \mid \theta) = \prod_i p(y_i \mid \theta).
 Y_1, \dots, Y_n \mid \theta \sim \text{i.i.d.} \; p(y \mid \theta).
 \]</span></p>
 <p><span class="header-section-number">5</span> Exchangeability</p>
-<aside class="notes"><p>In many situations with several random variables, we would intuit that the specific order of observation of these random variables aren’t important. For example, consider a random sample of 3 participants from an infinite population which may or may not have a property (1 or 0) It makes sense that</p>
+</section><section class="slide level2"><p>In many situations with several random variables, we would intuit that the specific order of observation of these random variables aren’t important. For example, consider a random sample of 3 participants from an infinite population which may or may not have a property (1 or 0) It makes sense that</p>
 <p><span class="math display">\[p(0, 0, 1) = p(1, 0, 0) = p(0, 1, 0).\]</span></p>
 <p>since the likelihood of a person having the property or not is <span class="math inline">\(\theta\)</span>, regardless of the sample. This property is called exchangeability.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><blockquote>
+<blockquote>
 <p>Exchangability. Let <span class="math inline">\(Y_1, \dots, Y_n\)</span> be random variables. If <span class="math inline">\(p(y_1, \dots,
 y_n) = p(y_{\pi_1}, \dots, y_{\pi_n})\)</span> for all permutations <span class="math inline">\(\pi\)</span> of <span class="math inline">\(\{1, \dots, n\}\)</span>, then <span class="math inline">\(Y_1, \dots, Y_n\)</span> are exchangable.</p>
 </blockquote>
-<aside class="notes"><p>If <span class="math inline">\(Y_1, \dots Y_n\)</span> are i.i.d., then they are exchangeable:</p>
+<p>If <span class="math inline">\(Y_1, \dots Y_n\)</span> are i.i.d., then they are exchangeable:</p>
 <p><span class="math display">\[\begin{align}
 p(y_1, \dots, y_n) &amp;= \int p(y_1, \dots, y_n \mid \theta)\; d\theta &amp; \\
 &amp;= \int \left( \prod_i p(y_i \mid \theta) \right) p(\theta) \; d\theta &amp; \text{(i.i.d.)} \\
@@ -415,33 +385,13 @@ p(y_1, \dots, y_n) &amp;= \int p(y_1, \dots, y_n \mid \theta)\; d\theta &amp; \\
 &amp;= p(y_{\pi_1}, \dots, y_{\pi_n}).
 \end{align}\]</span></p>
 <p>Classical assumption of Bernoulli variables <span class="math inline">\(X_1, X_2, \dots, X_n\)</span> as outcomes of the same experiment (e.g.&nbsp;a coin flip): <em>independence</em>. But continuing to observe <span class="math inline">\(X_j\)</span>s should result in a change of opinion about the distribution of coin flip outcomes (e.g.&nbsp;gradually learning coin bias). So Bayesian statisticians should assume <em>exchangeability</em>, a weaker condition than <em>independence</em>.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside><p><span class="header-section-number">6</span> de Finetti’s theorem</p>
-<aside class="notes"><blockquote>
+<p><span class="header-section-number">6</span> de Finetti’s theorem</p>
+<blockquote>
 <p>de Finetti’s theorem. Let <span class="math inline">\(Y_1, \dots, Y_n\)</span> be a finite subset of an infinitely exchangeable but <strong>not necessarily i.i.d.</strong> random variables: <span class="math display">\[p(y_1, \dots, y_n) = p(y_{\pi_1}, \dots, y_{\pi_n})\]</span> for all partitions <span class="math inline">\(\pi\)</span>. Then our model can be written as <span class="math display">\[p(y_1, \dots, y_n) = \int \left( \prod_1^n p(y_i \mid \theta) \right) p(\theta) \; d\theta.\]</span></p>
 </blockquote>
 <p>So, in general, <span class="math display">\[Y_1, \dots, Y_n \mid \theta \text{ are i.i.d.} \Leftrightarrow Y_1, \dots, Y_n \text{ are exchangable for all $n$}\]</span></p>
 <p>Importantly, if we sample from a sufficiently large population, then we can model the sample variables as being approximately conditionally i.i.d.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section><section id="proof-for-0-1-random-variables" class="title-slide slide level1 center" data-number="6.1"><h1>
+</section></section><section><section id="proof-for-0-1-random-variables" class="title-slide slide level1 center" data-number="6.1"><h1>
 <span class="header-section-number">6.1</span> Proof for {0, 1} random variables</h1>
 <p>From <span class="citation" data-cites="heath1976">Heath and Sudderth (<a href="#/c-4" role="doc-biblioref" onclick="">1976</a>)</span>. Also see <span class="citation" data-cites="stackexchange_definetti">Cross Validated (<a href="#/c-4" role="doc-biblioref" onclick="">2012</a>)</span>.</p>
 </section><section id="alternative-statement-of-theorem" class="slide level2"><h2>Alternative statement of theorem</h2>

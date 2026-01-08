@@ -1048,9 +1048,8 @@ window.Quarto = {
 </div>
 </section></section><section id="comparing-multiple-groups" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> Comparing multiple groups</h1>
-<div class="notes">
+<hr>
 <p>Let’s extend this to a <span class="math inline">\(&gt; 2\)</span> group case. Assume for our example above that we have many schools, which we assume are samples from a population of schools. So our dataset is <em>hierarchical</em> or <em>multilevel</em> since there are samples of schools and within each school samples of students.</p>
-</div>
 <section id="exchangeability-and-hierarchical-models" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="exchangeability-and-hierarchical-models">
 <span class="header-section-number">2.1</span> Exchangeability and hierarchical models</h2>
 <p>Using de Finetti’s theorem and assuming exchangability, we knew previously that for a single group, we can treat the data within the group as being conditionally i.i.d. given a parameter, which we call the <strong>within-group sampling variability</strong>:</p>
@@ -1068,9 +1067,8 @@ window.Quarto = {
 <p>Note that we can extend this hierarchy arbitrarily.</p>
 </section></section><section id="the-hierarchical-normal-model" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> The hierarchical normal model</h1>
-<div class="notes">
+<hr>
 <p>The key of the hierarchical normal model is to treat the data within a group as being normally distributed with some mean <span class="math inline">\(\theta_j\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, and the means among groups to <em>also</em> be normally distributed according to some other mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\tau^2\)</span>. Note that for now we’re assuming that the data within groups share a common variance <span class="math inline">\(\sigma^2\)</span> that doesn’t depend on the group <span class="math inline">\(j\)</span>.</p>
-</div>
 <p>Specifically, we have</p>
 <ul>
 <li><span class="math inline">\(Y_{i, j} \sim \mathcal{N}(\theta_j, \sigma^2)\)</span></li>
@@ -1123,9 +1121,8 @@ p(\theta_1, \dots, \theta_m, \mu, \tau^2, \sigma^2 \mid \boldsymbol{y}_1, \dots,
 \theta)^2\)</span> which is the pooled variance across all groups (see also <span class="math inline">\(\sum n_j\)</span>).</p>
 </section></section></section><section id="example-math-scores-in-u.s.-public-schools" class="level1" data-number="4"><h1 data-number="4">
 <span class="header-section-number">4</span> Example: Math scores in U.S. public schools</h1>
-<div class="notes">
+<hr>
 <p>We now look at the full dataset of math scores from 100 schools:</p>
-</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2182,12 +2179,12 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a><span class="fu"># Comparing multiple groups</span></span>
 <span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a>Let's extend this to a $&gt; 2$ group case. Assume for our example above that we</span>
-<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a>have many schools, which we assume are samples from a population of schools. So</span>
-<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a>our dataset is *hierarchical* or *multilevel* since there are samples of schools</span>
-<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>and within each school samples of students.</span>
-<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a>Let's extend this to a $&gt; 2$ group case. Assume for our example above that we</span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a>have many schools, which we assume are samples from a population of schools. So</span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>our dataset is *hierarchical* or *multilevel* since there are samples of schools</span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a>and within each school samples of students.</span>
 <span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exchangeability and hierarchical models</span></span>
 <span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a></span>
@@ -2219,13 +2216,13 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a><span class="fu"># The hierarchical normal model</span></span>
 <span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a>The key of the hierarchical normal model is to treat the data within a group as</span>
-<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a>being normally distributed with some mean $\theta_j$ and variance $\sigma^2$, and the means among</span>
-<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a>groups to *also* be normally distributed according to some other mean $\mu$ and</span>
-<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a>variance $\tau^2$. Note that for now we're assuming that the data within groups share a </span>
-<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>common variance $\sigma^2$ that doesn't depend on the group $j$.</span>
-<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a>The key of the hierarchical normal model is to treat the data within a group as</span>
+<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a>being normally distributed with some mean $\theta_j$ and variance $\sigma^2$, and the means among</span>
+<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a>groups to *also* be normally distributed according to some other mean $\mu$ and</span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>variance $\tau^2$. Note that for now we're assuming that the data within groups share a </span>
+<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>common variance $\sigma^2$ that doesn't depend on the group $j$.</span>
 <span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>Specifically, we have</span>
 <span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a></span>
@@ -2318,9 +2315,9 @@ p(\mu \mid \mathcal{D}, \boldsymbol{\theta}, \sigma^2, \tau^2) &amp;= \frac{p(\m
 <span id="cb15-298"><a href="#cb15-298" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-299"><a href="#cb15-299" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example: Math scores in U.S. public schools</span></span>
 <span id="cb15-300"><a href="#cb15-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-301"><a href="#cb15-301" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb15-302"><a href="#cb15-302" aria-hidden="true" tabindex="-1"></a>We now look at the full dataset of math scores from 100 schools:</span>
-<span id="cb15-303"><a href="#cb15-303" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb15-301"><a href="#cb15-301" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb15-302"><a href="#cb15-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-303"><a href="#cb15-303" aria-hidden="true" tabindex="-1"></a>We now look at the full dataset of math scores from 100 schools:</span>
 <span id="cb15-304"><a href="#cb15-304" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-305"><a href="#cb15-305" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-306"><a href="#cb15-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo=FALSE}</span></span>

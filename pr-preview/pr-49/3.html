@@ -565,7 +565,7 @@ window.Quarto = {
 
 </header><!-- Setup --><!-- Begin writing --><section id="the-binomial-model" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> The Binomial model</h1>
-<div class="notes">
+<hr>
 <p>1998 General Social Survey: Females over age 65, <span class="math inline">\(1 = \text{happy}\)</span>, <span class="math inline">\(0 =
 \text{unhappy}\)</span>. <span class="math inline">\(n = 129\)</span>. So let the survey be 129 exchangeable random variables <span class="math inline">\(Y_1, \dots, Y_{129}\)</span>.</p>
 <p>Under our model, conditioned on some <span class="math inline">\(\theta\)</span>, <span class="math inline">\(Y_i\)</span> are i.i.d. binary random variables with probability <span class="math inline">\(\theta\)</span>. So the joint probability is</p>
@@ -574,7 +574,6 @@ p(y_1, \dots, y_{129} \mid \theta) = \theta^{\sum_{i} y_i} (1 - \theta)^{129 -
 \sum_i y_i}
 \end{align}\]</span></p>
 <p>Now we need to specify our prior distribution</p>
-</div>
 <section id="uniform-prior" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="uniform-prior">
 <span class="header-section-number">1.1</span> Uniform prior</h2>
 <p>Imagine our prior is <span class="math inline">\(\theta \sim \text{Uniform}(0, 1)\)</span>. What this means is <span class="math inline">\(P(a \leq \theta \leq b) = P(a + c \leq \theta \leq b + c)\)</span> for all compatible <span class="math inline">\(a, b, c\)</span>. In other words, the probability of theta falling in an interval of a given width is constant, regardless of where the interval is.</p>
@@ -746,14 +745,13 @@ P(l(Y) &lt; \theta &lt; u(Y) \mid theta) = .95
 <p>However, since some of the values for theta <em>outside</em> of the interval have higher density than values of theta <em>inside</em> the interval, another option is to force “symmetry” of heights by searching for the <strong>highest posterior density</strong> region, which can be intuitively found by drawing a horizontal line down the density until the region contained by the line is <span class="math inline">\(1 - \alpha\)</span>% of the entire curve. The analytical calculation for these is not straightforward; computationally, using a discretized density, a “trial and error” approach or a neat procedure detailed in Exercise 4.7 (c) can be used.</p>
 </section></section><section id="the-poisson-model" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> The Poisson model</h1>
-<div class="notes">
+<hr>
 <p>This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).</p>
 <p>Recall the PDF of a Poisson distribution - if <span class="math inline">\(Y \sim \text{Poisson}(\theta)\)</span> then</p>
 <ul>
 <li><span class="math inline">\(p(Y = y \mid \theta) = \theta^y e^{-\theta} / y!\)</span></li>
 <li><span class="math inline">\(\mathbb{E}(Y) = \text{Var}(Y) = \theta\)</span></li>
 </ul>
-</div>
 <section id="posterior-inference" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="posterior-inference">
 <span class="header-section-number">2.1</span> Posterior inference</h2>
 <p>Just like how <span class="math inline">\(Y = \sum Y_i\)</span> is a sufficient statistic for <span class="math inline">\(n\)</span> independent Bernoulli trials, there exists a sufficient statistic for a sample of <span class="math inline">\(n\)</span> i.i.d. Poisson variables. Notice</p>
@@ -867,7 +865,7 @@ p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \dots \\
 <p>Notice that we can calculate the probability that <span class="math inline">\(\theta_1 &gt; \theta_2\)</span> by integrating over the joint density <span class="math inline">\(p(\theta_1, \theta_2)\)</span> over the region where <span class="math inline">\(\theta_1 &gt; \theta_2\)</span>. This is calculated at the beginning of Chapter 4, and it is about 0.97.</p>
 </section></section><section id="exponential-families-and-conjugate-priors" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> Exponential families and conjugate priors</h1>
-<div class="notes">
+<hr>
 <p>Binomial and Poisson models are <em>exponential family models</em>.</p>
 <blockquote class="blockquote">
 <p><strong>Exponential family model</strong>: a model whose densities can be expressed as <span class="math display">\[p(y \mid \phi) = h(y)c(\phi)e^{\phi t(y)}\]</span> where <span class="math inline">\(\phi\)</span> is the unknown parameter and <span class="math inline">\(t(y)\)</span> is the sufficient statistic.</p>
@@ -884,7 +882,6 @@ p(\phi \mid y_1, \dots, y_n) &amp;\propto p(\phi) \times p(y_1, \dots, y_n \mid 
 &amp;\propto p\left( \phi \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^n t(y_i) \right)
 \end{align}\]</span></p>
 <p>For this class of priors, we can interpret <span class="math inline">\(n_0\)</span> as a “prior sample size” and <span class="math inline">\(t_0\)</span> is the prior expectation of the sufficient statistic <span class="math inline">\(t(Y)\)</span>.</p>
-</div>
 <section id="example-binomial-model" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="example-binomial-model">
 <span class="header-section-number">3.1</span> Example: Binomial model</h2>
 <section id="parameterization" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="parameterization">
@@ -2025,21 +2022,21 @@ Zhu, Hao Helen. 2011. <span>“Jeffreys Prior.”</span> <a href="https://www2.s
 <span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># The Binomial model</span></span>
 <span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>1998 General Social Survey: Females over age 65, $1 = \text{happy}$, $0 = </span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>\text{unhappy}$. $n = 129$. So let the survey be 129 exchangeable random </span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>variables $Y_1, \dots, Y_{129}$.</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>Under our model, conditioned on some $\theta$, $Y_i$ are i.i.d. binary random</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>variables with probability $\theta$. So the joint probability is</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>p(y_1, \dots, y_{129} \mid \theta) = \theta^{\sum_{i} y_i} (1 - \theta)^{129 -</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>\sum_i y_i}</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>Now we need to specify our prior distribution</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>1998 General Social Survey: Females over age 65, $1 = \text{happy}$, $0 = </span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>\text{unhappy}$. $n = 129$. So let the survey be 129 exchangeable random </span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>variables $Y_1, \dots, Y_{129}$.</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>Under our model, conditioned on some $\theta$, $Y_i$ are i.i.d. binary random</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>variables with probability $\theta$. So the joint probability is</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>p(y_1, \dots, y_{129} \mid \theta) = \theta^{\sum_{i} y_i} (1 - \theta)^{129 -</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>\sum_i y_i}</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>Now we need to specify our prior distribution</span>
 <span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Uniform prior</span></span>
 <span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a></span>
@@ -2324,14 +2321,14 @@ Zhu, Hao Helen. 2011. <span>“Jeffreys Prior.”</span> <a href="https://www2.s
 <span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a><span class="fu"># The Poisson model</span></span>
 <span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).</span>
-<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>Recall the PDF of a Poisson distribution - if $Y \sim \text{Poisson}(\theta)$ then</span>
-<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$p(Y = y \mid \theta) = \theta^y e^{-\theta} / y!$</span>
-<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mathbb{E}(Y) = \text{Var}(Y) = \theta$</span>
-<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).</span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a>Recall the PDF of a Poisson distribution - if $Y \sim \text{Poisson}(\theta)$ then</span>
+<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$p(Y = y \mid \theta) = \theta^y e^{-\theta} / y!$</span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mathbb{E}(Y) = \text{Var}(Y) = \theta$</span>
 <span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posterior inference</span></span>
 <span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a></span>
@@ -2492,31 +2489,31 @@ Zhu, Hao Helen. 2011. <span>“Jeffreys Prior.”</span> <a href="https://www2.s
 <span id="cb18-496"><a href="#cb18-496" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-497"><a href="#cb18-497" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exponential families and conjugate priors</span></span>
 <span id="cb18-498"><a href="#cb18-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-499"><a href="#cb18-499" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb18-500"><a href="#cb18-500" aria-hidden="true" tabindex="-1"></a>Binomial and Poisson models are *exponential family models*.</span>
-<span id="cb18-501"><a href="#cb18-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-502"><a href="#cb18-502" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Exponential family model**: a model whose densities can be expressed as</span></span>
-<span id="cb18-503"><a href="#cb18-503" aria-hidden="true" tabindex="-1"></a><span class="at">$$p(y \mid \phi) = h(y)c(\phi)e^{\phi t(y)}$$ where $\phi$ is the unknown</span></span>
-<span id="cb18-504"><a href="#cb18-504" aria-hidden="true" tabindex="-1"></a><span class="at">parameter and $t(y)$ is the sufficient statistic.</span></span>
-<span id="cb18-505"><a href="#cb18-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-506"><a href="#cb18-506" aria-hidden="true" tabindex="-1"></a>Diaconis and Ylvisaker (1979) showed that the above class of models has conjugate prior densities</span>
-<span id="cb18-507"><a href="#cb18-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-508"><a href="#cb18-508" aria-hidden="true" tabindex="-1"></a>$$p(\phi \mid n_0, t_0) = \kappa (n_0, t_0) c(\phi)^{n_0} e^{n_0 t_0 \phi}$$</span>
-<span id="cb18-509"><a href="#cb18-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-510"><a href="#cb18-510" aria-hidden="true" tabindex="-1"></a>Where the posterior density is therefore</span>
-<span id="cb18-511"><a href="#cb18-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-512"><a href="#cb18-512" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb18-513"><a href="#cb18-513" aria-hidden="true" tabindex="-1"></a>p(\phi \mid y_1, \dots, y_n) &amp;\propto p(\phi) \times p(y_1, \dots, y_n \mid \phi) <span class="sc">\\</span></span>
-<span id="cb18-514"><a href="#cb18-514" aria-hidden="true" tabindex="-1"></a>&amp;\propto \left<span class="co">[</span><span class="ot"> \kappa (n_0, t_0) c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right</span><span class="co">]</span> \times \left<span class="co">[</span><span class="ot"> \prod_{i = 1}^n \left( h(y_i) c(\phi) \text{exp}(\phi t(y)) \right) \right</span><span class="co">]</span> <span class="sc">\\</span></span>
-<span id="cb18-515"><a href="#cb18-515" aria-hidden="true" tabindex="-1"></a>&amp;\propto \left<span class="co">[</span><span class="ot"> \kappa (n_0, t_0) c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right</span><span class="co">]</span> \times \left<span class="co">[</span><span class="ot"> c(\phi)^n \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) \prod_{i = 1}^n h(y_i) \right</span><span class="co">]</span> <span class="sc">\\</span></span>
-<span id="cb18-516"><a href="#cb18-516" aria-hidden="true" tabindex="-1"></a>&amp;\propto \left<span class="co">[</span><span class="ot"> c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right</span><span class="co">]</span> \times \left<span class="co">[</span><span class="ot"> c(\phi)^n \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) \right</span><span class="co">]</span> &amp; \text{Discard constants} <span class="sc">\\</span></span>
-<span id="cb18-517"><a href="#cb18-517" aria-hidden="true" tabindex="-1"></a>&amp;\propto c(\phi)^{n_0 + n} \text{exp}\left(\phi \times \left<span class="co">[</span><span class="ot">n_0 t_0 + \sum_{i = 1}^n t(y_i) \right</span><span class="co">]</span> \right) <span class="sc">\\</span></span>
-<span id="cb18-518"><a href="#cb18-518" aria-hidden="true" tabindex="-1"></a>&amp;\propto p\left( \phi \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^n t(y_i) \right)</span>
-<span id="cb18-519"><a href="#cb18-519" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb18-520"><a href="#cb18-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-521"><a href="#cb18-521" aria-hidden="true" tabindex="-1"></a>For this class of priors, we can interpret $n_0$ as a "prior sample size" and</span>
-<span id="cb18-522"><a href="#cb18-522" aria-hidden="true" tabindex="-1"></a>$t_0$ is the prior expectation of the sufficient statistic $t(Y)$.</span>
-<span id="cb18-523"><a href="#cb18-523" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-499"><a href="#cb18-499" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-500"><a href="#cb18-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-501"><a href="#cb18-501" aria-hidden="true" tabindex="-1"></a>Binomial and Poisson models are *exponential family models*.</span>
+<span id="cb18-502"><a href="#cb18-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-503"><a href="#cb18-503" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Exponential family model**: a model whose densities can be expressed as</span></span>
+<span id="cb18-504"><a href="#cb18-504" aria-hidden="true" tabindex="-1"></a><span class="at">$$p(y \mid \phi) = h(y)c(\phi)e^{\phi t(y)}$$ where $\phi$ is the unknown</span></span>
+<span id="cb18-505"><a href="#cb18-505" aria-hidden="true" tabindex="-1"></a><span class="at">parameter and $t(y)$ is the sufficient statistic.</span></span>
+<span id="cb18-506"><a href="#cb18-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-507"><a href="#cb18-507" aria-hidden="true" tabindex="-1"></a>Diaconis and Ylvisaker (1979) showed that the above class of models has conjugate prior densities</span>
+<span id="cb18-508"><a href="#cb18-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-509"><a href="#cb18-509" aria-hidden="true" tabindex="-1"></a>$$p(\phi \mid n_0, t_0) = \kappa (n_0, t_0) c(\phi)^{n_0} e^{n_0 t_0 \phi}$$</span>
+<span id="cb18-510"><a href="#cb18-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-511"><a href="#cb18-511" aria-hidden="true" tabindex="-1"></a>Where the posterior density is therefore</span>
+<span id="cb18-512"><a href="#cb18-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-513"><a href="#cb18-513" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb18-514"><a href="#cb18-514" aria-hidden="true" tabindex="-1"></a>p(\phi \mid y_1, \dots, y_n) &amp;\propto p(\phi) \times p(y_1, \dots, y_n \mid \phi) <span class="sc">\\</span></span>
+<span id="cb18-515"><a href="#cb18-515" aria-hidden="true" tabindex="-1"></a>&amp;\propto \left<span class="co">[</span><span class="ot"> \kappa (n_0, t_0) c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right</span><span class="co">]</span> \times \left<span class="co">[</span><span class="ot"> \prod_{i = 1}^n \left( h(y_i) c(\phi) \text{exp}(\phi t(y)) \right) \right</span><span class="co">]</span> <span class="sc">\\</span></span>
+<span id="cb18-516"><a href="#cb18-516" aria-hidden="true" tabindex="-1"></a>&amp;\propto \left<span class="co">[</span><span class="ot"> \kappa (n_0, t_0) c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right</span><span class="co">]</span> \times \left<span class="co">[</span><span class="ot"> c(\phi)^n \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) \prod_{i = 1}^n h(y_i) \right</span><span class="co">]</span> <span class="sc">\\</span></span>
+<span id="cb18-517"><a href="#cb18-517" aria-hidden="true" tabindex="-1"></a>&amp;\propto \left<span class="co">[</span><span class="ot"> c(\phi)^{n_0} \text{exp}(n_0 t_0 \phi) \right</span><span class="co">]</span> \times \left<span class="co">[</span><span class="ot"> c(\phi)^n \text{exp}\left(\phi \sum_{i = 1}^n t(y_i)\right) \right</span><span class="co">]</span> &amp; \text{Discard constants} <span class="sc">\\</span></span>
+<span id="cb18-518"><a href="#cb18-518" aria-hidden="true" tabindex="-1"></a>&amp;\propto c(\phi)^{n_0 + n} \text{exp}\left(\phi \times \left<span class="co">[</span><span class="ot">n_0 t_0 + \sum_{i = 1}^n t(y_i) \right</span><span class="co">]</span> \right) <span class="sc">\\</span></span>
+<span id="cb18-519"><a href="#cb18-519" aria-hidden="true" tabindex="-1"></a>&amp;\propto p\left( \phi \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^n t(y_i) \right)</span>
+<span id="cb18-520"><a href="#cb18-520" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb18-521"><a href="#cb18-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-522"><a href="#cb18-522" aria-hidden="true" tabindex="-1"></a>For this class of priors, we can interpret $n_0$ as a "prior sample size" and</span>
+<span id="cb18-523"><a href="#cb18-523" aria-hidden="true" tabindex="-1"></a>$t_0$ is the prior expectation of the sufficient statistic $t(Y)$.</span>
 <span id="cb18-524"><a href="#cb18-524" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-525"><a href="#cb18-525" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example: Binomial model</span></span>
 <span id="cb18-526"><a href="#cb18-526" aria-hidden="true" tabindex="-1"></a></span>

@@ -241,7 +241,7 @@ Jesse Mu
 
   <p class="date">2016-09-17</p>
 </section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> The Binomial model</p>
-<aside class="notes"><p>1998 General Social Survey: Females over age 65, <span class="math inline">\(1 = \text{happy}\)</span>, <span class="math inline">\(0 =
+</section><section class="slide level2"><p>1998 General Social Survey: Females over age 65, <span class="math inline">\(1 = \text{happy}\)</span>, <span class="math inline">\(0 =
 \text{unhappy}\)</span>. <span class="math inline">\(n = 129\)</span>. So let the survey be 129 exchangeable random variables <span class="math inline">\(Y_1, \dots, Y_{129}\)</span>.</p>
 <p>Under our model, conditioned on some <span class="math inline">\(\theta\)</span>, <span class="math inline">\(Y_i\)</span> are i.i.d. binary random variables with probability <span class="math inline">\(\theta\)</span>. So the joint probability is</p>
 <p><span class="math display">\[\begin{align}
@@ -249,17 +249,7 @@ p(y_1, \dots, y_{129} \mid \theta) = \theta^{\sum_{i} y_i} (1 - \theta)^{129 -
 \sum_i y_i}
 \end{align}\]</span></p>
 <p>Now we need to specify our prior distribution</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section id="uniform-prior" class="title-slide slide level1 center" data-number="1.1"><h1>
+</section><section id="uniform-prior" class="title-slide slide level1 center" data-number="1.1"><h1>
 <span class="header-section-number">1.1</span> Uniform prior</h1>
 <p>Imagine our prior is <span class="math inline">\(\theta \sim \text{Uniform}(0, 1)\)</span>. What this means is <span class="math inline">\(P(a \leq \theta \leq b) = P(a + c \leq \theta \leq b + c)\)</span> for all compatible <span class="math inline">\(a, b, c\)</span>. In other words, the probability of theta falling in an interval of a given width is constant, regardless of where the interval is.</p>
 <p>Then, notice</p>
@@ -415,7 +405,7 @@ n}\frac{y}{n} = \frac{1}{2 + n}\\
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside></section></section><section id="confidence-regions" class="title-slide slide level1 center" data-number="1.4"><h1>
+      }</style></aside></section></section><section><section id="confidence-regions" class="title-slide slide level1 center" data-number="1.4"><h1>
 <span class="header-section-number">1.4</span> Confidence regions</h1>
 <aside class="notes"><p>See <span class="citation" data-cites="stackexchange_confidence">Cross Validated (<a href="#/b-7" role="doc-biblioref" onclick="">2010</a>)</span> for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</p>
 <style type="text/css">
@@ -466,22 +456,12 @@ P(l(Y) &lt; \theta &lt; u(Y) \mid theta) = .95
 </div>
 <p>However, since some of the values for theta <em>outside</em> of the interval have higher density than values of theta <em>inside</em> the interval, another option is to force “symmetry” of heights by searching for the <strong>highest posterior density</strong> region, which can be intuitively found by drawing a horizontal line down the density until the region contained by the line is <span class="math inline">\(1 - \alpha\)</span>% of the entire curve. The analytical calculation for these is not straightforward; computationally, using a discretized density, a “trial and error” approach or a neat procedure detailed in Exercise 4.7 (c) can be used.</p>
 <p><span class="header-section-number">2</span> The Poisson model</p>
-<aside class="notes"><p>This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).</p>
+</section><section class="slide level2"><p>This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).</p>
 <p>Recall the PDF of a Poisson distribution - if <span class="math inline">\(Y \sim \text{Poisson}(\theta)\)</span> then</p>
 <ul>
 <li><span class="math inline">\(p(Y = y \mid \theta) = \theta^y e^{-\theta} / y!\)</span></li>
 <li><span class="math inline">\(\mathbb{E}(Y) = \text{Var}(Y) = \theta\)</span></li>
-</ul><style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section><section id="posterior-inference" class="title-slide slide level1 center" data-number="2.1"><h1>
+</ul></section></section><section><section id="posterior-inference" class="title-slide slide level1 center" data-number="2.1"><h1>
 <span class="header-section-number">2.1</span> Posterior inference</h1>
 <p>Just like how <span class="math inline">\(Y = \sum Y_i\)</span> is a sufficient statistic for <span class="math inline">\(n\)</span> independent Bernoulli trials, there exists a sufficient statistic for a sample of <span class="math inline">\(n\)</span> i.i.d. Poisson variables. Notice</p>
 <p><span class="math display">\[\begin{align}
@@ -554,7 +534,7 @@ p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \dots \\
 \\
 \end{align}\]</span></p>
 <p>So as <span class="math inline">\(n\)</span> grows large, the variance on <span class="math inline">\(\tilde{Y}\)</span> approaches the variance of its expectation <span class="math inline">\(\mathbb{E}(\tilde{Y})\)</span>.</p>
-</section></section><section id="example-birth-rates" class="title-slide slide level1 center" data-number="2.2"><h1>
+</section></section><section><section id="example-birth-rates" class="title-slide slide level1 center" data-number="2.2"><h1>
 <span class="header-section-number">2.2</span> Example: Birth Rates</h1>
 <p>In the 1990s, did women with college degrees have different numbers of children than women without college degrees? We sample <span class="math inline">\(n_1\)</span> women without college degrees, denoted <span class="math inline">\(Y_{1,1}, \dots, Y_{n_1, 1}\)</span>, and <span class="math inline">\(n_2\)</span> women with college degrees, <span class="math inline">\(Y_{1, 2}, \dots, Y_{n_2, 2}\)</span>. For some parameter <span class="math inline">\(\theta\)</span> we can model the number of children for each woman as being i.i.d <span class="math inline">\(\text{Poisson}(\theta_1)\)</span> and <span class="math inline">\(\text{Poisson}(\theta_2)\)</span>, respectively. We may be interested in conducting hypothesis tests to see whether or not these <span class="math inline">\(\theta\)</span> are different.</p>
 <p>Recall that, in this two samples, the <em>sufficient</em> statistic is simply the sum of all of the <span class="math inline">\(Y_i\)</span>. Say we observe</p>
@@ -591,7 +571,7 @@ p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \dots \\
 </div>
 <p>Notice that we can calculate the probability that <span class="math inline">\(\theta_1 &gt; \theta_2\)</span> by integrating over the joint density <span class="math inline">\(p(\theta_1, \theta_2)\)</span> over the region where <span class="math inline">\(\theta_1 &gt; \theta_2\)</span>. This is calculated at the beginning of Chapter 4, and it is about 0.97.</p>
 <p><span class="header-section-number">3</span> Exponential families and conjugate priors</p>
-<aside class="notes"><p>Binomial and Poisson models are <em>exponential family models</em>.</p>
+</section><section class="slide level2"><p>Binomial and Poisson models are <em>exponential family models</em>.</p>
 <blockquote>
 <p><strong>Exponential family model</strong>: a model whose densities can be expressed as <span class="math display">\[p(y \mid \phi) = h(y)c(\phi)e^{\phi t(y)}\]</span> where <span class="math inline">\(\phi\)</span> is the unknown parameter and <span class="math inline">\(t(y)\)</span> is the sufficient statistic.</p>
 </blockquote>
@@ -607,17 +587,7 @@ p(\phi \mid y_1, \dots, y_n) &amp;\propto p(\phi) \times p(y_1, \dots, y_n \mid 
 &amp;\propto p\left( \phi \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^n t(y_i) \right)
 \end{align}\]</span></p>
 <p>For this class of priors, we can interpret <span class="math inline">\(n_0\)</span> as a “prior sample size” and <span class="math inline">\(t_0\)</span> is the prior expectation of the sufficient statistic <span class="math inline">\(t(Y)\)</span>.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside></section><section><section id="example-binomial-model" class="title-slide slide level1 center" data-number="3.1"><h1>
+</section></section><section><section id="example-binomial-model" class="title-slide slide level1 center" data-number="3.1"><h1>
 <span class="header-section-number">3.1</span> Example: Binomial model</h1>
 
 </section><section id="parameterization" class="slide level2"><h2>Parameterization</h2>

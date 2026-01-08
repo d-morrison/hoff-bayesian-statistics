@@ -477,9 +477,8 @@ window.Quarto = {
 
 </header><!-- Setup --><!-- Begin writing --><section id="introduction" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> Introduction</h1>
-<div class="notes">
+<hr>
 <p><em>Bayesian inference</em>: the process of learning by updating prior probabilistic beliefs in light of new information. Data analysis tools built on these foundations are known as <em>Bayesian methods</em>.</p>
-</div>
 <section id="the-bayesian-learning-framework" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="the-bayesian-learning-framework">
 <span class="header-section-number">1.1</span> The Bayesian learning framework</h2>
 <p>We want to estimate a parameter <span class="math inline">\(\theta \in \Theta\)</span> from a dataset <span class="math inline">\(y \in
@@ -517,6 +516,7 @@ p(\theta \mid y) \propto p(y \mid \theta) p(\theta).
 <p>Note that with an uninformative prior <span class="math inline">\(\theta \sim \text{Uniform}\)</span>, the MAP estimate is the same as the ML estimate.</p>
 </section></section></section><section id="why-bayes" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> Why Bayes?</h1>
+<hr>
 <section id="as-an-approach-to-probability-and-statistics" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="as-an-approach-to-probability-and-statistics">
 <span class="header-section-number">2.1</span> As an approach to probability and statistics</h2>
 <div class="notes">
@@ -534,11 +534,10 @@ p(\theta \mid y) \propto p(y \mid \theta) p(\theta).
 </div>
 </section></section><section id="example-1-estimating-the-probability-of-a-rare-event" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> Example 1: Estimating the probability of a rare event</h1>
-<div class="notes">
+<hr>
 <p>We are interested in the prevelance of a disease in a city. Let <span class="math inline">\(\theta
 \in [0, 1]\)</span> be the fraction of infected individuals. We take a sample of 20 individuals and record the number of individuals <span class="math inline">\(y \in Y
 = {0, 1, \dots, 20}\)</span> with the disease.</p>
-</div>
 <p>The sampling model is</p>
 <p><span class="math display">\[
 Y \mid \theta \sim \text{Binomial}(20, \theta),
@@ -667,9 +666,8 @@ Y \mid \theta \sim \text{Binomial}(20, \theta),
 </div>
 </section></section><section id="example-2-building-a-predictive-model" class="level1" data-number="4"><h1 data-number="4">
 <span class="header-section-number">4</span> Example 2: Building a predictive model</h1>
-<div class="notes">
+<hr>
 <p>A brief synopsis of an example in Chapter 9, where we want to build a predictive model of diabeates progression from 64 variables such as age, sex and BMI.</p>
-</div>
 <p>We use a linear regression model, where <span class="math inline">\(Y_i\)</span> is the disease progression of subject <span class="math inline">\(i\)</span>, <span class="math inline">\(\mathbf{x}_i = (x_{i, 1}, \dots, x_{i, 64})\)</span> is a 64-dimensional vector. With unknown coefficient <span class="math inline">\(\beta_i\)</span> and the error term <span class="math inline">\(\sigma\)</span>, there are 65 unknown parameters.</p>
 <p><span class="math display">\[
 Y_i = \beta_1 x_{i, 1} + \beta_2 x_{i, 2} + \dots + \beta_{64} x_{i, 64} + \sigma \epsilon_i
@@ -682,14 +680,13 @@ Y_i = \beta_1 x_{i, 1} + \beta_2 x_{i, 2} + \dots + \beta_{64} x_{i, 64} + \sigm
 </div>
 </section></section><section id="next-steps" class="level1" data-number="5"><h1 data-number="5">
 <span class="header-section-number">5</span> Next steps</h1>
-<div class="notes">
+<hr>
 <ul>
 <li>Chapter 2: probability</li>
 <li>Chapters 3, 4: One-parameter statistical models</li>
 <li>Chapters 5, 6, 7: Bayesian inference with normal models</li>
 <li>Chapters 8, 9, 10, 11, 12: Inference in more complicated statistical methods</li>
 </ul>
-</div>
 
 
 <!-- -->
@@ -1210,10 +1207,10 @@ Van Horn, Kevin S. 2003. <span>“Constructing a Logic of Plausible Inference: A
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>*Bayesian inference*: the process of learning by updating prior probabilistic</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>beliefs in light of new information. Data analysis tools built on these foundations are known as *Bayesian methods*.</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>*Bayesian inference*: the process of learning by updating prior probabilistic</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>beliefs in light of new information. Data analysis tools built on these foundations are known as *Bayesian methods*.</span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Bayesian learning framework</span></span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
@@ -1265,236 +1262,238 @@ Van Horn, Kevin S. 2003. <span>“Constructing a Logic of Plausible Inference: A
 <span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="fu"># Why Bayes?</span></span>
 <span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## As an approach to probability and statistics</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>The debate between Bayesians and frequentists dives into some very philosophical</span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>issues. Cox's theorem (1946, 1961) gives a formal proof for thinking about</span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>probabilities using a Bayesian approach. An explanation of these proofs can be found in @vanhorn2003.</span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>Outside of formal mathematical grounding, Bayesian methods have excellent </span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>practical benefits as data analysis tools:</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Even if prior probabilities are not exactly quantifiable, approximations of</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>$p(\theta)$ and $p(\theta \mid y)$ are still useful for analyzing how rational</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>learners would change beliefs</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Bayesian methods can represent principled ways of doing analysis when there</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>are no alternative methods</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## As models of cognition</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## As an approach to probability and statistics</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>::: notes</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>The debate between Bayesians and frequentists dives into some very philosophical</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>issues. Cox's theorem (1946, 1961) gives a formal proof for thinking about</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>probabilities using a Bayesian approach. An explanation of these proofs can be found in @vanhorn2003.</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>Outside of formal mathematical grounding, Bayesian methods have excellent </span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>practical benefits as data analysis tools:</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Even if prior probabilities are not exactly quantifiable, approximations of</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>$p(\theta)$ and $p(\theta \mid y)$ are still useful for analyzing how rational</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>learners would change beliefs</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Bayesian methods can represent principled ways of doing analysis when there</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>are no alternative methods</span>
 <span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>An appeal of Bayesian learning is that it is also cognitively intuitive. Humans </span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>have beliefs about the world, whose uncertainty can be expressed </span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>probabilistically. Then, given data, these beliefs are rationally updated. There</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>is a rich tradition in modeling human cognition using Bayesian methods to great</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>success, with plenty of work done in showing how people's beliefs and knowledge</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>about the world can be expressed probabilistically <span class="co">[</span><span class="ot">e.g., @griffiths2006</span><span class="co">]</span></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>Bayesianism is not without its detractors, however. Some critics argue that the </span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>evidence that Bayesian analysis is weak, and that sufficiently sophisticated</span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>models are unfalsifiable. See @bowers2012, comment by @griffiths2012, reply by @bowers2012reply.</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example 1: Estimating the probability of a rare event</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## As models of cognition</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>::: notes</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>An appeal of Bayesian learning is that it is also cognitively intuitive. Humans </span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>have beliefs about the world, whose uncertainty can be expressed </span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>probabilistically. Then, given data, these beliefs are rationally updated. There</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>is a rich tradition in modeling human cognition using Bayesian methods to great</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>success, with plenty of work done in showing how people's beliefs and knowledge</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>about the world can be expressed probabilistically <span class="co">[</span><span class="ot">e.g., @griffiths2006</span><span class="co">]</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>Bayesianism is not without its detractors, however. Some critics argue that the </span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>evidence that Bayesian analysis is weak, and that sufficiently sophisticated</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>models are unfalsifiable. See @bowers2012, comment by @griffiths2012, reply by @bowers2012reply.</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>We are interested in the prevelance of a disease in a city. Let $\theta</span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>\in <span class="co">[</span><span class="ot">0, 1</span><span class="co">]</span>$ be the fraction of infected individuals.</span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>We take a sample of 20 individuals and record the number of individuals $y \in Y</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>= {0, 1, \dots, 20}$ with the disease.</span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>The sampling model is</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example 1: Estimating the probability of a rare event</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>We are interested in the prevelance of a disease in a city. Let $\theta</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>\in <span class="co">[</span><span class="ot">0, 1</span><span class="co">]</span>$ be the fraction of infected individuals.</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>We take a sample of 20 individuals and record the number of individuals $y \in Y</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>= {0, 1, \dots, 20}$ with the disease.</span>
 <span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>Y \mid \theta \sim \text{Binomial}(20, \theta),</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>The sampling model is</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>i.e. each individual has an independent $\theta$% chance of having the disease.</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>Y \mid \theta \sim \text{Binomial}(20, \theta),</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.cap = "For various theta, the probability of observing y infected individuals in the sample."}</span></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>,</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.20</span>), <span class="at">each =</span> <span class="dv">21</span>)),</span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="fu">c</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="fl">0.05</span>), <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="fl">0.1</span>), <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="fl">0.2</span>))</span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> probability, <span class="at">fill =</span> theta)) <span class="sc">+</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>)</span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>Imagine we believe $\theta$ is probably in the interval $<span class="co">[</span><span class="ot">0.05, 0.20</span><span class="co">]</span>$. For</span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>computational convenience, we will encode this prior as a Beta distribution</span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>\theta \sim \text{Beta}(2, 20)</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>i.e. each individual has an independent $\theta$% chance of having the disease.</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.cap = "For various theta, the probability of observing y infected individuals in the sample."}</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>,</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.20</span>), <span class="at">each =</span> <span class="dv">21</span>)),</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  <span class="at">probability =</span> <span class="fu">c</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="fl">0.05</span>), <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="fl">0.1</span>), <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="fl">0.2</span>))</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> probability, <span class="at">fill =</span> theta)) <span class="sc">+</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>)</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>Imagine we believe $\theta$ is probably in the interval $<span class="co">[</span><span class="ot">0.05, 0.20</span><span class="co">]</span>$. For</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>computational convenience, we will encode this prior as a Beta distribution</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>Conveniently, (we will prove this later), given $Y \mid \theta \sim</span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>\text{Binomial}(n, \theta)$ and $\theta \sim \text{Beta}(a, b)$,</span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>(\theta \mid Y = y) \sim \text{Beta}(a + y, b + n - y).</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>\theta \sim \text{Beta}(2, 20)</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>Conveniently, (we will prove this later), given $Y \mid \theta \sim</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>\text{Binomial}(n, \theta)$ and $\theta \sim \text{Beta}(a, b)$,</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>For example, if we observe 0/20 individuals infected, $\theta \mid {Y = 0} \sim</span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>\text{Beta}(2, 40)$.</span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.cap = "Prior and posterior distributions on theta after observing 0/20 infected individuals. Note the posterior is more tightly peaked around near-zero values."}</span></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.001</span>),</span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"posterior"</span>), <span class="at">each =</span> <span class="dv">1001</span>),</span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">c</span>(<span class="fu">dbeta</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="dv">2</span>, <span class="dv">20</span>), <span class="fu">dbeta</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="dv">2</span>, <span class="dv">40</span>))</span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> density, <span class="at">color =</span> distribution)) <span class="sc">+</span></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>Notice that Bayesian and frequentist approaches to parameter estimation differ:</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>(\theta \mid Y = y) \sim \text{Beta}(a + y, b + n - y).</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>For example, if we observe 0/20 individuals infected, $\theta \mid {Y = 0} \sim</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>\text{Beta}(2, 40)$.</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.cap = "Prior and posterior distributions on theta after observing 0/20 infected individuals. Note the posterior is more tightly peaked around near-zero values."}</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.001</span>),</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"posterior"</span>), <span class="at">each =</span> <span class="dv">1001</span>),</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">c</span>(<span class="fu">dbeta</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="dv">2</span>, <span class="dv">20</span>), <span class="fu">dbeta</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="dv">2</span>, <span class="dv">40</span>))</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> density, <span class="at">color =</span> distribution)) <span class="sc">+</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>\theta_{ML} &amp;= \underset{\theta}{\text{argmax}} \; P(Y = 0 \mid \theta) = 0 <span class="sc">\\</span></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>\theta_{MAP} &amp;= \underset{\theta}{\text{argmax}} \; P(\theta \mid Y = 0) = \text{Mode}(\theta \mid Y = 0) = 0.025</span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>but also notice that the point estimate is NOT equal to the expectation of </span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>$\theta$, since $\mathbb{E}(\theta \mid Y = 0) = 0.048$. We will probably later </span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>determine when to use the expectation over the mode.</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>Finally, notice that we can do very intuitive statistical tests (e.g $P(\theta &lt;</span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>0.10 \mid Y = 0)$) by measuring the areas under our posterior distribution.</span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity analysis</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>If we change the confidence in our prior, we get different posterior </span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>distributions. The more "peaked" our prior is, the less peaked the posterior </span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>will be given a $Y = 0$ result (and the less the Bayesian solution will </span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>approximate the ML estimate).</span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>To quantify how changes in the prior beliefs affect our posterior estimates, </span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>we'll do some calculations. Recall the expectation and variance of Beta </span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>distributions. If $X \sim \text{Beta}(\alpha, \beta)$, then</span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>\mathbb{E}(X) &amp;= \frac{\alpha}{\alpha + \beta} <span class="sc">\\</span></span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>\text{Var}(X) &amp;= \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}.</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>Due to the properties of these functions we can parameterize the Beta distribution alternatively with</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>Notice that Bayesian and frequentist approaches to parameter estimation differ:</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>\theta_{ML} &amp;= \underset{\theta}{\text{argmax}} \; P(Y = 0 \mid \theta) = 0 <span class="sc">\\</span></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>\theta_{MAP} &amp;= \underset{\theta}{\text{argmax}} \; P(\theta \mid Y = 0) = \text{Mode}(\theta \mid Y = 0) = 0.025</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>but also notice that the point estimate is NOT equal to the expectation of </span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>$\theta$, since $\mathbb{E}(\theta \mid Y = 0) = 0.048$. We will probably later </span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>determine when to use the expectation over the mode.</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>Finally, notice that we can do very intuitive statistical tests (e.g $P(\theta &lt;</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>0.10 \mid Y = 0)$) by measuring the areas under our posterior distribution.</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity analysis</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>If we change the confidence in our prior, we get different posterior </span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>distributions. The more "peaked" our prior is, the less peaked the posterior </span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>will be given a $Y = 0$ result (and the less the Bayesian solution will </span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>approximate the ML estimate).</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>To quantify how changes in the prior beliefs affect our posterior estimates, </span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>we'll do some calculations. Recall the expectation and variance of Beta </span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>distributions. If $X \sim \text{Beta}(\alpha, \beta)$, then</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>\mathbb{E}(X) &amp;= \frac{\alpha}{\alpha + \beta} <span class="sc">\\</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>\text{Var}(X) &amp;= \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}.</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Expectation: $\theta_0 = \frac{\alpha}{\alpha + \beta}$</span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Precision: $w = a + b$</span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>Since $(\theta \mid Y = y) \sim \text{Beta}(a + y, b + n - y)$,</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>Due to the properties of these functions we can parameterize the Beta distribution alternatively with</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Expectation: $\theta_0 = \frac{\alpha}{\alpha + \beta}$</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Precision: $w = a + b$</span>
 <span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>\mathbb{E}(\theta \mid Y = y) &amp;= \frac{a + y}{a + b + n} <span class="sc">\\</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{w + n}\frac{y}{n} + \frac{w}{w + n}\theta_0.</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.cap = "Expected value of the posterior for theta, for combinations of theta0 and w"}</span></span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the expected value of theta after observing result y, given a Beta</span></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="co"># prior parameterized by theta0 and w?</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">20</span></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>exp.posterior <span class="ot">=</span> <span class="cf">function</span>(w, theta0, y) {</span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>  (N <span class="sc">/</span> (w <span class="sc">+</span> N)) <span class="sc">*</span> (y <span class="sc">/</span> N) <span class="sc">+</span> (w <span class="sc">/</span> (w <span class="sc">+</span> N)) <span class="sc">*</span> theta0</span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>Theta0 <span class="ot">=</span> <span class="fu">rev</span>(<span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="at">by =</span> <span class="fl">0.01</span>))</span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>W <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">outer</span>(Theta0, W, <span class="at">FUN =</span> <span class="cf">function</span>(w, theta0) <span class="fu">exp.posterior</span>(w, theta0, <span class="dv">0</span>))</span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(d) <span class="ot">=</span> Theta0</span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d) <span class="ot">=</span> W</span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">as.data.frame</span>(d) <span class="sc">|&gt;</span></span>
-<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">'theta0'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>theta0, <span class="at">names_to =</span> <span class="st">'w'</span>, <span class="at">values_to =</span> <span class="st">'theta'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">theta0 =</span> <span class="fu">as.numeric</span>(theta0), <span class="at">w =</span> <span class="fu">as.numeric</span>(w))</span>
-<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> w, <span class="at">y =</span> theta0, <span class="at">z =</span> theta)) <span class="sc">+</span></span>
-<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ..level..))</span>
-<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(directlabels)</span>
-<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="fu">direct.label</span>(p, <span class="at">method =</span> <span class="st">'bottom.pieces'</span>)</span>
-<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison to non-Bayesian methods</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>Since $(\theta \mid Y = y) \sim \text{Beta}(a + y, b + n - y)$,</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>\mathbb{E}(\theta \mid Y = y) &amp;= \frac{a + y}{a + b + n} <span class="sc">\\</span></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{n}{w + n}\frac{y}{n} + \frac{w}{w + n}\theta_0.</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.cap = "Expected value of the posterior for theta, for combinations of theta0 and w"}</span></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the expected value of theta after observing result y, given a Beta</span></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="co"># prior parameterized by theta0 and w?</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>exp.posterior <span class="ot">=</span> <span class="cf">function</span>(w, theta0, y) {</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>  (N <span class="sc">/</span> (w <span class="sc">+</span> N)) <span class="sc">*</span> (y <span class="sc">/</span> N) <span class="sc">+</span> (w <span class="sc">/</span> (w <span class="sc">+</span> N)) <span class="sc">*</span> theta0</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>Theta0 <span class="ot">=</span> <span class="fu">rev</span>(<span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="at">by =</span> <span class="fl">0.01</span>))</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>W <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">outer</span>(Theta0, W, <span class="at">FUN =</span> <span class="cf">function</span>(w, theta0) <span class="fu">exp.posterior</span>(w, theta0, <span class="dv">0</span>))</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(d) <span class="ot">=</span> Theta0</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d) <span class="ot">=</span> W</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">as.data.frame</span>(d) <span class="sc">|&gt;</span></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">'theta0'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>theta0, <span class="at">names_to =</span> <span class="st">'w'</span>, <span class="at">values_to =</span> <span class="st">'theta'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">theta0 =</span> <span class="fu">as.numeric</span>(theta0), <span class="at">w =</span> <span class="fu">as.numeric</span>(w))</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> w, <span class="at">y =</span> theta0, <span class="at">z =</span> theta)) <span class="sc">+</span></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ..level..))</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(directlabels)</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="fu">direct.label</span>(p, <span class="at">method =</span> <span class="st">'bottom.pieces'</span>)</span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a>When we use the frequentist maximum likelihood estimator, we get an estimated </span>
-<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>$\theta_{ML} = 0$. Since our estimate is subject to sampling error, we commonly </span>
-<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a>construct confidence intervals for these estimates.</span>
-<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>The **Wald interval** is a commonly used confidene interval for a population</span>
-<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>proportion. However, it is not meant to be used for small sample sizes or</span>
-<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>situations in which the observed proportion is close to (or equals) 0 or 1,</span>
-<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>since in these cases the error of a binomially-distributed observation is not</span>
-<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a>at all like the normal distribution For an observation $Y = 20$, for example,</span>
-<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>the Wald CI is, regardless of level of confidence, just $0$. We wouldn't want</span>
-<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>to say with 99.999% confidence that the population mean is 0, given our small</span>
-<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>sample size.</span>
-<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a>The previous Bayesian estimate, however, works well for both small and large n. </span>
-<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>With small $n$, the estimator allows us to encode prior beliefs about the true </span>
-<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>proportion. With $w$ and $\theta_0$ as before:</span>
-<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>\hat{\theta} = \mathbb{E}(\theta \mid Y = y) = \frac{n}{n + w}\frac{y}{n} + \frac{w}{n + w}\theta_0.</span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison to non-Bayesian methods</span></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>::: notes</span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a>When we use the frequentist maximum likelihood estimator, we get an estimated </span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a>$\theta_{ML} = 0$. Since our estimate is subject to sampling error, we commonly </span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>construct confidence intervals for these estimates.</span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>The **Wald interval** is a commonly used confidene interval for a population</span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>proportion. However, it is not meant to be used for small sample sizes or</span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a>situations in which the observed proportion is close to (or equals) 0 or 1,</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>since in these cases the error of a binomially-distributed observation is not</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>at all like the normal distribution For an observation $Y = 20$, for example,</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>the Wald CI is, regardless of level of confidence, just $0$. We wouldn't want</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>to say with 99.999% confidence that the population mean is 0, given our small</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>sample size.</span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>The previous Bayesian estimate, however, works well for both small and large n. </span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>With small $n$, the estimator allows us to encode prior beliefs about the true </span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>proportion. With $w$ and $\theta_0$ as before:</span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>Notice that this is kind of an average between the prior expectation $\theta_0$</span>
-<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>and the observed proportion of the data $\frac{y}{n}$, weighted by the amount</span>
-<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>of data $n$. For large $n$, $\hat{\theta}$ becomes dominated by the data,</span>
-<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>regardless of prior estimate and confidence.</span>
-<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>Theoretical details on the properties of Bayesian estimators are covered later</span>
-<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>in Section 5.4.</span>
-<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example 2: Building a predictive model</span></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>\hat{\theta} = \mathbb{E}(\theta \mid Y = y) = \frac{n}{n + w}\frac{y}{n} + \frac{w}{n + w}\theta_0.</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>::: notes</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>Notice that this is kind of an average between the prior expectation $\theta_0$</span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>and the observed proportion of the data $\frac{y}{n}$, weighted by the amount</span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>of data $n$. For large $n$, $\hat{\theta}$ becomes dominated by the data,</span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>regardless of prior estimate and confidence.</span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>Theoretical details on the properties of Bayesian estimators are covered later</span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a>in Section 5.4.</span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>A brief synopsis of an example in Chapter 9, where we want to build a </span>
-<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>predictive model of diabeates progression from 64 variables such as age, sex and</span>
-<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>BMI.</span>
-<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>We use a linear regression model, where $Y_i$ is the disease progression of </span>
-<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>subject $i$, $\mathbf{x}_i = (x_{i, 1}, \dots, x_{i, 64})$ is a 64-dimensional </span>
-<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>vector. With unknown coefficient $\beta_i$ and the error term $\sigma$, there </span>
-<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>are 65 unknown parameters.</span>
-<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>Y_i = \beta_1 x_{i, 1} + \beta_2 x_{i, 2} + \dots + \beta_{64} x_{i, 64} + \sigma \epsilon_i</span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example 2: Building a predictive model</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>A brief synopsis of an example in Chapter 9, where we want to build a </span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>predictive model of diabeates progression from 64 variables such as age, sex and</span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>BMI.</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>We use a linear regression model, where $Y_i$ is the disease progression of </span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>subject $i$, $\mathbf{x}_i = (x_{i, 1}, \dots, x_{i, 64})$ is a 64-dimensional </span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>vector. With unknown coefficient $\beta_i$ and the error term $\sigma$, there </span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>are 65 unknown parameters.</span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>We define a sparse prior probability distribution, that most coefficients are </span>
-<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>equal to 0. (Spike and slab models?). This allows us to conduct a Bayesian form </span>
-<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>of **feature selection** where we evaluate the probability that a specific </span>
-<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>$\beta_i \neq 0$ given the data $\mathbf{y} = (y_1, \dots, y_{342})$ and </span>
-<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>predictors $\mathbf{X} = (\mathbf{x}_1, \dots, \mathbf{x}_342)$.</span>
-<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bayesian regression does better than standard linear regression</span></span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>Y_i = \beta_1 x_{i, 1} + \beta_2 x_{i, 2} + \dots + \beta_{64} x_{i, 64} + \sigma \epsilon_i</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>We define a sparse prior probability distribution, that most coefficients are </span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>equal to 0. (Spike and slab models?). This allows us to conduct a Bayesian form </span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>of **feature selection** where we evaluate the probability that a specific </span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>$\beta_i \neq 0$ given the data $\mathbf{y} = (y_1, \dots, y_{342})$ and </span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>predictors $\mathbf{X} = (\mathbf{x}_1, \dots, \mathbf{x}_342)$.</span>
 <span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>The standard ordinary least squares (OLS) estimate of $\mathbf{\beta}$ does </span>
-<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>worse than the Bayesian method on the test set. This is due to overfitting, and </span>
-<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>OLS's "inability to recognize when the sample size is too small to accurately </span>
-<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>estimate the regression coefficients." Sparse linear regression models are key </span>
-<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>here, and the Bayesian sparsity prior performs well; the common lasso technique </span>
-<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>introduced by @tibshirani1996 is also</span>
-<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>popular, but this in fact corresponds to Bayesian methods for a special case.</span>
-<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="fu"># Next steps</span></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bayesian regression does better than standard linear regression</span></span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>::: notes</span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>The standard ordinary least squares (OLS) estimate of $\mathbf{\beta}$ does </span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>worse than the Bayesian method on the test set. This is due to overfitting, and </span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>OLS's "inability to recognize when the sample size is too small to accurately </span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>estimate the regression coefficients." Sparse linear regression models are key </span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>here, and the Bayesian sparsity prior performs well; the common lasso technique </span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>introduced by @tibshirani1996 is also</span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>popular, but this in fact corresponds to Bayesian methods for a special case.</span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>::: notes</span>
-<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapter 2: probability</span>
-<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapters 3, 4: One-parameter statistical models</span>
-<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapters 5, 6, 7: Bayesian inference with normal models</span>
-<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapters 8, 9, 10, 11, 12: Inference in more complicated statistical methods</span>
-<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a><span class="fu"># Next steps</span></span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapter 2: probability</span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapters 3, 4: One-parameter statistical models</span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapters 5, 6, 7: Bayesian inference with normal models</span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chapters 8, 9, 10, 11, 12: Inference in more complicated statistical methods</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
