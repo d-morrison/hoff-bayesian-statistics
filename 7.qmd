@@ -25,6 +25,8 @@ library(dplyr)
 
 # The multivariate normal density
 
+---
+
 ## Example: reading comprehension
 
 We make the step to two variables by example. Consider a sample ($n = 22$) of
@@ -148,6 +150,8 @@ ggplot(df, aes(x = y1, y = y2, z = density)) +
 ```
 
 # A semiconjugate prior distribution for the mean
+
+---
 
 At this point we have given up on computing a full closed form solution for
 the posterior, as it's too complicated. Rather, if we compute conjugate priors
@@ -353,11 +357,11 @@ informative.
 
 # Summary of inference with the multivariate normal
 
-::: notes
+---
+
 Like in Chapter 5, here we summarize the moving parts of inference with the 
 multivariate normal sampling model. There are four prior parameters (note some
 are matrices):
-:::
 
 ## (Semiconjugate) prior
 
@@ -392,7 +396,8 @@ The updated parameters are
  
 # Gibbs sampling of the mean and covariance
 
-::: notes
+---
+
 Knowing these values, we can now perform Gibbs sampling to sample from
 $p(\boldsymbol{\theta}, \Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y_n})$.
 Specifically, we start with an estimate of one of the two values -
@@ -402,7 +407,6 @@ $\Sigma^{(0)}$ for simplicity - and use the following algorithm:
 \Lambda_n)$ where the parameters are calculated as above. This depends on the
 inverse of the previous $\Sigma^{(s)}$.
 2. Sample $\Sigma^{(s + 1)} \sim \text{inverse-Wishart}(\nu_n, \mathbf{S}_n^{-1})$, where the parameters depend on $\boldsymbol{\theta}^{(s + 1)}$.
-:::
 
 ## Example: reading comprehension
 
@@ -572,7 +576,8 @@ population means and individuals when drawing conclusions about your data.
 
 # Missing data and imputation
 
-::: notes
+---
+
 Another useful application of Bayesian analysis and the multivariate normal
 model is the imputation of missing data. There are various naive ways to deal with missing data in datasets:
 
@@ -584,7 +589,6 @@ other variables may contain information about the data point's
 The Bayesian approach offers a neat solution around this. The idea is that the
 likelihood of a datapoint with missing values is the likelihood of the observed
 values while integrating over the missing values.
-:::
 
 Specifically, let's assume in a dataset $\boldsymbol{Y}$ with missing values, we
 have a corresponding matrix $\boldsymbol{O}$ which contains a 1 if the

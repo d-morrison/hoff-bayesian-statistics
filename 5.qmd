@@ -25,7 +25,8 @@ library(dplyr)
 
 # The normal model
 
-::: notes
+---
+
 A normal variable $Y$ with mean $\theta$ and variance $\sigma^2$ (and thus
 standard deviation $\sigma$) we denote
 
@@ -44,9 +45,10 @@ variables.
 - It's useful to remember the percentage of values lying within 1, 2, or 3
 standard deviations of the mean when constructing priors: 68, 95, and 99.7%,
 respectively.
-:::
 
 # Inference for the mean, conditional on the variance
+
+---
 
 There are two parameters in the normal model. For simplicity, let's first assume
 that the variance is known. Later we will show how we can perform inference
@@ -226,7 +228,8 @@ qnorm(c(0.025, 0.975), 1.805, sqrt(0.002))
 
 # Joint inference for the mean and variance
 
-::: notes
+---
+
 For joint inference, we wish to compute the joint probability distribution of
 $(\theta, \sigma^2)$ given the data, which proceeds much like before
 
@@ -237,7 +240,6 @@ $$
 Notice that the only real difference in this two parameter case is the joint
 prior $p(\theta, \sigma^2)$, which we should select a conjugate prior
 distribution for to simplify posterior calculation.
-:::
 
 Notice that if we split up
 
@@ -567,14 +569,14 @@ given the true population mean.
 
 # Bias, variance, and mean squared error
 
-::: notes
+---
+
 Now we are diving into the properties of estimators for posterior parameters.
 
 > A *point estimator* of an unknown parameter $\theta$ is a function that converts your data into a single element of the parameter space $\Theta$. Good point estimators should hopefully approximate (and *reliably* approximate) the true value of $\theta$; we can formalize these properties as the bias and mean squared error of estimators.
 
 In Bayesian analysis, point estimators are usually functions of the posterior 
 distribution of the parameter, such as the expectation.
-:::
 
 The point estimator for the posterior of our normal sampling model and a normal
 prior is (call it $\hat{\theta_b}$)
@@ -644,7 +646,8 @@ holds - intutively, if your "guess" about the prior is not far from the truth.
 
 # Prior specification based on expectations
 
-::: notes
+---
+
 The normal model can be shown to be an 2-dimensional exponential model.
 A $p$-dimensional exponential family model has densities of the form
 
@@ -663,7 +666,6 @@ Given the exponential family parameters
 - $h(y) = 1 / \sqrt{\pi}$
 
 You can reconstruct the normal density:
-:::
 
 \begin{align}
 p(y \mid \boldsymbol{\phi}) &= \frac{1}{\sqrt{\pi}} | \phi_2 |^{1/2} \text{exp}\left( \frac{\phi_1^2}{2\phi_2} \right) \text{exp} \left(\begin{pmatrix} y & y^2 \end{pmatrix}  \begin{pmatrix} \theta/\sigma^2 \\ -(2\sigma^2)^{-1} \end{pmatrix}  \right) \\
@@ -690,13 +692,13 @@ specification advice in the previous sections.
 
 # Normal model for non-normal data
 
-::: notes
+---
+
 Because of the central limit theorem etc., we often use the normal model for
 non-normal data. This is especially applicable when 1) we are measuring summary
 statistics of a population, such as the mean, and 2) when we are measuring
 variables that might be the additive result of many underlying factors, which
 results in an approximately normal variable.
-:::
 
 # Exercises
 

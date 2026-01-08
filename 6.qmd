@@ -25,6 +25,8 @@ library(dplyr)
 
 # A semiconjugate prior distribution
 
+---
+
 In Chapter 5, we performed two-parameter inference by decomposing the prior
 $p(\theta, \sigma^2) = p(\theta \mid \sigma^2) p(\sigma^2)$. So our prior
 distribution on $\theta$ relates to the variance $\sigma^2$:
@@ -61,7 +63,8 @@ distributions.
 
 # Discrete approximations
 
-::: notes
+---
+
 Why posterior densities are hard to calculate for nonconjugate priors using
 Bayes rule?
 
@@ -84,7 +87,6 @@ the integral. More generally, we can create a discrete approximation of the
 probabilities by evaluating the numerator of this density for values of
 $\boldsymbol{\theta}$ across an $n$-dimensional grid, then dividing each of
 these unnormalized densities by the sum of the entire grid.
-:::
 
 Funnily, this is pretty much what I have been doing in the past chapters when
 plotting heatmaps:
@@ -131,14 +133,14 @@ ggplot(df, aes(x = theta, y = sigma2, z = density)) +
 
 # Sampling from the conditional distributions
 
-::: notes
+---
+
 Again, to proceed with Gibbs sampling, we simply need to calculate the full
 conditional distributions of the parameters. We already computed the
 full conditional for $\theta \mid \sigma^2, y_1, \dots, y_n$ in 5.2. For $\theta
 \mid \mathcal{N}(\mu_0, \tau_0^2)$, then $\theta \mid \sigma^2, y_1, \dots, y_n
 \sim \mathcal{N}(\mu_n, \tau_n^2)$, where $\mu_n$ and $\tau_n^2$ are not
 reproduced here (see 5.2).
-:::
 
 Now we find the full conditional for $\sigma^2$ using the exact same method as in 5.2:
 
@@ -170,7 +172,8 @@ proportionality). This is used in later chapters (e.g. 8.3.1)
 
 # Gibbs sampling
 
-::: notes
+---
+
 From this, Gibbs sampling proceeds as follows:
 
 Begin with start values $\theta_i^{(0)}$ for all $i$. Usually these can be
@@ -188,7 +191,6 @@ $\theta_i^{(s)}$ of the previous gibbs sampling $\boldsymbol{\theta}^{(s)}$
 
 Notice that the $s + 1$th sample is only conditionally dependent on the $s$th
 sample, hence the term "Markov Chain Monte Carlo".
-:::
 Once these samples are obtained, you can treat them like a standard Monte Carlo
 sample, and compute all of the desired quantities.
 
@@ -264,7 +266,8 @@ midge.df = phi.df
 
 # General properties of the Gibbs sampler
 
-::: notes
+---
+
 Under conditions that will be met for our models, like the law of large numbers
 for standard monte carlo sampling, a sufficient number of Gibbs samples
 approaches the target distribution. The question of course is how many samples
@@ -274,15 +277,14 @@ Another important point is that Gibbs sampling is not a Bayesian model. These
 two concepts should be separated: Gibbs sampling is a general framework for
 "observing" the posterior probability distribution, whatever that distribution
 is.
-:::
 
 # Introduction to MCMC diagnostics
 
-::: notes
+---
+
 For an example of the importance of assessing convergence of Gibbs sampling,
 consider the following target distribution, a 45-10-45 mixture of
 $\mathcal{N}(-3, 1/3), \mathcal{N}(0, 1/3), \mathcal{N}(3, 1/3)$:
-:::
 
 ```{r echo=FALSE}
 # Params
