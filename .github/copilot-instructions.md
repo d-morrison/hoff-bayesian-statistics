@@ -842,9 +842,9 @@ data %>% dplyr::select(-y)  # NOT just select(-y)
 `_quarto-website.yml`:
 ```yaml
 format:
-  html: default
-  revealjs: default
-  pdf: default
+  html: default    # Use default HTML settings from project
+  revealjs: default    # Use default RevealJS settings from project
+  pdf: default    # Use default PDF settings from project
 ```
 
 Individual `.qmd` file:
@@ -852,13 +852,15 @@ Individual `.qmd` file:
 ---
 title: "Chapter 1"
 format:
-  html: default
-  revealjs:
-    output-file: 1-slides.html
-  pdf:
-    output-file: 1-handout.pdf
+  html: default    # Generates 1.html
+  revealjs:    # Generates 1-slides.html
+    output-file: 1-slides.html    # REQUIRED to avoid naming conflict
+  pdf:    # Generates 1-handout.pdf
+    output-file: 1-handout.pdf    # REQUIRED to avoid naming conflict
 ---
 ```
+
+Note: `default` means "use the default settings from the project-level config". You can also specify custom settings inline (e.g., `theme: dark`) to override defaults for specific files.
 
 **Testing requirements**:
 - ALWAYS test all three output formats before committing
@@ -867,10 +869,44 @@ format:
 - **NEVER assume rendering works** - test it yourself with `quarto render`
 
 **Common LaTeX errors**:
-- Cannot nest `\begin{align}...\end{align}` inside `$$...$$` delimiters
-- Use `\begin{aligned}...\end{aligned}` inside `$$...$$` instead
-- Blank lines (paragraph breaks) are not allowed inside math environments
-- See PR #27 and PR #34 for examples of fixing these errors
+
+**Problem 1**: Nesting `align` inside display math
+```latex
+<!-- INCORRECT - causes "Missing $ inserted" error -->
+$$
+\begin{align}
+  x &= y \\
+  z &= w
+\end{align}
+$$
+
+<!-- CORRECT - use aligned inside $$ -->
+$$
+\begin{aligned}
+  x &= y \\
+  z &= w
+\end{aligned}
+$$
+```
+
+**Problem 2**: Blank lines in math environments
+```latex
+<!-- INCORRECT - causes "Paragraph ended before \align was complete" -->
+\begin{align}
+  x &= y \\
+
+  z &= w
+\end{align}
+
+<!-- CORRECT - remove blank lines or use & \\ for spacing -->
+\begin{align}
+  x &= y \\
+  & \\
+  z &= w
+\end{align}
+```
+
+See PR #27 and PR #34 for examples of fixing these errors.
 
 ### Environment Setup Best Practices (from PRs #27, #31, #34)
 
