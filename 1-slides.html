@@ -240,10 +240,12 @@ Jesse Mu
 </div>
 
   <p class="date">2016-09-07</p>
-</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> Introduction</p>
-<p><em>Bayesian inference</em>: the process of learning by updating prior probabilistic beliefs in light of new information. Data analysis tools built on these foundations are known as <em>Bayesian methods</em>.</p>
-</section><section><section id="the-bayesian-learning-framework" class="title-slide slide level1 center" data-number="1.1"><h1>
-<span class="header-section-number">1.1</span> The Bayesian learning framework</h1>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --></section><section><section id="introduction" class="title-slide slide level1 center" data-number="1"><h1>
+<span class="header-section-number">1</span> Introduction</h1>
+
+</section><section class="slide level2"><p><em>Bayesian inference</em>: the process of learning by updating prior probabilistic beliefs in light of new information. Data analysis tools built on these foundations are known as <em>Bayesian methods</em>.</p>
+</section><section id="the-bayesian-learning-framework" class="slide level2" data-number="1.1"><h2>
+<span class="header-section-number">1.1</span> The Bayesian learning framework</h2>
 <p>We want to estimate a parameter <span class="math inline">\(\theta \in \Theta\)</span> from a dataset <span class="math inline">\(y \in
 \mathcal{Y}\)</span>.</p>
 <ul>
@@ -264,8 +266,8 @@ p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \tild
 <p><span class="math display">\[\begin{align}
 p(\theta \mid y) \propto p(y \mid \theta) p(\theta).
 \end{align}\]</span></p>
-</section><section id="versus-frequentist-learning" class="slide level2"><h2>versus frequentist learning</h2>
-<p><span class="citation" data-cites="resnik2010">(from <a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">Resnik and Hardisty 2010</a>)</span></p>
+<h3 id="versus-frequentist-learning">versus frequentist learning</h3>
+<p><span class="citation" data-cites="resnik2010">(from <a href="#/references" role="doc-biblioref" onclick="">Resnik and Hardisty 2010</a>)</span></p>
 <p>The difference between Bayesian learning and frequentist learning is the consideration of <em>prior beliefs</em> about parameters. In standard Maximum Likelihood Estimation (MLE), we select the parameter that is most likely to have generated the observed data:</p>
 <p><span class="math display">\[
 \theta_{ML} = \underset{\theta}{\text{argmax}} \; p(y \mid \theta).
@@ -276,20 +278,45 @@ p(\theta \mid y) \propto p(y \mid \theta) p(\theta).
   &amp;= \underset{\theta}{\text{argmax}} p(y \mid \theta) p(\theta).
 \end{align}\]</span></p>
 <p>Note that with an uninformative prior <span class="math inline">\(\theta \sim \text{Uniform}\)</span>, the MAP estimate is the same as the ML estimate.</p>
-<p><span class="header-section-number">2</span> Why Bayes?</p>
-</section></section><section id="as-an-approach-to-probability-and-statistics" class="title-slide slide level1 center scrollable" data-number="2.1"><h1>
-<span class="header-section-number">2.1</span> As an approach to probability and statistics</h1>
-<p>The debate between Bayesians and frequentists dives into some very philosophical issues. Cox’s theorem (1946, 1961) gives a formal proof for thinking about probabilities using a Bayesian approach. An explanation of these proofs can be found in <span class="citation" data-cites="vanhorn2003">Van Horn (<a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">2003</a>)</span>.</p>
-<p>Outside of formal mathematical grounding, Bayesian methods have excellent practical benefits as data analysis tools:</p>
+</section></section><section><section id="why-bayes" class="title-slide slide level1 center" data-number="2"><h1>
+<span class="header-section-number">2</span> Why Bayes?</h1>
+
+</section><section id="as-an-approach-to-probability-and-statistics" class="slide level2 scrollable" data-number="2.1"><h2>
+<span class="header-section-number">2.1</span> As an approach to probability and statistics</h2>
+<aside class="notes"><p>The debate between Bayesians and frequentists dives into some very philosophical issues. Cox’s theorem (1946, 1961) gives a formal proof for thinking about probabilities using a Bayesian approach. An explanation of these proofs can be found in <span class="citation" data-cites="vanhorn2003">Van Horn (<a href="#/references" role="doc-biblioref" onclick="">2003</a>)</span>.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside><p>Outside of formal mathematical grounding, Bayesian methods have excellent practical benefits as data analysis tools:</p>
 <ol type="1">
 <li>Even if prior probabilities are not exactly quantifiable, approximations of <span class="math inline">\(p(\theta)\)</span> and <span class="math inline">\(p(\theta \mid y)\)</span> are still useful for analyzing how rational learners would change beliefs</li>
 <li>Bayesian methods can represent principled ways of doing analysis when there are no alternative methods</li>
-</ol></section><section id="as-models-of-cognition" class="title-slide slide level1 center" data-number="2.2"><h1>
-<span class="header-section-number">2.2</span> As models of cognition</h1>
-<p>An appeal of Bayesian learning is that it is also cognitively intuitive. Humans have beliefs about the world, whose uncertainty can be expressed probabilistically. Then, given data, these beliefs are rationally updated. There is a rich tradition in modeling human cognition using Bayesian methods to great success, with plenty of work done in showing how people’s beliefs and knowledge about the world can be expressed probabilistically <span class="citation" data-cites="griffiths2006">(e.g., <a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">Griffiths and Tenenbaum 2006</a>)</span></p>
-<p>Bayesianism is not without its detractors, however. Some critics argue that the evidence that Bayesian analysis is weak, and that sufficiently sophisticated models are unfalsifiable. See <span class="citation" data-cites="bowers2012">Bowers and Davis (<a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">2012a</a>)</span>, comment by <span class="citation" data-cites="griffiths2012">Griffiths et al. (<a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">2012</a>)</span>, reply by <span class="citation" data-cites="bowers2012reply">Bowers and Davis (<a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">2012b</a>)</span>.</p>
-<p><span class="header-section-number">3</span> Example 1: Estimating the probability of a rare event</p>
-<p>We are interested in the prevelance of a disease in a city. Let <span class="math inline">\(\theta
+</ol></section><section id="as-models-of-cognition" class="slide level2" data-number="2.2"><h2>
+<span class="header-section-number">2.2</span> As models of cognition</h2>
+<p>An appeal of Bayesian learning is that it is also cognitively intuitive. Humans have beliefs about the world, whose uncertainty can be expressed probabilistically. Then, given data, these beliefs are rationally updated.</p>
+<aside class="notes"><p>There is a rich tradition in modeling human cognition using Bayesian methods to great success, with plenty of work done in showing how people’s beliefs and knowledge about the world can be expressed probabilistically <span class="citation" data-cites="griffiths2006">(e.g., <a href="#/references" role="doc-biblioref" onclick="">Griffiths and Tenenbaum 2006</a>)</span></p>
+<p>Bayesianism is not without its detractors, however. Some critics argue that the evidence that Bayesian analysis is weak, and that sufficiently sophisticated models are unfalsifiable. See <span class="citation" data-cites="bowers2012">Bowers and Davis (<a href="#/references" role="doc-biblioref" onclick="">2012a</a>)</span>, comment by <span class="citation" data-cites="griffiths2012">Griffiths et al. (<a href="#/references" role="doc-biblioref" onclick="">2012</a>)</span>, reply by <span class="citation" data-cites="bowers2012reply">Bowers and Davis (<a href="#/references" role="doc-biblioref" onclick="">2012b</a>)</span>.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside></section></section><section><section id="example-1-estimating-the-probability-of-a-rare-event" class="title-slide slide level1 center" data-number="3"><h1>
+<span class="header-section-number">3</span> Example 1: Estimating the probability of a rare event</h1>
+
+</section><section class="slide level2"><p>We are interested in the prevelance of a disease in a city. Let <span class="math inline">\(\theta
 \in [0, 1]\)</span> be the fraction of infected individuals. We take a sample of 20 individuals and record the number of individuals <span class="math inline">\(y \in Y
 = {0, 1, \dots, 20}\)</span> with the disease.</p>
 <p>The sampling model is</p>
@@ -352,8 +379,8 @@ Y \mid \theta \sim \text{Binomial}(20, \theta),
 <p>but also notice that the point estimate is NOT equal to the expectation of <span class="math inline">\(\theta\)</span>, since <span class="math inline">\(\mathbb{E}(\theta \mid Y = 0) = 0.048\)</span>. We will probably later determine when to use the expectation over the mode.</p>
 <p>Finally, notice that we can do very intuitive statistical tests (e.g <span class="math inline">\(P(\theta &lt;
 0.10 \mid Y = 0)\)</span>) by measuring the areas under our posterior distribution.</p>
-</section><section id="sensitivity-analysis" class="title-slide slide level1 center" data-number="3.1"><h1>
-<span class="header-section-number">3.1</span> Sensitivity analysis</h1>
+</section><section id="sensitivity-analysis" class="slide level2" data-number="3.1"><h2>
+<span class="header-section-number">3.1</span> Sensitivity analysis</h2>
 <p>If we change the confidence in our prior, we get different posterior distributions. The more “peaked” our prior is, the less peaked the posterior will be given a <span class="math inline">\(Y = 0\)</span> result (and the less the Bayesian solution will approximate the ML estimate).</p>
 <p>To quantify how changes in the prior beliefs affect our posterior estimates, we’ll do some calculations. Recall the expectation and variance of Beta distributions. If <span class="math inline">\(X \sim \text{Beta}(\alpha, \beta)\)</span>, then</p>
 <p><span class="math display">\[\begin{align}
@@ -404,28 +431,63 @@ Y \mid \theta \sim \text{Binomial}(20, \theta),
 </div>
 </div>
 </div>
-</section><section id="comparison-to-non-bayesian-methods" class="title-slide slide level1 center" data-number="3.2"><h1>
-<span class="header-section-number">3.2</span> Comparison to non-Bayesian methods</h1>
-<p>When we use the frequentist maximum likelihood estimator, we get an estimated <span class="math inline">\(\theta_{ML} = 0\)</span>. Since our estimate is subject to sampling error, we commonly construct confidence intervals for these estimates.</p>
+</section><section id="comparison-to-non-bayesian-methods" class="slide level2" data-number="3.2"><h2>
+<span class="header-section-number">3.2</span> Comparison to non-Bayesian methods</h2>
+<aside class="notes"><p>When we use the frequentist maximum likelihood estimator, we get an estimated <span class="math inline">\(\theta_{ML} = 0\)</span>. Since our estimate is subject to sampling error, we commonly construct confidence intervals for these estimates.</p>
 <p>The <strong>Wald interval</strong> is a commonly used confidene interval for a population proportion. However, it is not meant to be used for small sample sizes or situations in which the observed proportion is close to (or equals) 0 or 1, since in these cases the error of a binomially-distributed observation is not at all like the normal distribution For an observation <span class="math inline">\(Y = 20\)</span>, for example, the Wald CI is, regardless of level of confidence, just <span class="math inline">\(0\)</span>. We wouldn’t want to say with 99.999% confidence that the population mean is 0, given our small sample size.</p>
-<p>The previous Bayesian estimate, however, works well for both small and large n.&nbsp; With small <span class="math inline">\(n\)</span>, the estimator allows us to encode prior beliefs about the true proportion. With <span class="math inline">\(w\)</span> and <span class="math inline">\(\theta_0\)</span> as before:</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside><p>The previous Bayesian estimate, however, works well for both small and large n.&nbsp; With small <span class="math inline">\(n\)</span>, the estimator allows us to encode prior beliefs about the true proportion. With <span class="math inline">\(w\)</span> and <span class="math inline">\(\theta_0\)</span> as before:</p>
 <p><span class="math display">\[
 \hat{\theta} = \mathbb{E}(\theta \mid Y = y) = \frac{n}{n + w}\frac{y}{n} + \frac{w}{n + w}\theta_0.
 \]</span></p>
-<p>Notice that this is kind of an average between the prior expectation <span class="math inline">\(\theta_0\)</span> and the observed proportion of the data <span class="math inline">\(\frac{y}{n}\)</span>, weighted by the amount of data <span class="math inline">\(n\)</span>. For large <span class="math inline">\(n\)</span>, <span class="math inline">\(\hat{\theta}\)</span> becomes dominated by the data, regardless of prior estimate and confidence.</p>
+<aside class="notes"><p>Notice that this is kind of an average between the prior expectation <span class="math inline">\(\theta_0\)</span> and the observed proportion of the data <span class="math inline">\(\frac{y}{n}\)</span>, weighted by the amount of data <span class="math inline">\(n\)</span>. For large <span class="math inline">\(n\)</span>, <span class="math inline">\(\hat{\theta}\)</span> becomes dominated by the data, regardless of prior estimate and confidence.</p>
 <p>Theoretical details on the properties of Bayesian estimators are covered later in Section 5.4.</p>
-<p><span class="header-section-number">4</span> Example 2: Building a predictive model</p>
-<p>A brief synopsis of an example in Chapter 9, where we want to build a predictive model of diabeates progression from 64 variables such as age, sex and BMI.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside></section></section><section><section id="example-2-building-a-predictive-model" class="title-slide slide level1 center" data-number="4"><h1>
+<span class="header-section-number">4</span> Example 2: Building a predictive model</h1>
+
+</section><section class="slide level2"><p>A brief synopsis of an example in Chapter 9, where we want to build a predictive model of diabeates progression from 64 variables such as age, sex and BMI.</p>
 <p>We use a linear regression model, where <span class="math inline">\(Y_i\)</span> is the disease progression of subject <span class="math inline">\(i\)</span>, <span class="math inline">\(\mathbf{x}_i = (x_{i, 1}, \dots, x_{i, 64})\)</span> is a 64-dimensional vector. With unknown coefficient <span class="math inline">\(\beta_i\)</span> and the error term <span class="math inline">\(\sigma\)</span>, there are 65 unknown parameters.</p>
 <p><span class="math display">\[
 Y_i = \beta_1 x_{i, 1} + \beta_2 x_{i, 2} + \dots + \beta_{64} x_{i, 64} + \sigma \epsilon_i
 \]</span></p>
 <p>We define a sparse prior probability distribution, that most coefficients are equal to 0. (Spike and slab models?). This allows us to conduct a Bayesian form of <strong>feature selection</strong> where we evaluate the probability that a specific <span class="math inline">\(\beta_i \neq 0\)</span> given the data <span class="math inline">\(\mathbf{y} = (y_1, \dots, y_{342})\)</span> and predictors <span class="math inline">\(\mathbf{X} = (\mathbf{x}_1, \dots, \mathbf{x}_342)\)</span>.</p>
-</section><section id="bayesian-regression-does-better-than-standard-linear-regression" class="title-slide slide level1 smaller scrollable" data-number="4.1"><h1>
-<span class="header-section-number">4.1</span> Bayesian regression does better than standard linear regression</h1>
-<p>The standard ordinary least squares (OLS) estimate of <span class="math inline">\(\mathbf{\beta}\)</span> does worse than the Bayesian method on the test set. This is due to overfitting, and OLS’s “inability to recognize when the sample size is too small to accurately estimate the regression coefficients.” Sparse linear regression models are key here, and the Bayesian sparsity prior performs well; the common lasso technique introduced by <span class="citation" data-cites="tibshirani1996">Tibshirani (<a href="#/bayesian-regression-does-better-than-standard-linear-regression" role="doc-biblioref" onclick="">1996</a>)</span> is also popular, but this in fact corresponds to Bayesian methods for a special case.</p>
-<p><span class="header-section-number">5</span> Next steps</p>
-<ul>
+</section><section id="bayesian-regression-does-better-than-standard-linear-regression" class="slide level2" data-number="4.1"><h2>
+<span class="header-section-number">4.1</span> Bayesian regression does better than standard linear regression</h2>
+<p>The standard ordinary least squares (OLS) estimate of <span class="math inline">\(\mathbf{\beta}\)</span> does worse than the Bayesian method on the test set. This is due to overfitting, and OLS’s “inability to recognize when the sample size is too small to accurately estimate the regression coefficients.”</p>
+<aside class="notes"><p>Sparse linear regression models are key here, and the Bayesian sparsity prior performs well; the common lasso technique introduced by <span class="citation" data-cites="tibshirani1996">Tibshirani (<a href="#/references" role="doc-biblioref" onclick="">1996</a>)</span> is also popular, but this in fact corresponds to Bayesian methods for a special case.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside></section></section><section><section id="next-steps" class="title-slide slide level1 center" data-number="5"><h1>
+<span class="header-section-number">5</span> Next steps</h1>
+
+</section><section class="slide level2 smaller scrollable" id="references"><ul>
 <li>Chapter 2: probability</li>
 <li>Chapters 3, 4: One-parameter statistical models</li>
 <li>Chapters 5, 6, 7: Bayesian inference with normal models</li>
@@ -456,7 +518,7 @@ Tibshirani, Robert. 1996. <span>“Regression Shrinkage and Selection via the <s
 Van Horn, Kevin S. 2003. <span>“Constructing a Logic of Plausible Inference: A Guide to Cox’s Theorem.”</span> <a href="http://ksvanhorn.com/bayes/Papers/rcox.pdf">http://ksvanhorn.com/bayes/Papers/rcox.pdf</a>.
 </div>
 </div>
-</section>
+</section></section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
