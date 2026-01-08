@@ -765,6 +765,229 @@ Note: While the old R Markdown style (`{r echo=FALSE, message=FALSE}`) still wor
   - `\sim` for "distributed as"
   - `\propto` for "proportional to"
 
+## Lessons Learned from Previous PR Feedback
+
+This section summarizes common pitfalls, solutions, and best practices identified through previous pull requests. Review these before starting work to avoid repeating past mistakes.
+
+### RevealJS Slide Formatting (from PR #49)
+
+**Issue**: Section title slides in RevealJS presentations should display only the heading, not body text.
+
+**Solution**: 
+- Use slide breaks (`---`) to separate section titles from content
+- Place `---` after level 1 headings to create clean title slides
+- Move detailed explanations to speaker notes using `::: notes` divs when appropriate
+- Ensure subsections (level 2 headings) have visible content on slides, not just speaker notes
+
+**Example**:
+```markdown
+# Section Title
+
+---
+
+Content starts here on a new slide.
+
+::: notes
+Detailed background information for presenter.
+:::
+```
+
+### Namespace Conflicts (from PR #31)
+
+**Issue**: Package function masking can cause rendering errors.
+
+**Common case**: `MASS::select()` masks `dplyr::select()` when both packages are loaded.
+
+**Solution**:
+- Use explicit namespacing: `dplyr::select()` instead of `select()`
+- Check namespace conflicts when adding new library() calls
+- Test rendering after adding any new packages
+
+**Example fix**:
+```r
+library(MASS)   # For mvrnorm
+library(dplyr)
+
+# Explicitly namespace to avoid conflict
+data %>% dplyr::select(-y)  # NOT just select(-y)
+```
+
+### Merging Branches with Conflicting Changes (from PR #28)
+
+**Issue**: Merge conflicts between feature branches and main require careful resolution.
+
+**Solutions**:
+- **Preserve functionality from both branches**: If branch A adds citations and branch B adds passive voice, the merge should have both
+- **Update shared config files completely**: When merging, ensure all enhancements from both branches are in the final config
+- **Maintain consistency**: Keep citation syntax while adopting style improvements (passive voice, line breaks, etc.)
+- **Update references with latest URLs**: When converting hyperlinks to citations, use the corrected URLs from main branch
+
+**Workflow**:
+1. Merge main into feature branch
+2. Resolve conflicts by combining features from both
+3. Test that both functionalities work (e.g., citations render AND passive voice is used)
+4. Update any affected URLs or references with latest versions
+
+### Multi-Format Rendering (from PR #27)
+
+**Critical insights** on generating HTML, RevealJS, and PDF simultaneously:
+
+**Project structure**:
+- Both formats must be specified at TWO levels: project config AND individual file frontmatter
+- Use `output-file` parameter at file level to avoid naming conflicts
+- Follow pattern from https://github.com/perellonieto/quarto_html_revealjs_test
+
+**Example configuration**:
+
+`_quarto-website.yml`:
+```yaml
+format:
+  html: default    # Use default HTML settings from project
+  revealjs: default    # Use default RevealJS settings from project
+  pdf: default    # Use default PDF settings from project
+```
+
+Individual `.qmd` file:
+```yaml
+---
+title: "Chapter 1"
+format:
+  html: default    # Generates 1.html
+  revealjs:    # Generates 1-slides.html
+    output-file: 1-slides.html    # REQUIRED to avoid naming conflict
+  pdf:    # Generates 1-handout.pdf
+    output-file: 1-handout.pdf    # REQUIRED to avoid naming conflict
+---
+```
+
+Note: `default` means "use the default settings from the project-level config". You can also specify custom settings inline (e.g., `theme: dark`) to override defaults for specific files.
+
+**Testing requirements**:
+- ALWAYS test all three output formats before committing
+- Check that files exist: `{filename}.html`, `{filename}-slides.html`, `{filename}-handout.pdf`
+- Verify file sizes are reasonable (not 0 bytes, not truncated)
+- **NEVER assume rendering works** - test it yourself with `quarto render`
+
+**Common LaTeX errors**:
+
+**Problem 1**: Nesting `align` inside display math
+```latex
+<!-- INCORRECT - causes "Missing $ inserted" error -->
+$$
+\begin{align}
+  x &= y \\
+  z &= w
+\end{align}
+$$
+
+<!-- CORRECT - use aligned inside $$ -->
+$$
+\begin{aligned}
+  x &= y \\
+  z &= w
+\end{aligned}
+$$
+```
+
+**Problem 2**: Blank lines in math environments
+```latex
+<!-- INCORRECT - causes "Paragraph ended before \align was complete" -->
+\begin{align}
+  x &= y \\
+
+  z &= w
+\end{align}
+
+<!-- CORRECT - remove blank lines or use & \\ for spacing -->
+\begin{align}
+  x &= y \\
+  & \\
+  z &= w
+\end{align}
+```
+
+See PR #27 and PR #34 for examples of fixing these errors.
+
+### Environment Setup Best Practices (from PRs #27, #31, #34)
+
+**Issue**: Claiming code works without testing it locally.
+
+**Root causes**:
+- Required software (R, Quarto, TinyTeX) not installed
+- Assuming CI will catch errors instead of testing locally
+- Not verifying output files actually exist and are complete
+
+**Mandatory practices**:
+1. **Install tools IMMEDIATELY** at start of every work session (see Installation section)
+2. **Test commands yourself** - don't assume they work
+3. **Verify output** - check exit codes, file existence, file sizes
+4. **CI is final verification ONLY** - you must test locally first
+5. **"Software not installed" is NOT an excuse** - install it first
+
+**Testing workflow**:
+```bash
+# 1. Install tools (if not already installed)
+# See Installation section for R, Quarto, TinyTeX setup
+
+# 2. Verify installations
+R --version          # Should be 4.5.2+
+quarto --version     # Should be installed
+quarto list tools    # Verify TinyTeX is listed
+
+# 3. Test rendering
+quarto render       # Full repository
+echo $?             # Check exit code (should be 0)
+
+# 4. Verify outputs
+ls -lh _site/1.html _site/1-slides.html _site/1-handout.pdf
+```
+
+### Dependency Management (from PR #31)
+
+**Issue**: Missing package dependencies causing rendering failures.
+
+**Solutions**:
+- Use `library()` calls at the start of code chunks
+- When using tidyverse functions, load the specific packages needed:
+  - `library(dplyr)` for mutate(), select(), etc.
+  - `library(tidyr)` for pivot_longer(), pivot_wider()
+  - `library(ggplot2)` for plotting
+- Run `renv::snapshot()` after adding new packages
+- Test with `renv::restore()` to ensure reproducibility
+
+### Hyperlink Validation (from PRs #22, #28, #38)
+
+**Issue**: Broken or outdated external links.
+
+**Solutions**:
+- Upgrade HTTP to HTTPS when possible
+- Check that internal links point to existing files/sections  
+- Verify external URLs are accessible
+- Update URLs that have moved (e.g., MIT cocosci papers moved to `/archive/` subdirectory)
+- When converting links to BibTeX citations, use the latest corrected URLs
+
+**Process before requesting PR review**:
+1. List all hyperlinks you modified
+2. Test each internal link (files, sections, anchors)
+3. Verify each external URL loads in a browser
+4. Check relative paths are correct
+
+### Workflow Debugging (from multiple PRs)
+
+**Issue**: Not reading workflow logs when failures occur.
+
+**Mandatory practice**:
+- **ALWAYS read workflow logs** when workflows fail
+- Use GitHub MCP tools: `list_workflow_runs`, `get_job_logs`
+- Search for error messages in logs to find root cause
+- **NEVER assume what the error is** - verify by reading actual logs
+- Fix the specific error found, not what you think it might be
+
+**Determining responsibility**:
+- **Fix if**: Error is in code/files you modified
+- **Document if**: Error is in pre-existing code you didn't modify
+- **Skip if**: Error is an infrastructure issue (package installation, Docker problems)
+
 ## Getting Help
 
 - Project URL: https://d-morrison.github.io/hoff-bayesian-statistics/
