@@ -220,9 +220,11 @@ Jesse Mu
 </div>
 
   <p class="date">2016-11-02</p>
-</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> Exercises</p>
-</section><section><section id="section" class="title-slide slide level1 center" data-number="1.1"><h1>
-<span class="header-section-number">1.1</span> 9.1</h1>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --></section><section><section id="exercises" class="title-slide slide level1 center" data-number="1"><h1>
+<span class="header-section-number">1</span> Exercises</h1>
+
+</section><section id="section" class="slide level2" data-number="1.1"><h2>
+<span class="header-section-number">1.1</span> 9.1</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>swim <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/swim.dat'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -287,7 +289,7 @@ Jesse Mu
 <span id="cb2-54"><a></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="b" class="slide level2"><h2>b</h2>
+<h3 id="b">b</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>fastest_times <span class="ot">=</span> <span class="fu">apply</span>(swim_pred, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> which.min)</span>
 <span id="cb3-2"><a></a><span class="fu">table</span>(fastest_times) <span class="sc">/</span> <span class="fu">length</span>(fastest_times)</span>
@@ -297,13 +299,13 @@ Jesse Mu
 </details>
 </div>
 <p>With the posterior predictive dataset, swimmer 1 is the fastest about 65% of the time by week 13, so the recommendation is that swimmer 1 race.</p>
-</section></section><section><section id="section-1" class="title-slide slide level1 center" data-number="1.2"><h1>
-<span class="header-section-number">1.2</span> 9.3</h1>
+</section><section id="section-1" class="slide level2" data-number="1.2"><h2>
+<span class="header-section-number">1.2</span> 9.3</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>crime <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">'Exercises/crime.dat'</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="a" class="slide level2"><h2>a</h2>
+<h3 id="a">a</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
 <span id="cb5-2"><a></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
@@ -349,7 +351,7 @@ Jesse Mu
 </div>
 </div>
 <p>Looks like Ed (mean years of schooling), Ineq (Income inequality), M (percentage of males aged 14-24), Prob (probability of imprisonment), and U2 (unemployment rate of urban males 35-39).</p>
-</section><section id="b-1" class="slide level2"><h2>b</h2>
+<h3 id="b-1">b</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>y <span class="ot">=</span> crime<span class="sc">$</span>y</span>
 <span id="cb7-2"><a></a>X <span class="ot">=</span> crime <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>y) <span class="sc">%&gt;%</span> as.matrix</span>
@@ -361,7 +363,7 @@ Jesse Mu
 <span id="cb7-8"><a></a>Xte <span class="ot">=</span> X[<span class="sc">-</span>train_i, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<h3 id="i">i</h3>
+<h4 id="i">i</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># From 9.1</span></span>
 <span id="cb8-2"><a></a>beta_ols <span class="ot">=</span> <span class="fu">inv</span>(<span class="fu">t</span>(Xtr) <span class="sc">%*%</span> Xtr) <span class="sc">%*%</span> <span class="fu">t</span>(Xtr) <span class="sc">%*%</span> ytr</span>
@@ -405,7 +407,7 @@ Jesse Mu
 <span id="cb9-4"><a></a><span class="co">#&gt; [1] 0.4880959</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<h3 id="ii">ii</h3>
+<h4 id="ii">ii</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>y <span class="ot">=</span> ytr</span>
 <span id="cb10-2"><a></a>X <span class="ot">=</span> Xtr</span>
@@ -454,7 +456,7 @@ Jesse Mu
 </details>
 </div>
 <p>At least when the seed is 1, there doesn’t appear to be a major difference between the prediction errors.</p>
-</section><section id="c" class="slide level2"><h2>c</h2>
+<h3 id="c">c</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Unnecessary code repeating here. Clean this up later w/ functions</span></span>
 <span id="cb12-2"><a></a>N <span class="ot">=</span> <span class="dv">100</span></span>

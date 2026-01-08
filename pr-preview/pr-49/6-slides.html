@@ -240,7 +240,9 @@ Jesse Mu
 </div>
 
   <p class="date">2016-11-04</p>
-</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> A semiconjugate prior distribution</p>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --></section><section><section id="a-semiconjugate-prior-distribution" class="title-slide slide level1 center" data-number="1"><h1>
+<span class="header-section-number">1</span> A semiconjugate prior distribution</h1>
+
 </section><section class="slide level2"><p>In Chapter 5, we performed two-parameter inference by decomposing the prior <span class="math inline">\(p(\theta, \sigma^2) = p(\theta \mid \sigma^2) p(\sigma^2)\)</span>. So our prior distribution on <span class="math inline">\(\theta\)</span> relates to the variance <span class="math inline">\(\sigma^2\)</span>:</p>
 <p><span class="math display">\[
 \theta \mid \sigma^2 \sim \mathcal{N}(\mu_0, \sigma^2 / \kappa_0)
@@ -262,7 +264,9 @@ p(\theta, \sigma^2 \mid y_1, \dots, y_n) \propto p(\theta, \sigma^2) \times p(y_
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside><p><span class="header-section-number">2</span> Discrete approximations</p>
+      }</style></aside></section></section><section><section id="discrete-approximations" class="title-slide slide level1 center" data-number="2"><h1>
+<span class="header-section-number">2</span> Discrete approximations</h1>
+
 </section><section class="slide level2"><p>Why posterior densities are hard to calculate for nonconjugate priors using Bayes rule?</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -319,7 +323,9 @@ p(\boldsymbol{\theta} \mid \mathbf{y}) &amp;= \frac{p(\mathbf{y} \mid
 </div>
 </div>
 </div>
-<p><span class="header-section-number">3</span> Sampling from the conditional distributions</p>
+</section></section><section><section id="sampling-from-the-conditional-distributions" class="title-slide slide level1 center" data-number="3"><h1>
+<span class="header-section-number">3</span> Sampling from the conditional distributions</h1>
+
 </section><section class="slide level2"><p>Again, to proceed with Gibbs sampling, we simply need to calculate the full conditional distributions of the parameters. We already computed the full conditional for <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n\)</span> in 5.2. For <span class="math inline">\(\theta
 \mid \mathcal{N}(\mu_0, \tau_0^2)\)</span>, then <span class="math inline">\(\theta \mid \sigma^2, y_1, \dots, y_n
 \sim \mathcal{N}(\mu_n, \tau_n^2)\)</span>, where <span class="math inline">\(\mu_n\)</span> and <span class="math inline">\(\tau_n^2\)</span> are not reproduced here (see 5.2).</p>
@@ -342,7 +348,9 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 <p>A shortcut for thinking about full conditionals, instead of explicitly decomposing the probability according to Bayes rule each time, is to write the numerator of the full joint posterior <span class="math inline">\(p(\boldsymbol{\theta} \mid \mathbf{y})\)</span>. Then, if you are interested in the full conditional of <span class="math inline">\(p(\theta_i \mid
 \mathbf{y})\)</span>, simply evaluate the full joint posterior while treating all <span class="math inline">\(\theta_j\)</span> for <span class="math inline">\(j \neq i\)</span> as constants (and thus discardable to maintain proportionality). This is used in later chapters (e.g.&nbsp;8.3.1)</p>
 </blockquote>
-<p><span class="header-section-number">4</span> Gibbs sampling</p>
+</section></section><section><section id="gibbs-sampling" class="title-slide slide level1 center" data-number="4"><h1>
+<span class="header-section-number">4</span> Gibbs sampling</h1>
+
 </section><section class="slide level2"><p>From this, Gibbs sampling proceeds as follows:</p>
 <p>Begin with start values <span class="math inline">\(\theta_i^{(0)}\)</span> for all <span class="math inline">\(i\)</span>. Usually these can be standard naive estimates of the parameters. Also, you technically only have to have start values for <em>all but one</em> parameter, because now…</p>
 <ul>
@@ -419,10 +427,14 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 <span id="cb4-15"><a></a>midge.df <span class="ot">=</span> phi.df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><span class="header-section-number">5</span> General properties of the Gibbs sampler</p>
+</section></section><section><section id="general-properties-of-the-gibbs-sampler" class="title-slide slide level1 center" data-number="5"><h1>
+<span class="header-section-number">5</span> General properties of the Gibbs sampler</h1>
+
 </section><section class="slide level2"><p>Under conditions that will be met for our models, like the law of large numbers for standard monte carlo sampling, a sufficient number of Gibbs samples approaches the target distribution. The question of course is how many samples is enough, which is covered in the next section.</p>
 <p>Another important point is that Gibbs sampling is not a Bayesian model. These two concepts should be separated: Gibbs sampling is a general framework for “observing” the posterior probability distribution, whatever that distribution is.</p>
-<p><span class="header-section-number">6</span> Introduction to MCMC diagnostics</p>
+</section></section><section><section id="introduction-to-mcmc-diagnostics" class="title-slide slide level1 center" data-number="6"><h1>
+<span class="header-section-number">6</span> Introduction to MCMC diagnostics</h1>
+
 </section><section class="slide level2"><p>For an example of the importance of assessing convergence of Gibbs sampling, consider the following target distribution, a 45-10-45 mixture of <span class="math inline">\(\mathcal{N}(-3, 1/3), \mathcal{N}(0, 1/3), \mathcal{N}(3, 1/3)\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -485,7 +497,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 </div>
 <p>Notice that the histogram does not adequately approximate the distribution. Try changing the number of samples to 10000 or 100000, which should be better.</p>
 <p>The problem is that since the sampler generates dependent samples, the sampler sticks in high probability regions for a long time. After sufficient samples, this balances out, but sometimes the number of samples required may be very large.</p>
-</section><section id="getting-it-right" class="slide level2"><h2>Getting it right</h2>
+<h3 id="getting-it-right">Getting it right</h3>
 <p>Estimate of MCMC depends on autocorrelation: how correlated a chain of values is with itself. We prefer low correlation values. The <code>acf</code> function can be used to assess this: each bar represents the autocorrelation for varying levels of lag, where “lag” is the gap in subsequent samples.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">acf</span>(theta.mcmc<span class="sc">$</span>theta, <span class="at">lag.max =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -503,7 +515,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 \end{aligned}
 \]</span></p>
 <p>only holds if the autocorrelation of the samples is zero. If there is positive autocorrelation in the samples, the variance of the sample mean increases, which “reduces” <span class="math inline">\(n\)</span>. So by obtaining estimates of the variance of the population (by estimating the variance of the sample) and estimates of the variance of the mean, we can solve for <span class="math inline">\(n\)</span> which is an “effective sample size”.</p>
-<p>Estimating the variance of the mean, given that we cannot assume an independent sample, is nontrivial, and requires calculating the spectral density estimate at frequency zero <span class="citation" data-cites="marmer_gibbs">(<a href="#/d-1" role="doc-biblioref" onclick="">Marmer 2010</a>)</span> which is “a convenient way to represent the sequence of autocovariances” of a stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.</p>
+<p>Estimating the variance of the mean, given that we cannot assume an independent sample, is nontrivial, and requires calculating the spectral density estimate at frequency zero <span class="citation" data-cites="marmer_gibbs">(<a href="#/section-1" role="doc-biblioref" onclick="">Marmer 2010</a>)</span> which is “a convenient way to represent the sequence of autocovariances” of a stochastic process, and is related to 1) autocorrelation, and 2) Fourier transformation.</p>
 <p>This is implemented as the <code>effectiveSize</code> function in R, which abridged looks like this:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(coda)</span>
@@ -521,7 +533,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 <span id="cb9-5"><a></a><span class="co">#&gt; [1] 5.02999</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="mcmc-diagnostics-for-semiconjugate-normal-analysis" class="slide level2"><h2>MCMC diagnostics for semiconjugate normal analysis</h2>
+<h3 id="mcmc-diagnostics-for-semiconjugate-normal-analysis">MCMC diagnostics for semiconjugate normal analysis</h3>
 <p>Back to midge length. Here are the traceplots for our samples of theta and sigma^2:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>midge.df<span class="sc">$</span>iteration <span class="ot">=</span> midge.df<span class="sc">$</span>n</span>
@@ -566,11 +578,12 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 <span id="cb14-3"><a></a><span class="co">#&gt; 805.4388</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><span class="header-section-number">7</span> Exercises</p>
-</section><section><section id="section" class="title-slide slide level1 center" data-number="7.1"><h1>
-<span class="header-section-number">7.1</span> 6.1</h1>
+</section></section><section><section id="exercises" class="title-slide slide level1 center" data-number="7"><h1>
+<span class="header-section-number">7</span> Exercises</h1>
 
-</section><section id="a" class="slide level2"><h2>a</h2>
+</section><section id="section" class="slide level2" data-number="7.1"><h2>
+<span class="header-section-number">7.1</span> 6.1</h2>
+<h3 id="a">a</h3>
 <p><span class="math display">\[
 \begin{aligned}
 \text{Cov}(\theta_A, \theta_B) &amp;= \mathbb{E}\left[\theta_A \theta_B\right] - \mathbb{E}[\theta_A]\mathbb{E}[\theta_B] \\
@@ -584,7 +597,7 @@ p(\sigma^2 \mid \theta, y_1, \dots, y_n) &amp;\propto
 \]</span></p>
 <p>Since <span class="math inline">\(\text{Cov}(\theta_A, \theta_B) \neq 0\)</span>, <span class="math inline">\(\theta_A\)</span> and <span class="math inline">\(\theta_B\)</span> are dependent.</p>
 <p>This prior is justified if we have reason to believe that <span class="math inline">\(\theta_B\)</span> is some product of <span class="math inline">\(\theta_A\)</span> plus random Gamma-distributed noise.</p>
-</section><section id="b" class="slide level2"><h2>b</h2>
+<h3 id="b">b</h3>
 <p>First the joint posterior distribution</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -606,7 +619,7 @@ p(\theta, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \gamma)
 &amp;\propto \text{dgamma}\left(a_\theta + n_A \bar{y}_A + n_B \bar{y}_B, b_\theta + n_A + n_B \gamma \right)
 \end{aligned}
 \]</span></p>
-</section><section id="c" class="slide level2"><h2>c</h2>
+<h3 id="c">c</h3>
 <p><span class="math display">\[
 \begin{aligned}
 p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
@@ -617,7 +630,7 @@ p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
 &amp;\propto \text{dgamma}\left(a_\gamma + n_B\bar{y}_B, b_\gamma + n_B \theta \right)
 \end{aligned}
 \]</span></p>
-</section><section id="d" class="slide level2"><h2>d</h2>
+<h3 id="d">d</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>Y_a <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">'Exercises/menchild30bach.dat'</span>)</span>
 <span id="cb15-2"><a></a>Y_b <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">'Exercises/menchild30nobach.dat'</span>)</span>
@@ -680,13 +693,13 @@ p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
 </div>
 </div>
 <p>Since <span class="math inline">\(a_\gamma\)</span> and <span class="math inline">\(b_\gamma\)</span> are equal, the gamma distribution is centered around 1 and the magnitude represents the strength of our belief that <span class="math inline">\(\gamma\)</span> (the proportion <span class="math inline">\(\theta_B / \theta_A\)</span>) is 1. As expected, as our belief in that increases, the mean posterior difference between <span class="math inline">\(\theta_B\)</span> and <span class="math inline">\(\theta_A\)</span> decreases.</p>
-</section></section><section><section id="section-1" class="title-slide slide level1 center" data-number="7.2"><h1>
-<span class="header-section-number">7.2</span> 6.2</h1>
+</section><section id="section-1" class="slide level2 smaller scrollable" data-number="7.2"><h2>
+<span class="header-section-number">7.2</span> 6.2</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>glucose <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">'Exercises/glucose.dat'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="a-1" class="slide level2"><h2>a</h2>
+<h3 id="a-1">a</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">qplot</span>(glucose, <span class="at">geom =</span> <span class="st">'histogram'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
@@ -697,7 +710,7 @@ p(\gamma, \mid \boldsymbol{y}_A, \boldsymbol{y}_B, \theta)
 </div>
 </div>
 <p>Appears to be skewed right significantly.</p>
-</section><section id="b-1" class="slide level2"><h2>b</h2>
+<h3 id="b-1">b</h3>
 <p>The likelihood is</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -706,7 +719,7 @@ p(\boldsymbol{y} \mid \boldsymbol{x}, p, \theta_1, \theta_2, \sigma^2_1, \sigma^
 &amp;= \prod_{i = 1}^n \text{dnorm}(y_i, \theta_1, \sigma^2_1)^{x_i} \text{dnorm}(y_i, \theta_2, \sigma^2_2)^{1 - x_i} \\
 \end{aligned}
 \]</span></p>
-<h3 id="boldsymbolx"><span class="math inline">\(\boldsymbol{x}\)</span></h3>
+<h4 id="boldsymbolx"><span class="math inline">\(\boldsymbol{x}\)</span></h4>
 <p>First observe the probability that a single <span class="math inline">\(X_i = 1\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -720,7 +733,7 @@ P(X_i = 1 \mid y_i, p, \theta_1, \theta_2, \sigma^2_1, \sigma^2_2) &amp;= \frac{
 <p><span class="math display">\[
 x_i \sim \text{Bernoulli}\left(\frac{p \times \text{dnorm}(y_i, \theta_1, \sigma^2_1)}{p \times \text{dnorm}(y_i, \theta_1, \sigma^2_1) + (1 - p) \times \text{dnorm}(y_i, \theta_2, \sigma^2_2)}\right)
 \]</span></p>
-<h3 id="p"><span class="math inline">\(p\)</span></h3>
+<h4 id="p"><span class="math inline">\(p\)</span></h4>
 <p>For this and later calculations, let <span class="math inline">\(n_1 = \sum x_i\)</span> (i.e.&nbsp;number of 1s in <span class="math inline">\(\boldsymbol{x}\)</span>) and <span class="math inline">\(n_2 = n - n_1\)</span> (i.e.&nbsp;number of 0s).</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -733,7 +746,7 @@ p(p \mid \boldsymbol{x}, \boldsymbol{y}, \theta_1, \theta_2, \sigma^2_1, \sigma^
 &amp;= \text{dbeta}(p, a + n_1, b + n_2)
 \end{aligned}
 \]</span></p>
-<h3 id="theta_1"><span class="math inline">\(\theta_1\)</span></h3>
+<h4 id="theta_1"><span class="math inline">\(\theta_1\)</span></h4>
 <p>Let <span class="math inline">\(\boldsymbol{y}_1 = \{y_i \in \boldsymbol{y} \; : \; x_i = 1 \}\)</span> and <span class="math inline">\(\boldsymbol{y}_2 = \{y_i \in \boldsymbol{y} \; : \; x_i = 0 \}\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -754,9 +767,9 @@ p(\theta_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_2, \sigma^2_1, \sigma^
 \mu_{n, 1} &amp;= \frac{\frac{1}{\tau^2_0}\mu_0 + \frac{n_1}{\sigma^2_1} \bar{y}_{\cdot, 1}}{\frac{1}{\tau^2_0} + \frac{n_1}{\sigma^2_1}}
 \end{aligned}
 \]</span></p>
-<h3 id="theta_2"><span class="math inline">\(\theta_2\)</span></h3>
+<h4 id="theta_2"><span class="math inline">\(\theta_2\)</span></h4>
 <p><span class="math inline">\(\theta_2 \mid \dots \sim \mathcal{N}(\mu_{n, 2}, \tau^2_{n, 2})\)</span> like <span class="math inline">\(\theta_1\)</span> but with the subscripts switched from 1 to 2.</p>
-<h3 id="sigma2_1"><span class="math inline">\(\sigma^2_1\)</span></h3>
+<h4 id="sigma2_1"><span class="math inline">\(\sigma^2_1\)</span></h4>
 <p>As probably expected, this will look like inference for a standard normal model, except using only the data in group 1.</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -775,9 +788,9 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 \sigma^2_{n, 1}(\theta_1) &amp;= \frac{1}{\nu_{n, 1}} \left[\nu_0 \sigma^2_0 + n_1 s^2_{n, 1}(\theta_1) \right]
 \end{aligned}
 \]</span></p>
-<h3 id="sigma2_2"><span class="math inline">\(\sigma^2_2\)</span></h3>
+<h4 id="sigma2_2"><span class="math inline">\(\sigma^2_2\)</span></h4>
 <p>Same as above, but with subscripts switched.</p>
-</section><section id="c-1" class="slide level2"><h2>c</h2>
+<h3 id="c-1">c</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>Y <span class="ot">=</span> glucose</span>
 <span id="cb18-2"><a></a>n <span class="ot">=</span> <span class="fu">length</span>(Y)</span>
@@ -882,7 +895,7 @@ p(\sigma^2_1 \mid \boldsymbol{x}, \boldsymbol{y}, p, \theta_1, \theta_2, \sigma^
 </details>
 </div>
 <p>These samples are actually highly autocorrelated, hence the minimum effective sample sizes. However, the purpose of calculating the autocorrelation of the minimum and maximum <span class="math inline">\(\theta\)</span> is unclear.</p>
-</section><section id="d-1" class="slide level2 smaller scrollable"><h2>d</h2>
+<h3 id="d-1">d</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>YCOMP <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">y =</span> YPRED, <span class="at">dataset =</span> <span class="st">'predictive'</span>), <span class="fu">data.frame</span>(<span class="at">y =</span> Y, <span class="at">dataset =</span> <span class="st">'original'</span>))</span>
 <span id="cb22-2"><a></a><span class="fu">ggplot</span>(YCOMP, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">fill =</span> dataset)) <span class="sc">+</span></span>

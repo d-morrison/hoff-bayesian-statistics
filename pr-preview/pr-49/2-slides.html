@@ -237,7 +237,7 @@ Jesse Mu
 </div>
 
   <p class="date">2016-09-08</p>
-</section><section class="slide level2 scrollable"><!-- Setup --><!-- Begin writing --><aside class="notes"><p>This section will be brief, as it is just a review of probability. However, as exchangeability and de Finetti’s theorem are important especially in Bayesian statistics, I’ll go into more depth there.</p>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><aside class="notes"><p>This section will be brief, as it is just a review of probability. However, as exchangeability and de Finetti’s theorem are important especially in Bayesian statistics, I’ll go into more depth there.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -248,7 +248,8 @@ Jesse Mu
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside><p><span class="header-section-number">1</span> Belief functions and properties</p>
+      }</style></aside></section><section id="belief-functions-and-properties" class="title-slide slide level1 center scrollable" data-number="1"><h1>
+<span class="header-section-number">1</span> Belief functions and properties</h1>
 <aside class="notes"><p>Let <span class="math inline">\(F, G,\)</span> and <span class="math inline">\(H\)</span> be events. A “belief” function <span class="math inline">\(\text{Be}(\cdot)\)</span> should correspond to certain intuitions about our beliefs about the likelihood of events. Probabilitiy functions have axioms that satisfy our notions of belief:</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -279,7 +280,8 @@ Jesse Mu
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside><p><span class="header-section-number">2</span> Events, partitions, and Bayes’ rule</p>
+      }</style></aside></section><section id="events-partitions-and-bayes-rule" class="title-slide slide level1 center" data-number="2"><h1>
+<span class="header-section-number">2</span> Events, partitions, and Bayes’ rule</h1>
 <aside class="notes"><p>Consider a set <span class="math inline">\(\mathcal{H}\)</span>, which is the “set of all possible truths.” We can partition <span class="math inline">\(\mathcal{H}\)</span> into discrete subsets <span class="math inline">\(\{H_1, \dots, H_k\}\)</span>, where only one subset consists of the truth.</p>
 <p>We can assign probabilities whether each of these sets contains the truth. First, some event in <span class="math inline">\(\mathcal{H}\)</span> is true, so <span class="math inline">\(P(\mathcal{H}) = 1\)</span>. Let <span class="math inline">\(E\)</span> be some observation (in this case related to the truth of one <span class="math inline">\(H_i\)</span>). Then,</p>
 <style type="text/css">
@@ -304,15 +306,18 @@ Jesse Mu
 P(H_i \mid E) = \frac{\overbrace{P(E \mid H_i)}^{\text{likelihood}} \overbrace{P(H_i)}^{\text{prior}}}{P(E)}
 \end{align}\]</span>
 </li>
-</ul>
-<p><span class="header-section-number">3</span> Independence</p>
+</ul></section><section><section id="independence" class="title-slide slide level1 center" data-number="3"><h1>
+<span class="header-section-number">3</span> Independence</h1>
+
 </section><section class="slide level2"><p>Two events <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are <em>independent</em> if <span class="math inline">\(P(F \cap G) = P(F) P(G)\)</span>.</p>
 <p>Two events <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are <em>conditionally independent</em> given <span class="math inline">\(H\)</span> if</p>
 <p><span class="math display">\[\begin{align}
 P(F \cap G \mid H) = P(F \mid H) P(G \mid H)
 \end{align}\]</span></p>
 <p>This implies <span class="math inline">\(P(F \mid H \cap G) = P(F \mid H)\)</span>. That is, if we know about <span class="math inline">\(H\)</span>, and <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are conditionally independent given <span class="math inline">\(H\)</span>, then knowing <span class="math inline">\(G\)</span> does not change our belief about <span class="math inline">\(H\)</span>. This is a key property leveraged in Bayesian networks.</p>
-<p><span class="header-section-number">4</span> Random variables and their distributions</p>
+</section></section><section><section id="random-variables-and-their-distributions" class="title-slide slide level1 center" data-number="4"><h1>
+<span class="header-section-number">4</span> Random variables and their distributions</h1>
+
 </section><section class="slide level2"><p>A random variable <span class="math inline">\(Y\)</span> is <em>discrete</em> if the set of all its possible values <span class="math inline">\(\mathcal{Y}\)</span> is countable, i.e.&nbsp;they can be enumerated <span class="math inline">\(\mathcal{Y} = \{y_1, y_2, \dots \}\)</span> Examples include the binomial and poisson distributions. Discrete random variables have a <em>probability mass function</em> (PMF) <span class="math inline">\(f(y) = P(Y = y)\)</span> which assigns a certain probability to every discrete point in its sample space. From this probability mass function, a <em>continuous distribution function</em> (CDF) is also defined:</p>
 <p><span class="math display">\[F(y) = P(Y \leq y) = \sum_{y_i \leq y} f(y_i)\]</span></p>
 <p><span class="math inline">\(Y\)</span> is <em>continuous</em> if <span class="math inline">\(\mathcal{Y}\)</span> can take <em>any</em> value in an interval. Therefore, the probability of <span class="math inline">\(Y\)</span> taking a single value in the sample space is 0. So instead we describe such distributions with <em>probability density functions</em> (PDFs) <span class="math inline">\(f(y)\)</span>, which must be integrated over an interval to obtain a probability: <span class="math inline">\(P(a \leq y \leq b) =
@@ -321,14 +326,13 @@ P(F \cap G \mid H) = P(F \mid H) P(G \mid H)
 F(y) = P(Y \leq y) = \int_{-\infty}^y f(x) \; dx
 \end{align}\]</span></p>
 <p>Examples include the normal and beta distributions.</p>
-</section><section id="descriptions-of-distributions" class="title-slide slide level1 center" data-number="4.1"><h1>
-<span class="header-section-number">4.1</span> Descriptions of distributions</h1>
+</section><section id="descriptions-of-distributions" class="slide level2" data-number="4.1"><h2>
+<span class="header-section-number">4.1</span> Descriptions of distributions</h2>
 <p>In the same way that we use the mean, mode, and median to describe samples, we can use them to describe distributions. Notice that for many distributions, these quantities are <em>not</em> the same.</p>
 <p>We also use variance and quantiles to measure the <em>spread</em> of distributions.</p>
-</section><section><section id="joint-distributions" class="title-slide slide level1 center" data-number="4.2"><h1>
-<span class="header-section-number">4.2</span> Joint distributions</h1>
-
-</section><section id="discrete" class="slide level2"><h2>Discrete</h2>
+</section><section id="joint-distributions" class="slide level2" data-number="4.2"><h2>
+<span class="header-section-number">4.2</span> Joint distributions</h2>
+<h3 id="discrete">Discrete</h3>
 <p>Let <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> be random variables with sample spaces <span class="math inline">\(\mathcal{Y}_1\)</span> and <span class="math inline">\(\mathcal{Y}_2\)</span>. Then the joint pdf/density of <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> is defined as:</p>
 <p><span class="math display">\[
 p(y_1, y_2) = P(\{Y_1 = y_1\} \cap \{Y_2 = y_2 \})
@@ -343,7 +347,7 @@ p(y_1) &amp;= \sum_{y_2 \in \mathcal{Y}_2} p(y_1, y_2) \\
 p(y_2 \mid y_1) = \frac{p(y_1, y_2)}{p(y_1)}
 \end{align}\]</span></p>
 <p>Notice that given the joint density <span class="math inline">\(p(y_1, y_2)\)</span>, we can calculate marginal and conditional densities <span class="math inline">\(\{ p(y_1), p(y_2), p(y_1 \mid y_2), p(y_2 \mid y_1) \}\)</span> by simply summing up the relevant variables. Additionally, given <span class="math inline">\(p(y_1)\)</span> and <span class="math inline">\(p(y_2 \mid y_1)\)</span>, (or the reverse), we can reconstruct the joint distribution. However, given only marginal densities <span class="math inline">\(p(y_1)\)</span> and <span class="math inline">\(p(y_2)\)</span>, we can’t reconstruct the joint distribution, since we don’t know whether the events are independent.</p>
-</section><section id="continuous" class="slide level2"><h2>Continuous</h2>
+<h3 id="continuous">Continuous</h3>
 <p>In the continuous case, the probability density function is a function of <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> such that the CDF is</p>
 <p><span class="math display">\[
 F(y_1, y_2) = \int_{-\infty}^{y_1} \int_{-\infty}^{y_2} p(y_1, y_2) \; dy_2 \; dy_1.
@@ -355,8 +359,8 @@ p(y_2) &amp;= \int_{-\infty}^{\infty} p(y_1, y_2) \; dy_1 \\
 \end{align}\]</span></p>
 <p>With the marginal densities, you can compute the conditional densities <span class="math inline">\(p(y_2
 \mid y_1) = p(y_1, y_2) / p(y_1)\)</span>, etc.</p>
-</section></section><section><section id="independent-random-variables" class="title-slide slide level1 center" data-number="4.3"><h1>
-<span class="header-section-number">4.3</span> Independent random variables</h1>
+</section><section id="independent-random-variables" class="slide level2" data-number="4.3"><h2>
+<span class="header-section-number">4.3</span> Independent random variables</h2>
 <p>Let <span class="math inline">\(Y_1, \dots, Y_n\)</span> be random variables dependent on a common parameter <span class="math inline">\(\theta\)</span>. Then <span class="math inline">\(Y_1 \dots, Y_n\)</span> are conditionally independent given <span class="math inline">\(\theta\)</span> if</p>
 <p><span class="math display">\[\begin{align}
 p(y_1, \dots, y_n \mid \theta) = p(y_1 \mid \theta) \times \dots \times p(y_n \mid \theta).
@@ -369,7 +373,9 @@ p(y_1, \dots, y_n \mid \theta) = \prod_i p(y_i \mid \theta).
 <p><span class="math display">\[
 Y_1, \dots, Y_n \mid \theta \sim \text{i.i.d.} \; p(y \mid \theta).
 \]</span></p>
-<p><span class="header-section-number">5</span> Exchangeability</p>
+</section></section><section><section id="exchangeability" class="title-slide slide level1 center" data-number="5"><h1>
+<span class="header-section-number">5</span> Exchangeability</h1>
+
 </section><section class="slide level2"><p>In many situations with several random variables, we would intuit that the specific order of observation of these random variables aren’t important. For example, consider a random sample of 3 participants from an infinite population which may or may not have a property (1 or 0) It makes sense that</p>
 <p><span class="math display">\[p(0, 0, 1) = p(1, 0, 0) = p(0, 1, 0).\]</span></p>
 <p>since the likelihood of a person having the property or not is <span class="math inline">\(\theta\)</span>, regardless of the sample. This property is called exchangeability.</p>
@@ -385,23 +391,24 @@ p(y_1, \dots, y_n) &amp;= \int p(y_1, \dots, y_n \mid \theta)\; d\theta &amp; \\
 &amp;= p(y_{\pi_1}, \dots, y_{\pi_n}).
 \end{align}\]</span></p>
 <p>Classical assumption of Bernoulli variables <span class="math inline">\(X_1, X_2, \dots, X_n\)</span> as outcomes of the same experiment (e.g.&nbsp;a coin flip): <em>independence</em>. But continuing to observe <span class="math inline">\(X_j\)</span>s should result in a change of opinion about the distribution of coin flip outcomes (e.g.&nbsp;gradually learning coin bias). So Bayesian statisticians should assume <em>exchangeability</em>, a weaker condition than <em>independence</em>.</p>
-<p><span class="header-section-number">6</span> de Finetti’s theorem</p>
+</section></section><section><section id="de-finettis-theorem" class="title-slide slide level1 center" data-number="6"><h1>
+<span class="header-section-number">6</span> de Finetti’s theorem</h1>
 <blockquote>
 <p>de Finetti’s theorem. Let <span class="math inline">\(Y_1, \dots, Y_n\)</span> be a finite subset of an infinitely exchangeable but <strong>not necessarily i.i.d.</strong> random variables: <span class="math display">\[p(y_1, \dots, y_n) = p(y_{\pi_1}, \dots, y_{\pi_n})\]</span> for all partitions <span class="math inline">\(\pi\)</span>. Then our model can be written as <span class="math display">\[p(y_1, \dots, y_n) = \int \left( \prod_1^n p(y_i \mid \theta) \right) p(\theta) \; d\theta.\]</span></p>
 </blockquote>
 <p>So, in general, <span class="math display">\[Y_1, \dots, Y_n \mid \theta \text{ are i.i.d.} \Leftrightarrow Y_1, \dots, Y_n \text{ are exchangable for all $n$}\]</span></p>
 <p>Importantly, if we sample from a sufficiently large population, then we can model the sample variables as being approximately conditionally i.i.d.</p>
-</section></section><section><section id="proof-for-0-1-random-variables" class="title-slide slide level1 center" data-number="6.1"><h1>
-<span class="header-section-number">6.1</span> Proof for {0, 1} random variables</h1>
-<p>From <span class="citation" data-cites="heath1976">Heath and Sudderth (<a href="#/c-4" role="doc-biblioref" onclick="">1976</a>)</span>. Also see <span class="citation" data-cites="stackexchange_definetti">Cross Validated (<a href="#/c-4" role="doc-biblioref" onclick="">2012</a>)</span>.</p>
-</section><section id="alternative-statement-of-theorem" class="slide level2"><h2>Alternative statement of theorem</h2>
+</section><section id="proof-for-0-1-random-variables" class="slide level2" data-number="6.1"><h2>
+<span class="header-section-number">6.1</span> Proof for {0, 1} random variables</h2>
+<p>From <span class="citation" data-cites="heath1976">Heath and Sudderth (<a href="#/section-7" role="doc-biblioref" onclick="">1976</a>)</span>. Also see <span class="citation" data-cites="stackexchange_definetti">Cross Validated (<a href="#/section-7" role="doc-biblioref" onclick="">2012</a>)</span>.</p>
+<h3 id="alternative-statement-of-theorem">Alternative statement of theorem</h3>
 <p>For every infinite sequence of exchangeable random variables <span class="math inline">\((X_n)\)</span> having values in <span class="math inline">\(\{0, 1\}\)</span> and a finite subsequence <span class="math inline">\(X_1, \dots, X_n\)</span>, there is a probability distribution <span class="math inline">\(F\)</span> such that</p>
 <p><span class="math display">\[\begin{align}
 P(X_1 = 1, \dots, X_k = 1, X_{k+1} = 0, \dots, X_n = 0) &amp;=  \\
 P\left(\underbrace{1, \dots, 1}_{\text{$k$ times}}, \underbrace{0, \dots, 0}_{\text{$n - k$ times}}\right) &amp;= \int_{0, 1} \theta^k (1 - \theta)^{n-k} F(d \theta)
 \end{align}\]</span></p>
 <p>Where <span class="math inline">\(F\)</span> is the prior over <span class="math inline">\(\Theta\)</span>, i.e.&nbsp;the values that <span class="math inline">\(\theta\)</span> can take.</p>
-</section><section id="proof" class="slide level2"><h2>Proof</h2>
+<h3 id="proof">Proof</h3>
 <p><em>Lemma</em>. Let <span class="math inline">\(p_{k, n} = P(X_1 = 1, \dots, X_k = 1, X_{k + 1} = 0, \dots, X_n =
 0)\)</span>, the quantity on the left side of the above equation, and suppose <span class="math inline">\(X_1,
 \dots, X_m\)</span> are exchangable Boolean random variables as before.</p>
@@ -418,30 +425,31 @@ p_{k, n} = \sum_{r = 0}^{m} \frac{(r)_k (m - r)_{n - k}}{(m)_n} q_r \text{ for }
 p_{k, n} = \int_{0}^{1} \frac{(\theta m)_k ((1 - \theta)m)_{n - k}}{(m)_n} F_m(d\theta).
 \]</span></p>
 <p>As <span class="math inline">\(m\)</span> goes to infinity, the steps of the stepwise function grow infinitely small, such that the function converges to the continuous probability distribution <span class="math inline">\(F\)</span>. By Helly’s theorem and some hand-waving in this explanation, the components of the integrand converge to the exponential terms in the theorem: <span class="math inline">\(\theta^k (1 - \theta)^{n - k}\)</span>.</p>
-<p><span class="header-section-number">7</span> Exercises</p>
-</section></section><section><section id="section" class="title-slide slide level1 center" data-number="7.1"><h1>
-<span class="header-section-number">7.1</span> 2.1</h1>
+</section></section><section><section id="exercises" class="title-slide slide level1 center" data-number="7"><h1>
+<span class="header-section-number">7</span> Exercises</h1>
 
-</section><section id="a" class="slide level2"><h2>a</h2>
+</section><section id="section" class="slide level2" data-number="7.1"><h2>
+<span class="header-section-number">7.1</span> 2.1</h2>
+<h3 id="a">a</h3>
 <p>The marginal probability distribution of a father’s occupation is found by summing over the rows of the son’s occupation. Formally, let <span class="math inline">\(F\)</span> be the father’s occupation and <span class="math inline">\(S\)</span> be the son’s. Then <span class="math inline">\(P(F = f) = \sum P(F = f, S = s)\)</span>.</p>
 <ul>
 <li>Farm: 0.11</li>
 <li>Operatives: 0.279</li>
 <li>etc…</li>
-</ul></section><section id="b" class="slide level2"><h2>b</h2>
+</ul>
+<h3 id="b">b</h3>
 <p>This time sum over columns.</p>
-</section><section id="c" class="slide level2"><h2>c</h2>
+<h3 id="c">c</h3>
 <p>In the row of the table where the father’s occupation is “farm”, normalize the values of the son’s occupation such that they sum to one. This can be done by dividing each value by the sum of the row. Formally, this is calculating</p>
 <p><span class="math display">\[\begin{align}
 P(S = s \mid F = \text{farm}) &amp;= \frac{P(S = s, F = \text{farm})}{P(F = \text{farm})} \\
 &amp;= \frac{P(S = s, F = \text{farm})}{\sum_{s' \in S} P(S = s', F = \text{farm})}.
 \end{align}\]</span></p>
-</section><section id="d" class="slide level2"><h2>d</h2>
+<h3 id="d">d</h3>
 <p>Normalize the column where the son’s occupation is “farm” like above.</p>
-</section></section><section><section id="section-1" class="title-slide slide level1 center" data-number="7.2"><h1>
-<span class="header-section-number">7.2</span> 2.2</h1>
-
-</section><section id="a-1" class="slide level2"><h2>a</h2>
+</section><section id="section-1" class="slide level2" data-number="7.2"><h2>
+<span class="header-section-number">7.2</span> 2.2</h2>
+<h3 id="a-1">a</h3>
 <p>Since expectation is linear, <span class="math display">\[\begin{align}
 \mathbb{E}(a_1 Y_1 + a_2 Y_2) &amp;= a_1\mathbb{E}(Y_1) + a_2\mathbb{E}(Y_2) \\
 &amp;= a_1 \mu_1 + a_2 \mu_2
@@ -450,7 +458,7 @@ P(S = s \mid F = \text{farm}) &amp;= \frac{P(S = s, F = \text{farm})}{P(F = \tex
 \text{Var}(a_1 Y_1 + a_2 Y_2) &amp;= a^2\text{Var}(Y_1) + b^2\text{Var}(Y_2) + 2ab\text{Cov}(Y_1, Y_2) \\
 &amp;= a^2\sigma_1^2 + b^2\sigma_2^2
 \end{align}\]</span></p>
-</section><section id="b-1" class="slide level2"><h2>b</h2>
+<h3 id="b-1">b</h3>
 <p><span class="math display">\[\begin{align}
 \mathbb{E}(a_1 Y_1 - a_2 Y_2) &amp;= a_1\mathbb{E}(Y_1) - a_2\mathbb{E}(Y_2) \\
 &amp;= a_1 \mu_1 - a_2 \mu_2
@@ -460,10 +468,10 @@ P(S = s \mid F = \text{farm}) &amp;= \frac{P(S = s, F = \text{farm})}{P(F = \tex
 &amp;= a^2\sigma_1^2 + b^2\sigma_2^2 \\
 &amp;= \text{Var}(a_1 Y_1 + a_2 Y_2)
 \end{align}\]</span></p>
-</section></section><section><section id="section-2" class="title-slide slide level1 center" data-number="7.3"><h1>
-<span class="header-section-number">7.3</span> 2.3</h1>
+</section><section id="section-2" class="slide level2" data-number="7.3"><h2>
+<span class="header-section-number">7.3</span> 2.3</h2>
 <p>Let <span class="math inline">\(X, Y, Z\)</span> be random variables with joint density <span class="math inline">\(p(x, y, z) \propto f(x, z) g(y, z) h(z)\)</span>.</p>
-</section><section id="a-2" class="slide level2"><h2>a</h2>
+<h3 id="a-2">a</h3>
 <p><span class="math display">\[\begin{align}
 p(x \mid y, z) &amp;= \frac{p(x, y, z)}{p(y, z)} \\
 &amp;= \frac{p(x, y, z)}{\int p(x, y, z) \; dx} \\
@@ -471,7 +479,7 @@ p(x \mid y, z) &amp;= \frac{p(x, y, z)}{p(y, z)} \\
 &amp;\propto \frac{f(x, z) g(y, z) h(z)}{g(y, z) h(z) \int f(x, z) \; dx} \\
 &amp;\propto \frac{f(x, z)}{\int f(x, z) \; dx}
 \end{align}\]</span></p>
-</section><section id="b-2" class="slide level2"><h2>b</h2>
+<h3 id="b-2">b</h3>
 <p><span class="math display">\[\begin{align}
 p(y \mid x, z) &amp;= \frac{p(x, y, z)}{p(x, z)} \\
 &amp;\propto \frac{f(x, z) g(y, z) h(z)}{\int p(x, y, z) \; dy} \\
@@ -479,7 +487,7 @@ p(y \mid x, z) &amp;= \frac{p(x, y, z)}{p(x, z)} \\
 &amp;\propto \frac{f(x, z) g(y, z) h(z)}{f(x, z) h(z) \int g(y, z) \; dy}
 &amp;\propto \frac{g(y, z)}{\int g(y, z) \; dy}
 \end{align}\]</span></p>
-</section><section id="c-1" class="slide level2"><h2>c</h2>
+<h3 id="c-1">c</h3>
 <p>It is sufficient to show that <span class="math inline">\(p(x \mid y, z) = p(x \mid z)\)</span>:</p>
 <p>From (a), <span class="math inline">\(p(x \mid y, z) \propto \frac{f(x, z)}{\int f(x, z) \; dx}\)</span>. Now</p>
 <p><span class="math display">\[\begin{align}
@@ -492,17 +500,16 @@ p(x \mid z) &amp;= \frac{p(x, z)}{p(z)} \\
 \end{align}\]</span></p>
 <p>Now, since <span class="math inline">\(p(x \mid z) \propto p(x \mid y, z)\)</span> but additionally <span class="math inline">\(\int p(x \mid
 z) = \int p(x \mid y, z) = 1\)</span>, <span class="math inline">\(p(x \mid z) = p(x \mid y, z)\)</span>, so <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are conditionally independent given <span class="math inline">\(z\)</span>.</p>
-</section></section><section><section id="section-3" class="title-slide slide level1 center" data-number="7.4"><h1>
-<span class="header-section-number">7.4</span> 2.4</h1>
-
-</section><section id="a-3" class="slide level2"><h2>a</h2>
+</section><section id="section-3" class="slide level2" data-number="7.4"><h2>
+<span class="header-section-number">7.4</span> 2.4</h2>
+<h3 id="a-3">a</h3>
 <p>Use <strong>P3</strong> and condition on an always true event:</p>
 <p><span class="math display">\[\begin{align}
 P(H_j \cap E \mid 1 = 1) &amp;= P(H_j \mid 1 = 1) P(E \mid H_j \cap 1 = 1) = P(H_j)P(E \mid H_j) \\
 P(H_j \cap E \mid 1 = 1) &amp;= P(E \mid 1 = 1) P(H_j \mid E \cap 1 = 1) = p(E)p(H_j \mid E) \\
 &amp;= P(H_j) P(E \mid H_j)
 \end{align}\]</span></p>
-</section><section id="b-3" class="slide level2"><h2>b</h2>
+<h3 id="b-3">b</h3>
 <p>If we can assume that <span class="math inline">\(p(\mathcal{H}) = 1\)</span>, then</p>
 <p><span class="math display">\[\begin{align}
 P(E) &amp;= P(E \cap H) \\
@@ -510,19 +517,18 @@ P(E) &amp;= P(E \cap H) \\
 &amp;= P((E \cap (H_1)) \cup (E \cap (H_2 \cup \dots \cup H_k))) &amp; \text{Distributing} \\
 &amp;= P(E \cap H_1) + P(E \cap (H_2 \cup \dots \cup H_k)) &amp; \text{P2; Implied condition on a true event}
 \end{align}\]</span></p>
-</section><section id="c-2" class="slide level2"><h2>c</h2>
+<h3 id="c-2">c</h3>
 <p>Proceed inductively from b.</p>
-</section><section id="d-1" class="slide level2"><h2>d</h2>
+<h3 id="d-1">d</h3>
 <p><span class="math display">\[\begin{align}
 &amp; P(H_j)P(E \mid H_j) = P(E)P(H_j \mid E) \\
 \implies&amp; P(H_j \mid E) = \frac{P(H_j)P(E \mid H_j)}{P(E)} \\
 \implies&amp; P(H_j \mid E) = \frac{P(H_j)P(E \mid H_j)}{\sum_k P(E \cap H_k)} &amp; \text{From c} \\
 \implies&amp; P(H_j \mid E) = \frac{P(H_j)P(E \mid H_j)}{\sum_k P(E \mid H_k) P(H_k)} &amp; \text{P3} \\
 \end{align}\]</span></p>
-</section></section><section><section id="section-4" class="title-slide slide level1 center" data-number="7.5"><h1>
-<span class="header-section-number">7.5</span> 2.5</h1>
-
-</section><section id="a-4" class="slide level2"><h2>a</h2>
+</section><section id="section-4" class="slide level2" data-number="7.5"><h2>
+<span class="header-section-number">7.5</span> 2.5</h2>
+<h3 id="a-4">a</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">=</span> <span class="fu">rbind</span>(</span>
 <span id="cb1-2"><a></a>  <span class="co"># Y = 0 Y = 1</span></span>
@@ -553,9 +559,9 @@ P(E) &amp;= P(E \cap H) \\
 </table>
 </div>
 </div>
-</section><section id="b-4" class="slide level2"><h2>b</h2>
+<h3 id="b-4">b</h3>
 <p><span class="math display">\[\mathbb{E}(Y) = 0.5\]</span>. Probability the ball is green is <span class="math inline">\(0.5\)</span>.</p>
-</section><section id="c-3" class="slide level2"><h2>c</h2>
+<h3 id="c-3">c</h3>
 <p><span class="math display">\[\begin{align}
 \text{Var}(Y \mid X = 0) &amp;= \mathbb{E}((Y \mid X = 0)^2) - \mathbb{E}(Y \mid X = 0)^2 \\
 &amp;= 1^2 p(Y = 1 \mid X = 0) + 0^2 p(Y = 0 \mid X = 0) - \\ &amp; \quad (1 p(Y = 1 \mid X = 0) + 0 p(Y = 0 \mid X = 0))^2 \\
@@ -569,12 +575,12 @@ P(E) &amp;= P(E \cap H) \\
 &amp;= 0.5 - (0.5)^2 = 0.25
 \end{align}\]</span></p>
 <p><span class="math inline">\(\text{Var}(Y)\)</span> is slightly larger since we are more uncertain about the value of <span class="math inline">\(Y\)</span> when we have not yet flipped the coin. Knowing which urn we will draw from clarifies our probabilites of obtaining a green or red ball.</p>
-</section><section id="d-2" class="slide level2"><h2>d</h2>
+<h3 id="d-2">d</h3>
 <p><span class="math display">\[\begin{align}
 P(X = 0 \mid Y = 1) &amp;= .6
 \end{align}\]</span></p>
-</section></section><section id="section-5" class="title-slide slide level1 center" data-number="7.6"><h1>
-<span class="header-section-number">7.6</span> 2.6</h1>
+</section><section id="section-5" class="slide level2" data-number="7.6"><h2>
+<span class="header-section-number">7.6</span> 2.6</h2>
 <p>If <span class="math inline">\(A \perp B \mid C\)</span> then</p>
 <p><span class="math display">\[\begin{align}
 P(A, B \mid C) &amp;= P(A \mid C) P(B \mid C) \\
@@ -591,34 +597,32 @@ P(A^c, B \mid C) = P(B \mid C) P(A^c \mid C)
 \]</span></p>
 <p>We do this similarly for the other events.</p>
 <p>For a case where <span class="math inline">\(A \perp B \mid C\)</span> holds but <span class="math inline">\(A \perp B \mid C^c\)</span> does not, consider a Bayesian network where knowing <span class="math inline">\(C\)</span> results in 100% belief in the values of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> (e.g.&nbsp;<span class="math inline">\(P(A, B \mid C) = 1\)</span>), but absent of <span class="math inline">\(C\)</span>, values <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> have some probability of manifesting that affect each other.</p>
-</section><section><section id="section-6" class="title-slide slide level1 center" data-number="7.7"><h1>
-<span class="header-section-number">7.7</span> 2.7</h1>
-
-</section><section id="a-5" class="slide level2"><h2>a</h2>
+</section><section id="section-6" class="slide level2" data-number="7.7"><h2>
+<span class="header-section-number">7.7</span> 2.7</h2>
+<h3 id="a-5">a</h3>
 <p>No matter how likely the event, the maximum money you will obtain is $1. Thus no rational person would give more than $1 for the possibility of obtaining $1, as such an action would always result in lost money.</p>
-</section><section id="b-5" class="slide level2"><h2>b</h2>
+<h3 id="b-5">b</h3>
 <p>Since either <span class="math inline">\(E\)</span> or <span class="math inline">\(E^c\)</span> will definitively happen, we would want someone who is betting on the occurrences of either <span class="math inline">\(E\)</span> or <span class="math inline">\(E^c\)</span> to even out.</p>
-</section></section><section><section id="section-7" class="title-slide slide level1 center" data-number="7.8"><h1>
-<span class="header-section-number">7.8</span> 2.8</h1>
-
-</section><section id="a-6" class="slide level2"><h2>a</h2>
-<h3 id="i">i</h3>
+</section><section id="section-7" class="slide level2 smaller scrollable" data-number="7.8"><h2>
+<span class="header-section-number">7.8</span> 2.8</h2>
+<h3 id="a-6">a</h3>
+<h4 id="i">i</h4>
 <p>A frequentist idea: if many, many <span class="math inline">\(x\)</span> were picked at random from the census roll, how many of them would be Hindu?</p>
 <p>A subjectivist interpretation: how strongly should one believe that a random person from this census roll is Hindu?</p>
 <p>(Should be <span class="math inline">\(0.15\)</span>)</p>
-<h3 id="ii">ii</h3>
+<h4 id="ii">ii</h4>
 <p>If many, many <span class="math inline">\(x\)</span> were picked at random from the census roll, in the long run average, what proportion of them would be <span class="math inline">\(6452859\)</span>?</p>
 <p>How strongly should one believe that the <span class="math inline">\(x\)</span> to be sampled is <span class="math inline">\(6452859\)</span>?</p>
-<h3 id="iii">iii</h3>
+<h4 id="iii">iii</h4>
 <p><strong>An interesting one</strong></p>
 <p>Assume person <span class="math inline">\(6452589\)</span> is a random person sampled from Sri Lanka that is either Hindu or not. In the long run, if many persons <span class="math inline">\(6452589\)</span> were observed, how many of them would be Hindu?</p>
 <p>Person <span class="math inline">\(6452589\)</span> is <em>one</em> person who may or may not be Hindu. How strongly should one believe that he/she is Hindu?</p>
-</section><section id="b-6" class="slide level2"><h2>b</h2>
-<h3 id="i-1">i</h3>
-<h3 id="ii-1">ii</h3>
-<h3 id="iii-1">iii</h3>
+<h3 id="b-6">b</h3>
+<h4 id="i-1">i</h4>
+<h4 id="ii-1">ii</h4>
+<h4 id="iii-1">iii</h4>
 <p>Skipping</p>
-</section><section id="c-4" class="slide level2 smaller scrollable"><h2>c</h2>
+<h3 id="c-4">c</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

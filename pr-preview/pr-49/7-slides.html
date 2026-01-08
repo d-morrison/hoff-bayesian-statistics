@@ -220,9 +220,11 @@ Jesse Mu
 </div>
 
   <p class="date">2016-11-10</p>
-</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> The multivariate normal density</p>
-</section><section class="slide level2"></section><section id="example-reading-comprehension" class="title-slide slide level1 center" data-number="1.1"><h1>
-<span class="header-section-number">1.1</span> Example: reading comprehension</h1>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --></section><section><section id="the-multivariate-normal-density" class="title-slide slide level1 center" data-number="1"><h1>
+<span class="header-section-number">1</span> The multivariate normal density</h1>
+
+</section><section id="example-reading-comprehension" class="slide level2" data-number="1.1"><h2>
+<span class="header-section-number">1.1</span> Example: reading comprehension</h2>
 <p>We make the step to two variables by example. Consider a sample (<span class="math inline">\(n = 22\)</span>) of children who are given reading comprehension tests before and after receiving a particular instructional method. So each student has a before and after test score. We can denote these <em>two</em> variables for student <span class="math inline">\(i\)</span> as a vector <span class="math inline">\(\mathbf{Y}_i\)</span>, where <span class="math inline">\(Y_{i, 1}\)</span> is the before score, and <span class="math inline">\(Y_{i, 2}\)</span> is the after score:</p>
 <p><span class="math display">\[\begin{align}
 \mathbf{Y}_i = \begin{pmatrix}
@@ -235,8 +237,8 @@ Y_{i, 2} \\
 &amp;= \frac{\sigma_{1, 2}}{\sigma_1 \sigma_2} \\
 &amp;= \frac{\sigma_{1, 2}}{\sqrt{\sigma_1^2 \sigma_2^2}}
 \end{align}\]</span></p>
-</section><section><section id="multivariate-normal-density" class="title-slide slide level1 center" data-number="1.2"><h1>
-<span class="header-section-number">1.2</span> Multivariate normal density</h1>
+</section><section id="multivariate-normal-density" class="slide level2" data-number="1.2"><h2>
+<span class="header-section-number">1.2</span> Multivariate normal density</h2>
 <p>If <span class="math display">\[\begin{align}
 \mathbf{y} &amp;= \begin{pmatrix}
 y_1 \\
@@ -277,8 +279,10 @@ p(\mathbf{y} \mid \boldsymbol{\theta}, \Sigma) = (2\pi)^{-p / 2} | \Sigma |^{-1/
 </div>
 </div>
 </div>
-<p><span class="header-section-number">2</span> A semiconjugate prior distribution for the mean</p>
-</section><section class="slide level2 scrollable"><p>At this point we have given up on computing a full closed form solution for the posterior, as it’s too complicated. Rather, if we compute conjugate priors and posteriors for the full conditional distributions of the <span class="math inline">\(\boldsymbol{\theta}\)</span> and <span class="math inline">\(\Sigma\)</span> separately, we can use Gibbs sampling to easily estimate the joint posterior distribution. Let’s start by calculating <span class="math inline">\(\boldsymbol{\theta}\)</span> first:</p>
+</section></section><section><section id="a-semiconjugate-prior-distribution-for-the-mean" class="title-slide slide level1 center" data-number="2"><h1>
+<span class="header-section-number">2</span> A semiconjugate prior distribution for the mean</h1>
+
+</section><section class="slide level2"><p>At this point we have given up on computing a full closed form solution for the posterior, as it’s too complicated. Rather, if we compute conjugate priors and posteriors for the full conditional distributions of the <span class="math inline">\(\boldsymbol{\theta}\)</span> and <span class="math inline">\(\Sigma\)</span> separately, we can use Gibbs sampling to easily estimate the joint posterior distribution. Let’s start by calculating <span class="math inline">\(\boldsymbol{\theta}\)</span> first:</p>
 <p>Analogous the univariate case, for the multivariate normal distribution, a conjugate prior for the population mean is a multivariate normal.</p>
 <p>Let <span class="math inline">\(\boldsymbol{\mu}_0\)</span> be the prior mean, and <span class="math inline">\(\Lambda_0\)</span> be the covariance matrix of <span class="math inline">\(\boldsymbol{\mu}_0\)</span>. Then let <span class="math inline">\(\boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_0, \Lambda_0)\)</span>. What does this prior look like?</p>
 <p><span class="math display">\[\begin{align}
@@ -330,8 +334,8 @@ p(\boldsymbol{\theta} \mid \Sigma) p(\mathbf{y}_1, \dots, \mathbf{y}_n \mid
 <li>
 <span class="math inline">\(\mathbb{E}(\boldsymbol{\theta} \mid \mathbf{y}_1, \dots, \mathbf{y}_n,
 \Sigma) = \boldsymbol{\mu}_n = (A_0^{-1} + n\Sigma^{-1})^{-1} (\Lambda_0^{-1} \boldsymbol{\mu}_0 + n\Sigma^{-1}\bar{\boldsymbol{y}})\)</span>, weighted average of the prior estimate of the mean and the sample mean.</li>
-</ul>
-<p><span class="header-section-number">3</span> The inverse-Wishart distribution</p>
+</ul></section></section><section><section id="the-inverse-wishart-distribution" class="title-slide slide level1 center scrollable" data-number="3"><h1>
+<span class="header-section-number">3</span> The inverse-Wishart distribution</h1>
 <aside class="notes"><p>We’ve seen the (semi)conjugate prior and posterior distribution for the mean. Now to the covariance matrix <span class="math inline">\(\Sigma\)</span>. Remember that for the univariate normal distribution, a semi-conjugate prior distribution for the variance was the inverse-Gamma distribution. Similarly, for the multivariate case, a semi-conjugate prior distribution for the covariance matrix is the inverse of the multivariate analog of the Gamma distribution, known as a Wishart distribution.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -366,17 +370,17 @@ p(\boldsymbol{\theta} \mid \Sigma) p(\mathbf{y}_1, \dots, \mathbf{y}_n \mid
 <span class="math inline">\(\mathbb{E}(\Sigma^{-1}) = \nu_0 \mathbf{S}_0^{-1}\)</span> (instead of <span class="math inline">\(\Phi_0\)</span>)</li>
 <li>
 <span class="math inline">\(\mathbb{E}(\Sigma) = \frac{1}{\nu_0 - p - 1} \mathbf{S}_0\)</span> (so not exactly the inverse of <span class="math inline">\(\mathbf{S}_0^{-1}\)</span>)</li>
-</ul></section></section><section id="specifying-parameters" class="title-slide slide level1 center" data-number="3.1"><h1>
-<span class="header-section-number">3.1</span> Specifying parameters</h1>
+</ul></section><section id="specifying-parameters" class="slide level2" data-number="3.1"><h2>
+<span class="header-section-number">3.1</span> Specifying parameters</h2>
 <p>Specifying parameters is somewhat interesting for the inverse-Wishart becase there are many of them - we need to specify the entire covariance matrix. If we have a prior expectation of a covariance matrix <span class="math inline">\(\Sigma_0\)</span>, then we can center our prior around it in two suggested ways:</p>
 <ul>
 <li>Set <span class="math inline">\(\nu_0\)</span> large and set <span class="math inline">\(\mathbf{S}_0 = (\nu_0 - p - 1) \Sigma_0\)</span>, such that <span class="math inline">\(\mathbb{E}(\Sigma) = \frac{\nu_0 - p - 1}{\nu_0 - p - 1}\Sigma_0 = \Sigma_0\)</span> and (due to large <span class="math inline">\(\nu_0\)</span>) the prior is fairly concentrated around <span class="math inline">\(\Sigma_0\)</span>;</li>
 <li>Set <span class="math inline">\(\nu_0 = p + 2\)</span> and let <span class="math inline">\(\mathbf{S}_0 = \Sigma_0\)</span>, such that <span class="math inline">\(\mathbb{E}(\Sigma) = \frac{1}{p + 2 - p - 1}\Sigma_0 = \Sigma_0\)</span> but only loosely centered around <span class="math inline">\(\Sigma_0\)</span> (due to fairly small <span class="math inline">\(\nu_0\)</span>)</li>
 </ul>
 <p>For an “empirical Bayes” approach, we can center our prior around the empirical covariance matrix of our sample.</p>
-</section><section><section id="full-conditional-distribution-of-sigma-mid-boldsymboly_1-dots-boldsymboly_n-boldsymboltheta" class="title-slide slide level1 center" data-number="3.2"><h1>
+</section><section id="full-conditional-distribution-of-sigma-mid-boldsymboly_1-dots-boldsymboly_n-boldsymboltheta" class="slide level2" data-number="3.2"><h2>
 <span class="header-section-number">3.2</span> Full conditional distribution of <span class="math inline">\(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}\)</span>
-</h1>
+</h2>
 <p>There is an intimidating normalizing constant for the inverse-Wishart. All we need to know is if <span class="math inline">\(\Sigma \sim \text{inverse-Wishart}(\nu_0, \mathbf{S}_0^{-1})\)</span>,</p>
 <p><span class="math display">\[\begin{align}
 p(\Sigma) \propto | \Sigma |^{-(\nu_0 + p + 1) / 2} \times \exp\left(-\text{tr}(\mathbf{S}_0 \Sigma^{-1})  / 2\right)
@@ -418,10 +422,12 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 &amp;= \frac{\nu_0 - p - 1}{\nu_0 + n - p - 1} \frac{1}{\nu_0 - p - 1} \mathbf{S}_0 + \frac{n}{\nu_0 + n - p - 1}\frac{1}{n} \mathbf{S}_{\theta}.
 \end{align}\]</span></p>
 <p>So the Bayesian estimator is a biased estimator, but is still demonstrably consistent as <span class="math inline">\(n \to \infty\)</span>. As mentioned in Chapter 5, we hope that the estimator is biased more towards the true mean, as long as the prior is mildly informative.</p>
-<p><span class="header-section-number">4</span> Summary of inference with the multivariate normal</p>
+</section></section><section><section id="summary-of-inference-with-the-multivariate-normal" class="title-slide slide level1 center" data-number="4"><h1>
+<span class="header-section-number">4</span> Summary of inference with the multivariate normal</h1>
+
 </section><section class="slide level2"><p>Like in Chapter 5, here we summarize the moving parts of inference with the multivariate normal sampling model. There are four prior parameters (note some are matrices):</p>
-</section></section><section id="semiconjugate-prior" class="title-slide slide level1 center" data-number="4.1"><h1>
-<span class="header-section-number">4.1</span> (Semiconjugate) prior</h1>
+</section><section id="semiconjugate-prior" class="slide level2" data-number="4.1"><h2>
+<span class="header-section-number">4.1</span> (Semiconjugate) prior</h2>
 <ul>
 <li>
 <span class="math inline">\(\mathbf{S}_0\)</span> for the inverse-Wishart
@@ -452,8 +458,8 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 </ul>
 <p>Somewhat similar to the univariate case, the estimate of the covariance matrix for the inverse-Wishart prior is decoupled from the estimate of the covariance of the mean vector in the multivariate normal prior, although it’s common to set these the same (but again, see rules for determining <span class="math inline">\(\nu_0\)</span>).</p>
 <p>Note that this is somewhat <em>different</em> than the univariate case; since there were no covariances to worry about, what was decoupled was “prior sample sizes” from which the prior variance and prior mean are observed. Like here, it was also common to set these the same.</p>
-</section><section><section id="posterior" class="title-slide slide level1 center" data-number="4.2"><h1>
-<span class="header-section-number">4.2</span> Posterior</h1>
+</section><section id="posterior" class="slide level2" data-number="4.2"><h2>
+<span class="header-section-number">4.2</span> Posterior</h2>
 <p>The updated parameters are</p>
 <ul>
 <li>
@@ -461,18 +467,19 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 <li><span class="math inline">\(\nu_n = \nu_0 + n\)</span></li>
 <li><span class="math inline">\(\mu_n = (\Lambda_0^{-1} + n\Sigma^{-1})^{-1} (\Lambda_0 \boldsymbol{\mu}_0 + n\Sigma^{-1}\bar{\boldsymbol{y}}) = \Lambda_n (\Lambda_0^{-1}\boldsymbol{\mu}_0 + n\Sigma^{-1}\bar{\boldsymbol{y}})\)</span></li>
 <li><span class="math inline">\(\Lambda_n = (\Lambda_0^{-1} + n\Sigma^{-1})^{-1}\)</span></li>
-</ul>
-<p><span class="header-section-number">5</span> Gibbs sampling of the mean and covariance</p>
+</ul></section></section><section><section id="gibbs-sampling-of-the-mean-and-covariance" class="title-slide slide level1 center" data-number="5"><h1>
+<span class="header-section-number">5</span> Gibbs sampling of the mean and covariance</h1>
+
 </section><section class="slide level2 scrollable"><p>Knowing these values, we can now perform Gibbs sampling to sample from <span class="math inline">\(p(\boldsymbol{\theta}, \Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y_n})\)</span>. Specifically, we start with an estimate of one of the two values - <span class="math inline">\(\Sigma^{(0)}\)</span> for simplicity - and use the following algorithm:</p>
 <ol type="1">
 <li>Sample <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)} \sim \mathcal{N}(\boldsymbol{\mu}_n,
 \Lambda_n)\)</span> where the parameters are calculated as above. This depends on the inverse of the previous <span class="math inline">\(\Sigma^{(s)}\)</span>.</li>
 <li>Sample <span class="math inline">\(\Sigma^{(s + 1)} \sim \text{inverse-Wishart}(\nu_n, \mathbf{S}_n^{-1})\)</span>, where the parameters depend on <span class="math inline">\(\boldsymbol{\theta}^{(s + 1)}\)</span>.</li>
-</ol></section></section><section><section id="example-reading-comprehension-1" class="title-slide slide level1 center" data-number="5.1"><h1>
-<span class="header-section-number">5.1</span> Example: reading comprehension</h1>
+</ol></section><section id="example-reading-comprehension-1" class="slide level2" data-number="5.1"><h2>
+<span class="header-section-number">5.1</span> Example: reading comprehension</h2>
 <p>We return to the example of two reading comprehension exams, given pre- and post-training.</p>
-</section><section id="specifying-prior" class="slide level2"><h2>Specifying prior</h2>
-<h3 id="mean">Mean</h3>
+<h3 id="specifying-prior">Specifying prior</h3>
+<h4 id="mean">Mean</h4>
 <p>Assume the tests are designed such that people generally score 50 out of 100. Thus, our prior mean is <span class="math inline">\(\boldsymbol{\mu}_0 = (50, 50)^T\)</span>. Note that this implicitly assumes there is no effect of the training - the prior expectation of the post-training score is the same as the pre-training score.</p>
 <p>Next, we need to specify the covariance of the prior expectation of the mean. Specifically, since the scores are bounded between 0 and 100, we should put little probability outside the <span class="math inline">\([0, 100]\)</span> range (so a bell curve centered on 50 with 2 standard deviations <span class="math inline">\(\in [0, 100]\)</span>). Then 1 standard deviation is 25 and the variance is thus 625.</p>
 <p>Since the scores are both testing reading ability the scores are probably correlated. So if we want a prior correlation between <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> of 0.5, we need to solve the correlation equation</p>
@@ -484,9 +491,9 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 <p><span class="math display">\[
 \Lambda_0 = \begin{bmatrix} 625 &amp; 312.5 \\ 312.5 &amp; 625 \end{bmatrix}
 \]</span></p>
-<h3 id="variance">Variance</h3>
+<h4 id="variance">Variance</h4>
 <p>We will use the guideline mentioned earlier for loosely centering our covariance matrix prior on <span class="math inline">\(\Lambda_0\)</span>. We’ll set <span class="math inline">\(\mathbf{S}_0^{-1} = \Lambda_0\)</span> and <span class="math inline">\(\nu_0 = p + 2 = 4\)</span>.</p>
-</section><section id="code" class="slide level2"><h2>Code</h2>
+<h3 id="code">Code</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Prior specification</span></span>
 <span id="cb1-2"><a></a>Mu_0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">50</span>)  <span class="co"># If coerced, will be treated as column</span></span>
@@ -611,7 +618,9 @@ p(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &a
 </details>
 </div>
 <p>Importantly, the probability of an individual having a higher post-test score than pre-test is much lower than the near-1 probability of the difference in mean test scores. It’s important to have clarified the difference between population means and individuals when drawing conclusions about your data.</p>
-<p><span class="header-section-number">6</span> Missing data and imputation</p>
+</section></section><section><section id="missing-data-and-imputation" class="title-slide slide level1 center" data-number="6"><h1>
+<span class="header-section-number">6</span> Missing data and imputation</h1>
+
 </section><section class="slide level2"><p>Another useful application of Bayesian analysis and the multivariate normal model is the imputation of missing data. There are various naive ways to deal with missing data in datasets:</p>
 <ul>
 <li>listwise deletion: just discard points with missing data. But this wastes valuable data!</li>
@@ -625,8 +634,8 @@ p(\boldsymbol{o}_i, \{ y_{i, j} \; : \; o_{i, j} = 1 \} \mid \boldsymbol{\theta}
 p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\theta}, \Sigma) \prod_{y_{i, j} \; : \; o_{i, j} = 0} dy_{i, j} \right]
 \end{align}\]</span></p>
 <p>i.e.&nbsp;we are integrating over all possible “full” observations of datapoints <span class="math inline">\(\boldsymbol{y}\)</span> with respect to the variables that we don’t have. The variables we have observed stay constant.</p>
-</section></section><section id="gibbs-sampling-with-missing-data" class="title-slide slide level1 center scrollable" data-number="6.1"><h1>
-<span class="header-section-number">6.1</span> Gibbs sampling with missing data</h1>
+</section><section id="gibbs-sampling-with-missing-data" class="slide level2 scrollable" data-number="6.1"><h2>
+<span class="header-section-number">6.1</span> Gibbs sampling with missing data</h2>
 <p>Normally we use Gibbs sampling to estimate the posterior <span class="math inline">\(p(\boldsymbol{\theta},
 \Sigma \mid \mathbf{Y})\)</span> Here, however, we don’t have a full dataset <span class="math inline">\(\mathbf{Y}\)</span>; rather, we have an observed dataset <span class="math inline">\(\mathbf{Y}_{\text{obs}}\)</span> and missing values <span class="math inline">\(\mathbf{Y}_{\text{miss}}\)</span>. The key idea is to <em>also</em> estimate the posterior distribution on <span class="math inline">\(\mathbf{Y}_{\text{miss}}\)</span>, which will also help us make more accurate estimates on <span class="math inline">\(\boldsymbol{\theta}\)</span> and <span class="math inline">\(\Sigma\)</span>. Using Gibbs sampling, when we have sample values <span class="math inline">\(\boldsymbol{\theta}^{(s)}\)</span> and <span class="math inline">\(\Sigma^{(s)}\)</span>, we can sample from</p>
 <p><span class="math display">\[
@@ -672,8 +681,8 @@ p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\thet
 </li>
 </ol>
 <p>For steps 1 and 2, you simply combine the sampled missing data and the observed data for a full dataset <span class="math inline">\(\mathbf{Y}\)</span> and sample from the full conditional distributions like normal.</p>
-</section><section id="example" class="title-slide slide level1 center" data-number="6.2"><h1>
-<span class="header-section-number">6.2</span> Example</h1>
+</section><section id="example" class="slide level2" data-number="6.2"><h2>
+<span class="header-section-number">6.2</span> Example</h2>
 <p>Let’s take a look at an example using a dataset with four health-related measurements on 200 women near Phoenix, Arizona. Notice that this dataset has missing values. We’ll assume that the data is <em>missing at random</em>, which is necessary for this analysis.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>Y <span class="ot">=</span> Y.pima.miss</span>
@@ -812,13 +821,14 @@ p(\boldsymbol{o}_i) \times \int \left[ p(\boldsymbol{y}_i \mid \boldsymbol{\thet
 <span id="cb8-114"><a></a><span class="co">#&gt; [4,] 0.1888097 0.2349531 0.6510103 1.0000000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><span class="header-section-number">7</span> Exercises</p>
-</section><section><section id="section" class="title-slide slide level1 center" data-number="7.1"><h1>
-<span class="header-section-number">7.1</span> 7.1</h1>
+</section></section><section><section id="exercises" class="title-slide slide level1 center" data-number="7"><h1>
+<span class="header-section-number">7</span> Exercises</h1>
 
-</section><section id="a" class="slide level2"><h2>a</h2>
+</section><section id="section" class="slide level2" data-number="7.1"><h2>
+<span class="header-section-number">7.1</span> 7.1</h2>
+<h3 id="a">a</h3>
 <p>Since the density is uniform with respect to <span class="math inline">\(\boldsymbol{\theta}\)</span>, the integral over the support of this function is infinite and cannot be 1.</p>
-</section><section id="b" class="slide level2"><h2>b</h2>
+<h3 id="b">b</h3>
 <p><span class="math display">\[\begin{align}
 p_J(\boldsymbol{\theta}, \Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n) &amp;\propto p(\boldsymbol{\theta}, \Sigma) \times p(\boldsymbol{y}_1, \dots, \boldsymbol{y}_n \mid \boldsymbol{\theta}, \Sigma) \\
 &amp;\propto \left[ | \Sigma |^{-(p + 2) / 2} \right] \times \left[ | \Sigma |^{-n / 2} \exp\left( -\text{tr}(\mathbf{S}_\theta \Sigma^{-1}) \right) \right] \\
@@ -836,14 +846,14 @@ p_J(\boldsymbol{\theta} \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \Sigma) 
 p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) &amp;\propto | \Sigma | ^{-(p + n + 2) / 2 } \exp(- \text{tr}(\mathbf{S}_\theta \Sigma^{-1}) / 2) \\
 &amp;\propto \text{dinverse-wishart}\left(n + 1, \mathbf{S}_\theta^{-1} \right)
 \end{align}\]</span></p>
-</section></section><section><section id="section-1" class="title-slide slide level1 center" data-number="7.2"><h1>
-<span class="header-section-number">7.2</span> 7.3</h1>
+</section><section id="section-1" class="slide level2" data-number="7.2"><h2>
+<span class="header-section-number">7.2</span> 7.3</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>bluecrab <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">'Exercises/bluecrab.dat'</span>))</span>
 <span id="cb9-2"><a></a>orangecrab <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">'Exercises/orangecrab.dat'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="a-1" class="slide level2"><h2>a</h2>
+<h3 id="a-1">a</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>crab.mcmc <span class="ot">=</span> <span class="fu">lapply</span>(<span class="fu">list</span>(<span class="st">'bluecrab'</span> <span class="ot">=</span> bluecrab, <span class="st">'orangecrab'</span> <span class="ot">=</span> orangecrab), <span class="cf">function</span>(crab) {</span>
 <span id="cb10-2"><a></a>  p <span class="ot">=</span> <span class="fu">ncol</span>(crab)</span>
@@ -889,7 +899,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb10-42"><a></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="b-1" class="slide level2"><h2>b</h2>
+<h3 id="b-1">b</h3>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -906,7 +916,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb11-4"><a></a><span class="co">#&gt; [1] 0.9979</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="c" class="slide level2"><h2>c</h2>
+<h3 id="c">c</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>bluecrab.cor <span class="ot">=</span> <span class="fu">apply</span>(crab.mcmc<span class="sc">$</span>bluecrab<span class="sc">$</span>sigma, <span class="at">MARGIN =</span> <span class="dv">3</span>, <span class="at">FUN =</span> <span class="cf">function</span>(covmat) {</span>
 <span id="cb12-2"><a></a>  covmat[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">/</span> (<span class="fu">sqrt</span>(covmat[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">*</span> covmat[<span class="dv">2</span>, <span class="dv">2</span>]))</span>
@@ -931,8 +941,8 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </details>
 </div>
 <p>The orange crab species appears to have a much higher correlation between its two measurements than the blue crab species.</p>
-</section></section><section><section id="section-2" class="title-slide slide level1 center" data-number="7.3"><h1>
-<span class="header-section-number">7.3</span> 7.4</h1>
+</section><section id="section-2" class="slide level2" data-number="7.3"><h2>
+<span class="header-section-number">7.3</span> 7.4</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>agehw <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">'Exercises/agehw.dat'</span>))</span>
 <span id="cb14-2"><a></a><span class="fu">colnames</span>(agehw) <span class="ot">=</span> agehw[<span class="dv">1</span>, ]</span>
@@ -940,7 +950,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb14-4"><a></a>agehw <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(agehw), <span class="at">nrow =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="a-2" class="slide level2"><h2>a</h2>
+<h3 id="a-2">a</h3>
 <p>With typical intuitions about life expectancy and age of marriage, I suspect that the ages of most of the married couples will fall between 25 and 80. There may be slight age differences among men and women, but not enough to warrant encoding in the prior. Thus <span class="math inline">\(\boldsymbol{\mu}_0 = ((25 + 80) / 2, (25 + 80) / 2) = (52.5, 52.5)^T\)</span> is set.</p>
 <p>A semiconjugate prior distribution is chosen in this case, as it seems intuitive that there are fewer married couples at ages 25 and 80 than there are married couples around age 50, thus justifying a bell curve centered around <span class="math inline">\(52.5\)</span> with variance <span class="math inline">\(13.75^2 \approx 189\)</span> such that approximately 95% of the prior falls within the range <span class="math inline">\((25, 80)\)</span>.</p>
 <p>The ages of the couples are expected to be quite tightly correlated, so knowing the above variance, a prior correlation of <span class="math inline">\(0.75\)</span> is targeted. Solving the correlation equation gives</p>
@@ -963,7 +973,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb15-9"><a></a>nu0 <span class="ot">=</span> p <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="b-2" class="slide level2"><h2>b</h2>
+<h3 id="b-2">b</h3>
 <p>The wording of the question is interesting - the assumption is to sample a fixed <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span> and from there sample <span class="math inline">\(100\)</span> points all with the same parameters. An alternative approach would be to sample a new data point for each sample of <span class="math inline">\(\boldsymbol{\theta}, \Sigma\)</span>.</p>
 <p>In fact, because of that wording, <span class="math inline">\(\nu_0 = p + 2 = 4\)</span> was originally set to loosely center the prior. But given that this variance will often produce uncorrelated prior predictive datasets, <span class="math inline">\(\nu_0\)</span> is increased slightly.</p>
 <p>After increasing <span class="math inline">\(\nu_0\)</span>, the posterior predictive datasets appear satisfactory.</p>
@@ -991,7 +1001,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 </div>
 </div>
 </div>
-</section><section id="c-1" class="slide level2"><h2>c</h2>
+<h3 id="c-1">c</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>S <span class="ot">=</span> <span class="dv">10000</span></span>
 <span id="cb17-2"><a></a></span>
@@ -1060,9 +1070,9 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb17-65"><a></a><span class="co">#&gt; 0.8615416 0.9028502 0.9321153</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="d" class="slide level2"><h2>d</h2>
+<h3 id="d">d</h3>
 <p>Exercise 7.2 has not been completed, but doing Jeffreys’ prior and a “diffuse prior” below will still be helpful to see what effect prior information has.</p>
-<h3 id="i">i</h3>
+<h4 id="i">i</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>THETA <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> S, <span class="at">ncol =</span> p)</span>
 <span id="cb18-2"><a></a>SIGMA <span class="ot">=</span> <span class="fu">array</span>(<span class="at">dim =</span> <span class="fu">c</span>(p, p, S))</span>
@@ -1100,9 +1110,9 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb18-34"><a></a><span class="co">#&gt; 0.8608382 0.9038100 0.9347940</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<h3 id="ii">ii</h3>
+<h4 id="ii">ii</h4>
 <p>Unit information prior (skipping)</p>
-<h3 id="iii">iii</h3>
+<h4 id="iii">iii</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>mu0 <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, p)</span>
 <span id="cb19-2"><a></a>lambda0 <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">5</span> <span class="sc">*</span> <span class="fu">diag</span>(p)</span>
@@ -1121,10 +1131,10 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb19-15"><a></a><span class="co">#&gt; 0.7931776 0.8552845 0.8996432</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="e" class="slide level2"><h2>e</h2>
+<h3 id="e">e</h3>
 <p>It doesn’t really seem like the prior information matters because the sample size is so large. Regardless of whether the prior is informative, the quantiles and correlations end up quite similar. Maybe the diffuse prior is slightly different, but it’s not a big difference.</p>
 <p>If a smaller sample size is used, this may be different. The following shows what happens when the dataset is truncated to the first 25 variables and rerun with the informative prior and the diffuse prior:</p>
-<h3 id="informative-prior">Informative prior</h3>
+<h4 id="informative-prior">Informative prior</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>mu0 <span class="ot">=</span> <span class="fu">rep</span>(<span class="fl">52.5</span>, p)</span>
 <span id="cb20-2"><a></a>lambda0 <span class="ot">=</span> s0 <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">189</span>, <span class="fl">141.75</span>), <span class="fu">c</span>(<span class="fl">141.75</span>, <span class="dv">189</span>))</span>
@@ -1143,7 +1153,7 @@ p_J(\Sigma \mid \boldsymbol{y}_1, \dots, \boldsymbol{y}_n, \boldsymbol{\theta}) 
 <span id="cb20-15"><a></a><span class="co">#&gt; 0.8418117 0.9136244 0.9540250</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<h3 id="diffuse-prior">Diffuse prior</h3>
+<h4 id="diffuse-prior">Diffuse prior</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>mu0 <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, p)</span>
 <span id="cb21-2"><a></a>lambda0 <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">5</span> <span class="sc">*</span> <span class="fu">diag</span>(p)</span>

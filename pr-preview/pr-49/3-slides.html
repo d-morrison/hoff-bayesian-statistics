@@ -240,7 +240,9 @@ Jesse Mu
 </div>
 
   <p class="date">2016-09-17</p>
-</section><section class="slide level2"><!-- Setup --><!-- Begin writing --><p><span class="header-section-number">1</span> The Binomial model</p>
+</section><section class="slide level2"><!-- Setup --><!-- Begin writing --></section><section><section id="the-binomial-model" class="title-slide slide level1 center" data-number="1"><h1>
+<span class="header-section-number">1</span> The Binomial model</h1>
+
 </section><section class="slide level2"><p>1998 General Social Survey: Females over age 65, <span class="math inline">\(1 = \text{happy}\)</span>, <span class="math inline">\(0 =
 \text{unhappy}\)</span>. <span class="math inline">\(n = 129\)</span>. So let the survey be 129 exchangeable random variables <span class="math inline">\(Y_1, \dots, Y_{129}\)</span>.</p>
 <p>Under our model, conditioned on some <span class="math inline">\(\theta\)</span>, <span class="math inline">\(Y_i\)</span> are i.i.d. binary random variables with probability <span class="math inline">\(\theta\)</span>. So the joint probability is</p>
@@ -249,8 +251,8 @@ p(y_1, \dots, y_{129} \mid \theta) = \theta^{\sum_{i} y_i} (1 - \theta)^{129 -
 \sum_i y_i}
 \end{align}\]</span></p>
 <p>Now we need to specify our prior distribution</p>
-</section><section id="uniform-prior" class="title-slide slide level1 center" data-number="1.1"><h1>
-<span class="header-section-number">1.1</span> Uniform prior</h1>
+</section><section id="uniform-prior" class="slide level2" data-number="1.1"><h2>
+<span class="header-section-number">1.1</span> Uniform prior</h2>
 <p>Imagine our prior is <span class="math inline">\(\theta \sim \text{Uniform}(0, 1)\)</span>. What this means is <span class="math inline">\(P(a \leq \theta \leq b) = P(a + c \leq \theta \leq b + c)\)</span> for all compatible <span class="math inline">\(a, b, c\)</span>. In other words, the probability of theta falling in an interval of a given width is constant, regardless of where the interval is.</p>
 <p>Then, notice</p>
 <p><span class="math display">\[\begin{align}
@@ -259,8 +261,8 @@ p(\theta \mid y_1, \dots, y_{129}) &amp;= \frac{p(y_1, \dots, y_{129} \mid \thet
 &amp;\propto p(y_1, \dots, y_{129} \mid \theta)
 \end{align}\]</span></p>
 <p>so <span class="math inline">\(p(\theta \mid Y)\)</span> and <span class="math inline">\(p(y \mid \theta)\)</span> have the same shape (see MLE discussion in Chapter 1).</p>
-</section><section id="data-and-posterior-distribution" class="title-slide slide level1 center" data-number="1.2"><h1>
-<span class="header-section-number">1.2</span> Data and posterior distribution</h1>
+</section><section id="data-and-posterior-distribution" class="slide level2" data-number="1.2"><h2>
+<span class="header-section-number">1.2</span> Data and posterior distribution</h2>
 <p>Say the observed proportion is 118 happy out of 129 (91%). Our sampling model for some fixed <span class="math inline">\(\theta\)</span> is</p>
 <p><span class="math display">\[\begin{align}
 p(y \mid \theta) = \theta^{118} (1 - \theta)^{11}
@@ -303,8 +305,8 @@ p(\theta \mid y) &amp;= \frac{\Gamma(131)}{\Gamma(119) \Gamma(12)} \theta^{118} 
 </div>
 </div>
 </div>
-</section><section><section id="inference-for-exchangeable-binary-data-i.e.-more-generally" class="title-slide slide level1 center" data-number="1.3"><h1>
-<span class="header-section-number">1.3</span> Inference for exchangeable binary data (i.e.&nbsp;more generally)</h1>
+</section><section id="inference-for-exchangeable-binary-data-i.e.-more-generally" class="slide level2" data-number="1.3"><h2>
+<span class="header-section-number">1.3</span> Inference for exchangeable binary data (i.e.&nbsp;more generally)</h2>
 <p>Recall for our binary data <span class="math inline">\(Y_1, \dots, Y_n\)</span> that</p>
 <p><span class="math display">\[\begin{align}
 p(\theta \mid y) &amp;= \frac{p(y \mid \theta) p(\theta)}{p(y)} \\
@@ -336,7 +338,7 @@ p(\theta \mid y) \; d\theta = 1\)</span>, we also know that the functions share 
 (\theta \mid y) \sim \text{Beta}(a + y, b + n - y).
 \]</span></p>
 <p>We therefore call Beta distributions <strong>conjugate</strong> priors for Binomial distributions.</p>
-</section><section id="conjugacy" class="slide level2"><h2>Conjugacy</h2>
+<h3 id="conjugacy">Conjugacy</h3>
 <blockquote>
 <p><strong>Conjugacy</strong>. A class <span class="math inline">\(\mathcal{P}\)</span> of prior distributions for <span class="math inline">\(\theta\)</span> are <em>conjugate priors</em> of a sampling model <span class="math inline">\(p(y \mid \theta)\)</span> if <span class="math display">\[ p(\theta) \in
 \mathcal{P} \implies p(\theta \mid y) \in \mathcal{P}.\]</span></p>
@@ -368,7 +370,7 @@ p(\theta \mid y) \; d\theta = 1\)</span>, we also know that the functions share 
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside></section><section id="prediction" class="slide level2"><h2>Prediction</h2>
+      }</style></aside><h3 id="prediction">Prediction</h3>
 <p>Assume we’ve already seen data <span class="math inline">\(y_1, \dots y_n\)</span> and we want to predict value of the next observation <span class="math inline">\(\tilde{Y}\)</span>.</p>
 <aside class="notes"><p>Intuitively we should predict <span class="math inline">\(\tilde{Y} = 1\)</span> with probability equal to the expectation of <span class="math inline">\(\theta\)</span> given our data (according to the Bayesian framework). These calculations confirm this:</p>
 <style type="text/css">
@@ -405,9 +407,9 @@ n}\frac{y}{n} = \frac{1}{2 + n}\\
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside></section></section><section><section id="confidence-regions" class="title-slide slide level1 center" data-number="1.4"><h1>
-<span class="header-section-number">1.4</span> Confidence regions</h1>
-<aside class="notes"><p>See <span class="citation" data-cites="stackexchange_confidence">Cross Validated (<a href="#/b-7" role="doc-biblioref" onclick="">2010</a>)</span> for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</p>
+      }</style></aside></section><section id="confidence-regions" class="slide level2" data-number="1.4"><h2>
+<span class="header-section-number">1.4</span> Confidence regions</h2>
+<aside class="notes"><p>See <span class="citation" data-cites="stackexchange_confidence">Cross Validated (<a href="#/section-8" role="doc-biblioref" onclick="">2010</a>)</span> for a really interesting discussion about the difference between Bayesian and frequentist confidence intervals.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -455,14 +457,16 @@ P(l(Y) &lt; \theta &lt; u(Y) \mid theta) = .95
 </div>
 </div>
 <p>However, since some of the values for theta <em>outside</em> of the interval have higher density than values of theta <em>inside</em> the interval, another option is to force “symmetry” of heights by searching for the <strong>highest posterior density</strong> region, which can be intuitively found by drawing a horizontal line down the density until the region contained by the line is <span class="math inline">\(1 - \alpha\)</span>% of the entire curve. The analytical calculation for these is not straightforward; computationally, using a discretized density, a “trial and error” approach or a neat procedure detailed in Exercise 4.7 (c) can be used.</p>
-<p><span class="header-section-number">2</span> The Poisson model</p>
+</section></section><section><section id="the-poisson-model" class="title-slide slide level1 center" data-number="2"><h1>
+<span class="header-section-number">2</span> The Poisson model</h1>
+
 </section><section class="slide level2"><p>This is for measurements that have values that are whole numbers, rather than just 1 or 0 (example: number of children).</p>
 <p>Recall the PDF of a Poisson distribution - if <span class="math inline">\(Y \sim \text{Poisson}(\theta)\)</span> then</p>
 <ul>
 <li><span class="math inline">\(p(Y = y \mid \theta) = \theta^y e^{-\theta} / y!\)</span></li>
 <li><span class="math inline">\(\mathbb{E}(Y) = \text{Var}(Y) = \theta\)</span></li>
-</ul></section></section><section><section id="posterior-inference" class="title-slide slide level1 center" data-number="2.1"><h1>
-<span class="header-section-number">2.1</span> Posterior inference</h1>
+</ul></section><section id="posterior-inference" class="slide level2" data-number="2.1"><h2>
+<span class="header-section-number">2.1</span> Posterior inference</h2>
 <p>Just like how <span class="math inline">\(Y = \sum Y_i\)</span> is a sufficient statistic for <span class="math inline">\(n\)</span> independent Bernoulli trials, there exists a sufficient statistic for a sample of <span class="math inline">\(n\)</span> i.i.d. Poisson variables. Notice</p>
 <p><span class="math display">\[\begin{align}
 P(Y_1 = y_1, \dots, Y_n = y_n \mid \theta) &amp;=
@@ -475,7 +479,7 @@ P(Y_1 = y_1, \dots, Y_n = y_n \mid \theta) &amp;=
 \frac{p(\theta_a \mid y_1, \dots, y_n)}{p(\theta_b \mid y_1, \dots, y_n)} &amp;= \dots
 \end{align}\]</span></p>
 <p>notice that the <span class="math inline">\(\prod_i 1 / y_i !\)</span> term is the same in that ratio, and thus cancels out. Then the <span class="math inline">\(\theta_{a, b}^{\sum_i y_i}\)</span> terms are the only terms remaining in the fraction, and thus <span class="math inline">\(\sum_i y_i\)</span> is a sufficient statistic. This sufficient statistic is a little more interesting than the Bernoulli case - consider that it doesn’t matter what the individual values of <span class="math inline">\(y_i\)</span> are (if one is very large, one is very small, or they all look the same) - inference on <span class="math inline">\(\theta\)</span> is possible with just the aggregate sum.</p>
-</section><section id="conjugate-prior" class="slide level2"><h2>Conjugate prior</h2>
+<h3 id="conjugate-prior">Conjugate prior</h3>
 <p>Using Bayes’ rule and the sampling model above, we have</p>
 <p><span class="math display">\[\begin{align}
 p(\theta \mid y) &amp;= \frac{p(\theta)p(y \mid \theta)}{p(y)} \\
@@ -505,7 +509,7 @@ p(\theta \mid y) &amp;= \frac{p(\theta) p(y \mid \theta)}{p(y)} \\
 \mathbb{E}(\theta \mid y_1, \dots, y_n) &amp;= \frac{a + \sum y_i}{b + n} \\
 &amp;= \frac{b}{b + n} \frac{a}{b} + \frac{n}{b + n}\frac{\sum y_i}{n} \\
 \end{align}\]</span></p>
-</section><section id="posterior-predictive-distribution" class="slide level2"><h2>Posterior predictive distribution</h2>
+<h3 id="posterior-predictive-distribution">Posterior predictive distribution</h3>
 <p><span class="math display">\[\begin{align}
 p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \int_0^{\infty} p(\tilde{y} \mid \theta, y_1, \dots, y_n) p(\theta \mid y_1, \dots, y_n) \; d\theta &amp; \text{Marginalization} \\
 &amp;= \int_0^{\infty} p(\tilde{y} \mid \theta) p(\theta \mid y_1, \dots, y_n) \; d\theta &amp; \text{Since $\tilde{y}$ and $y_i$s c.i. given $\theta$} \\
@@ -534,8 +538,8 @@ p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \dots \\
 \\
 \end{align}\]</span></p>
 <p>So as <span class="math inline">\(n\)</span> grows large, the variance on <span class="math inline">\(\tilde{Y}\)</span> approaches the variance of its expectation <span class="math inline">\(\mathbb{E}(\tilde{Y})\)</span>.</p>
-</section></section><section><section id="example-birth-rates" class="title-slide slide level1 center" data-number="2.2"><h1>
-<span class="header-section-number">2.2</span> Example: Birth Rates</h1>
+</section><section id="example-birth-rates" class="slide level2" data-number="2.2"><h2>
+<span class="header-section-number">2.2</span> Example: Birth Rates</h2>
 <p>In the 1990s, did women with college degrees have different numbers of children than women without college degrees? We sample <span class="math inline">\(n_1\)</span> women without college degrees, denoted <span class="math inline">\(Y_{1,1}, \dots, Y_{n_1, 1}\)</span>, and <span class="math inline">\(n_2\)</span> women with college degrees, <span class="math inline">\(Y_{1, 2}, \dots, Y_{n_2, 2}\)</span>. For some parameter <span class="math inline">\(\theta\)</span> we can model the number of children for each woman as being i.i.d <span class="math inline">\(\text{Poisson}(\theta_1)\)</span> and <span class="math inline">\(\text{Poisson}(\theta_2)\)</span>, respectively. We may be interested in conducting hypothesis tests to see whether or not these <span class="math inline">\(\theta\)</span> are different.</p>
 <p>Recall that, in this two samples, the <em>sufficient</em> statistic is simply the sum of all of the <span class="math inline">\(Y_i\)</span>. Say we observe</p>
 <ul>
@@ -570,7 +574,9 @@ p(\tilde{y} \mid y_1, \dots, y_n) &amp;= \dots \\
 </div>
 </div>
 <p>Notice that we can calculate the probability that <span class="math inline">\(\theta_1 &gt; \theta_2\)</span> by integrating over the joint density <span class="math inline">\(p(\theta_1, \theta_2)\)</span> over the region where <span class="math inline">\(\theta_1 &gt; \theta_2\)</span>. This is calculated at the beginning of Chapter 4, and it is about 0.97.</p>
-<p><span class="header-section-number">3</span> Exponential families and conjugate priors</p>
+</section></section><section><section id="exponential-families-and-conjugate-priors" class="title-slide slide level1 center" data-number="3"><h1>
+<span class="header-section-number">3</span> Exponential families and conjugate priors</h1>
+
 </section><section class="slide level2"><p>Binomial and Poisson models are <em>exponential family models</em>.</p>
 <blockquote>
 <p><strong>Exponential family model</strong>: a model whose densities can be expressed as <span class="math display">\[p(y \mid \phi) = h(y)c(\phi)e^{\phi t(y)}\]</span> where <span class="math inline">\(\phi\)</span> is the unknown parameter and <span class="math inline">\(t(y)\)</span> is the sufficient statistic.</p>
@@ -587,10 +593,9 @@ p(\phi \mid y_1, \dots, y_n) &amp;\propto p(\phi) \times p(y_1, \dots, y_n \mid 
 &amp;\propto p\left( \phi \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^n t(y_i) \right)
 \end{align}\]</span></p>
 <p>For this class of priors, we can interpret <span class="math inline">\(n_0\)</span> as a “prior sample size” and <span class="math inline">\(t_0\)</span> is the prior expectation of the sufficient statistic <span class="math inline">\(t(Y)\)</span>.</p>
-</section></section><section><section id="example-binomial-model" class="title-slide slide level1 center" data-number="3.1"><h1>
-<span class="header-section-number">3.1</span> Example: Binomial model</h1>
-
-</section><section id="parameterization" class="slide level2"><h2>Parameterization</h2>
+</section><section id="example-binomial-model" class="slide level2" data-number="3.1"><h2>
+<span class="header-section-number">3.1</span> Example: Binomial model</h2>
+<h3 id="parameterization">Parameterization</h3>
 <p>We can obtain the representation from a single binary random variable (why?)</p>
 <p><span class="math display">\[p(y \mid \theta) = \theta^{y} (1 - \theta)^{1 - y}\]</span></p>
 <p>We can express this as an exponential family model by reparameterizing by the log odds <span class="math inline">\(\phi = \log \frac{\theta}{1 - \theta}\)</span>, so that <span class="math inline">\(\theta = \frac{e^\phi}{e^\phi + 1}\)</span>:</p>
@@ -606,7 +611,7 @@ p(y \mid \phi) &amp;= \left( \frac{e^\phi}{e^\phi + 1} \right)^y \left(\frac{1}{
 <li><span class="math inline">\(t(y) = y\)</span></li>
 </ul>
 <p>(It’s intuitive that the sufficient statistic is <span class="math inline">\(y\)</span>)</p>
-</section><section id="prior" class="slide level2"><h2>Prior</h2>
+<h3 id="prior">Prior</h3>
 <p>The conjugate prior on <span class="math inline">\(\phi\)</span> (discarding the constant <span class="math inline">\(\kappa\)</span>) is</p>
 <p><span class="math display">\[\begin{align}
 p(\phi \mid n_0, t_0) &amp;\propto (1 + e^{\phi})^{-n_0} e^{n_0 t_0 \phi}
@@ -627,10 +632,9 @@ p_{\theta}(\theta \mid n_0, t_0) &amp;= p_{\phi}(h(\theta) \mid n_0, t_0) \times
 <p><span class="math display">\[\begin{align}
 p(\theta \mid y_1, \dots, y_n) &amp;= \text{dbeta}\left(\theta,\; (n_0 + n)\left(n_0 t_0 + \sum t(y_i) \right),\; (n_0 + n) \left(1 - n_0 t_0 - \sum t(y_i) \right) \right)
 \end{align}\]</span></p>
-</section></section><section><section id="example-poisson-model" class="title-slide slide level1 center" data-number="3.2"><h1>
-<span class="header-section-number">3.2</span> Example: Poisson model</h1>
-
-</section><section id="parameterization-1" class="slide level2"><h2>Parameterization</h2>
+</section><section id="example-poisson-model" class="slide level2" data-number="3.2"><h2>
+<span class="header-section-number">3.2</span> Example: Poisson model</h2>
+<h3 id="parameterization-1">Parameterization</h3>
 <p><span class="math display">\[\begin{align}
 p(y \mid \theta) &amp;= \frac{1}{y!} \theta^{y} e^{-\theta} \\
 &amp;= \frac{1}{y!} e^{y \log \theta} \text{exp}(-e^{\log \theta}) \\
@@ -643,19 +647,21 @@ p(y \mid \theta) &amp;= \frac{1}{y!} \theta^{y} e^{-\theta} \\
 <li><span class="math inline">\(t(y) = y\)</span></li>
 <li>
 <span class="math inline">\(c(\phi) = \text{exp}(-e^\phi)\)</span> (The book has a typo here).</li>
-</ul></section><section id="prior-1" class="slide level2"><h2>Prior</h2>
+</ul>
+<h3 id="prior-1">Prior</h3>
 <p>Then the prior is <span class="math inline">\(p(\phi \mid n_0, t_0) = \text{exp}(n_0 e^{-\phi}) e^{n_0 t_0
 \phi}\)</span>. For time, I will do change of variables to show how this induces a <span class="math inline">\(\text{Gamma}(n_0 t_0, n_0)\)</span> density on <span class="math inline">\(\theta\)</span>.</p>
-<p><span class="header-section-number">4</span> Exercises</p>
-</section></section><section><section id="section" class="title-slide slide level1 center" data-number="4.1"><h1>
-<span class="header-section-number">4.1</span> 3.1</h1>
+</section></section><section><section id="exercises" class="title-slide slide level1 center" data-number="4"><h1>
+<span class="header-section-number">4</span> Exercises</h1>
 
-</section><section id="a" class="slide level2"><h2>a</h2>
+</section><section id="section" class="slide level2 scrollable" data-number="4.1"><h2>
+<span class="header-section-number">4.1</span> 3.1</h2>
+<h3 id="a">a</h3>
 <p><span class="math display">\[\begin{align}
 P(Y_1 = y_1, \dots, Y_{100} &amp;= y_100 \mid \theta) &amp;= \theta^{\sum y_i} (1 - \theta)^{100 - \sum y_i} \\
 P(\sum Y_i = y \mid \theta) &amp;= {100 \choose y} \theta^{y}(1 - \theta)^{100 - y}
 \end{align}\]</span></p>
-</section><section id="b" class="slide level2"><h2>b</h2>
+<h3 id="b">b</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Hand-implementing this, but you can use dbinom easily</span></span>
 <span id="cb3-2"><a></a>my_dbinom <span class="ot">=</span> <span class="cf">function</span>(y, n, theta) <span class="fu">choose</span>(n, y) <span class="sc">*</span> theta<span class="sc">^</span>y <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> theta)<span class="sc">^</span>(n <span class="sc">-</span> y)</span>
@@ -691,7 +697,7 @@ P(\sum Y_i = y \mid \theta) &amp;= {100 \choose y} \theta^{y}(1 - \theta)^{100 -
 </div>
 </div>
 </div>
-</section><section id="c" class="slide level2"><h2>c</h2>
+<h3 id="c">c</h3>
 <p>If we have a uniform prior on beliefs of <span class="math inline">\(\theta \in \{0, 0.1, \dots, 1.0\}\)</span>, then <span class="math inline">\(P(\theta = 0.0) = P(\theta = 0.1) = \dots = 1/11\)</span>.</p>
 <p><span class="math display">\[\begin{align}
 p(\theta \mid \sum Y_i = 57) &amp;= \frac{p(\sum Y_i = 57 \mid \theta)p(\theta)}{p(\sum Y_i = 57)} \\
@@ -740,7 +746,7 @@ p(\theta \mid \sum Y_i = 57)
 </div>
 </div>
 <p>Notice the denominator calculation could have been ignored - we could simply normalize the proportional prior densities <span class="math inline">\(p(\sum Y_i = 57 \mid \theta)\)</span> to 1.</p>
-</section><section id="d" class="slide level2"><h2>d</h2>
+<h3 id="d">d</h3>
 <p>Since <span class="math inline">\(p(\theta) = 1\)</span>, the density <span class="math inline">\(p(\theta) \times P(\sum Y_i = 57 \mid
 \theta) = P(\sum Y_i = 57 \mid \theta)\)</span>. From (a),</p>
 <p><span class="math display">\[
@@ -758,7 +764,7 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 </div>
 </div>
 </div>
-</section><section id="e" class="slide level2 scrollable"><h2>e</h2>
+<h3 id="e">e</h3>
 <p>Treat the uniform prior as a <span class="math inline">\(\text{Beta}(1, 1)\)</span> distribution. Then <span class="math inline">\(\left(
 \theta \mid \sum Y_i = y \right) \sim \text{Beta}(58, 44)\)</span>.</p>
 <div class="cell" data-layout-align="center">
@@ -772,8 +778,8 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 </div>
 <ol start="4" type="a">
 <li>is the posterior density before normalization by the constant <span class="math inline">\(p(\sum Y_i = 57) = 0.099\)</span>. (e) is the posterior density fully, after normalization. Notice that (d) and (e) have the same shape, due to the lack of influence of <span class="math inline">\(p(\theta)\)</span> on posterior calculation.</li>
-</ol></section></section><section id="section-1" class="title-slide slide level1 center" data-number="4.2"><h1>
-<span class="header-section-number">4.2</span> 3.2</h1>
+</ol></section><section id="section-1" class="slide level2" data-number="4.2"><h2>
+<span class="header-section-number">4.2</span> 3.2</h2>
 <p>For consistency, these will be rewritten as done in Chapter 1, where <span class="math inline">\(\theta_0 = a
 / (a + b)\)</span> is the initial guess of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(w = a + b\)</span> is the strength of that guess. Then,</p>
 <div class="cell" data-layout-align="center">
@@ -810,10 +816,9 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 </div>
 </div>
 <p>One can use this plot to determine whether or not they should believe that <span class="math inline">\(\theta &gt; 0.5\)</span> by quantifying their prior beliefs about the proportion with two factors: <span class="math inline">\(\theta_0\)</span>, an initial estimate of the true proportion, and <span class="math inline">\(w\)</span>, the “sample size” of observed individuals that contributed to the initial estimate. Then, viewing the corresponding contour on this plot would give an estimate of the posterior proportion given these two variables. It is shown here that <span class="math inline">\(\theta &gt; 0.5\)</span> for most prior beliefs except for those with relatively low and very strong estimates about <span class="math inline">\(\theta_0\)</span>.</p>
-</section><section><section id="section-2" class="title-slide slide level1 center" data-number="4.3"><h1>
-<span class="header-section-number">4.3</span> 3.3</h1>
-
-</section><section id="a-1" class="slide level2"><h2>a</h2>
+</section><section id="section-2" class="slide level2" data-number="4.3"><h2>
+<span class="header-section-number">4.3</span> 3.3</h2>
+<h3 id="a-1">a</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>ya <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">6</span>)</span>
 <span id="cb9-2"><a></a>yb <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -845,7 +850,7 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 <span id="cb10-4"><a></a><span class="co">#&gt; [1]  7.432064 10.560308</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="b-1" class="slide level2"><h2>b</h2>
+<h3 id="b-1">b</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>ya <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">6</span>)</span>
 <span id="cb11-2"><a></a>yb <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">7</span>)</span>
@@ -861,16 +866,15 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 </div>
 </div>
 <p>Very strong prior beliefs that the expected value of <span class="math inline">\(\theta \approx 12\)</span> would be necessary, because <span class="math inline">\(\theta_{ML} = 8.69\)</span> which is quite low. According to the graph <span class="math inline">\(n_0\)</span> values of close to 50 are required.</p>
-</section><section id="c-1" class="slide level2"><h2>c</h2>
+<h3 id="c-1">c</h3>
 <p>We have existing knowledge about population A. Knowing that B is related, we have incorporated these beliefs into our prior on population B. However, nothing more than a weak prior expectation of B to be similar to A should be encoded in our analysis, since it is entirely possible that the parameter of B is quite different from A. So we should view the populations as independent.</p>
-</section></section><section><section id="section-3" class="title-slide slide level1 center" data-number="4.4"><h1>
-<span class="header-section-number">4.4</span> 3.4</h1>
-
-</section><section id="a-2" class="slide level2"><h2>a</h2>
+</section><section id="section-3" class="slide level2" data-number="4.4"><h2>
+<span class="header-section-number">4.4</span> 3.4</h2>
+<h3 id="a-2">a</h3>
 <p>This is fairly straightforward like 3.1, skipping</p>
-</section><section id="b-2" class="slide level2"><h2>b</h2>
+<h3 id="b-2">b</h3>
 <p>This is fairly straightforward like 3.1, skipping</p>
-</section><section id="c-2" class="slide level2"><h2>c</h2>
+<h3 id="c-2">c</h3>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>prior <span class="ot">=</span> <span class="cf">function</span>(theta) {</span>
 <span id="cb12-2"><a></a>  (<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>) <span class="sc">*</span> (<span class="fu">gamma</span>(<span class="dv">10</span>) <span class="sc">/</span> (<span class="fu">gamma</span>(<span class="dv">2</span>) <span class="sc">*</span> <span class="fu">gamma</span>(<span class="dv">8</span>))) <span class="sc">*</span> </span>
@@ -886,16 +890,16 @@ P(\sum Y_i = 57 \mid \theta) = {100 \choose 57} \theta^{57} (1 - \theta)^{43}
 </div>
 </div>
 <p>Some kind of bimodal prior on rates of teen recidivism - for example, you believe that in some regions, teen recidivism is rather low, but there are some regions where teen recidivism is high.</p>
-</section><section id="d-1" class="slide level2"><h2>d</h2>
-<h3 id="i">i</h3>
+<h3 id="d-1">d</h3>
+<h4 id="i">i</h4>
 <p><span class="math display">\[\begin{align}
 p(\theta) \times p(y \mid \theta) &amp;= \frac{1}{4}\frac{\Gamma(10)}{\Gamma(2) \Gamma(8)} \left[ 3\theta (1 - \theta)^7 + \theta^7 (1 - \theta) \right] \times \left[ {43 \choose 15} \theta^{15} (1 - \theta)^{28} \right] \\
 &amp;= \frac{1}{4} \frac{\Gamma(44)}{\Gamma(16) \Gamma(29)} \frac{\Gamma(10)}{\Gamma(2) \Gamma(8)} \left[3\theta^{16} (1 - \theta)^{35} + \theta^{22} (1 - \theta)^{29} \right] \\
 \end{align}\]</span></p>
-<h3 id="ii">ii</h3>
+<h4 id="ii">ii</h4>
 <p>This is proportional to some mixture with unknown weights of a <span class="math inline">\(\text{Beta}(17,
 36)\)</span> and a <span class="math inline">\(\text{Beta}(23, 30)\)</span> which intuitively are the posterior densities in parts a and b.</p>
-<h3 id="iii">iii</h3>
+<h4 id="iii">iii</h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>posterior <span class="ot">=</span> <span class="cf">function</span>(theta) {</span>
 <span id="cb13-2"><a></a>  <span class="fu">prior</span>(theta) <span class="sc">*</span> <span class="fu">choose</span>(<span class="dv">43</span>, <span class="dv">15</span>) <span class="sc">*</span> theta<span class="sc">^</span><span class="dv">15</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> theta)<span class="sc">^</span><span class="dv">28</span></span>
@@ -917,12 +921,11 @@ p(\theta) \times p(y \mid \theta) &amp;= \frac{1}{4}\frac{\Gamma(10)}{\Gamma(2) 
 \text{mode}(\text{Beta}(23, 30)) &amp;= (23 - 1) / (23 + 30 - 2) = 0.431
 \end{align}\]</span></p>
 <p>So the mode is between these two modes, although closer to that of the <span class="math inline">\(\text{Beta}(17, 36)\)</span>.</p>
-</section><section id="e-1" class="slide level2"><h2>e</h2>
+<h3 id="e-1">e</h3>
 <p>Unclear: general formula for any beta mixture with any weights and parameters? Or general formula for any observed result for this model, given then prior in c)?</p>
-</section></section><section><section id="section-4" class="title-slide slide level1 center" data-number="4.5"><h1>
-<span class="header-section-number">4.5</span> 3.5</h1>
-
-</section><section id="a-3" class="slide level2"><h2>a</h2>
+</section><section id="section-4" class="slide level2" data-number="4.5"><h2>
+<span class="header-section-number">4.5</span> 3.5</h2>
+<h3 id="a-3">a</h3>
 <p>First,</p>
 <p><span class="math display">\[\begin{align}
 \tilde{p} &amp;= \sum_{k = 1}^K w_k p_k (\theta \mid n_{0, k}, t_{0, k}) \\
@@ -938,7 +941,7 @@ p(\phi \mid y_1, \dots, y_n) &amp;\propto p(\phi) p(y_1, \dots, y_n \mid \phi) \
 &amp;\propto \sum_{k = 1}^K w_k p\left(\theta \; \middle| \; n_0 + n, \; n_0 t_0 + \sum_{i = 1}^{n} t(y_i)\right)
 \end{align}\]</span></p>
 <p>So the posterior is another weighted mixture. However, the weights of the relative components are not preserved (neither are they in the Beta mixtures above).</p>
-</section><section id="b-3" class="slide level2"><h2>b</h2>
+<h3 id="b-3">b</h3>
 <p>Not specified whether the exponential family parameterization or the standard parameterization should be used. The standard parameterization will be used.</p>
 <p>Let <span class="math display">\[\begin{align}
 \tilde{p} &amp;= \sum_{k = 1}^K w_k p_k (\theta \mid a_k, b_k) \\
@@ -951,10 +954,9 @@ p(\theta \mid y_1, \dots, y_n) &amp;\propto p(\theta) p(y_1, \dots, y_n \mid \th
 &amp;\propto \sum_{k = 1}^K \left( w_k \frac{b_k^{a_k}}{\Gamma(a_k)} \theta^{a_k + \sum y_i - 1} e^{-(b_k + n)\theta} \right) \\
 &amp;\propto \sum_{k = 1}^K w_k p\left(\theta \; \middle| \; a_k + \sum y_i, \; b_k + n \right) \\
 \end{align}\]</span></p>
-</section></section><section><section id="section-5" class="title-slide slide level1 center" data-number="4.6"><h1>
-<span class="header-section-number">4.6</span> 3.9</h1>
-
-</section><section id="a-4" class="slide level2"><h2>a</h2>
+</section><section id="section-5" class="slide level2" data-number="4.6"><h2>
+<span class="header-section-number">4.6</span> 3.9</h2>
+<h3 id="a-4">a</h3>
 <p>We take advantage of the fact that the Galenshore distribution can be viewed as an exponential model</p>
 <p><span class="math display">\[\begin{align}
 p(y \mid \theta) &amp;= \frac{2}{\Gamma(a)} \theta^{2a} y^{2a - 1} e^{-\theta^2 y^2} \\
@@ -1004,27 +1006,27 @@ e^{- \theta^2 y^2}\)</span> - the rest of the PDF is a constant that doesn’t d
 </div>
 </div>
 </div>
-</section><section id="b-4" class="slide level2"><h2>b</h2>
+<h3 id="b-4">b</h3>
 <p>Since this is an exponential family, the posterior of <span class="math inline">\(\phi\)</span> is given by <span class="math inline">\(p(\phi \mid n_0 + n, n_0 t_0 + n\bar{t}(\mathbf{y}))\)</span>. This means that</p>
 <p><span class="math display">\[\begin{align}
 \theta \mid y_1, \dots, y_n &amp;\sim \text{Galenshore}\left(a (n_0 + n) + 1, \sqrt{- (n_0 + n) (n_0 t_0 + n \bar{t}(\mathbf{y}))} \right) \\
 \end{align}\]</span></p>
-</section><section id="c-3" class="slide level2"><h2>c</h2>
+<h3 id="c-3">c</h3>
 <p>By taking advantage of the exponential family we already know <span class="math inline">\(t(y) = -(y^2)\)</span> is our sufficient statistic. Specifically when comparing multiple <span class="math inline">\(Y_1, \dots, Y_n\)</span>, we have <span class="math inline">\(\sum_{i = 1}^n
 - (y^2)\)</span> as our sufficient statistic.</p>
 <p>Note it was a technicality that <span class="math inline">\(t(y) = -(y^2)\)</span> was chosen. The exponential family could have been parameterized such that <span class="math inline">\(t(y) = y^2\)</span>, and the negative is distributed in the other functions. Also notice that since <span class="math inline">\(y^2 &gt; 0\)</span>, the <span class="math inline">\(t(y)\)</span>s provide the same information.</p>
-</section><section id="d-2" class="slide level2"><h2>d</h2>
+<h3 id="d-2">d</h3>
 <p>From the formula for the expectation of a Galenshore distribution, if we have <span class="math display">\[\theta \mid y_1, \dots, y_n \sim \text{Galenshore}\left(a (n_0 + n) + 1, \sqrt{- (n_0 + n) (n_0 t_0 + n \bar{t}(\mathbf{y}))} \right)\]</span></p>
 <p>then</p>
 <p><span class="math display">\[\begin{align}
 \mathbb{E}(\theta \mid y_1, \dots, y_n) = \frac{\Gamma\left(\frac{1}{2} a(n_0 + n) + 2 \right)}{ \sqrt{- (n_0 + n) (n_0 t_0 + n \bar{t}(\mathbf{y}))} \Gamma\left( a(n_0 + n) + 1 \right)}
 \end{align}\]</span></p>
-</section><section id="e-2" class="slide level2"><h2>e</h2>
+<h3 id="e-2">e</h3>
 <p>This one looks tedious…</p>
-</section></section><section><section id="section-6" class="title-slide slide level1 center" data-number="4.7"><h1>
-<span class="header-section-number">4.7</span> 3.10</h1>
+</section><section id="section-6" class="slide level2" data-number="4.7"><h2>
+<span class="header-section-number">4.7</span> 3.10</h2>
 <p>Change of variables</p>
-</section><section id="a-5" class="slide level2"><h2>a</h2>
+<h3 id="a-5">a</h3>
 <p>If <span class="math inline">\(\psi = g(\theta) = \log \frac{\theta}{1 - \theta}\)</span>, then let <span class="math inline">\(\theta = h(\psi) = \frac{e^\psi}{1 + e^\psi}\)</span>. Then, by the change of variables formula,</p>
 <p><span class="math display">\[\begin{align}
 p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| \\
@@ -1064,9 +1066,9 @@ p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right|
 </div>
 </div>
 </div>
-<p>This prior is also visualized via Monte-Carlo simulation in exercise 4.6. One perhaps counterintuitive result here is that for a Beta-Binomial model, an uninformative (uniform) prior on <span class="math inline">\(\theta\)</span> <em>does</em> result in an informative prior on the log-odds. This was apparently a “major criticism of Bayesian inference” led by R.A. Fisher. For more information about this (and an introduction into the Jeffreys’ prior exercises next up), see <span class="citation" data-cites="zhu2011">Zhu (<a href="#/b-7" role="doc-biblioref" onclick="">2011</a>)</span>.</p>
+<p>This prior is also visualized via Monte-Carlo simulation in exercise 4.6. One perhaps counterintuitive result here is that for a Beta-Binomial model, an uninformative (uniform) prior on <span class="math inline">\(\theta\)</span> <em>does</em> result in an informative prior on the log-odds. This was apparently a “major criticism of Bayesian inference” led by R.A. Fisher. For more information about this (and an introduction into the Jeffreys’ prior exercises next up), see <span class="citation" data-cites="zhu2011">Zhu (<a href="#/section-8" role="doc-biblioref" onclick="">2011</a>)</span>.</p>
 <p>Point: it is impossible to have a totally diffuse prior on a random variable with infinite support such as the log-odds, though…</p>
-</section><section id="b-5" class="slide level2"><h2>b</h2>
+<h3 id="b-5">b</h3>
 <p>If <span class="math inline">\(\psi = g(\theta) = \log \theta\)</span>, then let <span class="math inline">\(\theta = h(\psi) = e^\psi\)</span>. Then, by the change of variables formula,</p>
 <p><span class="math display">\[\begin{align}
 p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| \\
@@ -1099,10 +1101,9 @@ p_{\psi}(\psi) &amp;= p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right|
 </div>
 </div>
 </div>
-</section></section><section><section id="section-7" class="title-slide slide level1 center" data-number="4.8"><h1>
-<span class="header-section-number">4.8</span> 3.12</h1>
-
-</section><section id="a-6" class="slide level2"><h2>a</h2>
+</section><section id="section-7" class="slide level2" data-number="4.8"><h2>
+<span class="header-section-number">4.8</span> 3.12</h2>
+<h3 id="a-6">a</h3>
 <p>If <span class="math inline">\(Y\)</span> is Binomial, then <span class="math inline">\(p(y \mid \theta) = {n \choose y} \theta^y (1 - \theta)^{n - y}\)</span>.</p>
 <p>So <span class="math inline">\(I(\theta) = -\mathbb{E}(\partial^2 \ell(y \mid \theta) / \partial \theta^2 )\)</span> where <span class="math inline">\(\ell(y \mid \theta) = \log p(y \mid \theta)\)</span>. Now,</p>
 <p><span class="math display">\[\begin{align}
@@ -1127,7 +1128,7 @@ p_J(\theta) &amp;= c \times \sqrt{\frac{n}{\theta (1 - \theta)}} \\
 <p>where <span class="math display">\[
 c = \left( \int_0^1 \sqrt{\frac{n}{\theta(1 - \theta)}} \; d\theta \right)^{-1}.
 \]</span></p>
-</section><section id="b-6" class="slide level2"><h2>b</h2>
+<h3 id="b-6">b</h3>
 <p><span class="math display">\[\begin{align}
 \ell(y \mid \psi) &amp;= \log p(y \mid \psi) \\
 &amp;= \log \left( {n \choose y} e^{\psi y} (1 + e^\psi)^{-n} \right) \\
@@ -1144,7 +1145,7 @@ I(\psi) &amp;= -\mathbb{E}\left( - \frac{n e^\psi}{\left( e^\psi + 1 \right)^2}\
 p_J(\psi) &amp;\propto \sqrt{ \frac{n e^\psi}{\left( e^\psi + 1 \right)^2} } \\
 &amp;\propto \frac{\sqrt{n e^\psi}}{e^\psi + 1}
 \end{align}\]</span></p>
-</section><section id="c-4" class="slide level2"><h2>c</h2>
+<h3 id="c-4">c</h3>
 <p>If <span class="math inline">\(\psi = g(\theta) = \log \frac{\theta}{1 - \theta}\)</span>, then let <span class="math inline">\(\theta = h(\psi) = \frac{e^\psi}{1 + e^\psi}\)</span>. Then, by the change of variables formula,</p>
 <p><span class="math display">\[\begin{align}
 p_{\psi}(\psi) &amp;\propto p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \right| \\
@@ -1155,10 +1156,10 @@ p_{\psi}(\psi) &amp;\propto p_{\theta}(h(\psi)) \times \left| \frac{dh}{d\psi} \
 &amp;\propto p_J(\psi).
 \end{align}\]</span></p>
 <p>In this case, it has been demonstrated that Jeffreys’ prior is invariant under monotone transformation.</p>
-</section></section><section><section id="section-8" class="title-slide slide level1 center" data-number="4.9"><h1>
-<span class="header-section-number">4.9</span> 3.13</h1>
+</section><section id="section-8" class="slide level2 smaller scrollable" data-number="4.9"><h2>
+<span class="header-section-number">4.9</span> 3.13</h2>
 <p>Improper Jeffreys’ prior</p>
-</section><section id="a-7" class="slide level2"><h2>a</h2>
+<h3 id="a-7">a</h3>
 <p>If <span class="math inline">\(Y \sim \text{Poisson}(\theta)\)</span>, <span class="math inline">\(p(y) = \frac{\theta^y e^{-\theta}}{y!}\)</span>.</p>
 <p><span class="math display">\[\begin{align}
 \ell(y \mid \theta) &amp;= \log p(y \mid \theta) \\
@@ -1184,7 +1185,7 @@ p_J(\theta) &amp;= c \times \sqrt{\frac{1}{\theta}} \\
 \int_0^{\infty} c \times \frac{1}{\sqrt{\theta}} \; d\theta = c \int_0^{\infty} \frac{1}{\sqrt{\theta}} \; d\theta = 1
 \end{align}\]</span></p>
 <p>However, this integral does not converge (<span class="math inline">\(p\)</span>-test, <span class="math inline">\(p = 1/2\)</span>), so there is no value of <span class="math inline">\(c\)</span> such that this is a valid probability distribution. Thus (per the name of the exercise) this is an <em>improper</em> Jeffreys’ prior.</p>
-</section><section id="b-7" class="slide level2 smaller scrollable"><h2>b</h2>
+<h3 id="b-7">b</h3>
 <p>However, even if <span class="math inline">\(p_J(\theta)\)</span> is not a valid probability distribution, we can still imagine performing “inference” using this prior.</p>
 <p><span class="math display">\[\begin{align}
 f(\theta, y) &amp;= \sqrt{I(\theta)} \times p(y \mid \theta) \\
