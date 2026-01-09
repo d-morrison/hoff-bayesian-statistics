@@ -8,6 +8,8 @@ format:
     output-file: 6-slides.html
   pdf:
     output-file: 6-handout.pdf
+  docx:
+    output-file: 6-handout.docx
 ---
 
 <!-- Setup -->
