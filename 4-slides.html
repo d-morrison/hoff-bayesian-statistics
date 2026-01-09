@@ -324,15 +324,15 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10 samples</td>
-<td style="text-align: right;">1.422856</td>
+<td style="text-align: right;">1.405487</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">1.476560</td>
+<td style="text-align: right;">1.507327</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">1.513272</td>
+<td style="text-align: right;">1.520336</td>
 </tr>
 </tbody>
 </table>
@@ -358,11 +358,11 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 </tr>
 <tr class="even">
 <td style="text-align: left;">100 samples</td>
-<td style="text-align: right;">0.920</td>
+<td style="text-align: right;">0.910</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1000 samples</td>
-<td style="text-align: right;">0.905</td>
+<td style="text-align: right;">0.886</td>
 </tr>
 </tbody>
 </table>
@@ -484,7 +484,7 @@ p(\theta_1 \mid y) p(\theta_2 \mid y) \; d\theta_2 \right) \; d\theta_1 \\
 <span id="cb7-2"><a></a>theta1.mc <span class="ot">=</span> <span class="fu">rgamma</span>(N, <span class="dv">219</span>, <span class="dv">112</span>)</span>
 <span id="cb7-3"><a></a>theta2.mc <span class="ot">=</span> <span class="fu">rgamma</span>(N, <span class="dv">68</span>, <span class="dv">45</span>)</span>
 <span id="cb7-4"><a></a><span class="fu">mean</span>(theta1.mc <span class="sc">&gt;</span> theta2.mc)</span>
-<span id="cb7-5"><a></a><span class="co">#&gt; [1] 0.9694</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-5"><a></a><span class="co">#&gt; [1] 0.9709</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Also, like the gamma example above, we can calculate some arbitrary function. Say we are interested in the ratio <span class="math inline">\(f(\theta_1, \theta_2) = \theta_1/\theta_2\)</span> of the means. On average, how many times more children do women without bachelor’s degrees have compared to those with bachelor’s degrees. Then we sample multiple pairs <span class="math inline">\((\theta^{(i)}_1, \theta^{(i)}_2)\)</span>, and multiple pairs <span class="math inline">\(\gamma^i =
@@ -550,7 +550,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>theta1.mc <span class="ot">=</span> <span class="fu">rbeta</span>(<span class="dv">5000</span>, <span class="dv">58</span>, <span class="dv">44</span>)</span>
 <span id="cb9-2"><a></a>theta2.mc <span class="ot">=</span> <span class="fu">rbeta</span>(<span class="dv">5000</span>, <span class="dv">31</span>, <span class="dv">21</span>)</span>
 <span id="cb9-3"><a></a><span class="fu">mean</span>(theta1.mc <span class="sc">&lt;</span> theta2.mc)</span>
-<span id="cb9-4"><a></a><span class="co">#&gt; [1] 0.6278</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-4"><a></a><span class="co">#&gt; [1] 0.6376</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="section-1" class="slide level2" data-number="5.2"><h2>
@@ -560,7 +560,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>theta.a <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, <span class="dv">237</span>, <span class="dv">20</span>)</span>
 <span id="cb10-2"><a></a>theta.b <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">5000</span>, <span class="dv">125</span>, <span class="dv">14</span>)</span>
 <span id="cb10-3"><a></a><span class="fu">mean</span>(theta.b <span class="sc">&lt;</span> theta.a)</span>
-<span id="cb10-4"><a></a><span class="co">#&gt; [1] 0.9966</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-4"><a></a><span class="co">#&gt; [1] 0.9956</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <h3 id="b">b</h3>
@@ -696,7 +696,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">quantile</span>(ynew.mc, <span class="fu">c</span>(.<span class="dv">125</span>, .<span class="dv">875</span>))</span>
 <span id="cb19-2"><a></a><span class="co">#&gt;    12.5%    87.5% </span></span>
-<span id="cb19-3"><a></a><span class="co">#&gt; 7.175337 8.567289</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-3"><a></a><span class="co">#&gt; 7.156686 8.552320</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <h3 id="c-1">c</h3>
@@ -719,7 +719,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 </div>
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a></span>
 <span id="cb21-2"><a></a>dens<span class="sc">$</span>x[<span class="fu">c</span>(<span class="fu">min</span>(<span class="fu">which</span>(in.hdp)), <span class="fu">max</span>(<span class="fu">which</span>(in.hdp)))]</span>
-<span id="cb21-3"><a></a><span class="co">#&gt; [1] 7.167653 8.558467</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-3"><a></a><span class="co">#&gt; [1] 7.172634 8.563423</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Since the distribution of weights is relatively symmetric and normally distributed, the HDP and quantile confidence intervals are quite similar.</p>
@@ -766,7 +766,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <span id="cb24-3"><a></a><span class="co">#&gt; [1] "Theta difference:"</span></span>
 <span id="cb24-4"><a></a><span class="fu">print</span>(<span class="fu">quantile</span>(theta.diff, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
 <span id="cb24-5"><a></a><span class="co">#&gt;      2.5%     97.5% </span></span>
-<span id="cb24-6"><a></a><span class="co">#&gt; 0.1470549 0.7387465</span></span>
+<span id="cb24-6"><a></a><span class="co">#&gt; 0.1614131 0.7397223</span></span>
 <span id="cb24-7"><a></a></span>
 <span id="cb24-8"><a></a>ynew.diff <span class="ot">=</span> ynewB <span class="sc">-</span> ynewA</span>
 <span id="cb24-9"><a></a><span class="fu">print</span>(<span class="st">"Ynew difference:"</span>)</span>
@@ -801,7 +801,7 @@ f(\theta^{(i)}_1, \theta^{(i)}_2)\)</span>.</p>
 <p>(Observe that the mean of the nobach population is around 1.4)</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>[R code]</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">mean</span>(ynewB)</span>
-<span id="cb26-2"><a></a><span class="co">#&gt; [1] 1.4106</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-2"><a></a><span class="co">#&gt; [1] 1.3846</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <h3 id="d-1">d</h3>
