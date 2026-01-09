@@ -112,6 +112,11 @@ format:
     colorlinks: true
     number-sections: true
     number-depth: 3
+  docx:
+    toc: true
+    number-sections: true
+    number-depth: 3
+    df-print: tibble
 comments:
   hypothesis:
     theme: clean

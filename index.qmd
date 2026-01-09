@@ -7,6 +7,8 @@ format:
     output-file: index-slides.html
   pdf:
     output-file: index-handout.pdf
+  docx:
+    output-file: index-handout.docx
 ---
 
 These are (fully reproducible!) R Markdown lecture notes for @hoff2009, completed as part of a 1-semester independent study course. Only Chapters 1-8 are complete right now.
