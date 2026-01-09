@@ -993,7 +993,7 @@ ls -lh _site/1.html _site/1-slides.html _site/1-handout.pdf
 - Project URL: https://d-morrison.github.io/hoff-bayesian-statistics/
 - GitHub: https://github.com/d-morrison/hoff-bayesian-statistics
 - Textbook: Hoff, Peter D. "A First Course in Bayesian Statistical Methods" (https://peterhoff.io/book/)
-- IRM Reference: Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model" (http://web.mit.edu/cocosci/Papers/Kemp-etal-AAAI06.pdf)
+- IRM Reference: Kemp et al. (2006), "Learning Systems of Concepts with an Infinite Relational Model" (http://web.mit.edu/cocosci/archive/Papers/Kemp-etal-AAAI06.pdf)
 - Quarto Documentation: https://quarto.org/docs/guide/
 - R for Data Science: https://r4ds.hadley.nz/
-- Bayesian Data Analysis (Gelman et al.): http://www.stat.columbia.edu/~gelman/book/
+- Bayesian Data Analysis (Gelman et al.): https://sites.stat.columbia.edu/gelman/book/

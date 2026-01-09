@@ -51,3 +51,4 @@ _freeze
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+wget-log*
