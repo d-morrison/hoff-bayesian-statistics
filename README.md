@@ -7,6 +7,8 @@ part of a 1-semester independent study course. Only Chapters 1-8 are complete ri
 
 Each note includes summaries of chapter sections, with math and explanations modified for clarity and the occasional link to external resources. Many figures from the book are reproduced in a ggplot/tidyverse style, and some exercises at the end of each chapter are tackled (correctness not guaranteed).
 
+For comprehensive solutions to all exercises in the book, see [https://hoff-exercise.kaorubb.org/](https://hoff-exercise.kaorubb.org/).
+
 If you find an error or would like to improve the notes, please submit a PR or open an issue!
 
 ## Building the Website
